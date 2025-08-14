@@ -1,0 +1,283 @@
+// form controls common styles
+@import "../common/variable";
+@import "../common/mixin";
+
+// form field styles
+@mixin form-field {
+  width: 100%;
+  position: relative;
+
+  &[class*="error"] {
+    input {
+      border-color: $Error400;
+      padding-right: 42px;
+
+      &:focus {
+        @include box-shadow(0, 24px, 22px, -10px, $Error400);
+      }
+    }
+
+    textarea {
+      border-color: $Error400;
+    }
+  }
+
+  [class*="__error-msg"] {
+    display: inline-block;
+    margin-top: 6px;
+
+    @include font-h6;
+
+    color: $dangerColor;
+  }
+
+  &[class*="disable"] {
+    pointer-events: none;
+    opacity: 0.8;
+
+    label {
+      color: $bodyText;
+    }
+  }
+}
+
+// form textarea styles
+textarea {
+  min-height: 100px;
+  resize: none;
+}
+
+// form select styles
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  position: relative;
+}
+
+// form label styles
+@mixin form-label {
+  display: inline-block;
+
+  @include font-detail(16px, 18px, 500, 0);
+
+  color: $Neutral900;
+  margin-bottom: 8px;
+
+  &[class*="--required"] {
+    &:after {
+      content: "*";
+      color: $Neutral900;
+    }
+  }
+}
+
+// form input styles
+@mixin form-input {
+  display: block;
+  border: 1px solid $Neutral500;
+  padding: 10px 12px;
+  color: $Neutral900;
+  font-family: var(--font-sans);
+  
+  @include font-detail(20px, 18px, 450, 0);
+
+  background-color: $siteWhite;
+
+  @include transition(0.3s);
+  @include border-radius(4px);
+
+  outline: none;
+  width: 100%;
+
+  @include media($deviceMd) {
+    @include font-h6;
+
+    padding: 10px 16px;
+  }
+
+  @include media($deviceXXl) {
+    padding: 14px 16px;
+  }
+
+  &:hover {
+    border-color: $AccentTeal300;
+  }
+
+  &:focus {
+    border-color: $AccentTeal300;
+
+    @include box-shadow(0, 0px, 3px, $AccentTeal300);
+  }
+
+  &[disabled],
+  &.disabled {
+    border-color: $Neutral500;
+    opacity: 0.8;
+    cursor: not-allowed;
+  }
+}
+
+// checkbox input mixin
+@mixin checkboxinput() {
+  display: none;
+
+  &:focus {
+    & + label {
+      outline: 3px solid $bodyText;
+    }
+  }
+
+  &:disabled {
+    & + label {
+      color: rgba($siteBlack, 0.5);
+      pointer-events: none;
+
+      &:after {
+        border-color: $grayColor;
+      }
+
+      &:before {
+        background-color: $grayLightColor;
+      }
+    }
+  }
+
+  &:checked {
+    & + label {
+      &:before {
+        background-color: $primaryColor;
+        border-color: $primaryColor;
+      }
+
+      &:after {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+}
+
+// checkbox label mixin
+@mixin checkboxlabel {
+  color: $siteBlack;
+
+  @include body-reg;
+
+  position: relative;
+  cursor: pointer;
+
+  @include flexbox;
+
+  padding-left: 24px;
+
+  @include media($deviceLg) {
+    padding-left: 28px;
+  }
+
+  &:before {
+    content: "";
+    border: 1px solid $grayColor;
+    position: absolute;
+    background-color: $siteWhite;
+    top: 2px;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+  }
+
+  &:after {
+    content: "\e90c";
+    font-family: $icomoonFont;
+    position: absolute;
+    top: 5.4px;
+    left: 3.4px;
+    font-size: 10px;
+    line-height: 10px;
+    color: $siteWhite;
+    opacity: 0;
+    visibility: hidden;
+
+    @include transition(0.3s);
+  }
+}
+
+@mixin radioinput {
+  position: absolute;
+  left: 0;
+  height: 0;
+  width: 0;
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+
+  &:checked + label {
+    &:before {
+      border-color: $primaryColor;
+    }
+
+    &:after {
+      @include transform(scale(1));
+    }
+  }
+
+  &:disabled {
+    & + label {
+      color: rgba($siteBlack, 0.5);
+      pointer-events: none;
+
+      &:after {
+        border-color: $grayColor;
+      }
+
+      &:before {
+        background-color: $grayLightColor;
+      }
+    }
+  }
+}
+
+@mixin radiolabel {
+  width: 100%;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  color: $siteBlack;
+
+  @include body-reg;
+
+  padding-left: 24px;
+
+  @include media($deviceLg) {
+    padding-left: 28px;
+  }
+
+  &:before {
+    position: absolute;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    content: "";
+    background-color: $siteWhite;
+    border: 1px solid $grayColor;
+    top: 2px;
+
+    @include border-radius(50%);
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    width: 8px;
+    height: 8px;
+    background-color: $primaryColor;
+    top: 6px;
+
+    @include transform(scale(0));
+    @include transition(0.3s);
+    @include border-radius(50%);
+  }
+}

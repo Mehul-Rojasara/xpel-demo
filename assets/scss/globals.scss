@@ -1,0 +1,236 @@
+/* Import constants */
+@use "./constants.css";
+@use "./common/fonts.scss";
+@use "./common/mixin.scss" as mixin;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================================
+    DESIGN SYSTEM - MINIMAL GLOBAL STYLES
+   ============================================================================ */
+
+/* ============================================================================
+   BASE STYLES - Essential global styles only
+   ============================================================================ */
+
+@layer base {
+  /* Ensure consistent box-sizing */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* Base HTML and body styles */
+  html {
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply font-display;
+    font-size: 16px;
+    line-height: 1;
+    color: #1b1a1a;
+    background-color: #ffffff;
+    position: relative;
+    // padding-top: 4rem;
+
+    // @include mixin.media(768px) {
+    //   padding-top: 5rem;
+    // }
+
+    // @include mixin.media(1100px) {
+    //   padding-top: 5.5rem;
+    // }
+  }
+
+  article,
+  aside,
+  figcaption,
+  figure,
+  footer,
+  header,
+  hgroup,
+  main,
+  nav,
+  section {
+    display: block;
+  }
+
+  img,
+  a,
+  input,
+  nav,
+  textarea,
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Ensure images are responsive */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Remove default button styles */
+  button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  /* Remove default list styles */
+  ul,
+  ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Remove default link styles */
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+/* ============================================================================
+   ACCESSIBILITY - Essential accessibility utilities
+   ============================================================================ */
+
+@layer utilities {
+  /* Focus visible for keyboard navigation */
+  .focus-visible {
+    outline: 2px solid #ffb81c;
+    outline-offset: 2px;
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ============================================================================
+   PRINT STYLES - Optimized for printing
+   ============================================================================ */
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .print-break-before {
+    page-break-before: always;
+  }
+
+  .print-break-after {
+    page-break-after: always;
+  }
+
+  .print-break-inside-avoid {
+    page-break-inside: avoid;
+  }
+
+  /* Ensure good contrast for printing */
+  * {
+    color: black !important;
+    background-color: white !important;
+  }
+}
+
+@layer components {
+  .font-h1 {
+    @include mixin.font-h1;
+  }
+
+  .font-h2 {
+    @include mixin.font-h2;
+  }
+
+  .font-h3 {
+    @include mixin.font-h3;
+  }
+
+  .font-h4 {
+    @include mixin.font-h4;
+  }
+
+  .font-h5 {
+    @include mixin.font-h5;
+  }
+
+  .font-h6 {
+    @include mixin.font-h6;
+  }
+
+  .para-large {
+    @include mixin.font-para-large;
+  }
+
+  .para-large-bold {
+    @include mixin.font-para-large-bold;
+  }
+
+  .para-medium {
+    @include mixin.font-para-medium;
+  }
+
+  .para-medium-bold {
+    @include mixin.font-para-medium-bold;
+  }
+
+  .para-small {
+    @include mixin.font-para-small;
+  }
+  .para-small-bold {
+    @include mixin.font-para-small-bold;
+  }
+
+  .para-xsmall {
+    @include mixin.font-para-xsmall;
+  }
+
+  .subtitle-large {
+    @include mixin.font-subtitle-large;
+  }
+
+  .subtitle-small {
+    @include mixin.font-subtitle-small;
+  }
+}
+
+.explore-slider {
+  article {
+    &:first-child {
+      margin-left: 120px;
+    }
+  }
+}
+
+.service-blocks article {
+  display: flex;
+  align-items: center;
+}

@@ -1,0 +1,227 @@
+@mixin font-h1 {
+  @apply text-[40px] md:text-[52px] lg:text-[72px] leading-normal font-[500] font-display tracking-tight;
+}
+
+@mixin font-h2 {
+  @apply text-[32px] md:text-[40px]  lg:text-[48px] leading-normal font-[500] font-display tracking-tight;
+}
+
+@mixin font-h3 {
+  @apply text-[24px] md:text-[30px]  lg:text-[32px] leading-normal font-[500] font-display tracking-tight;
+}
+
+@mixin font-h4 {
+  @apply text-[20px] lg:text-[22px] xl:text-[24px] leading-normal font-[500] font-display tracking-tight;
+}
+
+@mixin font-h5 {
+  @apply text-[18px] lg:text-[20px] leading-normal font-[500] font-display tracking-tight;
+}
+
+@mixin font-h6 {
+  @apply text-[16px] lg:text-[18px] leading-normal font-[500] font-display tracking-tight;
+}
+
+@mixin font-para-large {
+  @apply text-[18px] lg:text-[20px] leading-loose font-[450] font-sans tracking-wide;
+}
+
+@mixin font-para-large-bold {
+  @apply text-[18px] lg:text-[20px] leading-loose font-[600] font-sans tracking-wide;
+}
+
+@mixin font-para-medium {
+  @apply text-[16px] lg:text-[18px] leading-loose font-[450] font-sans tracking-wide;
+}
+
+@mixin font-para-medium-bold {
+  @apply text-[16px] lg:text-[18px] leading-loose font-[600] font-sans tracking-wide;
+}
+
+@mixin font-para-small {
+  @apply text-[14px] lg:text-[16px] leading-loose font-[450] font-sans tracking-wide;
+}
+
+@mixin font-para-small-bold {
+  @apply text-[14px] lg:text-[16px] leading-loose font-[600] font-sans tracking-wide;
+}
+
+@mixin font-para-xsmall {
+  @apply text-[14px] lg:text-[14px] leading-loose font-[450] font-sans tracking-wide;
+}
+
+@mixin font-subtitle-large {
+  @apply text-[16px] lg:text-[16px] leading-tight font-[600] font-display tracking-wider uppercase;
+}
+
+@mixin font-subtitle-small {
+  @apply text-[14px] lg:text-[14px] leading-tight font-[600] font-display tracking-wider uppercase;
+}
+
+@mixin font-detail($font-size-value, $line-height-value, $font-weight, $letter-space) {
+  font-size: $font-size-value;
+  line-height: $line-height-value;
+  font-weight: $font-weight;
+  letter-spacing: $letter-space;
+}
+
+@mixin media($size) {
+  @media only screen and (min-width: $size) {
+    @content;
+  }
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -o-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin opacity($opacity) {
+  -webkit-opacity: $opacity;
+  -moz-opacity: $opacity;
+  -o-opacity: $opacity;
+  -ms-opacity: $opacity;
+  opacity: $opacity;
+}
+
+@mixin transition($seconds, $timing: ease) {
+  -webkit-transition: all $seconds ease;
+  -moz-transition: all $seconds ease;
+  -ms-transition: all $seconds ease;
+  -o-transition: all $seconds ease;
+  transition: all $seconds $timing;
+}
+
+@mixin transform($property) {
+  -o-transform: $property;
+  -webkit-transform: $property;
+  -ms-transform: $property;
+  -moz-transform: $property;
+  transform: $property;
+}
+
+@mixin flexbox() {
+  display: -ms-flex;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin flexCenter() {
+  @include flexbox;
+  @include align-item-center;
+  @include justifyCenter;
+}
+
+@mixin align-item-center {
+  align-items: center;
+}
+
+@mixin justifyCenter {
+  justify-content: center;
+}
+
+@mixin text-shadow($x-axis, $y-axis, $blur, $color) {
+  -ms-text-shadow: $x-axis $y-axis $blur $color;
+  -o-text-shadow: $x-axis $y-axis $blur $color;
+  -webkit-text-shadow: $x-axis $y-axis $blur $color;
+  -moz-text-shadow: $x-axis $y-axis $blur $color;
+  text-shadow: $x-axis $y-axis $blur $color;
+}
+
+@mixin box-shadow($x-axis, $y-axis, $blur, $color) {
+  -ms-box-shadow: $x-axis $y-axis $blur $color;
+  -o-box-shadow: $x-axis $y-axis $blur $color;
+  -webkit-box-shadow: $x-axis $y-axis $blur $color;
+  -moz-box-shadow: $x-axis $y-axis $blur $color;
+  box-shadow: $x-axis $y-axis $blur $color;
+}
+
+@mixin box-shadow-none {
+  -ms-box-shadow: none;
+  -o-box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+@mixin box($property) {
+  box-sizing: $property;
+  -moz-box-sizing: $property;
+  -webkit-box-sizing: $property;
+  -o-box-sizing: $property;
+}
+
+@mixin text-clamp($line) {
+  display: -webkit-box;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  width: 100%;
+}
+
+@mixin space-none {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin figure {
+  margin: 0;
+  display: inherit;
+}
+
+@mixin ul-disc-style {
+  list-style: disc;
+}
+
+@mixin ol-decimal-style {
+  list-style: decimal;
+}
+
+@mixin ol-circle-style {
+  list-style: circle;
+}
+
+@mixin list-left-space {
+  padding-left: 20px;
+}
+
+@mixin app-none() {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+@mixin row($column-count, $row-gap, $column-gap) {
+  @include flexbox;
+  flex-wrap: wrap;
+  gap: $row-gap $column-gap;
+  > * {
+    flex: 0 0 calc((100% / $column-count) - ($column-gap - (($column-gap / $column-count))));
+    width: calc((100% / $column-count) - ($column-gap - (($column-gap / $column-count))));
+  }
+}
+
+@mixin list-unstyled() {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+@mixin card($col) {
+  @include row(1, 0px, 0px);
+  @include media($device-md) {
+    @include row(2, 0px, 0px);
+  }
+  @include media($device-lg) {
+    @include row($col, 0px, 0px);
+    [class*="half"] {
+      @if $col == 3 {
+        flex-basis: 66.66667%;
+      } @else if $col == 4 {
+        flex-basis: 50%;
+      }
+    }
+  }
+}

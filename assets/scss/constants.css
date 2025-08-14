@@ -1,0 +1,319 @@
+/* ============================================================================
+   XPEL DESIGN SYSTEM - CONSTANTS
+   ============================================================================ */
+
+/* Colors */
+:root {
+  /* Neutral Colors */
+  --color-neutral-900: #1b1a1a;
+  --color-neutral-800: #474646;
+  --color-neutral-700: #585757;
+  --color-neutral-600: #6c6b6b;
+  --color-neutral-500: #767676;
+  --color-neutral-400: #b2b2b2;
+  --color-neutral-300: #cdcdcd;
+  --color-neutral-200: #eeeeee;
+  --color-neutral-100: #f8f8f8;
+
+  /* Primary Colors */
+  --color-primary-100: #ffefcd;
+  --color-primary-200: #ffd477;
+  --color-primary-300: #ffb81c;
+  --color-primary-400: #bf8a15;
+
+  /* Accent Colors - Teal */
+  --color-accent-teal-100: #dff2f1;
+  --color-accent-teal-200: #c2e4e4;
+  --color-accent-teal-300: #1b6d6a;
+  --color-accent-teal-400: #144e4d;
+
+  /* Accent Colors - Navy */
+  --color-accent-navy-100: #e6ecf4;
+  --color-accent-navy-200: #a3aec0;
+  --color-accent-navy-300: #364258;
+  --color-accent-navy-400: #2c3546;
+
+  /* Accent Colors - Red */
+  --color-accent-red-100: #f5e0e0;
+  --color-accent-red-200: #e19f9e;
+  --color-accent-red-300: #9e3835;
+  --color-accent-red-400: #762927;
+
+  /* Status Colors - Success */
+  --color-success-100: #e6f0d4;
+  --color-success-200: #9db45c;
+  --color-success-300: #5d7238;
+  --color-success-400: #4d5e2e;
+  --color-success-500: #4caf50;
+
+  /* Status Colors - Warning */
+  --color-warning-100: #fde0d3;
+  --color-warning-200: #f98f60;
+  --color-warning-300: #cc4e08;
+  --color-warning-400: #a94107;
+  --color-warning-500: #ff9800;
+
+  /* Status Colors - Error */
+  --color-error-100: #ffd6d7;
+  --color-error-200: #f15156;
+  --color-error-300: #de1c22;
+  --color-error-400: #9f1b1f;
+
+  /* Disabled Colors */
+  --color-disabled-bg: #d0cfcf;
+  --color-disabled-text: #b6b7b8;
+  --color-disabled-border: #b6b7b8;
+  --color-disabled-dark-bg: #555555;
+  --color-disabled-dark-text: #b6b7b8;
+
+  /* Dark Theme Colors */
+  --color-dark-bg: #333333;
+  --color-dark-hover: #222222;
+  --color-dark-border: #b6b7b8;
+
+  /* Hover Colors */
+  --color-hover-light: #f7f5f5;
+  --color-hover-gray: #f0f0f0;
+}
+
+/* Typography */
+:root {
+  /* Font Sizes */
+  --font-size-xs: 10px;
+  --font-size-sm: 12px;
+  --font-size-base: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 32px;
+  --font-size-4xl: 48px;
+  --font-size-5xl: 72px;
+
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Line Heights */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-loose: 1.75;
+
+  /* Letter Spacing */
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
+  --letter-spacing-widest: 0.1em;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 6px;
+  --spacing-md: 8px;
+  --spacing-lg: 12px;
+  --spacing-xl: 16px;
+  --spacing-2xl: 20px;
+  --spacing-3xl: 24px;
+  --spacing-4xl: 32px;
+  --spacing-5xl: 40px;
+  --spacing-6xl: 48px;
+  --spacing-7xl: 56px;
+  --spacing-8xl: 64px;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  /* Transitions */
+  --transition-fast: 150ms ease-in-out;
+  --transition-normal: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+
+  /* Z-Index */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+
+  /* Breakpoints */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  /* Component Specific Constants */
+  /* Button */
+  --button-height-sm: 36px;
+  --button-height-md: 48px;
+  --button-height-lg: 56px;
+  --button-padding-x-sm: 12px;
+  --button-padding-x-md: 20px;
+  --button-padding-x-lg: 24px;
+
+  /* Button Colors - Light Theme */
+  --button-primary-filled-bg: var(--color-primary-300);
+  --button-primary-filled-text: var(--color-neutral-900);
+  --button-primary-filled-hover-bg: var(--color-neutral-900);
+  --button-primary-filled-hover-text: white;
+  --button-primary-outlined-bg: white;
+  --button-primary-outlined-border: var(--color-neutral-900);
+  --button-primary-outlined-text: var(--color-neutral-900);
+  --button-primary-outlined-hover-bg: white;
+
+  --button-secondary-filled-bg: var(--color-neutral-900);
+  --button-secondary-filled-text: white;
+  --button-secondary-filled-hover-bg: #545353;
+  --button-secondary-filled-hover-text: white;
+  --button-secondary-outlined-bg: white;
+  --button-secondary-outlined-border: var(--color-neutral-900);
+  --button-secondary-outlined-text: var(--color-neutral-900);
+  --button-secondary-outlined-hover-bg: var(--color-hover-light);
+
+  --button-tertiary-filled-bg: white;
+  --button-tertiary-filled-text: var(--color-neutral-600);
+  --button-tertiary-filled-border: var(--color-neutral-600);
+  --button-tertiary-filled-hover-bg: var(--color-neutral-600);
+  --button-tertiary-filled-hover-text: white;
+  --button-tertiary-outlined-bg: white;
+  --button-tertiary-outlined-border: var(--color-neutral-600);
+  --button-tertiary-outlined-text: var(--color-neutral-600);
+  --button-tertiary-outlined-hover-bg: var(--color-neutral-600);
+  --button-tertiary-outlined-hover-text: white;
+
+  /* Button Colors - Dark Theme */
+  --button-dark-primary-filled-bg: var(--color-primary-300);
+  --button-dark-primary-filled-text: var(--color-neutral-900);
+  --button-dark-primary-filled-hover-bg: var(--color-neutral-900);
+  --button-dark-primary-filled-hover-text: white;
+  --button-dark-primary-outlined-bg: var(--color-dark-bg);
+  --button-dark-primary-outlined-border: var(--color-primary-300);
+  --button-dark-primary-outlined-text: var(--color-primary-300);
+  --button-dark-primary-outlined-hover-bg: var(--color-dark-hover);
+
+  --button-dark-secondary-filled-bg: white;
+  --button-dark-secondary-filled-text: var(--color-neutral-900);
+  --button-dark-secondary-filled-hover-bg: var(--color-neutral-900);
+  --button-dark-secondary-filled-hover-text: white;
+  --button-dark-secondary-outlined-bg: var(--color-dark-bg);
+  --button-dark-secondary-outlined-border: white;
+  --button-dark-secondary-outlined-text: white;
+  --button-dark-secondary-outlined-hover-bg: var(--color-dark-hover);
+
+  --button-dark-tertiary-filled-bg: var(--color-dark-bg);
+  --button-dark-tertiary-filled-text: white;
+  --button-dark-tertiary-filled-border: white;
+  --button-dark-tertiary-filled-hover-bg: white;
+  --button-dark-tertiary-filled-hover-text: var(--color-neutral-900);
+  --button-dark-tertiary-outlined-bg: var(--color-dark-bg);
+  --button-dark-tertiary-outlined-border: var(--color-disabled-border);
+  --button-dark-tertiary-outlined-text: var(--color-disabled-border);
+  --button-dark-tertiary-outlined-hover-bg: white;
+  --button-dark-tertiary-outlined-hover-text: var(--color-neutral-900);
+
+  /* Button States */
+  --button-selected-bg: var(--color-primary-300);
+  --button-selected-text: var(--color-neutral-900);
+  --button-disabled-bg: var(--color-disabled-bg);
+  --button-disabled-text: var(--color-disabled-text);
+  --button-disabled-border: var(--color-disabled-border);
+  --button-disabled-dark-bg: var(--color-disabled-dark-bg);
+  --button-disabled-dark-text: var(--color-disabled-dark-text);
+
+  /* Tab Colors */
+  --tab-active-bg: var(--color-neutral-900);
+  --tab-active-text: white;
+  --tab-inactive-bg: white;
+  --tab-inactive-text: var(--color-neutral-900);
+  --tab-inactive-hover-bg: var(--color-hover-gray);
+  --tab-focus-ring: var(--color-primary-300);
+  --tab-dot-bg: var(--color-neutral-900);
+
+  /* Input Colors */
+  --input-bg: white;
+  --input-text: var(--color-neutral-900);
+  --input-placeholder: var(--color-neutral-600);
+  --input-border-default: var(--color-neutral-900);
+  --input-border-error: var(--color-error-300);
+  --input-border-success: var(--color-success-500);
+  --input-focus-ring: var(--color-primary-300);
+  --input-focus-border: var(--color-primary-300);
+  --input-label-text: var(--color-neutral-900);
+  --input-required-text: var(--color-error-300);
+  --input-optional-text: var(--color-neutral-600);
+  --input-error-text: var(--color-error-300);
+  --input-helper-text: var(--color-neutral-600);
+  --input-checkbox-color: var(--color-primary-300);
+  --input-checkbox-border: var(--color-neutral-900);
+  --input-checkbox-focus-ring: var(--color-primary-300);
+  --input-select-chevron: var(--color-neutral-900);
+
+  /* Accordion Colors */
+  --accordion-bg: white;
+  --accordion-border: var(--color-neutral-200);
+  --accordion-item-border: var(--color-neutral-200);
+  --accordion-title-text: var(--color-neutral-900);
+  --accordion-content-text: var(--color-neutral-900);
+  --accordion-icon-color: var(--color-neutral-900);
+  --accordion-hover-bg: var(--color-neutral-100);
+
+  /* Input */
+  --input-height: 48px;
+  --input-padding-x: 12px;
+  --input-padding-y: 16px;
+  --input-border-width: 1px;
+
+  /* Card */
+  --card-padding: 24px;
+  --card-border-width: 1px;
+
+  /* Modal */
+  --modal-padding: 32px;
+  --modal-border-radius: 12px;
+
+  /* Tooltip */
+  --tooltip-padding: 8px 12px;
+  --tooltip-border-radius: 4px;
+  --tooltip-arrow-size: 4px;
+
+  /* Alert */
+  --alert-info-bg: #dff2f1;
+  --alert-info-border: #dff2f1;
+  --alert-info-icon: #1b1a1a;
+  --alert-info-action: #1b1a1a;
+  --alert-info-close: #1b1a1a;
+
+  --alert-success-bg: #e6f0d4;
+  --alert-success-border: #e6f0d4;
+  --alert-success-icon: #4caf50;
+  --alert-success-action: #4caf50;
+  --alert-success-close: #1b1a1a;
+
+  --alert-warning-bg: #fde0d3;
+  --alert-warning-border: #fde0d3;
+  --alert-warning-icon: #ff9800;
+  --alert-warning-action: #ff9800;
+  --alert-warning-close: #1b1a1a;
+
+  --alert-error-bg: #ffd6d7;
+  --alert-error-border: #ffd6d7;
+  --alert-error-icon: #de1c22;
+  --alert-error-action: #de1c22;
+  --alert-error-close: #1b1a1a;
+}

@@ -1,0 +1,58 @@
+// Base
+$Neutral900: var(--color-neutral-900);
+$Neutral800: var(--color-neutral-800);
+$Neutral700: var(--color-neutral-700);
+$Neutral600: var(--color-neutral-600);
+$Neutral500: var(--color-neutral-500);
+$Neutral400: var(--color-neutral-400);
+$Neutral300: var(--color-neutral-300);
+$Neutral200: var(--color-neutral-200);
+$Neutral100: var(--color-neutral-100);
+$Primary100: var(--color-primary-100);
+$Primary200: var(--color-primary-200);
+$Primary300: var(--color-primary-300);
+$Primary400: var(--color-primary-400);
+$AccentTeal100: var(--color-accent-teal-100);
+$AccentTeal200: var(--color-accent-teal-200);
+$AccentTeal300: var(--color-accent-teal-300);
+$AccentTeal400: var(--color-accent-teal-400);
+$AccentNavy100: var(--color-accent-navy-100);
+$AccentNavy200: var(--color-accent-navy-200);
+$AccentNavy300: var(--color-accent-navy-300);
+$AccentNavy400: var(--color-accent-navy-400);
+$AccentRed100: var(--color-accent-red-100);
+$AccentRed200: var(--color-accent-red-200);
+$AccentRed300: var(--color-accent-red-300);
+$AccentRed400: var(--color-accent-red-400);
+$Success100: var(--color-success-100);
+$Success200: var(--color-success-200);
+$Success300: var(--color-success-300);
+$Success400: var(--color-success-400);
+$Success500: var(--color-success-500);
+$Warning100: var(--color-warning-100);
+$Warning200: var(--color-warning-200);
+$Warning300: var(--color-warning-300);
+$Warning400: var(--color-warning-400);
+$Warning500: var(--color-warning-500);
+$Error100: var(--color-error-100);
+$Error200: var(--color-error-200);
+$Error300: var(--color-error-300);
+$Error400: var(--color-error-400);
+$Error500: var(--color-error-500);
+$DisabledBg: var(--color-disabled-bg);
+$DisabledText: var(--color-disabled-text);
+$DisabledBorder: var(--color-disabled-border);
+$DisabledDarkBg: var(--color-disabled-dark-bg);
+$siteWhite: #ffffff;
+$siteBlack: #000000;
+
+// Media
+$device-sm: 390px;
+$device-md: 768px;
+$device-lg: 1024px;
+$device-xl: 1440px;
+
+// Fonts
+$primary-font: var(--font-futura, "Arial, Verdana, Tahoma, sans-serif");
+$secondary-font: var(--font-jost, "Arial, Verdana, Tahoma, sans-serif");
+$icomoon-font: "icomoon", sans-serif !important;

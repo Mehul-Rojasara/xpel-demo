@@ -1,0 +1,32 @@
+/* Article Slider Component - BEM Structure */
+
+.article-swiper {
+  width: 100%;
+}
+
+.article-swiper .swiper-slide {
+  transition: transform 0.3s ease;
+}
+
+.article-swiper .swiper-slide:hover {
+  transform: translateY(-4px);
+}
+
+/* Swiper Pagination Override */
+.swiper-pagination {
+  display: none !important;
+}
+
+/* Swiper Navigation Button States */
+.swiper-button-disabled {
+  opacity: 0.5 !important;
+  pointer-events: none !important;
+}
+
+/* Line Clamp Utility */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+} 
