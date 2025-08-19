@@ -155,21 +155,20 @@ export const InstallerBenefits: React.FC<InstallerBenefitsProps> = ({
 
   return (
     <section 
-      className={`${bgColor} py-12 sm:py-16 md:py-20 ${className}`}
+      className={`${bgColor} py-16 sm:py-20 lg:py-[7.5rem] ${className}`}
       aria-label={ariaLabel || "Installer benefits section"}
     >
-      <div className="max-w-[1220px] mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Section - Only show if showHeader is true */}
-        {showHeader && (
-          <div className="text-center mb-16">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl text-white leading-tight tracking-tight mb-6">
-              {title}
-            </h1>
-            <p className="text-lg sm:text-xl text-white leading-relaxed max-w-4xl mx-auto">
-              {titleDescription}
-            </p>
-          </div>
-        )}
+      {/* Header Section - Only show if showHeader is true */}
+      {showHeader && (
+        <div className="text-center mb-16">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl text-white leading-tight tracking-tight mb-6">
+            {title}
+          </h1>
+          <p className="text-lg sm:text-xl text-white leading-relaxed max-w-4xl mx-auto">
+            {titleDescription}
+          </p>
+        </div>
+      )}
 
       <Container>
         <div className="flex flex-col lg:flex-row lg:items-stretch gap-6 sm:gap-8 lg:gap-16">
@@ -204,11 +203,11 @@ export const InstallerBenefits: React.FC<InstallerBenefitsProps> = ({
           </div>
 
           {/* Right Column - Content */}
-          <div className="lg:w-1/2 lg:flex-1 flex flex-col justify-center">
+          <div className="lg:w-1 lg:flex-1 flex flex-col justify-center">
             <div className="space-y-4 sm:space-y-6 lg:space-y-8">
               {/* Subtitle - Only show if provided */}
               {subtitle && (
-                <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight ${
+                <h2 className={`font-h2 font-sans leading-tight ${
                   theme === 'dark' ? 'text-white' : 'text-gray-900'
                 }`}>
                   {subtitle}
@@ -217,7 +216,7 @@ export const InstallerBenefits: React.FC<InstallerBenefitsProps> = ({
 
               {/* Description - Only show if provided */}
               {description && (
-                <p className={`text-base sm:text-lg leading-relaxed ${
+                <p className={`text-base sm:text-lg leading-relaxed font-sans ${
                   theme === 'dark' ? 'text-white' : 'text-gray-900'
                 }`}>
                   {description}
@@ -247,7 +246,7 @@ export const InstallerBenefits: React.FC<InstallerBenefitsProps> = ({
                   return (
                     <div 
                       key={index} 
-                      className={`flex items-start space-x-3 sm:space-x-4 cursor-pointer transition-all duration-200 ${
+                      className={`flex items-center space-x-3 sm:space-x-4 cursor-pointer transition-all duration-200 ${
                         isSelected ? 'opacity-100' : 'opacity-60 hover:opacity-80'
                       }`}
                       onClick={() => handleBenefitClick(index)}
@@ -262,22 +261,22 @@ export const InstallerBenefits: React.FC<InstallerBenefitsProps> = ({
                       aria-label={`Select ${benefit.title} benefit`}
                     >
                       {/* Left border line - Always visible, different colors for active/inactive */}
-                      <div className={`w-0.5 h-full min-h-[60px] rounded-full transition-colors duration-200 ${
+                      <div className={`w-0.5 h-full min-h-9 rounded-full transition-colors duration-200 ${
                         isSelected ? selectedBorderColor : theme === 'dark' ? 'bg-white' : 'bg-gray-300'
                       }`}></div>
 
                       {/* Icon */}
-                      <div className={`flex-shrink-0 w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-colors duration-200 ${
+                      <div className={`flex-shrink-0 w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center transition-colors duration-200 text-3xl ${
                         isSelected 
-                          ? selectedIconBgColor + ' ' + selectedIconTextColor
-                          : iconBgColor + ' ' + iconTextColor
+                          ? ' ' + selectedIconTextColor
+                          : ' ' + iconTextColor
                       }`}>
                         {benefit.icon}
                       </div>
                       
                       {/* Content */}
                       <div className="flex-1">
-                        <h3 className={`mb-1 transition-colors duration-200 text-sm sm:text-base ${
+                        <h3 className={`mb-1 transition-colors duration-200 text-sm sm:text-lg font-sans ${
                           isSelected ? benefitTextColor : benefitTextColor
                         }`}>
                           {benefit.title}
@@ -309,7 +308,6 @@ export const InstallerBenefits: React.FC<InstallerBenefitsProps> = ({
           </div>
         </div>
       </Container>
-      </div>
     </section>
   );
 }; 

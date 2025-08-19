@@ -183,7 +183,7 @@ export const HomePage: React.FC<HomePageProps> = ({ country, language }) => {
         ]}
         showDots={false}
         controlsPosition="bottom-right"
-
+        className="min-h-[640px] md:min-h-[800px] lg:min-h-[1050px]"
       />
 
       {/* Contact Section */}

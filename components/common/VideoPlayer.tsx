@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
+import Container from '@/components/ui/Container';
 
 interface VideoPlayerProps {
   videoSrc: string;
@@ -189,7 +190,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     switch (dotSize) {
       case 'sm': return 'h-1.5';
       case 'lg': return 'h-3';
-      default: return 'h-2';
+      default: return 'h-1.5';
     }
   };
 
@@ -197,13 +198,13 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   const getDotWidth = (index: number) => {
     if (index === currentSlideIndex) {
       // Only current dot expands based on video progress
-      const minWidth = 8; // w-2 (8px)
-      const maxWidth = 32; // w-8 (32px)
+      const minWidth = 6; // w-2 (8px)
+      const maxWidth = 60; // w-8 (32px)
       const progressWidth = minWidth + ((maxWidth - minWidth) * videoProgress / 100);
       return `${progressWidth}px`;
     } else {
       // All other dots remain normal width
-      return '8px'; // w-2
+      return '6px'; // w-2
     }
   };
 
@@ -213,9 +214,9 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
       case 'bottom-center':
         return 'absolute bottom-8 left-1/2 transform -translate-x-1/2';
       case 'bottom-left':
-        return 'absolute bottom-4 left-4';
+        return 'absolute bottom-5 left-0 left-side';
       default:
-        return 'absolute bottom-4 right-4';
+        return 'absolute bottom-4 right-0 right-side';
     }
   };
 
@@ -237,7 +238,8 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
       {/* Video Controls - Only show after hydration */}
       {isMounted && (showPlayPause || showProgress || showDots) && (
-        <div className={`z-20 ${getControlsPositionClasses()}`}>
+        <div className={`z-20 w-full ${getControlsPositionClasses()}`}>
+          <Container className="w-full">
           {/* Progress Bar + Play/Pause (Slider Mode) */}
           {showProgress && (
             <div className="flex flex-col items-center space-y-3">
@@ -247,7 +249,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
                   onClick={handleVideoProgressClick}
                 >
                   <div 
-                    className="h-full bg-[#FFB81C] rounded-full transition-all duration-100 ease-out "
+                    className="h-full bg-[#FFB81C] w-20 md:w-60 rounded-full transition-all duration-100 ease-out "
                     style={{ width: `${videoProgress}%` }}
                     role="progressbar"
                     aria-valuenow={videoProgress}
@@ -260,7 +262,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
                 {showPlayPause && (
                   <button
                     onClick={handleVideoToggle}
-                    className="w-8 h-8 flex items-center justify-center text-white hover:text-[#FFB81C] transition-colors duration-300 border border-white/60 rounded-full bg-black/20 backdrop-blur-sm"
+                    className="w-7 h-7 flex items-center justify-center text-white hover:text-[#FFB81C] transition-colors duration-300 border border-white/60 rounded-full bg-black/20 backdrop-blur-sm"
                     aria-label={isPlaying ? 'Pause video' : 'Play video'}
                   >
                     {isPlaying ? (
@@ -312,14 +314,22 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
                     <button
                       key={index}
                       onClick={() => onSlideChange?.(index)}
-                      className={`${getDotSizeClasses()} rounded-full transition-all duration-300 ${
+                      className={`${getDotSizeClasses()} rounded-full transition-all duration-300 bg-white/60 hover:bg-white/80 ${
                         isCurrent
-                          ? 'bg-[#FFB81C]' 
-                          : 'bg-white/60 hover:bg-white/80'
+                          ? 'w-20 md:w-60' 
+                          : 'w-1.5'
                       }`}
-                      style={{ width: dotWidth }}
+                      // style={{ width: dotWidth }}
                       aria-label={`Go to slide ${index + 1}`}
-                    />
+                    >
+                      <span 
+                        className={`${getDotSizeClasses()} block rounded-full transition-all duration-300 ${
+                          isCurrent
+                            ? 'bg-[#FFB81C]' 
+                            : 'bg-white/60 hover:bg-white/80'
+                        }`}
+                        style={{ width: dotWidth }}></span>
+                    </button>
                   );
                 })}
               </div>
@@ -328,7 +338,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
               {showPlayPause && (
                 <button
                   onClick={handleVideoToggle}
-                  className="w-8 h-8 flex items-center justify-center text-white hover:text-[#FFB81C] transition-colors duration-300 border border-white/60 rounded-full bg-black/20 backdrop-blur-sm"
+                  className="w-7 h-7 flex items-center justify-center text-white hover:text-[#FFB81C] transition-colors duration-300 border border-white/60 rounded-full bg-black/20 backdrop-blur-sm"
                   aria-label={isPlaying ? 'Pause video' : 'Play video'}
                 >
                   {isPlaying ? (
@@ -349,20 +359,21 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
           {showPlayPause && !showProgress && !showDots && (
             <button
               onClick={handleVideoToggle}
-              className="w-12 h-12 bg-neutral-800 hover:bg-neutral-700 text-white rounded-full flex items-center justify-center transition-all duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
+              className="video-player-button w-7 lg:w-10 h-7 lg:h-10 flex items-center justify-center text-white hover:text-[#FFB81C] transition-colors duration-300 border border-white/60 rounded-full bg-black/20 backdrop-blur-sm0"
               aria-label={isPlaying ? 'Pause video' : 'Play video'}
             >
               {isPlaying ? (
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 lg:w-5 h-4 lg:h-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
                 </svg>
               ) : (
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 lg:w-5 h-4 lg:h-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z"/>
                 </svg>
               )}
             </button>
           )}
+          </Container>
         </div>
       )}
     </div>

@@ -5,7 +5,6 @@ import { RacingStats } from '../sections/RacingStats';
 import { LatestArticles } from '../sections/LatestArticles';
 import { ContentSection } from '../sections/ContentSection';
 import { CONTENT_SECTIONS } from '@/config/constants';
-import { InstallerSpotlights } from '../common/VideoSlider';
 
 
 

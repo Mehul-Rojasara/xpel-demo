@@ -178,6 +178,7 @@ const config: Config = {
         Mdx: "900px",
         Lgx: "1100px",
         Xxl: "1440px",
+        Xxxl: "1630px",
       },
     },
   },

@@ -35,7 +35,6 @@ export const ServiceSlider: React.FC<ServiceSliderProps> = ({
   showNavigation = true,
   showProgress = true,
   cardsPerView = 3,
-  gap = 48,
   background = 'dark'
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -45,6 +44,11 @@ export const ServiceSlider: React.FC<ServiceSliderProps> = ({
   const backgroundClasses = {
     dark: 'bg-neutral-900 text-white',
     light: 'bg-white text-neutral-900'
+  };
+
+  const textColorClasses = {
+    dark: 'text-white',
+    light: 'text-neutral-900'
   };
 
   const slideToIndex = useCallback((index: number) => {
@@ -81,15 +85,15 @@ export const ServiceSlider: React.FC<ServiceSliderProps> = ({
   };
 
   return (
-    <section className={`py-[120px] explore-slider ${backgroundClasses[background]} ${className}`} role="region" aria-label="Service offerings">
+    <section className={`py-16 sm:py-20 lg:py-[120px] explore-slider overflow-hidden ${backgroundClasses[background]} ${className}`} role="region" aria-label="Service offerings">
       <Container>
         {/* Header - Exact Figma specifications */}
-        <header className="mb-16">
-          <p className="font-h1 font-display font-medium text-white leading-[110%] tracking-[-0.01em] text-left max-w-[949px]">
+        <header className="mb-8 sm:mb-12 lg:mb-16">
+          <h2 className={`font-h1 font-display font-medium leading-[110%] tracking-[-0.01em] text-left max-w-[949px] ${textColorClasses[background]}`}>
             {title}
-          </p>
+          </h2>
           {subtitle && (
-            <p className="para-large text-white/80 max-w-2xl font-sans tracking-[0.01em] leading-[150%] font-[450] text-left mt-6">
+            <p className={`para-large max-w-2xl font-sans tracking-[0.01em] leading-[150%] font-[450] text-left mt-6 ${textColorClasses[background] === 'text-white' ? 'text-white/80' : 'text-neutral-900/80'}`}>
               {subtitle}
             </p>
           )}
@@ -107,12 +111,12 @@ export const ServiceSlider: React.FC<ServiceSliderProps> = ({
                 buttonStyle="filled"
                 size="lg"
                 background="light"
-                className={`absolute left-0 sm:left-4 md:left-8 lg:left-16 xl:left-[120px] top-1/2 -translate-y-1/2 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full shadow-lg transition-all duration-300 hover:!bg-[#FFB81C] hover:!text-neutral-900 ${
+                className={`hidden md:block absolute left-0 sm:left-4 md:left-8 lg:left-0 xl:left-0 Xxxl:left-[-5rem] top-1/2 -translate-y-1/4 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full shadow-lg transition-all duration-300 hover:!bg-[#FFB81C] hover:!text-neutral-900 !p-0 ${
                   currentIndex === 0 ? 'invisible' : ''
                 }`}
                 aria-label="Previous slide"
               >
-                <i className="icon-Arrow-Left text-neutral-900" aria-hidden="true"></i>
+                <i className="icon-Arrow-Left text-neutral-900 text-lg" aria-hidden="true"></i>
               </Button>
               
               <Button
@@ -122,51 +126,51 @@ export const ServiceSlider: React.FC<ServiceSliderProps> = ({
                 buttonStyle="filled"
                 size="lg"
                 background="light"
-                className={`absolute right-0 sm:right-4 md:right-8 lg:right-16 xl:right-[120px] top-1/2 -translate-y-1/2 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full shadow-lg transition-all duration-300 hover:!bg-[#FFB81C] hover:!text-neutral-900 ${
+                className={`hidden md:block absolute right-0 sm:right-4 md:right-8 lg:right-0 xl:right-0 Xxxl:right-[-5rem] top-1/2 -translate-y-1/4 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full shadow-lg transition-all duration-300 hover:!bg-[#FFB81C] hover:!text-neutral-900 !p-0 ${
                   currentIndex >= maxIndex ? 'invisible' : ''
                 }`}
                 aria-label="Next slide"
               >
-                <i className="icon-Arrow-Right text-neutral-900" aria-hidden="true"></i>
+                <i className="icon-Arrow-Right text-neutral-900 text-lg" aria-hidden="true"></i>
               </Button>
             </>
           )}
 
           {/* Slider Track - Full width with proper overflow */}
-          <div className="w-full overflow-hidden">
+          <div className="w-full">
             <div 
-              className="flex transition-transform duration-500 ease-in-out"
+              className="flex transition-transform duration-500 ease-in-out article-list gap-4 md:gap-6"
               style={{
                 transform: `translateX(-${currentIndex * (100 / cardsPerView)}%)`,
-                gap: `${gap}px`
+                // gap: `${gap}px`
               }}
             >
               {services.map((service) => (
                 <article
                   key={service.id}
-                  className="flex-shrink-0 cursor-pointer group w-full min-w-[300px] max-w-[400px]"
+                  className="flex-shrink-0 cursor-pointer group w-full min-w-[296px] md:min-w-[300px] max-w-[296px] sm:max-w-[358px] lg:max-w-[458px] rounded-lg overflow-hidden"
                   onClick={() => handleCardClick(service)}
                   role="button"
                   tabIndex={0}
                   onKeyDown={(e) => e.key === 'Enter' && handleCardClick(service)}
                 >
-                  <div className="rounded-lg overflow-hidden transition-transform duration-300 group-hover:scale-105 shadow-lg w-full">
+                  <div className="transition-transform duration-300 shadow-lg w-full">
                     <div className="relative aspect-square overflow-hidden rounded-lg w-full">
                       <Image
                         src={service.image}
                         alt={service.imageAlt}
                         width={400}
                         height={400}
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-300 scale-100 group-hover:scale-110"
                       />
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" aria-hidden="true" />
                       
                       {/* Card Text Label - Exact Figma positioning */}
-                      <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+                      <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 md:p-5">
                         <div className="flex items-center justify-center gap-2">
-                          <p className="para-medium font-medium text-white transition-colors duration-300 leading-tight">
+                          <h3 className="font-medium text-white transition-colors duration-300 leading-tight font-h3">
                             {service.title}
-                          </p>
+                          </h3>
                           {/* Arrow Icon - Using style guide icon */}
                           <i className="icon-Arrow-Right text-white para-medium transition-all duration-300 transform translate-x-0 group-hover:translate-x-1" aria-hidden="true"></i>
                         </div>

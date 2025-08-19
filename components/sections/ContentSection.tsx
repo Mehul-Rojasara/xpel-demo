@@ -1,4 +1,5 @@
 import React from 'react';
+import Container from '@/components/ui/Container';
 
 interface ContentSectionProps {
   title?: string;
@@ -15,27 +16,27 @@ export const ContentSection: React.FC<ContentSectionProps> = ({
 }) => {
   return (
     <section 
-      className={`bg-white py-16 md:py-20 lg:py-24 ${className}`}
+      className={`bg-white py-16 sm:py-20 lg:py-[7.5rem] ${className}`}
       aria-label={ariaLabel || "Content section with heading and description"}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+      <Container>
         {/* Heading and Description - Side by Side Layout */}
-        <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-16 xl:gap-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 ">
           {/* Left Column - Heading */}
-          <div className="lg:w-2/3 lg:flex-shrink-0">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-black leading-tight tracking-tight">
+          <div className="">
+            <h2 className="font-h2 text-black leading-tight tracking-tight font-sans">
               {title}
             </h2>
           </div>
           
           {/* Right Column - Description */}
-          <div className="lg:w-1/3 lg:flex-shrink-0">
-            <p className="text-base sm:text-lg md:text-xl text-black leading-relaxed">
+          <div className="">
+            <p className="text-base sm:text-lg md:text-xl text-black leading-relaxed font-sans max-w-[530px]">
               {subtitle}
             </p>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }; 

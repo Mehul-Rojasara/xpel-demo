@@ -13,25 +13,25 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
 }) => {
   return (
     <section 
-      className={`py-16 px-4 sm:px-6 lg:px-8 bg-neutral-100 min-h-[190px] ${className}`}
+      className={`py-16 sm:py-20 lg:py-[7.5rem] bg-neutral-100 min-h-[190px] overflow-hidden ${className}`}
       role="region" 
       aria-label="Contact information"
     >
       <Container>
-        <div className="flex flex-col lg:flex-row items-start">
+        <div className="flex flex-col lg:flex-row items-start gap-6 lg:gap-8 lg:justify-between">
           {/* Left side - Heading and subtext starting from total left */}
-          <div className="space-y-6 mb-8 lg:mb-0 pt-8 pl-6 flex-0-auto min-w-[300px]">
-            <p className="font-h1 font-display font-medium text-neutral-900 leading-[110%] tracking-[-0.01em] mb-4 whitespace-pre-line">
-              Reach out{'\n'}to us
-            </p>
+          <div className="mb-0 flex-0-auto min-w-[300px]">
+            <h2 className="font-h2 font-display font-medium text-neutral-900 leading-[110%] tracking-[-0.01em] mb-2 lg:mb-4 whitespace-pre-line">
+              Reach out to us
+            </h2>
             
-            <p className="para-large text-neutral-900 opacity-60 max-w-[280px] whitespace-pre-line leading-[150%] tracking-[0.01em] font-[450]">
-              Lorem Ipsum is simply dummy text of{'\n'}the printing
+            <p className="para-medium text-neutral-900 opacity-60 lg:max-w-[280px] whitespace-pre-line leading-[150%] tracking-[0.01em] font-[450]">
+              Lorem Ipsum is simply dummy text of the printing
             </p>
           </div>
 
           {/* Right side - Contact cards with proper spacing from text */}
-          <div className="flex justify-start pt-8 pr-14 ml-20 mb-8">
+          <div className="flex justify-start w-full">
             <ContactCards 
               cards={cards}
             />

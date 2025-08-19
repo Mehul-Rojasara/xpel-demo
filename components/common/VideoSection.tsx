@@ -140,7 +140,7 @@ const VideoSection: React.FC<VideoSectionProps> = ({
       />
 
       {/* Content Container */}
-      <div className="relative z-10 flex items-center justify-center h-full">
+      <div className="relative z-10 flex items-start md:items-center justify-center h-full pt-24 md:pt-9 pb-6 md:pb-20">
         <Container className="w-full">
           <div className={`max-w-2xl ${textAlignmentClasses[textAlignment]}`}>
             {/* Eyebrow Text */}
@@ -179,7 +179,7 @@ const VideoSection: React.FC<VideoSectionProps> = ({
 
             {/* Buttons */}
             {finalButtons.length > 0 && (
-              <div className={`flex flex-col sm:flex-row gap-4 sm:gap-6 ${textAlignment === 'center' ? 'justify-center' : textAlignment === 'right' ? 'justify-end' : 'justify-start'}`}>
+              <div className={`flex flex-row flex-wrap gap-4 sm:gap-6 ${textAlignment === 'center' ? 'justify-center' : textAlignment === 'right' ? 'justify-end' : 'justify-start'}`}>
                 {finalButtons.map((button, index) => (
                   <Button
                     key={index}
@@ -188,7 +188,7 @@ const VideoSection: React.FC<VideoSectionProps> = ({
                     buttonStyle={button.buttonStyle || 'filled'}
                     size="lg"
                     background="light"
-                    className="w-full sm:w-auto px-8 py-4 bg-[#FFB81C] text-neutral-900 hover:bg-[#E6A619] transition-all duration-300 transform hover:scale-105 font-display text-lg tracking-wide rounded-full shadow-lg hover:shadow-xl"
+                    className="w-auto sm:w-auto px-8 py-4 bg-[#FFB81C] text-neutral-900 hover:bg-[#E6A619] transition-all duration-300 transform hover:scale-105 font-semibold font-display text-lg tracking-wide rounded-full shadow-lg hover:shadow-xl"
                   >
                     {button.text}
                   </Button>

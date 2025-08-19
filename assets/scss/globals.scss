@@ -223,9 +223,11 @@
 }
 
 .explore-slider {
-  article {
-    &:first-child {
-      margin-left: 120px;
+  .article-list {
+    article {
+      &:first-child {
+        @apply md:-ml-[8px];
+      }
     }
   }
 }
@@ -233,4 +235,11 @@
 .service-blocks article {
   display: flex;
   align-items: center;
+}
+
+
+.right-side {
+  .video-player-button {
+    @apply ml-auto;
+  }
 }

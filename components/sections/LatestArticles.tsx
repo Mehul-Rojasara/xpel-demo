@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import Container from '@/components/ui/Container';
 
 interface Installer {
   id: string;
@@ -49,7 +50,7 @@ const installers: Installer[] = [
   },
 ];
 
-export const LatestArticles = () => {
+export const LatestArticles = ({ title = "Latest Articles" }: { title?: string }) => {
   const [progress, setProgress] = useState(0);
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
@@ -70,12 +71,12 @@ export const LatestArticles = () => {
   };
 
   return (
-    <section className="bg-black">
-      <div className="w-full max-w-6xl mx-auto px-4 py-8 relative">
+    <section className="bg-white py-16 sm:py-20 lg:py-[7.5rem] overflow-hidden">
+      <Container className="relative">
         {/* Title + View All */}
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-semibold text-white">Latest Articles</h2>
-          <button className="px-4 py-2 border border-gray-200 text-white bg-black rounded-lg text-sm font-medium hover:bg-white hover:text-black transition-colors">
+        <div className="flex items-center justify-between mb-6 lg:mb-12">
+          <h2 className="font-h2 font-sans font-semibold">{title}</h2>
+          <button className="inline-flex items-center justify-center px-4 sm:px-6 py-3 sm:py-4 bg-white text-neutral-900 font-display font-medium text-base sm:text-lg border-solid border border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all duration-300 rounded-[100px] min-w-[160px] sm:min-w-[200px] h-[48px] sm:h-[56px] shadow-sm hover:shadow-md">
             View All
           </button>
         </div>
@@ -91,16 +92,16 @@ export const LatestArticles = () => {
           onProgress={(swiper, progress) => {
             setProgress(progress * 100);
           }}
-          className="pb-1"
+          className="pb-1 !overflow-visible"
         >
           {installers.map((it) => (
             <SwiperSlide
               key={it.id}
-              style={{ width: "320px" }}
+              style={{ width: "458px" }}
               className="rounded-2xl overflow-hidden shadow-md bg-gray-50 relative flex-shrink-0"
             >
               {/* video */}
-              <div className="relative w-full h-[220px]">
+              <div className="relative w-full h-[320px] lg:h-[572px]">
                 <video
                   ref={(el) => {
                     videoRefs.current[it.id] = el;
@@ -139,8 +140,8 @@ export const LatestArticles = () => {
 
               {/* text */}
               <div className="absolute bottom-4 left-4 text-white">
-                <p className="font-semibold text-lg leading-none">{it.name}</p>
-                <p className="text-sm opacity-90">{it.handle}</p>
+                <h3 className="font-semibold font-h3 leading-none font-sans mb-2">{it.name}</h3>
+                <p className="para-medium opacity-90 mb-1">{it.handle}</p>
                 <p className="text-xs mt-1 opacity-80">{it.location}</p>
               </div>
             </SwiperSlide>
@@ -178,7 +179,7 @@ export const LatestArticles = () => {
             />
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

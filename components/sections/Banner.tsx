@@ -53,7 +53,7 @@ export const Banner: React.FC<BannerProps> = ({
       <Image src={backgroundImage} alt={altText} fill className="object-cover" priority sizes="100vw" quality={85} />
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-50" />
+      <div className="absolute inset-0 bg-black bg-opacity-20" />
       
       {/* Content Container */}
       <div className="absolute inset-0 flex items-end justify-start">

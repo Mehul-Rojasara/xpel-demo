@@ -6,7 +6,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { PlayButton } from "../ui/PlayButton";
-import { NavigationArrow } from "../ui/NavigationArrow";
+import { Button } from "../ui/Button";
 
 interface Installer {
   id: string;
@@ -60,7 +60,7 @@ const installers: Installer[] = [
   },
 ];
 
-export const InstallerSpotlights = () => {
+export const InstallerSpotlights = ({ title = "XPEL Installer Spotlights" }: { title?: string }) => {
   const [progress, setProgress] = useState(0);
   const [playingIndex, setPlayingIndex] = useState<number | null>(null);
   const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
@@ -132,7 +132,7 @@ export const InstallerSpotlights = () => {
 
   return (
     <div className="w-full max-w-6xl mx-auto px-4 py-8 relative">
-      <h2 className="text-2xl font-semibold mb-6">XPEL Installer Spotlights</h2>
+      <h2 className="text-2xl font-semibold mb-6">{title}</h2>
 
       <Swiper
         modules={[Navigation]}
@@ -190,23 +190,33 @@ export const InstallerSpotlights = () => {
       </Swiper>
 
       {/* Navigation arrows */}
-      <NavigationArrow
-        direction="prev"
+      <Button
         onClick={() => {}}
         className="custom-prev absolute left-2 top-1/2 -translate-y-1/2 z-20"
-        variant="default"
+        variant="secondary"
+        buttonStyle="filled"
+        background="light"
         size="md"
         aria-label="Previous slide"
-      />
+      >
+        <svg className="w-4 h-4 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </Button>
 
-      <NavigationArrow
-        direction="next"
+      <Button
         onClick={() => {}}
-        className="custom-next absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-yellow-400 hover:bg-yellow-500 text-white shadow-lg hover:shadow-xl"
-        variant="custom"
+        className="custom-next absolute right-2 top-1/2 -translate-y-1/2 z-20"
+        variant="primary"
+        buttonStyle="filled"
+        background="light"
         size="md"
         aria-label="Next slide"
-      />
+      >
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </Button>
 
       {/* Progress indicator */}
       <div className="flex justify-center mt-5">
