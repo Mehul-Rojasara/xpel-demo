@@ -255,3 +255,59 @@
     @apply ml-auto;
   }
 }
+
+// Button Variants Classes
+.btn {
+  @include mixin.btn;
+
+  &:disabled,
+  &.disabled {
+    @apply opacity-50 pointer-events-none;
+  }
+
+  &.btn-with-icon {
+    @apply inline-flex items-center gap-2 lg:gap-3;
+  }
+}
+
+.btn-icon {
+  @apply inline-flex items-center justify-center w-3 h-3 lg:w-4 lg:h-4 text-sm lg:text-base;
+}
+
+.btn-sm {
+  @include mixin.btn-sm;
+  &.btn-with-icon {
+    @apply gap-1;
+  }
+
+  .btn-icon {
+    @apply text-sm;
+  }
+}
+
+.btn-lg {
+  @include mixin.btn-lg;
+}
+
+.btn-primary {
+  @include mixin.btn-primary;
+  &.btn-primary-bg-white {
+    @include mixin.btn-primary-bg-white;
+  }
+}
+
+.btn-secondary {
+  @include mixin.btn-secondary;
+}
+
+.btn-secondary-outline {
+  @include mixin.btn-secondary-outline;
+}
+
+.btn-black {
+  @include mixin.btn-black;
+}
+
+.btn-full {
+  @apply w-full;
+}

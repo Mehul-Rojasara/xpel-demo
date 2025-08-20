@@ -1,6 +1,5 @@
-// import StyleGuideXpel from '@/components/style-guide-xpel';
-import StyleGuide from '@/components/styleguide/Styleguide';
+import StyleGuideXpel from '@/components/style-guide-xpel';
 
 export default function StyleGuideXpelPage() {
-  return <StyleGuide />;
+  return <StyleGuideXpel />;
 }

@@ -69,8 +69,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
           </div>
 
           {/* Right Column - Description and CTA */}
-          <div className={`${imageOrder} text-center lg:text-left`}>
-            <div className={`text-center lg:text-left lg:max-w-[35rem]`}>
+          <div className={`${imageOrder} text-left`}>
+            <div className={`text-left lg:max-w-[35rem]`}>
               <p className={`para-large mb-6 sm:mb-8 leading-[150%] font-sans tracking-[0.01em] font-[450] ${customBackgroundColor ? 'text-white' : 'text-neutral-900'}`}>
                 {description}
               </p>

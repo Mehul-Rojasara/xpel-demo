@@ -1,24 +1,25 @@
 import React from "react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "tertiary";
-  buttonStyle?: "filled" | "outlined";
-  size?: "sm" | "md" | "lg";
-  background?: "light" | "dark";
-  icon?: React.ReactNode;
-  iconPosition?: "left" | "right";
-  isIconOnly?: boolean;
-  isSelected?: boolean;
-  children?: React.ReactNode;
-  showArrows?: boolean; // New prop to show both left and right arrows
-  type?: "button" | "submit" | "reset";
-  "aria-label"?: string;
-  "aria-describedby"?: string;
-  "aria-expanded"?: boolean;
-  "aria-pressed"?: boolean;
-  "aria-haspopup"?: boolean;
-  "aria-controls"?: string;
-  role?: string;
+  readonly variant?: "primary" | "secondary" | "tertiary";
+  readonly buttonStyle?: "filled" | "outlined";
+  readonly size?: "sm" | "md" | "lg";
+  readonly background?: "light" | "dark";
+  readonly icon?: React.ReactNode;
+  readonly iconPosition?: "left" | "right";
+  readonly isIconOnly?: boolean;
+  readonly isSelected?: boolean;
+  readonly children?: React.ReactNode;
+  readonly showArrows?: boolean; // New prop to show both left and right arrows
+  readonly type?: "button" | "submit" | "reset";
+  readonly loading?: boolean;
+  readonly "aria-label"?: string;
+  readonly "aria-describedby"?: string;
+  readonly "aria-expanded"?: boolean;
+  readonly "aria-pressed"?: boolean;
+  readonly "aria-haspopup"?: boolean;
+  readonly "aria-controls"?: string;
+  readonly role?: string;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -34,6 +35,7 @@ export const Button: React.FC<ButtonProps> = ({
   showArrows = false,
   className = "",
   type = "button",
+  loading = false,
   "aria-label": ariaLabel,
   "aria-describedby": ariaDescribedby,
   "aria-expanded": ariaExpanded,
@@ -167,10 +169,11 @@ export const Button: React.FC<ButtonProps> = ({
       aria-haspopup={ariaHaspopup}
       aria-controls={ariaControls}
       role={role}
+      disabled={loading || props.disabled}
       {...props}
     >
-      {isIconOnly ? (
-        icon
+      {loading ? (
+        <SpinnerIcon />
       ) : (
         <>
           {showArrows && <ArrowLeftIcon />}
@@ -242,3 +245,8 @@ export const Tab: React.FC<Omit<ButtonProps, "buttonStyle"> & { isActive?: boole
     </button>
   );
 };
+
+// Spinner icon for loading state
+export const SpinnerIcon = () => (
+  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-current"></div>
+);

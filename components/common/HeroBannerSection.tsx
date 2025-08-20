@@ -7,44 +7,44 @@ import VideoPlayer from './VideoPlayer';
 import Container from '@/components/ui/Container';
 
 interface ButtonConfig {
-  text: string;
-  href: string;
-  variant?: 'primary' | 'secondary' | 'tertiary';
-  buttonStyle?: 'filled' | 'outlined';
-  size?: 'sm' | 'md' | 'lg';
-  background?: 'light' | 'dark';
+  readonly text: string;
+  readonly href: string;
+  readonly variant?: 'primary' | 'secondary' | 'tertiary';
+  readonly buttonStyle?: 'filled' | 'outlined';
+  readonly size?: 'sm' | 'md' | 'lg';
+  readonly background?: 'light' | 'dark';
 }
 
 interface HeroBannerSectionProps {
-  videoSrc: string;
+  readonly videoSrc: string;
   // Content options
-  eyebrowText?: string;
-  headline: string;
-  subtitle?: string;
-  description?: string;
+  readonly eyebrowText?: string;
+  readonly headline: string;
+  readonly subtitle?: string;
+  readonly description?: string;
   // Button configuration
-  buttons?: ButtonConfig[];
+  readonly buttons?: readonly ButtonConfig[];
   // Legacy props for backward compatibility
-  smallHeading?: string;
-  ctaText?: string;
-  ctaHref?: string;
+  readonly smallHeading?: string;
+  readonly ctaText?: string;
+  readonly ctaHref?: string;
   // Styling
-  className?: string;
-  textColor?: 'white' | 'dark';
-  textAlignment?: 'left' | 'center' | 'right';
-  overlayOpacity?: number;
+  readonly className?: string;
+  readonly textColor?: 'white' | 'dark';
+  readonly textAlignment?: 'left' | 'center' | 'right';
+  readonly overlayOpacity?: number;
   // Heading level control
-  titleAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  readonly titleAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   // Dots functionality
-  showDots?: boolean;
-  totalSlides?: number;
-  currentSlideIndex?: number;
-  onSlideChange?: (index: number) => void;
-  onVideoEnd?: () => void;
-  onVideoProgress?: (progress: number) => void;
-  controlsPosition?: 'bottom-right' | 'bottom-center' | 'bottom-left';
-  dotSize?: 'sm' | 'md' | 'lg';
-  testDuration?: number;
+  readonly showDots?: boolean;
+  readonly totalSlides?: number;
+  readonly currentSlideIndex?: number;
+  readonly onSlideChange?: (index: number) => void;
+  readonly onVideoEnd?: () => void;
+  readonly onVideoProgress?: (progress: number) => void;
+  readonly controlsPosition?: 'bottom-right' | 'bottom-center' | 'bottom-left';
+  readonly dotSize?: 'sm' | 'md' | 'lg';
+  readonly testDuration?: number;
 }
 
 const HeroBannerSection: React.FC<HeroBannerSectionProps> = ({

@@ -64,7 +64,7 @@ export const Banner: React.FC<BannerProps> = ({
               {content.backButton && (
                 <Link
                   href={content.backButton.href}
-                  className="inline-flex items-center justify-center h-10 px-6 py-2 bg-[#212D42] text-white rounded-full mb-6 hover:bg-[#1a2535] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 transition-all duration-200 border border-white backdrop-blur-[18px] w-[123px] para-small-bold"
+                  className="inline-flex items-center justify-center h-10 px-6 py-2 bg-[#212D42] text-white rounded-full mb-6 hover:bg-[#1a2535] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 transition-all duration-200 border border-white backdrop-blur-[1.125rem] w-[7.688rem] para-small-bold"
                   aria-label={`Go back to ${content.backButton.label}`}
                 >
                   <i className="icon-Arrow-Left w-4 h-4 mr-2.5 text-white flex items-center" aria-hidden="true"></i>
@@ -103,11 +103,14 @@ export const Banner: React.FC<BannerProps> = ({
                     <Button
                       key={index}
                       variant={button.variant === "secondary" ? "secondary" : "primary"}
-                      type="button"
-                      aria-label="primary-btn"
-                      buttonStyle="filled"
-                      className={`${index === 0 ? "w-[200px]" : index === 1 ? "w-[321px]" : ""} ${button.variant === "secondary" ? "bg-white text-black" : ""}`}
-                      icon={button.arrow && <span className="icon-Arrow-Right"></span>}
+                      type="button" 
+                      aria-label="primary-btn" 
+                      buttonStyle="filled" 
+                      className={`${index === 0 ? "w-[12.5rem]" : index === 1 ? "w-[20.063rem]" : ""} ${button.variant === "secondary" ? "bg-white text-black" : ""}`}
+                      icon={button.arrow && (
+                        <span className="icon-Arrow-Right">
+                        </span>
+                      )}
                       iconPosition="right"
                     >
                       {button.label}

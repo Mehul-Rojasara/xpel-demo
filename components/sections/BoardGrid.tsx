@@ -39,15 +39,15 @@ export const BoardGrid: React.FC<BoardProps> = ({ title, directors }) => {
               className="relative bg-white rounded-lg overflow-hidden text-left p-0 h-auto w-full"
             >
               <Image
-                src={director.image}
-                alt={director.name}
+                src={director?.image}
+                alt={director?.name}
                 width={458}
                 height={572}
                 className="w-full h-[572px] object-cover"
               />
               <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
                 <h3 className="text-white text-lg font-medium">
-                  {director.name}
+                  {director?.name}
                 </h3>
                 <p className="text-gray-200 text-sm">{director.role}</p>
               </div>

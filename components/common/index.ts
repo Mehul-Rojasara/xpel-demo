@@ -23,4 +23,14 @@ export { PaintProtectionSection } from './PaintProtectionSection';
 export { ArticleSlider } from './ArticleSlider';
 export { CalculatorIframe } from './CalculatorIframe';
 export { default as HeroBannerSection } from './HeroBannerSection';
+export { BlogHeader } from './BlogHeader';
+export { ProductHighlightCard } from './ProductHighlightCard';
+export { ArticleContentSection } from './ArticleContentSection';
+export { ProductSlider } from './ProductSlider';
+export { SingleArticleContent } from './SingleArticleContent';
+export { default as Breadcrumbs } from './Breadcrumbs';
+export { default as ProductCard } from './ProductCard';
+export { default as ServiceCard } from './ServiceCard';
+export { default as PopupModal } from '../ui/PopupModal';
+export { Button, CloseIcon } from '../ui/Button';
  

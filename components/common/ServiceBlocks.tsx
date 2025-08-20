@@ -41,20 +41,20 @@ export const ServiceBlocks: React.FC<ServiceBlocksProps> = ({
           {services.map((service) => (
             <div
               key={service.id}
-              className="text-left group cursor-pointer flex-col md:flex-row gap-[0.625rem]"
+              className="flex text-left group cursor-pointer flex-col md:flex-row gap-[0.625rem]"
               role="button"
               tabIndex={0}
               aria-label={`${service.title} - ${service.ctaText}`}
             >
               {/* Icon - exact Figma specifications (84x84) */}
-              <div className="flex justify-center items-center">
+              <div className="flex justify-center items-center p-2">
                 {service.iconClass && (
-                  <i className={`${service.iconClass} text-3xl sm:text-4xl lg:text-[3.125rem] xl:text-[5.25rem] text-white`}></i>
+                  <i className={`${service.iconClass} text-3xl sm:text-4xl lg:text-[3.125rem] xl:text-[5.25rem] text-white font-sans`}></i>
                 )}
               </div>
               <div className="flex flex-col items-center md:items-start">
                 {/* Title - exact Figma typography: Futura Medium 24px, 110% line height, -1% letter spacing */}
-                <h3 className="para-large leading-[120%] tracking-tight font-display text-white mb-3 text-center md:text-left">
+                <h3 className="para-large-bold font-sans leading-[120%] tracking-tight text-white mb-3 text-center md:text-left">
                   {service.title}
                 </h3>
 
@@ -67,7 +67,7 @@ export const ServiceBlocks: React.FC<ServiceBlocksProps> = ({
                 {service.ctaText && service.ctaHref && (
                   <a
                     href={service.ctaHref}
-                    className="inline-flex items-center text-white font-display para-small leading-[1.25rem] tracking-normal transition-colors duration-300 "
+                    className="inline-flex items-center text-white font-sans para-small leading-[1.25rem] tracking-normal transition-colors duration-300 "
                   >
                     {service.ctaText}
                     <svg

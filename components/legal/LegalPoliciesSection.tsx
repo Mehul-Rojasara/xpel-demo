@@ -1,7 +1,7 @@
-'use client';
-import React from 'react';
-import Container from '@/components/ui/Container';
-import { LegalPolicy } from '@/config/legal';
+"use client";
+import React from "react";
+import Container from "@/components/ui/Container";
+import { LegalPolicy } from "@/config/legal";
 
 // Extended interface for policies that might have PDF functionality
 interface ExtendedLegalPolicy extends LegalPolicy {
@@ -15,20 +15,20 @@ interface LegalPoliciesSectionProps {
   readonly language?: string;
 }
 
-const PolicyCard: React.FC<{ 
-  readonly policy: ExtendedLegalPolicy; 
-  readonly country: string; 
-  readonly language: string; 
+const PolicyCard: React.FC<{
+  readonly policy: ExtendedLegalPolicy;
+  readonly country: string;
+  readonly language: string;
 }> = ({ policy, country, language }) => {
   const generateUrl = (path: string) => `/${country}/${language}${path}`;
-  
+
   // Check if this is a PDF document (has pdfUrl property)
   const isPdfDocument = policy.pdfUrl && policy.pdfUrl.length > 0;
-  
+
   const handleCardClick = () => {
     if (isPdfDocument && policy.pdfUrl) {
       // For PDF documents, open in new tab
-      window.open(policy.pdfUrl, '_blank');
+      window.open(policy.pdfUrl, "_blank");
     } else {
       // For regular legal policies, navigate to the page
       window.location.href = generateUrl(policy.href);
@@ -36,7 +36,7 @@ const PolicyCard: React.FC<{
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') {
+    if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       handleCardClick();
     }
@@ -45,38 +45,32 @@ const PolicyCard: React.FC<{
   const handleDownloadPdf = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (isPdfDocument && policy.pdfUrl) {
-      const link = document.createElement('a');
+      const link = document.createElement("a");
       link.href = policy.pdfUrl;
-      link.download = `${policy.title.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`;
+      link.download = `${policy.title.replace(/[^a-zA-Z0-9]/g, "_")}.pdf`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
     }
   };
-  
+
   return (
     <article
-      className="bg-white border-2 border-neutral-300 rounded-[14px] p-4 sm:p-6 hover:border-neutral-400 transition-all duration-300 group cursor-pointer h-full"
+      className="bg-white border border-neutral-300 rounded-[0.875rem] p-4 sm:p-6 hover:border-neutral-400 transition-all duration-300 group cursor-pointer h-full"
       role="button"
       tabIndex={0}
       aria-label={`${policy.title} - ${policy.description}`}
       onKeyDown={handleKeyDown}
       onClick={handleCardClick}
     >
-      <h3 className="font-h3 text-neutral-900 mb-3 sm:mb-4 text-lg sm:text-xl md:text-2xl">
-        {policy.title}
-      </h3>
-      <p className="para-medium text-neutral-600 text-sm sm:text-base leading-relaxed">
-        {policy.description}
-      </p>
-      
+      <p className="font-h5 font-medium text-neutral-900 mb-2">{policy.title}</p>
+      <p className="para-small text-neutral-600 leading-[150%]">{policy.description}</p>
+
       {/* Show PDF actions only if pdfUrl is provided */}
       {isPdfDocument && (
         <div className="mt-4 pt-4 border-t border-neutral-200">
           <div className="flex items-center justify-between">
-            <span className="text-sm text-neutral-500 font-medium">
-              PDF Document
-            </span>
+            <span className="text-sm text-neutral-500 font-medium">PDF Document</span>
             <div className="flex gap-3">
               <button
                 onClick={handleCardClick}
@@ -104,14 +98,10 @@ export const LegalPoliciesSection: React.FC<LegalPoliciesSectionProps> = ({
   policies = [],
   className = "",
   country = "us",
-  language = "en"
+  language = "en",
 }) => {
   return (
-    <section 
-      className={`py-16 sm:py-20 md:py-24 bg-white ${className}`}
-      role="region" 
-      aria-label="Legal policies and agreements"
-    >
+    <section className={`section-spacing-bottom ${className}`} role="region" aria-label="Legal policies and agreements">
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {policies.map((policy) => (
@@ -126,4 +116,4 @@ export const LegalPoliciesSection: React.FC<LegalPoliciesSectionProps> = ({
       </Container>
     </section>
   );
-}; 
+};

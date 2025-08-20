@@ -25,20 +25,20 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
   className = '',
 }) => {
   return (
-    <div className={`${className} ${isOpen ? 'bg-neutral-100 rounded-lg' : ''}`}>
+    <div className={`${className} overflow-hidden rounded-lg lg:rounded-2xl ${isOpen ? 'bg-neutral-100' : ''}`}>
       <button
         onClick={onToggle}
-        className={`w-full flex items-center justify-between p-6 cursor-pointer transition-all duration-200 hover:bg-neutral-50 focus:outline-none ${isOpen ? 'hover:bg-neutral-100' : ''}`}
+        className={`rounded-lg lg:rounded-2xl w-full flex items-center justify-between gap-3 p-3 lg:px-6 lg:py-4 cursor-pointer transition-all duration-200 hover:bg-neutral-100 outline-none focus:outline-none ${isOpen ? 'hover:bg-neutral-100 pb-2 lg:pb-2 ' : ''}`}
         aria-expanded={isOpen}
       >
-        <span className={`text-base font-semibold text-neutral-900 text-left flex-1 leading-tight`}>
+        <p className={`para-medium font-semibold text-neutral-900 text-left flex-1 leading-loose`}>
           {title}
-        </span>
+        </p>
         <div className="flex-shrink-0 ml-4">
           {/* Circular icon with conditional border and arrow direction */}
-          <div className={`w-6 h-6 rounded-full flex items-center justify-center transition-all duration-200 ${isOpen ? 'bg-white' : 'bg-white border border-neutral-900'}`}>
+          <div className={`w-[1.875rem] lg:w-[2.625rem] h-[1.875rem] lg:h-[2.625rem] rounded-full flex items-center justify-center transition-all duration-200 ${isOpen ? 'bg-white shadow-md' : 'bg-white border border-neutral-900'}`}>
             <svg 
-              className={`w-3 h-3 transition-transform duration-200 ${isOpen ? 'rotate-180 text-neutral-900' : 'text-neutral-900'}`} 
+              className={`w-3 lg:w-4 h-3 lg:h-4 transition-transform duration-200 ${isOpen ? 'rotate-180 text-neutral-900' : 'text-neutral-900'}`} 
               fill="none" 
               stroke="currentColor" 
               viewBox="0 0 24 24"
@@ -54,8 +54,8 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
           isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="px-6 pb-6">
-          <p className={`text-sm text-neutral-600 leading-relaxed`}>
+        <div className="px-3 lg:px-6 pb-3 lg:pb-6">
+          <p className={`para-small text-neutral-600 leading-relaxed`}>
             {content}
           </p>
         </div>

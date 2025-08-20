@@ -268,6 +268,10 @@ export const CONTENT_SECTIONS = {
     title: "With an array of offerings available, there's XPEL product for every need.",
     subtitle: "From paint protection to interior protection, tint, car care & self-installation kits, we've got everything you need to keep your car or truck looking its best for as long as you own it."
   },
+  DAP_NEXT: {
+    title: "World Class Cutting Software at Your Fingertips",
+    subtitle: "From paint protection to interior protection, tint, car care & self-installation kits, we've got everything you need to keep your car or truck looking its best for as long as you own it."
+  }
 } as const;
 
 // ============================================================================

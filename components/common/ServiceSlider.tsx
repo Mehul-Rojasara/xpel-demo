@@ -1,30 +1,37 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from 'react';
-import Image from 'next/image';
 import { Button } from '@/components/ui/Button';
 import Container from '@/components/ui/Container';
+import { ServiceCard } from './ServiceCard';
+import Link from 'next/link';
 
 interface ServiceCard {
-  id: string;
-  title: string;
-  image: string;
-  imageAlt: string;
-  description?: string;
-  href?: string;
+  readonly id: string;
+  readonly title: string;
+  readonly image: string;
+  readonly imageAlt: string;
+  readonly category?: string;
+  readonly description?: string;
+  readonly href?: string;
+  readonly isVideo?: boolean;
   onClick?: () => void;
 }
 
 interface ServiceSliderProps {
-  title: string;
-  subtitle?: string;
-  services: ServiceCard[];
-  className?: string;
-  showNavigation?: boolean;
-  showProgress?: boolean;
-  cardsPerView?: number;
-  gap?: number;
-  background?: 'dark' | 'light';
+  readonly title: string;
+  readonly subtitle?: string;
+  readonly services: readonly ServiceCard[];
+  readonly className?: string;
+  readonly showNavigation?: boolean;
+  readonly showProgress?: boolean;
+  readonly cardsPerView?: number;
+  readonly gap?: number;
+  readonly background?: 'dark' | 'light';
+  readonly showButton?: boolean;
+  readonly buttonText?: string;
+  readonly buttonHref?: string;
+  readonly showDescriptions?: boolean;
 }
 
 export const ServiceSlider: React.FC<ServiceSliderProps> = ({
@@ -35,7 +42,11 @@ export const ServiceSlider: React.FC<ServiceSliderProps> = ({
   showNavigation = true,
   showProgress = true,
   cardsPerView = 3,
-  background = 'dark'
+  background = 'dark',
+  showButton = false,
+  buttonText = 'View All',
+  buttonHref = '/services',
+  showDescriptions = false
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const maxIndex = Math.max(0, services.length - cardsPerView);
@@ -76,26 +87,30 @@ export const ServiceSlider: React.FC<ServiceSliderProps> = ({
     };
   }, [currentIndex, maxIndex, nextSlide, prevSlide]);
 
-  const handleCardClick = (service: ServiceCard) => {
-    if (service.onClick) {
-      service.onClick();
-    } else if (service.href) {
-      window.location.href = service.href;
-    }
-  };
+
 
   return (
     <section className={`py-16 sm:py-20 lg:py-[7.5rem] explore-slider overflow-hidden ${backgroundClasses[background]} ${className}`} role="region" aria-label="Service offerings">
       <Container>
         {/* Header - Exact Figma specifications */}
-        <div className="mb-8 sm:mb-12 lg:mb-16">
-          <h2 className={`font-h1 font-display font-medium leading-[110%] tracking-[-0.01em] text-left max-w-[59.313rem] ${textColorClasses[background]}`}>
-            {title}
-          </h2>
-          {subtitle && (
-            <p className={`para-large max-w-2xl font-sans tracking-[0.01em] leading-[150%] font-[450] text-left mt-6 ${textColorClasses[background] === 'text-white' ? 'text-white/80' : 'text-neutral-900/80'}`}>
-              {subtitle}
-            </p>
+        <div className={`mb-8 sm:mb-12 lg:mb-16 ${showButton ? 'flex items-center justify-between' : ''}`}>
+          <div>
+            <h2 className={`font-h1 font-display font-medium leading-[110%] tracking-[-0.01em] text-left max-w-[59.313rem] ${textColorClasses[background]}`}>
+              {title}
+            </h2>
+            {subtitle && (
+              <p className={`para-large max-w-2xl font-sans tracking-[0.01em] leading-[150%] font-[450] text-left mt-6 ${textColorClasses[background] === 'text-white' ? 'text-white/80' : 'text-neutral-900/80'}`}>
+                {subtitle}
+              </p>
+            )}
+          </div>
+          {showButton && (
+            <Link
+              href={buttonHref}
+              className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white bg-transparent hover:bg-white hover:text-neutral-900 transition-colors duration-300 rounded-lg font-medium text-base"
+            >
+              {buttonText}
+            </Link>
           )}
         </div>
 
@@ -146,39 +161,19 @@ export const ServiceSlider: React.FC<ServiceSliderProps> = ({
               }}
             >
               {services.map((service) => (
-                <span
-                  key={service.id}
-                  className="flex-shrink-0 cursor-pointer group w-full min-w-[18.5rem] md:min-w-[18.75rem] max-w-[18.5rem] sm:max-w-[22.375rem] lg:max-w-[28.625rem] rounded-lg overflow-hidden"
-                  onClick={() => handleCardClick(service)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => e.key === 'Enter' && handleCardClick(service)}
-                  aria-label={service.title}
-                >
-                  <div className="transition-transform duration-300 shadow-lg w-full">
-                    <div className="relative aspect-square overflow-hidden rounded-lg w-full">
-                      <Image
-                        src={service.image}
-                        alt={service.imageAlt + service.id}
-                        width={400}
-                        height={400}
-                        className="w-full h-full object-cover transition-transform duration-300 scale-100 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" aria-hidden="true" />
-                      
-                      {/* Card Text Label - Exact Figma positioning */}
-                      <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 md:p-5">
-                        <div className="flex items-center justify-center gap-2">
-                          <h3 className="font-medium text-white transition-colors duration-300 leading-tight font-h3">
-                            {service.title}
-                          </h3>
-                          {/* Arrow Icon - Using style guide icon */}
-                          <i className="icon-Arrow-Right text-white para-medium transition-all duration-300 transform translate-x-0 group-hover:translate-x-1" aria-hidden="true"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </span>
+                <ServiceCard
+                  key={service?.id}
+                  id={service?.id || ''}
+                  title={service?.title || ''}
+                  image={service?.image || ''}
+                  imageAlt={service?.imageAlt || ''}
+                  category={service?.category}
+                  description={service?.description}
+                  href={service?.href}
+                  isVideo={service?.isVideo}
+                  showDescriptions={showDescriptions}
+                  onClick={service?.onClick}
+                />
               ))}
             </div>
           </div>

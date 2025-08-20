@@ -7,34 +7,24 @@ import { PlotterCard } from '@/components/plotter/PlotterCard';
 export default function PlotterSupportPage() {
   const [downloading, setDownloading] = React.useState<{ [key: string]: boolean }>({});
 
-  const handleDownload = async (driver: PlotterDriver) => {
+  const handleDownload = (driver: PlotterDriver) => {
     const downloadKey = `${driver.name}-${driver.version}`;
     
-    try {
-      setDownloading(prev => ({ ...prev, [downloadKey]: true }));
-      
-      // Create a temporary link element
-      const link = document.createElement('a');
-      link.href = driver.downloadUrl;
-      link.download = `${driver.name}-v${driver.version}.${driver.fileType}`;
-      
-      // Append to body, click, and remove
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      
-      // Track download (you can add analytics here)
-      console.log(`Download started: ${driver.name} v${driver.version}`);
-      
-      // Show success feedback (you can replace this with a toast notification)
-      alert(`Download started for ${driver.name} v${driver.version}`);
-      
-    } catch (error) {
-      console.error('Download failed:', error);
-      alert('Download failed. Please try again or contact support.');
-    } finally {
-      setDownloading(prev => ({ ...prev, [downloadKey]: false }));
-    }
+    // Set downloading state to true
+    setDownloading(prev => ({ ...prev, [downloadKey]: true }));
+    
+    // Create a temporary link element for download
+    const link = document.createElement('a');
+    link.href = driver.downloadUrl;
+    link.download = `${driver.name}-v${driver.version}.${driver.fileType}`;
+    
+    // Append to body, click, and remove
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    // Reset downloading state to false immediately after download starts
+    setDownloading(prev => ({ ...prev, [downloadKey]: false }));
   };
 
   return (

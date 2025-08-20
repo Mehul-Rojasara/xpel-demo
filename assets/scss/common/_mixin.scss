@@ -226,6 +226,38 @@
   }
 }
 
+@mixin btn {
+  @apply inline-flex items-center justify-center transition-all duration-300 focus-visible:outline-none disabled:opacity-50 disabled:pointer-events-none para-large font-display tracking-tight min-h-12 lg:min-h-[3.5rem] px-4 lg:px-6 py-2.5 lg:py-3 rounded-full focus:ring-2 focus:ring-[var(--button-primary-focus-ring)] focus:ring-opacity-50;
+}
+
+@mixin btn-primary {
+  @apply bg-[var(--color-primary-300)] text-[var(--button-primary-filled-text)] hover:bg-[var(--button-primary-filled-hover-bg)] hover:text-[var(--button-primary-filled-hover-text)];
+}
+
+@mixin btn-primary-bg-white {
+  @apply hover:bg-white hover:text-black;
+}
+
+@mixin btn-secondary {
+  @apply bg-white text-black border-[0.063rem] border-solid border-white hover:bg-black hover:text-white;
+}
+
+@mixin btn-secondary-outline {
+  @apply bg-white text-black border-[0.063rem] border-solid border-black hover:bg-black hover:text-white;
+}
+
+@mixin btn-black {
+  @apply bg-black text-white border-[0.063rem] border-solid border-black hover:bg-black/75 hover:text-white hover:border-black/75;
+}
+
+@mixin btn-lg {
+  @apply para-large font-display tracking-tight min-h-12 lg:min-h-[3rem] px-5 lg:px-9 py-2.5 lg:py-3;
+}
+
+@mixin btn-sm {
+  @apply para-small font-display tracking-tight min-h-3 lg:min-h-9 px-3 lg:px-5 py-2 lg:py-1;
+}
+
 // Usage: @include section-spacing(top, sm);
 //        @include section-spacing(bottom, lg);
 

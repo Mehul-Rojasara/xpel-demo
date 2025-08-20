@@ -5,43 +5,44 @@ import { Button } from '@/components/ui/Button';
 import Image from 'next/image';
 import Link from 'next/link';
 import Container from '@/components/ui/Container';
+import { PopupModal } from '@/components/common';
 
 export interface ProductFeature {
-  id: string;
-  title: string;
-  description: string;
-  iconClass: string; // Changed from icon to iconClass to use style guide icons
+  readonly id: string;
+  readonly title: string;
+  readonly description: string;
+  readonly iconClass: string; // Changed from icon to iconClass to use style guide icons
 }
 
 export interface TabContent {
-  id: string;
-  title: string;
-  description: string;
-  imageSrc: string;
-  imageAlt: string;
-  features: Array<{
-    id: string;
-    title: string;
-    description: string;
-    iconClass: string;
+  readonly id: string;
+  readonly title: string;
+  readonly description: string;
+  readonly imageSrc: string;
+  readonly imageAlt: string;
+  readonly features: ReadonlyArray<{
+    readonly id: string;
+    readonly title: string;
+    readonly description: string;
+    readonly iconClass: string;
   }>;
 }
 
 interface ProductLineupSectionProps {
-  subtitle: string;
-  description: string;
-  features: ProductFeature[];
-  primaryCtaText: string;
-  primaryCtaHref?: string;
-  secondaryCtaText: string;
-  secondaryCtaHref?: string;
-  imageSrc: string;
-  imageAlt: string;
-  className?: string;
+  readonly subtitle: string;
+  readonly description: string;
+  readonly features: ReadonlyArray<ProductFeature>;
+  readonly primaryCtaText: string;
+  readonly primaryCtaHref?: string;
+  readonly secondaryCtaText: string;
+  readonly secondaryCtaHref?: string;
+  readonly imageSrc: string;
+  readonly imageAlt: string;
+  readonly className?: string;
   // New tabbed functionality props
-  tabs?: TabContent[];
-  showTabs?: boolean;
-  defaultActiveTab?: number; // Add default active tab for ISR compatibility
+  readonly tabs?: ReadonlyArray<TabContent>;
+  readonly showTabs?: boolean;
+  readonly defaultActiveTab?: number; // Add default active tab for ISR compatibility
 }
 
 export const ProductLineupSection: React.FC<ProductLineupSectionProps> = ({
@@ -62,6 +63,12 @@ export const ProductLineupSection: React.FC<ProductLineupSectionProps> = ({
   // Use state for active tab to handle changes
   const [activeTab, setActiveTab] = useState(defaultActiveTab);
   const activeTabContent = tabs && tabs.length > 0 ? tabs[activeTab] : null;
+  
+  // Modal state for dealer application
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   const handleTabChange = (index: number) => {
     setActiveTab(index);
@@ -176,7 +183,19 @@ export const ProductLineupSection: React.FC<ProductLineupSectionProps> = ({
                     {primaryCtaText}
                   </Button>
                 )}
-                {secondaryCtaHref ? (
+                {/* Secondary CTA Button - Opens Dealer Application Modal if it's "Become A Dealer" */}
+                {secondaryCtaText.toLowerCase().includes('dealer') ? (
+                  <Button
+                    onClick={openModal}
+                    variant="tertiary"
+                    buttonStyle="outlined"
+                    size="lg"
+                    background="dark"
+                    className="w-full sm:w-auto"
+                  >
+                    {secondaryCtaText}
+                  </Button>
+                ) : secondaryCtaHref ? (
                   <Link href={secondaryCtaHref}>
                     <Button
                       variant="tertiary"
@@ -242,6 +261,22 @@ export const ProductLineupSection: React.FC<ProductLineupSectionProps> = ({
           </div>
         </div>
       </Container>
+      
+      {/* Dealer Application Modal */}
+      <PopupModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        size="lg"
+      >
+        <div>
+          <h2 className="font-h2 text-white">
+            Keep in Touch
+          </h2>
+          <p className="para-large text-neutral-300">
+            Fill out your contact information for more information on new products, upcoming events, and more! Welcome to the XPEL family.
+          </p>
+        </div>
+      </PopupModal>
     </section>
   );
 }; 

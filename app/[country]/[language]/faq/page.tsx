@@ -69,12 +69,15 @@ const FAQSection: React.FC<{
   items: Array<{ title: string; content: string }>;
   seeAllButtonText: string;
   seeAllButtonHref: string;
-}> = ({ title, items, seeAllButtonText, seeAllButtonHref }) => {
+  className?: string;
+}> = ({ title, items, seeAllButtonText, seeAllButtonHref, className }) => {
   return (
-    <section className="py-24 bg-white">
+    <section 
+      className={`${className} bg-white`}
+      >
       <Container>
-        <div className="flex items-center justify-between mb-16">
-          <h2 className="font-h2 text-neutral-900">
+        <div className="flex items-start lg:items-center lg:justify-between flex-col lg:flex-row gap-5 mb-6 lg:mb-14">
+          <h2 className="font-h2 text-neutral-900 font-sans">
             {title}
           </h2>
           <Link
@@ -100,14 +103,14 @@ const FAQSection: React.FC<{
 
 export default function FAQPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <>
       {/* Banner Section */}
       <Banner
         title="Frequently Asked Questions"
         backgroundImage="/images/paint&ppf.jpg"
         altText="Car care products including FUSION PLUS CERAMIC COATING and microfiber cloths"
         variant="simple"
-        className="h-[500px]"
+        className="h-[31.25rem]"
       />
 
       {/* Paint Protection Film FAQ Section */}
@@ -116,6 +119,7 @@ export default function FAQPage() {
         items={FAQ_DATA.paintProtectionFilm}
         seeAllButtonText="See All PPF FAQs"
         seeAllButtonHref="/faq/ppf"
+        className="pt-16 sm:pt-20 lg:pt-[7.5rem]"
       />
 
       {/* Ceramic Coating FAQ Section */}
@@ -124,6 +128,7 @@ export default function FAQPage() {
         items={FAQ_DATA.ceramicCoating}
         seeAllButtonText="See All Coating FAQs"
         seeAllButtonHref="/faq/coating"
+        className="pt-16 sm:pt-20 lg:pt-[7.5rem]"
       />
 
       {/* Window Tint FAQ Section */}
@@ -132,6 +137,7 @@ export default function FAQPage() {
         items={FAQ_DATA.windowTint}
         seeAllButtonText="See All Tint FAQs"
         seeAllButtonHref="/faq/tint"
+        className="py-16 sm:py-20 lg:py-[7.5rem]"
       />
 
       {/* Care Products Banner */}
@@ -146,8 +152,8 @@ export default function FAQPage() {
           fromPercentage: 'from-40%'
         }}
         backgroundImage="/images/gradient-faq.png"
-        className="py-24"
+        className="py-16 sm:py-20 lg:py-[7.5rem]"
       />
-    </div>
+    </>
   );
 } 

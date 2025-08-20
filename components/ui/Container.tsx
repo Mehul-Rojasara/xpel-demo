@@ -1,9 +1,9 @@
 import React from "react";
 
 interface ContainerProps {
-  children: React.ReactNode;
-  fullWidth?: boolean;
-  className?: string;
+  readonly children: React.ReactNode;
+  readonly fullWidth?: boolean;
+  readonly className?: string;
 }
 
 export default function Container({ children, fullWidth = false, className = "" }: ContainerProps) {

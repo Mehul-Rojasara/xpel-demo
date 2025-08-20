@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import { Checkbox, FormSection, Input, InputGroup, RequiredFieldNote, TextArea } from "@/components/ui/Input";
+import Link from "next/link";
 
 export default function StyleGuide() {
   // All icons from _font.scss file
@@ -127,6 +128,92 @@ export default function StyleGuide() {
               Button Secondary
             </Button>
           </div>
+          
+          <p className="font-h4 border-b border-gray-200 pb-4 mb-5">Buttons Variants Classes</p>
+
+          <div className="flex flex-col gap-4 mb-12 items-start">
+
+            <Link href={"#"} className="btn btn-primary">
+              Primary Link
+            </Link>
+
+            <Link href={"#"} className="btn btn-primary disabled">
+              Primary Link disabled
+            </Link>
+
+            <button type="button" className="btn btn-primary">
+              Primary Btn
+            </button>
+
+            <button type="button" className="btn btn-primary" disabled>
+              Button Disabled
+            </button>
+
+            <button type="button" className="btn btn-primary btn-lg">
+              Primary Btn Large
+            </button>
+
+            <button type="button" className="btn btn-primary btn-sm">
+              Primary Btn Small
+            </button>
+
+            <button type="button" className="btn btn-primary btn-with-icon">
+              Primary Btn Right Arrow
+              <span className="icon-Arrow-Right btn-icon"></span>
+            </button>
+
+            <button type="button" className="btn btn-primary btn-with-icon">
+              <span className="icon-Arrow-Left btn-icon"></span>
+              Primary Btn Left Arrow
+            </button>
+
+            <button type="button" className="btn btn-primary btn-full">
+              Primary Btn Full Width
+            </button>
+
+            <button type="button" className="btn btn-primary btn-sm btn-with-icon">
+              Primary Btn Small
+              <span className="icon-Arrow-Right btn-icon"></span>
+            </button>
+
+            <div className="flex flex-col items-start gap-4 bg-black p-5">
+
+              <button type="button" className="btn btn-primary btn-primary-bg-white">
+                Primary Btn
+              </button>
+              
+              <button type="button" className="btn btn-secondary">
+                Secondary Btn
+              </button>
+
+              <button type="button" className="btn btn-secondary" disabled>
+                Secondary Btn Disabled
+              </button>
+
+              <button type="button" className="btn btn-secondary btn-with-icon">
+                Secondary Btn
+                <span className="icon-Arrow-Right btn-icon"></span>
+              </button>
+            </div>
+
+            <button type="button" className="btn btn-black">
+              Black Btn
+            </button>
+
+            <button type="button" className="btn btn-black" disabled>
+              Black Btn Disabled
+            </button>
+
+            <button type="button" className="btn btn-black btn-with-icon">
+              Black Btn
+              <span className="icon-Arrow-Right btn-icon"></span>
+            </button>
+
+            <button type="button" className="btn btn-secondary-outline">
+              Secondary Outline Btn
+            </button>
+            
+        </div>
 
           <p className="font-h4 border-b border-gray-200 pb-4 mb-5">Icons</p>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-12">

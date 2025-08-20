@@ -10,6 +10,9 @@ import product2 from "@/assets/images/common/product2.png";
 import product3 from "@/assets/images/common/product3.png";
 import product4 from "@/assets/images/common/product4.png";
 import { FormSection, Input, InputGroup } from "../ui/Input";
+import { usePathname } from "next/navigation";
+
+const solidHeaderRouteSubstrings = ["/legal"];
 
 export const NewHeader = () => {
   const [isProductsOpen, setIsProductsOpen] = React.useState(false);
@@ -17,6 +20,13 @@ export const NewHeader = () => {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isHeaderVisible, setIsHeaderVisible] = React.useState(true);
   const lastScrollY = React.useRef(0);
+  const pathname = usePathname();
+
+  const isLegalRoute = React.useMemo(() => {
+    if (!pathname) return false;
+    return solidHeaderRouteSubstrings.some((route) => pathname.includes(route));
+  }, [pathname]);
+  const shouldApplySolidHeader = isScrolled || isMobileMenuOpen || isProductsOpen || isLegalRoute;
 
   React.useEffect(() => {
     if (typeof window === "undefined") return;
@@ -56,7 +66,7 @@ export const NewHeader = () => {
   return (
     <>
       <header
-        className={`${isScrolled || isMobileMenuOpen || isProductsOpen ? "bg-[rgba(255,255,255,0.9)] backdrop-blur-[10px] border-b border-[rgba(205,205,205,0.8)]" : "bg-transparent"} fixed top-0 left-0 right-0 z-[1000] transition-transform duration-300 ${
+        className={`${shouldApplySolidHeader ? "bg-[rgba(255,255,255,0.9)] backdrop-blur-[10px] border-b border-[rgba(205,205,205,0.8)]" : "bg-transparent"} fixed top-0 left-0 right-0 z-[1000] transition-transform duration-300 ${
           isMobileMenuOpen || isProductsOpen || isHeaderVisible ? "translate-y-0" : "-translate-y-full"
         }`}
       >
@@ -66,7 +76,7 @@ export const NewHeader = () => {
               <div className="flex items-center justify-center">
                 <Link href="/" className="max-w-[93px] md:max-w-[125px]">
                   <Image
-                    src={isScrolled || isMobileMenuOpen || isProductsOpen ? logoDark : logoWhite}
+                    src={shouldApplySolidHeader ? logoDark : logoWhite}
                     alt="XPEL"
                     title="XPEL"
                     width={125}
@@ -75,10 +85,10 @@ export const NewHeader = () => {
                   />
                 </Link>
                 <span
-                  className={`inline-block h-[2rem] md:h-[3.438rem] w-[0.094rem] ${isScrolled || isMobileMenuOpen || isProductsOpen ? "bg-neutral-900" : "bg-white"} mx-[0.625rem]`}
+                  className={`inline-block h-[2rem] md:h-[3.438rem] w-[0.094rem] ${shouldApplySolidHeader ? "bg-neutral-900" : "bg-white"} mx-[0.625rem]`}
                 ></span>
                 <h3
-                  className={`${isScrolled || isMobileMenuOpen || isProductsOpen ? "text-neutral-900" : "text-white"} uppercase font-bold tracking-wide mt-1 md:mt-2 text-[28px] md:text-[36px]  xl:text-[40px] leading-normal font-display`}
+                  className={`${shouldApplySolidHeader ? "text-neutral-900" : "text-white"} uppercase font-bold tracking-wide mt-1 md:mt-2 text-[28px] md:text-[36px]  xl:text-[40px] leading-normal font-display`}
                 >
                   INDIA
                 </h3>
@@ -89,14 +99,14 @@ export const NewHeader = () => {
                 aria-expanded={isMobileMenuOpen}
                 aria-controls="mobile-menu"
                 onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-                className={`lg:hidden ${isScrolled ? "text-neutral-900" : "text-white"} hover:opacity-80 transition-opacity duration-300 cursor-pointer`}
+                className={`lg:hidden ${shouldApplySolidHeader ? "text-neutral-900" : "text-white"} hover:opacity-80 transition-opacity duration-300 cursor-pointer`}
               >
                 <i
                   className={`text-[20px] md:text-[22px] ${isMobileMenuOpen ? "icon-Close text-[14px] md:text-[18px]" : "icon-Hamburger"}`}
                 ></i>
               </button>
               <nav
-                className={`hidden lg:flex items-center gap-8 xl:gap-16 ${isScrolled || isMobileMenuOpen || isProductsOpen ? "text-neutral-900" : "text-white"}`}
+                className={`hidden lg:flex items-center gap-8 xl:gap-16 ${shouldApplySolidHeader ? "text-neutral-900" : "text-white"}`}
               >
                 <ul className="flex items-center gap-4 xl:gap-8 h-full  text-[16px] lg:text-[18px] leading-[20px] font-[500] font-display tracking-tight">
                   <li className="transition-opacity duration-300 hover:opacity-80">
@@ -142,7 +152,7 @@ export const NewHeader = () => {
                 <div className="flex items-center gap-8 xl:gap-6">
                   <Link
                     href="/"
-                    className={`flex items-center gap-1.5 ${isScrolled || isMobileMenuOpen || isProductsOpen ? "bg-neutral-900 text-white" : "bg-white text-neutral-900"} py-2.5 px-4 min-w-[112px] rounded-[100px] text-[16px] leading-[18px] font-[500] font-display tracking-[0] hover:bg-opacity-90  transition-all duration-300`}
+                    className={`flex items-center gap-1.5 ${shouldApplySolidHeader ? "bg-neutral-900 text-white" : "bg-white text-neutral-900"} py-2.5 px-4 min-w-[112px] rounded-[100px] text-[16px] leading-[18px] font-[500] font-display tracking-[0] hover:bg-opacity-90  transition-all duration-300`}
                   >
                     <i className="icon-Map"></i>
                     Installer Locator
@@ -150,7 +160,7 @@ export const NewHeader = () => {
 
                   <button
                     type="button"
-                    className={`-ml-2 text-xl transition-opacity duration-300 hover:opacity-80 ${isScrolled ? "text-neutral-900" : "text-white"}`}
+                    className={`-ml-2 text-xl transition-opacity duration-300 hover:opacity-80 ${shouldApplySolidHeader ? "text-neutral-900" : "text-white"}`}
                     aria-label="Search"
                   >
                     <i className="icon-Search"></i>
@@ -277,7 +287,11 @@ export const NewHeader = () => {
           <FormSection>
             <InputGroup className="relative">
               <Input id="search" placeholder="Search" height={48} name="search" className="!pr-11 !text-[18px]" />
-              <button type="button" className="absolute right-4 flex items-center justify-center top-[14px]" aria-label="Search">
+              <button
+                type="button"
+                className="absolute right-4 flex items-center justify-center top-[14px]"
+                aria-label="Search"
+              >
                 <i className="icon-Search text-[16px] p-0.5 text-neutral-900 font-bold"></i>
               </button>
             </InputGroup>

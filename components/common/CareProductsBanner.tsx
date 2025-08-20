@@ -41,10 +41,10 @@ export const GradientBanner: React.FC<GradientBannerProps> = ({
       {/* Content container positioned at bottom-left like Figma */}
       <Container className="w-full relative z-10">
         {/* Text container positioned at bottom-left with single line layout */}
-        <div className="flex flex-col items-start gap-6 lg:gap-8 max-w-2xl">
+        <div className="flex flex-col items-start gap-6 lg:gap-8 max-w-[43.75rem]">
           {/* Text Content - positioned at bottom-left */}
           <div className="text-white text-left">
-            <h2 className="font-h2 font-bold mb-4 lg:mb-6 leading-tight tracking-[-0.01em]">
+            <h2 className="font-h2 font-medium mb-4 lg:mb-6 leading-tight tracking-[-0.01em] font-sans">
               {title}
             </h2>
             <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-6 lg:mb-8 font-sans tracking-[0.01em] leading-[150%] font-normal">

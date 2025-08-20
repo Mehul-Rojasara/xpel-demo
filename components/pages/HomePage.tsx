@@ -137,6 +137,7 @@ export const HomePage: React.FC<HomePageProps> = ({ country, language }) => {
         ctaHref={aboutData.ctaHref}
         background="white"
         textAlignment="left"
+        className='section-spacing-y'
       />
 
 

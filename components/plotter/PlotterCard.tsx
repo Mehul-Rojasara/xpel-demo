@@ -19,6 +19,11 @@ export const PlotterCard: React.FC<PlotterCardProps> = ({
   downloading, 
   onDownload 
 }) => {
+  // Helper function to check if a specific driver is downloading
+  const isDownloading = (driver: PlotterDriver) => {
+    return downloading[`${driver.name}-${driver.version}`] || false;
+  };
+
   return (
     <article
       className="bg-white border-2 border-neutral-300 rounded-[14px] p-4 sm:p-6 hover:border-neutral-400 transition-all duration-300 group h-full"
@@ -59,16 +64,13 @@ export const PlotterCard: React.FC<PlotterCardProps> = ({
               size="md"
               background="light"
               className="w-full"
-              icon={downloading[`${driver.name}-${driver.version}`] ? 
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-[var(--color-neutral-900)]"></div> : 
-                <i className="icon-Download w-4 h-4 mr-2" aria-hidden="true"></i>
-              }
+              icon={<i className="icon-Download w-4 h-4 mr-2" aria-hidden="true"></i>}
               iconPosition="left"
               onClick={() => onDownload(driver)}
-              disabled={downloading[`${driver.name}-${driver.version}`]}
+              loading={isDownloading(driver)}
               aria-label={`Download ${driver.name} for ${driver.os}`}
             >
-              {downloading[`${driver.name}-${driver.version}`] ? 'Downloading...' : 'Download'}
+              Download
             </Button>
           </div>
         ))}
