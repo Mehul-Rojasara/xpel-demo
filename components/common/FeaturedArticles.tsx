@@ -3,8 +3,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Container from '@/components/ui/Container';
-import '@/assets/scss/featured-articles.css';
-
 export interface ArticleCard {
   id: string;
   image: string;
@@ -51,110 +49,107 @@ export const FeaturedArticles: React.FC<FeaturedArticlesProps> = ({
 
   return (
     <section 
-      className={`py-16 sm:py-20 lg:py-[120px] overflow-hidden ${backgroundClasses[background]} ${className} featured-articles`}
+      className={`py-16 sm:py-20 lg:py-[7.5rem] overflow-hidden ${backgroundClasses[background]} ${className} w-full max-w-full Xxxl:max-w-[105rem] mx-auto`}
       role="region" 
       aria-label="Featured articles"
-    >
-      
+    >      
         {/* Header */}
         <Container>
-          <div className="featured-articles__header mb-8 sm:mb-12 lg:mb-16">
+          <div className="flex justify-between items-center mb-8 sm:mb-12 lg:mb-16">
             <h2 className="font-h1 font-display font-medium text-neutral-900 leading-[110%] tracking-[-0.01em]">
               {title}
             </h2>
             
             {showNavigation && layout === 'slider' && (
               <button
-                className="featured-articles__nav-button"
+                className="w-12 h-12 bg-[#ffb81c] hover:bg-[#e6a600] rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 ease-in-out"
                 aria-label="Next articles"
               >
-                <svg className="featured-articles__nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                <svg className="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
               </button>
             )}
           </div>
-          <div className="">
-            {/* Articles Grid with Expandable Cards */}
-            <div className="featured-articles__grid">
-              {articles.map((article, index) => {
-                const isExpanded = expandedCard === index;
-                
-                return (
-                  <article
-                    key={article.id}
-                    className={`featured-articles__card group cursor-pointer ${
-                      isExpanded ? 'featured-articles__card--expanded' : 'featured-articles__card--regular'
-                    }`}
-                    onMouseEnter={() => handleCardHover(index)}
-                    role="article"
-                  >
-                    {/* Image Container - Fixed Height */}
-                    <div className="featured-articles__image overflow-hidden">
-                      <Image
-                        src={article.image}
-                        alt={article.imageAlt}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      />
-                      
-                      {/* Date Tag - Bottom-left position */}
-                      {showDate && article.date && (
-                        <div className="featured-articles__date px-8 py-2">
-                          {article.date}
-                        </div>
-                      )}
-                    </div>
+          {/* Articles Grid with Expandable Cards */}
+          <div className="grid grid-cols-[repeat(1,1fr)] md:grid-cols-[repeat(2,1fr)] lg:grid-cols-[repeat(3,1fr)] gap-4 items-stretch w-full max-w-[83.125rem] mx-auto min-h-[17.5rem] md:min-h-[18.75rem] lg:min-h-[39.5rem] h-auto">
+            {articles.map((article, index) => {
+              const isExpanded = expandedCard === index;
+              
+              return (
+                <article
+                  key={article.id}
+                  className={`transition-all duration-300 ease-in-out rounded-[1.25rem] overflow-hidden bg-white shadow-[0_4px_12px_rgba(0,0,0,0.08)] h-[17.5rem] min-h-[17.5rem] md:h-[18.75rem] md:min-h-[18.75rem] lg:h-[39.5rem] lg:min-h-[39.5rem] flex flex-col m-0 p-0 flex-1 w-full hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] hover:-translate-y-0.5 group cursor-pointer ${
+                    isExpanded ? 'w-full lg:w-[41rem] h-auto lg:h-[39.5rem] min-h-[17.5rem] md:min-h-[18.75rem] lg:min-h-[39.5rem]' : 'w-full lg:w-[20rem] h-auto lg:h-[39.5rem] min-h-[17.5rem] md:min-h-[18.75rem] lg:min-h-[39.5rem]'
+                  }`}
+                  onMouseEnter={() => handleCardHover(index)}
+                  role="article"
+                >
+                  {/* Image Container - Fixed Height */}
+                  <div className="relative overflow-hidden h-[11.25rem] min-h-[11.25rem] md:h-[12.5rem] md:min-h-[12.5rem] lg:h-[25rem] lg:min-h-[25rem] flex-shrink-0 rounded-[1.25rem] w-full transition-transform duration-300 ease-in-out">
+                    <Image
+                      src={article.image}
+                      alt={article.imageAlt}
+                      fill
+                      className="object-cover"
+                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    />
+                    
+                    {/* Date Tag - Bottom-left position */}
+                    {showDate && article.date && (
+                      <div className="absolute bottom-3 left-3 bg-[#f2c744] text-[#1b1a1a] font-medium text-xs leading-[1.2] z-10 rounded-lg px-2 py-1 tracking-[0.01em] md:bottom-3 md:left-3 lg:bottom-3 lg:left-3">
+                        {article.date}
+                      </div>
+                    )}
+                  </div>
 
-                    {/* Content - Fixed Height */}
-                    <div className="featured-articles__content">
-                      {isExpanded ? (
-                        // Expanded layout: text and button side by side
-                        <div className="featured-articles__expanded-layout flex-col md:flex-row">
-                          {/* Left side - Text content */}
-                          <div className="featured-articles__text-content">
-                            <p className="font-h4 font-display font-medium text-neutral-900 leading-[110%] tracking-[-0.01em] mb-3">
-                              {article.title}
-                            </p>
-                            
-                            <p className="para-medium text-neutral-600 leading-[150%] tracking-[0.01em] font-[450]">
-                              {article.description}
-                            </p>
-                          </div>
-
-                          {/* Right side - Button */}
-                          {showCta && article.ctaText && article.ctaHref && (
-                            <div className="featured-articles__button-container">
-                              <a
-                                href={article.ctaHref}
-                                className="featured-articles__button"
-                              >
-                                {article.ctaText}
-                                <svg className="featured-articles__button-icon" fill="currentColor" viewBox="0 0 20 20">
-                                  <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                                </svg>
-                              </a>
-                            </div>
-                          )}
-                        </div>
-                      ) : (
-                        // Regular layout: stacked content (no button)
-                        <>
-                          <p className="font-h5 font-display font-medium text-neutral-900 leading-[110%] tracking-[-0.01em] mb-2">
+                  {/* Content - Fixed Height */}
+                  <div className="h-auto min-h-[6.25rem] p-6 pb-4 flex flex-col justify-start flex-1 bg-white overflow-hidden w-full md:h-auto lg:h-[14.5rem] lg:min-h-[14.5rem]">
+                    {isExpanded ? (
+                      // Expanded layout: text and button side by side
+                      <div className="flex items-start justify-between h-full flex-col md:flex-row">
+                        {/* Left side - Text content */}
+                        <div className="flex-1 pr-4">
+                          <h4 className="font-h4 font-display font-medium text-neutral-900 leading-[110%] tracking-[-0.01em] mb-3">
                             {article.title}
-                          </p>
+                          </h4>
                           
-                          <p className="para-small text-neutral-600 leading-[150%] tracking-[0.01em] font-[450]">
+                          <p className="para-medium text-neutral-600 leading-[150%] tracking-[0.01em] font-[450]">
                             {article.description}
                           </p>
-                        </>
-                      )}
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
+                        </div>
+
+                        {/* Right side - Button */}
+                        {showCta && article.ctaText && article.ctaHref && (
+                          <div className="flex-shrink-0">
+                            <a
+                              href={article.ctaHref}
+                              className="group/article-btn inline-flex items-center justify-center text-[#1b1a1a] font-medium text-sm transition-all duration-300 ease-in-out border border-[#1b1a1a] rounded-[3.125rem] px-6 py-3 min-h-[2.5rem] whitespace-nowrap shadow-[0_1px_3px_rgba(0,0,0,0.1)] hover:bg-[#1b1a1a] hover:text-white hover:scale-105 hover:shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
+                            >
+                              {article.ctaText}
+                              <svg className="w-3 h-3 md:w-4 md:h-4 ml-2 transition-transform duration-300 ease-in-out flex-shrink-0 group-hover/article-btn:translate-x-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                              </svg>
+                            </a>
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      // Regular layout: stacked content (no button)
+                      <>
+                        <h5 className="font-h5 font-display font-medium text-neutral-900 leading-[110%] tracking-[-0.01em] mb-2">
+                          {article.title}
+                        </h5>
+                        
+                        <p className="para-small text-neutral-600 leading-[150%] tracking-[0.01em] font-[450]">
+                          {article.description}
+                        </p>
+                      </>
+                    )}
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </Container>
     </section>

@@ -25,9 +25,9 @@ export const ServiceCardGrid: React.FC<ServiceCardGridProps> = ({
   containerClassName = ''
 }) => {
   return (
-    <section className={`bg-white py-16 md:py-20 ${sectionClassName}`}>
+    <section className={`${sectionClassName}`}>
       <Container className={containerClassName}>
-        <div className={`grid grid-cols-1 md:grid-cols-2 gap-12 ${className}`}>
+        <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 ${className}`}>
           {cards.map((card, index) => (
             <ServiceCard
               key={index}

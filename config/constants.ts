@@ -659,3 +659,65 @@ export interface FooterLinksData {
   legal: FooterSectionData;
   newsletter: NewsletterSection;
 } 
+
+export const serviceBlocks = [
+  {
+    id: 'installer-locator',
+    title: 'Find an XPEL Installer Near You',
+    description: 'Find local pros who nail the perfect XPEL protection install every time.',
+    ctaText: 'Learn More',
+    ctaHref: '/installer-locator',
+    iconClass: 'icon-Xpel-Installer',
+    iconAlt: 'Location pin icon for finding XPEL installer'
+  },
+  {
+    id: 'coverage-options',
+    title: 'Coverage Options For My Car',
+    description: 'Explore our comprehensive protection options for your specific vehicle.',
+    ctaText: 'Explore Options',
+    ctaHref: '/coverage-options',
+    iconClass: 'icon-Coverage-Options',
+    iconAlt: 'Car icon for coverage options'
+  },
+  {
+    id: 'become-dealer',
+    title: 'Become a Dealer',
+    description: 'Team up with us and start offering premium protection solutions to your customers.',
+    ctaText: 'Get Started',
+    ctaHref: '/become-dealer',
+    iconClass: 'icon-Become-a-Dealer',
+    iconAlt: 'User icon for becoming a dealer'
+  }
+];
+
+
+export const NEXT_STEP_FORM_DATA = {
+  default: {
+    title: "Take the Next Steps",
+    description: "We look forward to helping you get to the next level and becoming the very best you can be with XPEL.",
+    phoneNumbers: ["+1 (210) 678-3701", "(800) 447-9928"],
+    email: "support@XPEL.com",
+    hours: "8:30am - 5:30pm CST"
+  },
+  dealer: {
+    title: "Become a Dealer",
+    description: "Join our network of authorized XPEL dealers and bring premium protection solutions to your customers.",
+    phoneNumbers: ["+1 (210) 678-3701", "(800) 447-9928"],
+    email: "dealer@XPEL.com",
+    hours: "8:30am - 5:30pm CST"
+  },
+  installer: {
+    title: "Become an Installer",
+    description: "Get certified as an XPEL installer and access our premium products and training programs.",
+    phoneNumbers: ["+1 (210) 678-3701", "(800) 447-9928"],
+    email: "installer@XPEL.com",
+    hours: "8:30am - 5:30pm CST"
+  },
+  dapNext: {
+    title: "Get in Touch ",
+    description: "Reach out with any questions about about XPEL products, services, or procedures. Send us a message and someone from Xpel will get back to you as soon as possible.",
+    phoneNumbers: ["+1 (210) 678-3701", "(800) 447-9928"],
+    email: "support@XPEL.com",
+    hours: "8:30am - 5:30pm CST"
+  }
+}; 

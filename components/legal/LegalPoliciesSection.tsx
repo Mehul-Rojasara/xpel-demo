@@ -1,22 +1,58 @@
 'use client';
-
 import React from 'react';
 import Container from '@/components/ui/Container';
 import { LegalPolicy } from '@/config/legal';
 
+// Extended interface for policies that might have PDF functionality
+interface ExtendedLegalPolicy extends LegalPolicy {
+  pdfUrl?: string;
+}
+
 interface LegalPoliciesSectionProps {
-  readonly policies?: readonly LegalPolicy[];
+  readonly policies?: readonly ExtendedLegalPolicy[];
   readonly className?: string;
   readonly country?: string;
   readonly language?: string;
 }
 
 const PolicyCard: React.FC<{ 
-  readonly policy: LegalPolicy; 
+  readonly policy: ExtendedLegalPolicy; 
   readonly country: string; 
   readonly language: string; 
 }> = ({ policy, country, language }) => {
   const generateUrl = (path: string) => `/${country}/${language}${path}`;
+  
+  // Check if this is a PDF document (has pdfUrl property)
+  const isPdfDocument = policy.pdfUrl && policy.pdfUrl.length > 0;
+  
+  const handleCardClick = () => {
+    if (isPdfDocument && policy.pdfUrl) {
+      // For PDF documents, open in new tab
+      window.open(policy.pdfUrl, '_blank');
+    } else {
+      // For regular legal policies, navigate to the page
+      window.location.href = generateUrl(policy.href);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleCardClick();
+    }
+  };
+
+  const handleDownloadPdf = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (isPdfDocument && policy.pdfUrl) {
+      const link = document.createElement('a');
+      link.href = policy.pdfUrl;
+      link.download = `${policy.title.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
   
   return (
     <article
@@ -24,13 +60,8 @@ const PolicyCard: React.FC<{
       role="button"
       tabIndex={0}
       aria-label={`${policy.title} - ${policy.description}`}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          window.location.href = generateUrl(policy.href);
-        }
-      }}
-      onClick={() => window.location.href = generateUrl(policy.href)}
+      onKeyDown={handleKeyDown}
+      onClick={handleCardClick}
     >
       <h3 className="font-h3 text-neutral-900 mb-3 sm:mb-4 text-lg sm:text-xl md:text-2xl">
         {policy.title}
@@ -38,6 +69,33 @@ const PolicyCard: React.FC<{
       <p className="para-medium text-neutral-600 text-sm sm:text-base leading-relaxed">
         {policy.description}
       </p>
+      
+      {/* Show PDF actions only if pdfUrl is provided */}
+      {isPdfDocument && (
+        <div className="mt-4 pt-4 border-t border-neutral-200">
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-neutral-500 font-medium">
+              PDF Document
+            </span>
+            <div className="flex gap-3">
+              <button
+                onClick={handleCardClick}
+                className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm transition-colors duration-200"
+              >
+                View PDF
+                <i className="icon-Arrow-Right ml-2 text-sm" aria-hidden="true"></i>
+              </button>
+              <button
+                onClick={handleDownloadPdf}
+                className="inline-flex items-center text-green-600 hover:text-green-800 font-medium text-sm transition-colors duration-200"
+              >
+                Download
+                <i className="icon-Download ml-2 text-sm" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </article>
   );
 };

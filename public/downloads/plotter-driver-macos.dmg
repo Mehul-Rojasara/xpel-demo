@@ -1,0 +1,10 @@
+# XPEL Universal Plotter Driver for macOS
+# This is a placeholder file for all plotter drivers on macOS
+# File size: ~50 MB
+# Version: Universal
+# Release Date: 2024-01-15
+# Operating System: macOS 12+
+
+# This file simulates the actual universal plotter driver download
+# Users would download this file and mount the DMG to install
+# The installer will detect the connected plotter and install appropriate drivers 

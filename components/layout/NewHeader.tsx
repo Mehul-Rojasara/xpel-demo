@@ -56,7 +56,7 @@ export const NewHeader = () => {
   return (
     <>
       <header
-        className={`${isScrolled ? "bg-[rgba(255,255,255,0.9)] backdrop-blur-[10px] border-b border-[rgba(205,205,205,0.8)]" : "bg-transparent"} fixed top-0 left-0 right-0 z-[1000] transition-transform duration-300 ${
+        className={`${isScrolled || isMobileMenuOpen || isProductsOpen ? "bg-[rgba(255,255,255,0.9)] backdrop-blur-[10px] border-b border-[rgba(205,205,205,0.8)]" : "bg-transparent"} fixed top-0 left-0 right-0 z-[1000] transition-transform duration-300 ${
           isMobileMenuOpen || isProductsOpen || isHeaderVisible ? "translate-y-0" : "-translate-y-full"
         }`}
       >
@@ -66,7 +66,7 @@ export const NewHeader = () => {
               <div className="flex items-center justify-center">
                 <Link href="/" className="max-w-[93px] md:max-w-[125px]">
                   <Image
-                    src={isScrolled ? logoDark : logoWhite}
+                    src={isScrolled || isMobileMenuOpen || isProductsOpen ? logoDark : logoWhite}
                     alt="XPEL"
                     title="XPEL"
                     width={125}
@@ -75,10 +75,10 @@ export const NewHeader = () => {
                   />
                 </Link>
                 <span
-                  className={`inline-block h-[2rem] md:h-[3.438rem] w-[0.094rem] ${isScrolled ? "bg-neutral-900" : "bg-white"} mx-[0.625rem]`}
+                  className={`inline-block h-[2rem] md:h-[3.438rem] w-[0.094rem] ${isScrolled || isMobileMenuOpen || isProductsOpen ? "bg-neutral-900" : "bg-white"} mx-[0.625rem]`}
                 ></span>
                 <h3
-                  className={`${isScrolled ? "text-neutral-900" : "text-white"} uppercase font-bold tracking-wide mt-1 md:mt-2 text-[28px] md:text-[36px]  xl:text-[40px] leading-normal font-display`}
+                  className={`${isScrolled || isMobileMenuOpen || isProductsOpen ? "text-neutral-900" : "text-white"} uppercase font-bold tracking-wide mt-1 md:mt-2 text-[28px] md:text-[36px]  xl:text-[40px] leading-normal font-display`}
                 >
                   INDIA
                 </h3>
@@ -96,7 +96,7 @@ export const NewHeader = () => {
                 ></i>
               </button>
               <nav
-                className={`hidden lg:flex items-center gap-8 xl:gap-16 ${isScrolled ? "text-neutral-900" : "text-white"}`}
+                className={`hidden lg:flex items-center gap-8 xl:gap-16 ${isScrolled || isMobileMenuOpen || isProductsOpen ? "text-neutral-900" : "text-white"}`}
               >
                 <ul className="flex items-center gap-4 xl:gap-8 h-full  text-[16px] lg:text-[18px] leading-[20px] font-[500] font-display tracking-tight">
                   <li className="transition-opacity duration-300 hover:opacity-80">
@@ -142,7 +142,7 @@ export const NewHeader = () => {
                 <div className="flex items-center gap-8 xl:gap-6">
                   <Link
                     href="/"
-                    className={`flex items-center gap-1.5 ${isScrolled ? "bg-neutral-900 text-white" : "bg-white text-neutral-900"} py-2.5 px-4 min-w-[112px] rounded-[100px] text-[16px] leading-[18px] font-[500] font-display tracking-[0] hover:bg-opacity-90  transition-all duration-300`}
+                    className={`flex items-center gap-1.5 ${isScrolled || isMobileMenuOpen || isProductsOpen ? "bg-neutral-900 text-white" : "bg-white text-neutral-900"} py-2.5 px-4 min-w-[112px] rounded-[100px] text-[16px] leading-[18px] font-[500] font-display tracking-[0] hover:bg-opacity-90  transition-all duration-300`}
                   >
                     <i className="icon-Map"></i>
                     Installer Locator
@@ -151,6 +151,7 @@ export const NewHeader = () => {
                   <button
                     type="button"
                     className={`-ml-2 text-xl transition-opacity duration-300 hover:opacity-80 ${isScrolled ? "text-neutral-900" : "text-white"}`}
+                    aria-label="Search"
                   >
                     <i className="icon-Search"></i>
                   </button>
@@ -168,7 +169,7 @@ export const NewHeader = () => {
           aria-hidden="true"
         ></div>
         <div
-          className={`bg-neutral-100 md:p-[3rem_0.75rem] fixed top-[4rem] md:top-[5rem] lg:top-[5rem] Lgx:top-[5.5rem] left-0 right-0 h-[calc(100vh-4rem)] md:h-[calc(100vh-5rem)] lg:h-auto Lgx:h-auto overflow-y-auto [scrollbar-width:thin] Xxl:p-[4rem_6.25rem_5rem_6.25rem] transition-[visibility] ease-in duration-[0s,0.15s,0.25s] delay-[0s,0.20s,0.25s] invisible z-[105] ${isProductsOpen ? " !visible" : ""}`}
+          className={`bg-neutral-100 md:p-[3rem_0.75rem] fixed top-[4rem] md:top-[5rem] lg:top-[5rem] Lgx:top-[5.5rem] left-0 right-0 h-[calc(100vh-4rem)] md:h-[calc(100vh-5rem)] lg:h-auto Lgx:h-auto overflow-y-auto lg:overflow-hidden [scrollbar-width:thin] Xxl:p-[4rem_6.25rem_5rem_6.25rem] transition-[visibility] ease-in duration-[0s,0.15s,0.25s] delay-[0s,0.20s,0.25s] invisible z-[105] ${isProductsOpen ? " !visible" : ""}`}
         >
           <div className="lg:hidden flex items-center gap-2 justify-center bg-neutral-200 p-[1rem_1.5rem] relative">
             <button
@@ -183,7 +184,7 @@ export const NewHeader = () => {
 
           <Container>
             <ul
-              className={`product-list grid p-[2.5rem_0] lg:p-0 lg:grid-cols-5 gap-8 lg:translate-y-full transition-[visibility,transform,opacity] ease-in duration-[0s,0.15s,0.25s] delay-[0s,0.25s,0.25s] invisible opacity-0 ${isProductsOpen ? "!opacity-100 !visible lg:!translate-y-0" : ""}`}
+              className={`product-list grid p-[2.5rem_0] sm:grid-cols-2 lg:p-0 lg:grid-cols-5 gap-8 lg:translate-y-full transition-[visibility,transform,opacity] ease-in duration-[0s,0.15s,0.25s] delay-[0s,0.25s,0.25s] invisible opacity-0 ${isProductsOpen ? "!opacity-100 !visible lg:!translate-y-0" : ""}`}
             >
               {/* Starting one box space for empty space */}
               <li className="hidden lg:block"></li>
@@ -276,7 +277,7 @@ export const NewHeader = () => {
           <FormSection>
             <InputGroup className="relative">
               <Input id="search" placeholder="Search" height={48} name="search" className="!pr-11 !text-[18px]" />
-              <button type="button" className="absolute right-4 flex items-center justify-center top-[14px]">
+              <button type="button" className="absolute right-4 flex items-center justify-center top-[14px]" aria-label="Search">
                 <i className="icon-Search text-[16px] p-0.5 text-neutral-900 font-bold"></i>
               </button>
             </InputGroup>

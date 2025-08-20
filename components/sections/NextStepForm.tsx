@@ -2,41 +2,61 @@
 
 import React from "react";
 
-export const NextStepsForm: React.FC = () => {
+interface ContactInfo {
+  title: string;
+  description: string;
+  phoneNumbers: string[];
+  email: string;
+  hours: string;
+}
+
+interface NextStepsFormProps {
+  theme?: "dark" | "light";
+  contactInfo: ContactInfo;
+}
+
+export const NextStepsForm: React.FC<NextStepsFormProps> = ({
+  theme = "dark",
+  contactInfo
+}) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // handle form submission logic here
     console.log("Form submitted");
   };
 
+  // Dynamic theme classes
+  const bgColor = theme === "dark" ? "bg-black text-white" : "bg-gray-50 text-black";
+  const formBgColor = theme === "dark" ? "bg-white text-black" : "bg-white text-black";
+
   return (
-    <section className="bg-black text-white py-12 px-4">
+    <section className={`${bgColor} py-12 px-4`}>
       <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12">
         {/* Left Side */}
         <div>
-          <h2 className="text-3xl mb-4">Take the Next Steps</h2>
+          <h2 className="text-3xl mb-4">{contactInfo.title}</h2>
           <p className="text-sm leading-relaxed mb-6 max-w-sm">
-            We look forward to helping you get to the next level and becoming
-            the very best you can be with XPEL.
+            {contactInfo.description}
           </p>
           <div className="text-sm space-y-1">
-            <p>+1 (210) 678-3701</p>
-            <p>(800) 447-9928</p>
+            {contactInfo.phoneNumbers.map((phone, index) => (
+              <p key={index}>{phone}</p>
+            ))}
             <p>
               <a
-                href="mailto:support@XPEL.com"
-                className="hover:underline text-yellow-400"
+                href={`mailto:${contactInfo.email}`}
+                className="hover:underline"
               >
-                support@XPEL.com
+                {contactInfo.email}
               </a>
             </p>
-            <p>8:30am - 5:30pm CST</p>
+            <p>{contactInfo.hours}</p>
           </div>
         </div>
 
         {/* Right Side - Form */}
         <form
-          className="bg-white text-black rounded-md shadow p-6 space-y-4"
+          className={`${formBgColor} rounded-md shadow p-6 space-y-4`}
           onSubmit={handleSubmit}
         >
           <div>

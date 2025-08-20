@@ -25,15 +25,14 @@ export const ContactCards: React.FC<ContactCardsProps> = ({
       aria-label="Contact methods"
     >
       {cards.map((card) => (
-        <article
+        <div
           key={card.id}
           className="group cursor-pointer w-full"
-          role="button"
           tabIndex={0}
           aria-label={`${card.heading} - ${card.subtext}`}
         >
           {/* Card with exact Figma dimensions: 320px x 190px */}
-          <div className="bg-white rounded-2xl transition-all duration-300 group-hover:shadow-lg group-focus:shadow-lg relative overflow-hidden flex-shrink-0 w-full lg:max-w-[372px] lg:min-h-[192px] p-8">
+          <div className="bg-white rounded-2xl transition-all duration-300 group-hover:shadow-lg group-focus:shadow-lg relative overflow-hidden flex-shrink-0 w-full lg:max-w-[23.25rem] lg:min-h-[12rem] p-8">
             {/* Subtle gradient glow effect from bottom-left - exact Figma spec */}
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-primary-200 to-transparent opacity-40 rounded-full pointer-events-none transition-opacity duration-300 group-hover:opacity-60 transform -translate-x-16 translate-y-16"></div>
             
@@ -76,7 +75,7 @@ export const ContactCards: React.FC<ContactCardsProps> = ({
               />
             )}
           </div>
-        </article>
+        </div>
       ))}
     </div>
   );

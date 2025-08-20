@@ -1,5 +1,5 @@
 import React from 'react';
-import VideoSection from '@/components/common/VideoSection';
+import HeroBannerSection from '@/components/common/HeroBannerSection';
 import { ServiceSlider } from '@/components/common/ServiceSlider';
 import { ServiceBlocks } from '@/components/common/ServiceBlocks';
 import { PROTECTION_SERVICES } from '@/config/homepage';
@@ -73,7 +73,7 @@ export default async function ThankYouPage({ params }: ThankYouPageProps) {
   return (
     <div className="min-h-screen">
       {/* Video Section - Thank You Message */}
-      <VideoSection
+      <HeroBannerSection
         videoSrc={videoData.videoSrc}
         eyebrowText={videoData.eyebrowText}
         headline={videoData.headline}

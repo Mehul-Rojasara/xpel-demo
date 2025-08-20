@@ -31,7 +31,7 @@ export const GradientBanner: React.FC<GradientBannerProps> = ({
 }) => {
   return (
     <section 
-      className={`relative w-full overflow-hidden bg-cover bg-center py-8 sm:py-12 md:py-16 lg:py-[120px] min-h-[382px] lg:min-h-[520px] flex items-center justify-start ${className}`}
+      className={`relative w-full overflow-hidden bg-cover bg-center py-8 sm:py-12 md:py-16 lg:py-[7.5rem] min-h-[23.875rem] lg:min-h-[32.5rem] flex items-center justify-start ${className}`}
       style={{ backgroundImage: `url(${backgroundImage})` }}
       role="banner" 
       aria-label="Gradient banner"
@@ -53,7 +53,7 @@ export const GradientBanner: React.FC<GradientBannerProps> = ({
             {ctaText && ctaHref && (
               <Link
                 href={ctaHref}
-                className="bg-white text-neutral-900 hover:bg-gray-100 inline-flex items-center justify-center px-4 sm:px-6 py-3 sm:py-4 font-display font-medium text-base sm:text-lg transition-all duration-300 rounded-[100px] min-w-[160px] sm:min-w-[200px] h-[48px] sm:h-[56px]"
+                className="bg-white text-neutral-900 hover:bg-gray-100 inline-flex items-center justify-center px-4 sm:px-6 py-3 sm:py-4 font-display font-medium text-base sm:text-lg transition-all duration-300 rounded-[6.25rem] min-w-[10rem] sm:min-w-[12.5rem] h-[3rem] sm:h-[3.5rem]"
               >
                 {ctaText}
               </Link>

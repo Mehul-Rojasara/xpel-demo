@@ -2,18 +2,18 @@
 import React, { useState } from 'react';
 
 interface AccordionItemProps {
-  title: string;
-  content: string;
-  isOpen?: boolean;
-  onToggle?: () => void;
-  className?: string;
+  readonly title: string;
+  readonly content: string;
+  readonly isOpen?: boolean;
+  readonly onToggle?: () => void;
+  readonly className?: string;
 }
 
 interface AccordionProps {
-  items: Array<{ title: string; content: string }>;
-  allowMultiple?: boolean;
-  defaultOpen?: number[];
-  className?: string;
+  readonly items: ReadonlyArray<{ readonly title: string; readonly content: string }>;
+  readonly allowMultiple?: boolean;
+  readonly defaultOpen?: ReadonlyArray<number>;
+  readonly className?: string;
 }
 
 // Individual Accordion Item Component
@@ -71,7 +71,7 @@ export const Accordion: React.FC<AccordionProps> = ({
   defaultOpen = [],
   className = '',
 }) => {
-  const [openItems, setOpenItems] = useState<number[]>(defaultOpen);
+  const [openItems, setOpenItems] = useState<readonly number[]>(defaultOpen);
 
   const toggleItem = (index: number) => {
     if (allowMultiple) {

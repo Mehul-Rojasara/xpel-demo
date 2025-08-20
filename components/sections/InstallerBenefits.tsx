@@ -61,7 +61,7 @@ export const InstallerBenefits: React.FC<InstallerBenefitsProps> = ({
   buttonText = "Become an Installer",
   
   // Image
-  imageSrc = "/images/about-us/become-installer.png",
+  imageSrc = "/images/dapNext/dapNextfeature.jpg",
   imageAlt = "Person applying protective film to orange sports car",
   
   // Benefits
@@ -145,9 +145,7 @@ export const InstallerBenefits: React.FC<InstallerBenefitsProps> = ({
   // Theme-based styling
   const bgColor = theme === 'dark' ? 'bg-gray-900' : 'bg-white';
   const benefitTextColor = theme === 'dark' ? 'text-white' : 'text-gray-900';
-  const iconBgColor = theme === 'dark' ? 'bg-gray-800' : 'bg-gray-100';
   const iconTextColor = theme === 'dark' ? 'text-white' : 'text-gray-400';
-  const selectedIconBgColor = theme === 'dark' ? 'bg-blue-100' : 'bg-blue-100';
   const selectedIconTextColor = theme === 'dark' ? 'text-black' : 'text-black';
   const selectedBorderColor = theme === 'dark' ? 'bg-white' : 'bg-black';
   const linkColor = theme === 'dark' ? 'text-blue-400' : 'text-black';
@@ -174,7 +172,7 @@ export const InstallerBenefits: React.FC<InstallerBenefitsProps> = ({
         <div className="flex flex-col lg:flex-row lg:items-stretch gap-6 sm:gap-8 lg:gap-16">
           {/* Left Column - Image */}
           <div className="lg:w-1/2 lg:flex-shrink-0">
-            <div className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-full lg:min-h-[600px]">
+            <div className="relative h-[18.75rem] sm:h-[25rem] md:h-[31.25rem] lg:h-full lg:min-h-[37.5rem]">
               {!imageError ? (
                 <Image
                   key={`benefit-image-${selectedIndex}`}
@@ -224,7 +222,7 @@ export const InstallerBenefits: React.FC<InstallerBenefitsProps> = ({
               )}
 
               {/* CTA Button */}
-             
+              {buttonText && (
                 <div className="pt-4">
                   <Button 
                     type="button" 
@@ -237,7 +235,7 @@ export const InstallerBenefits: React.FC<InstallerBenefitsProps> = ({
                     {buttonText}
                   </Button>
                 </div>
-              
+              )}
 
               {/* Benefits List */}
               <div className="space-y-4 pt-6 lg:pt-8">

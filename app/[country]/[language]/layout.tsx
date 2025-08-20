@@ -16,7 +16,7 @@ export default async function LanguageLayout({ children, params }: LanguageLayou
   return (
     <div className="language-layout" data-lang={resolvedParams.language}>
       <NewHeader />
-      <main className="min-h-screen">
+      <main>
         {children}
       </main>
       <Footer 

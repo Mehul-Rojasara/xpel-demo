@@ -1,5 +1,4 @@
 export { AboutSection } from './AboutSection';
-export { default as VideoSection } from './VideoSection';
 export { default as VideoPlayer } from './VideoPlayer';
 export { default as ServiceSlider } from './ServiceSlider';
 export { default as ContactSection } from './ContactSection';
@@ -23,4 +22,5 @@ export { FAQSection } from './FAQSection';
 export { PaintProtectionSection } from './PaintProtectionSection';
 export { ArticleSlider } from './ArticleSlider';
 export { CalculatorIframe } from './CalculatorIframe';
+export { default as HeroBannerSection } from './HeroBannerSection';
  

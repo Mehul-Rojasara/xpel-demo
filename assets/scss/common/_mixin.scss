@@ -225,3 +225,66 @@
     }
   }
 }
+
+// Usage: @include section-spacing(top, sm);
+//        @include section-spacing(bottom, lg);
+
+@mixin section-spacing($location, $size) {
+  @if $location == top {
+    @if $size == sm {
+      padding-top: 1.5rem;
+
+      @include media(768px) {
+        padding-top: 2.5rem;
+      }
+
+      @include media(1024px) {
+        padding-top: 3.125rem;
+      }
+      @include media(1440px) {
+        padding-top: 3.75rem;
+      }
+    } @else if $size == lg {
+      padding-top: 3rem;
+
+      @include media(768px) {
+        padding-top: 5rem;
+      }
+
+      @include media(1024px) {
+        padding-top: 6.25rem;
+      }
+      @include media(1440px) {
+        padding-top: 7.5rem;
+      }
+    }
+  } @else if $location == bottom {
+    @if $size == sm {
+      padding-bottom: 1.5rem;
+
+      @include media(768px) {
+        padding-bottom: 2.5rem;
+      }
+
+      @include media(1024px) {
+        padding-bottom: 3.125rem;
+      }
+      @include media(1440px) {
+        padding-bottom: 3.75rem;
+      }
+    } @else if $size == lg {
+      padding-bottom: 3rem;
+
+      @include media(768px) {
+        padding-bottom: 5rem;
+      }
+
+      @include media(1024px) {
+        padding-bottom: 6.25rem;
+      }
+      @include media(1440px) {
+        padding-bottom: 7.5rem;
+      }
+    }
+  }
+}

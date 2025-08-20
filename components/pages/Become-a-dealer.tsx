@@ -6,6 +6,7 @@ import { ContentSection, FeatureStats, InstallerBenefits } from '../sections';
 import { InstallerSpotlights } from '../common/VideoSlider';
 import { ProductInfoSectionTab } from '../sections/ProductInfoSectionTab';
 import { NextStepsForm } from '../sections/NextStepForm';
+import { NEXT_STEP_FORM_DATA } from '@/config';
 
 interface BBecomeDealerPageProps {
   country: string;
@@ -69,7 +70,7 @@ export const BecomeDealer: React.FC<BBecomeDealerPageProps> = () => {
       <ProductInfoSectionTab />
       <FeatureStats/>
       <InstallerSpotlights/>
-      <NextStepsForm/>
+      <NextStepsForm contactInfo={NEXT_STEP_FORM_DATA.default}/>
 
     </div>
   );

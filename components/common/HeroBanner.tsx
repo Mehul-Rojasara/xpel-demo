@@ -56,7 +56,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
 
   return (
     <section 
-      className={`relative w-full h-screen min-h-[600px] overflow-hidden ${className}`}
+      className={`relative w-full h-screen min-h-[37.5rem] overflow-hidden ${className}`}
       role="banner"
       aria-label="Hero banner"
     >

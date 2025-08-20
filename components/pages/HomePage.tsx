@@ -8,7 +8,7 @@ import { AboutSection } from '@/components/common/AboutSection';
 import { ServiceSlider } from '@/components/common/ServiceSlider';
 import { CareProductsBanner } from '@/components/common/CareProductsBanner';
 import { ContactSection } from '@/components/common/ContactSection';
-import VideoSection from '@/components/common/VideoSection';
+import HeroBannerSection from '@/components/common/HeroBannerSection';
 import { ServiceBlocks } from '@/components/common/ServiceBlocks';
 import FeaturedArticles from '@/components/common/FeaturedArticles';
 
@@ -97,9 +97,9 @@ export const HomePage: React.FC<HomePageProps> = ({ country, language }) => {
   });
 
   return (
-    <div className="min-h-screen">
+    <>
       {/* Video Section with Expanding Dots */}
-      <VideoSection
+      <HeroBannerSection
         videoSrc={videoData[currentVideoIndex].videoSrc}
         eyebrowText={videoData[currentVideoIndex].smallHeading}
         headline={videoData[currentVideoIndex].headline}
@@ -126,6 +126,7 @@ export const HomePage: React.FC<HomePageProps> = ({ country, language }) => {
         controlsPosition="bottom-left"
         dotSize="md"
         testDuration={5}
+        titleAs="h1"
       />
 
          {/* About Section */}
@@ -168,7 +169,7 @@ export const HomePage: React.FC<HomePageProps> = ({ country, language }) => {
       />
 
       {/* Video Section with Play/Pause Only */}
-      <VideoSection
+      <HeroBannerSection
         videoSrc="/videos/xpel-architectural-hero.mp4"
         eyebrowText="ARCHITECTURAL PROTECTION"
         headline="Protect Your Investment"
@@ -184,6 +185,7 @@ export const HomePage: React.FC<HomePageProps> = ({ country, language }) => {
         showDots={false}
         controlsPosition="bottom-right"
         className="min-h-[640px] md:min-h-[800px] lg:min-h-[1050px]"
+        titleAs="h2"
       />
 
       {/* Contact Section */}
@@ -200,7 +202,7 @@ export const HomePage: React.FC<HomePageProps> = ({ country, language }) => {
 
      
 
-    </div>
+    </>
   );
 };
 

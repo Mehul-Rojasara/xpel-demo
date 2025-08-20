@@ -11,9 +11,7 @@ export default async function CountryLayout({ children, params }: CountryLayoutP
 
   return (
     <div className="min-h-screen flex flex-col" data-country={resolvedParams.country}>
-      <main className="flex-1">
-        {children}
-      </main>
+      {children}
     </div>
   );
 }

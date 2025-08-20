@@ -90,18 +90,30 @@ export default async function DynamicPage({ params }: PageProps) {
   const resolvedParams = await params;
   const slug = resolvedParams.slug?.join('/') || 'home';
   
-  try {
-    // If this is the homepage, render the HomePage component
-    if (slug === 'home' || slug === '') {
-      return (
-        <HomePage 
-          country={resolvedParams.country} 
-          language={resolvedParams.language}
-        />
-      );
-    }
-    
-    // For other pages, show basic content
+  // If this is the homepage, render the HomePage component
+  if (slug === 'home' || slug === '') {
+    return (
+      <HomePage 
+        country={resolvedParams.country} 
+        language={resolvedParams.language}
+      />
+    );
+  }
+  
+  // Define known/valid routes that should be handled by this dynamic page
+  const knownRoutes = [
+    'about-us',
+    'about',
+    'products',
+    'services',
+    'contact',
+    'faqs',
+    'for-business',
+    'installer-locator'
+  ];
+  
+  // If this is a known route, show the "not implemented" message
+  if (knownRoutes.includes(slug)) {
     return (
       <div className="dynamic-page bg-gray-100 m-4 rounded-lg p-10">
         <h1>Page: {slug}</h1>
@@ -110,15 +122,12 @@ export default async function DynamicPage({ params }: PageProps) {
         <p>This page is not yet implemented.</p>
       </div>
     );
-  } catch {
-    return (
-      <div className="dynamic-page bg-gray-100 m-4 rounded-lg p-10">
-        <h1>Error</h1>
-        <p>We&apos;re experiencing some technical difficulties. Please try again later.</p>
-        <p>If the problem persists, please contact our support team.</p>
-      </div>
-    );
   }
+  
+  // For unknown routes, show the proper 404 page content directly
+  // Import the NotFoundPage component and render it
+  const { default: NotFoundPage } = await import('../not-found');
+  return <NotFoundPage params={Promise.resolve(resolvedParams)} />;
 }
 
 // ISR Configuration - revalidate every 60 seconds (1 minute)

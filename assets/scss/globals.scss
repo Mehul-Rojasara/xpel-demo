@@ -35,7 +35,7 @@
   }
 
   body {
-    @apply font-display;
+    @apply font-display bg-white;
     font-size: 16px;
     line-height: 1;
     color: #1b1a1a;
@@ -220,6 +220,19 @@
   .subtitle-small {
     @include mixin.font-subtitle-small;
   }
+
+  .section-spacing-top {
+    @include mixin.section-spacing(top, lg);
+  }
+  
+  .section-spacing-y {
+    @include mixin.section-spacing(top, lg);
+    @include mixin.section-spacing(bottom, lg);
+  }
+  
+  .section-spacing-bottom {
+    @include mixin.section-spacing(bottom, lg);
+  }
 }
 
 .explore-slider {
@@ -236,7 +249,6 @@
   display: flex;
   align-items: center;
 }
-
 
 .right-side {
   .video-player-button {

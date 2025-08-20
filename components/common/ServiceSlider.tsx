@@ -85,11 +85,11 @@ export const ServiceSlider: React.FC<ServiceSliderProps> = ({
   };
 
   return (
-    <section className={`py-16 sm:py-20 lg:py-[120px] explore-slider overflow-hidden ${backgroundClasses[background]} ${className}`} role="region" aria-label="Service offerings">
+    <section className={`py-16 sm:py-20 lg:py-[7.5rem] explore-slider overflow-hidden ${backgroundClasses[background]} ${className}`} role="region" aria-label="Service offerings">
       <Container>
         {/* Header - Exact Figma specifications */}
-        <header className="mb-8 sm:mb-12 lg:mb-16">
-          <h2 className={`font-h1 font-display font-medium leading-[110%] tracking-[-0.01em] text-left max-w-[949px] ${textColorClasses[background]}`}>
+        <div className="mb-8 sm:mb-12 lg:mb-16">
+          <h2 className={`font-h1 font-display font-medium leading-[110%] tracking-[-0.01em] text-left max-w-[59.313rem] ${textColorClasses[background]}`}>
             {title}
           </h2>
           {subtitle && (
@@ -97,7 +97,7 @@ export const ServiceSlider: React.FC<ServiceSliderProps> = ({
               {subtitle}
             </p>
           )}
-        </header>
+        </div>
 
         {/* Slider Container */}
         <div className="relative w-full">
@@ -114,7 +114,7 @@ export const ServiceSlider: React.FC<ServiceSliderProps> = ({
                 className={`hidden md:block absolute left-0 sm:left-4 md:left-8 lg:left-0 xl:left-0 Xxxl:left-[-5rem] top-1/2 -translate-y-1/4 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full shadow-lg transition-all duration-300 hover:!bg-[#FFB81C] hover:!text-neutral-900 !p-0 ${
                   currentIndex === 0 ? 'invisible' : ''
                 }`}
-                aria-label="Previous slide"
+                aria-label={`${title} - Previous slide`}
               >
                 <i className="icon-Arrow-Left text-neutral-900 text-lg" aria-hidden="true"></i>
               </Button>
@@ -129,7 +129,7 @@ export const ServiceSlider: React.FC<ServiceSliderProps> = ({
                 className={`hidden md:block absolute right-0 sm:right-4 md:right-8 lg:right-0 xl:right-0 Xxxl:right-[-5rem] top-1/2 -translate-y-1/4 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full shadow-lg transition-all duration-300 hover:!bg-[#FFB81C] hover:!text-neutral-900 !p-0 ${
                   currentIndex >= maxIndex ? 'invisible' : ''
                 }`}
-                aria-label="Next slide"
+                aria-label={`${title} - Next slide`}
               >
                 <i className="icon-Arrow-Right text-neutral-900 text-lg" aria-hidden="true"></i>
               </Button>
@@ -146,19 +146,20 @@ export const ServiceSlider: React.FC<ServiceSliderProps> = ({
               }}
             >
               {services.map((service) => (
-                <article
+                <span
                   key={service.id}
-                  className="flex-shrink-0 cursor-pointer group w-full min-w-[296px] md:min-w-[300px] max-w-[296px] sm:max-w-[358px] lg:max-w-[458px] rounded-lg overflow-hidden"
+                  className="flex-shrink-0 cursor-pointer group w-full min-w-[18.5rem] md:min-w-[18.75rem] max-w-[18.5rem] sm:max-w-[22.375rem] lg:max-w-[28.625rem] rounded-lg overflow-hidden"
                   onClick={() => handleCardClick(service)}
                   role="button"
                   tabIndex={0}
                   onKeyDown={(e) => e.key === 'Enter' && handleCardClick(service)}
+                  aria-label={service.title}
                 >
                   <div className="transition-transform duration-300 shadow-lg w-full">
                     <div className="relative aspect-square overflow-hidden rounded-lg w-full">
                       <Image
                         src={service.image}
-                        alt={service.imageAlt}
+                        alt={service.imageAlt + service.id}
                         width={400}
                         height={400}
                         className="w-full h-full object-cover transition-transform duration-300 scale-100 group-hover:scale-110"
@@ -177,7 +178,7 @@ export const ServiceSlider: React.FC<ServiceSliderProps> = ({
                       </div>
                     </div>
                   </div>
-                </article>
+                </span>
               ))}
             </div>
           </div>
@@ -185,7 +186,7 @@ export const ServiceSlider: React.FC<ServiceSliderProps> = ({
           {/* Progress Bar */}
           {showProgress && services.length > cardsPerView && (
             <div className="mt-8 sm:mt-12 flex justify-center">
-              <div className="w-24 sm:w-32 h-1 bg-white/20 rounded-full overflow-hidden" role="progressbar" aria-valuenow={progressPercentage} aria-valuemin={0} aria-valuemax={100}>
+              <div className="w-24 sm:w-32 h-1 bg-white/20 rounded-full overflow-hidden" role="progressbar" aria-valuenow={progressPercentage} aria-valuemin={0} aria-valuemax={100} aria-label="Progress bar">
                 <div 
                   className="h-full bg-white transition-all duration-500 ease-in-out"
                   style={{ width: `${progressPercentage}%` }}
