@@ -3,11 +3,11 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 
 interface SearchProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onSubmit?: (query: string) => void;
-  className?: string;
-  'aria-label'?: string;
+  readonly isOpen: boolean;
+  readonly onClose: () => void;
+  readonly onSubmit?: (query: string) => void;
+  readonly className?: string;
+  readonly 'aria-label'?: string;
 }
 
 export const Search: React.FC<SearchProps> = ({

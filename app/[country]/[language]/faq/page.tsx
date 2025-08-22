@@ -65,11 +65,11 @@ const FAQ_DATA = {
 
 // FAQ Section Component
 const FAQSection: React.FC<{
-  title: string;
-  items: Array<{ title: string; content: string }>;
-  seeAllButtonText: string;
-  seeAllButtonHref: string;
-  className?: string;
+  readonly title: string;
+  readonly items: ReadonlyArray<{ readonly title: string; readonly content: string }>;
+  readonly seeAllButtonText: string;
+  readonly seeAllButtonHref: string;
+  readonly className?: string;
 }> = ({ title, items, seeAllButtonText, seeAllButtonHref, className }) => {
   return (
     <section 

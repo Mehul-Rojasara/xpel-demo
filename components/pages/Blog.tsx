@@ -1,7 +1,6 @@
 import React from "react";
 import { BlogStories } from "../sections/BlogStories";
 import { ArticleSectionBox } from "../common/ArticleBox";
-import { InstallerSpotlights } from "../common/VideoSlider";
 import { LatestArticles } from "../sections";
 import { ServiceBlocks } from "../common";
 
@@ -97,25 +96,25 @@ export const Blog: React.FC<BlogProps> = () => {
   ];
 
   return (
-    <div className="blog-page">
+    <>
       {/* Blog Stories Slider/Section */}
       <BlogStories />
 
-      <ArticleSectionBox title="Product" items={productArticles} theme="light" featuredSide="right" />
+      <ArticleSectionBox title="Product" items={productArticles} theme="light" featuredSide="right" className="section-spacing-y" />
 
-      <ArticleSectionBox title="Events" items={eventsArticles} theme="dark" featuredSide="left" />
+      <ArticleSectionBox title="Events" items={eventsArticles} theme="dark" featuredSide="left" className="section-spacing-y"/>
 
-      <ArticleSectionBox title="Product" items={productArticles} theme="light" featuredSide="right" />
+      <ArticleSectionBox title="Product" items={productArticles} theme="light" featuredSide="right" className="section-spacing-y"/>
 
-      <LatestArticles title="News & Press" />
+      <LatestArticles title="News & Press" className="bg-neutral-100" />
 
-      <ArticleSectionBox title="Product" items={productArticles} theme="light" featuredSide="left" />
+      <ArticleSectionBox title="Product" items={productArticles} theme="light" featuredSide="left" className="section-spacing-y"/>
 
-      <ArticleSectionBox title="Events" items={eventsArticles} theme="dark" featuredSide="right" />
+      <ArticleSectionBox title="Events" items={eventsArticles} theme="dark" featuredSide="right" className="section-spacing-y"/>
 
       <ServiceBlocks services={serviceBlocks} background="dark" columns={3} spacing="lg" />
     
-    </div>
+    </>
   );
 };
 

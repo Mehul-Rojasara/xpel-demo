@@ -91,7 +91,7 @@ export const Accordion: React.FC<AccordionProps> = ({
     <div className={`w-full bg-white ${className}`}>
       {items.map((item, index) => (
         <AccordionItem
-          key={index}
+          key={`${item.title}-${index}`}
           title={item.title}
           content={item.content}
           isOpen={openItems.includes(index)}

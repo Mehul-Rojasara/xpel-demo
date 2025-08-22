@@ -3,13 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 
 interface ServiceCardProps {
-  title: string;
-  description: string;
-  image: string;
-  hoverImage?: string; // Optional second image for hover effect
-  altText?: string;
-  href?: string;
-  className?: string;
+  readonly title: string;
+  readonly description: string;
+  readonly image: string;
+  readonly hoverImage?: string; // Optional second image for hover effect
+  readonly altText?: string;
+  readonly href?: string;
+  readonly className?: string;
 }
 
 export const ServiceCard: React.FC<ServiceCardProps> = ({

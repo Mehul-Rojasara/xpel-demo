@@ -1,23 +1,22 @@
 import React from 'react';
 import Link from 'next/link';
 import { Accordion } from '@/components/ui/Accordion';
-import { Button } from '@/components/ui/Button';
 import Container from '@/components/ui/Container';
 
 export interface FAQItem {
-  id: string;
-  question: string;
-  answer: string;
+  readonly id: string;
+  readonly question: string;
+  readonly answer: string;
 }
 
 interface FAQSectionProps {
-  title: string;
-  description: string;
-  faqs: FAQItem[];
-  seeAllButtonText?: string;
-  seeAllButtonHref?: string;
-  anchorId?: string; // New prop for anchor link
-  className?: string;
+  readonly title: string;
+  readonly description: string;
+  readonly faqs: readonly FAQItem[];
+  readonly seeAllButtonText?: string;
+  readonly seeAllButtonHref?: string;
+  readonly anchorId?: string; // New prop for anchor link
+  readonly className?: string;
 }
 
 export const FAQSection: React.FC<FAQSectionProps> = ({
@@ -41,14 +40,13 @@ export const FAQSection: React.FC<FAQSectionProps> = ({
     <section 
       id={anchorId} // Add id for anchor linking
       className={`py-20 bg-white text-neutral-900 ${className}`}
-      role="region"
       aria-label="Frequently asked questions"
     >
       <Container>
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+        <div className="flex flex-col lg:flex-row gap-16 items-start">
           {/* Left Column - FAQ Introduction */}
-          <div className="space-y-8">
-            <h1 className="font-h1 text-neutral-900">
+          <div className="space-y-2 lg:space-y-3">
+            <h1 className="font-h2 text-neutral-900">
               {title}
             </h1>
             
@@ -58,16 +56,8 @@ export const FAQSection: React.FC<FAQSectionProps> = ({
             
             {seeAllButtonHref && (
               <div className="pt-4">
-                <Link href={allFaqsAnchorLink || '#'}>
-                  <Button
-                    variant="secondary"
-                    buttonStyle="filled"
-                    size="lg"
-                    background="light"
-                    className="w-full sm:w-auto"
-                  >
+                <Link href={allFaqsAnchorLink || '#'} className='btn btn-black btn-lg'>
                     {seeAllButtonText}
-                  </Button>
                 </Link>
               </div>
             )}

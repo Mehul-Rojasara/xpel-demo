@@ -4,17 +4,17 @@ import React, { createContext, useContext, useState, useCallback, useEffect } fr
 import { AnnouncementAlert } from './Alert';
 
 interface Toast {
-  id: string;
-  variant: 'info' | 'success' | 'warning' | 'error';
-  text: string;
-  actionText?: string;
-  onAction?: () => void;
-  duration?: number;
+  readonly id: string;
+  readonly variant: 'info' | 'success' | 'warning' | 'error';
+  readonly text: string;
+  readonly actionText?: string;
+  readonly onAction?: () => void;
+  readonly duration?: number;
 }
 
 interface ToastContextType {
-  showToast: (toast: Omit<Toast, 'id'>) => void;
-  hideToast: (id: string) => void;
+  readonly showToast: (toast: Omit<Toast, 'id'>) => void;
+  readonly hideToast: (id: string) => void;
 }
 
 const ToastContext = createContext<ToastContextType | undefined>(undefined);
@@ -28,7 +28,7 @@ export const useToast = () => {
 };
 
 interface ToastProviderProps {
-  children: React.ReactNode;
+  readonly children: React.ReactNode;
 }
 
 export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {

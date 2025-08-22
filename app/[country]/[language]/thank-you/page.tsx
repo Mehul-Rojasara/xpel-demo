@@ -5,9 +5,9 @@ import { ServiceBlocks } from '@/components/common/ServiceBlocks';
 import { PROTECTION_SERVICES } from '@/config/homepage';
 
 interface ThankYouPageProps {
-  params: Promise<{
-    country: string;
-    language: string;
+  readonly params: Promise<{
+    readonly country: string;
+    readonly language: string;
   }>;
 }
 
@@ -15,7 +15,7 @@ export default async function ThankYouPage({ params }: ThankYouPageProps) {
   const resolvedParams = await params;
   
   // Check if params are available
-  if (!resolvedParams || !resolvedParams.country || !resolvedParams.language) {
+  if (!resolvedParams?.country || !resolvedParams?.language) {
     return null;
   }
   

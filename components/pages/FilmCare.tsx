@@ -154,7 +154,7 @@ export const FilmCare: React.FC<FilmCareProps> = ({ country, language }) => {
                 aria-label="Energy savings benefits list"
               >
                 {FILM_CARE_CONTENT.energySection.benefits.map((benefit: string, index: number) => (
-                  <li key={index} className="flex items-start">
+                  <li key={`${benefit}-${index}`} className="flex items-start">
                     <span 
                       className="w-2 h-2 bg-[var(--color-neutral-400)] rounded-full mt-2 mr-3 flex-shrink-0"
                       aria-hidden="true"

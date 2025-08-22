@@ -2,14 +2,13 @@ import React from 'react';
 import {
   NUMBERED_LIST_PATTERN,
   BOLD_TEXT_PATTERN,
-  HAS_EMAIL_LINK_PATTERN,
   DEFINITION_PATTERN
 } from '@/config/regex';
 
 interface ContentSectionProps {
   readonly id: string;
   readonly title: string;
-  readonly content: string | string[];
+  readonly content: string | readonly string[];
   readonly type: 'text' | 'list' | 'table' | 'contact' | 'definition';
   readonly className?: string;
 }
@@ -38,7 +37,7 @@ export const ContentSection: React.FC<ContentSectionProps> = ({
               // Check if item starts with a number (ordered list)
               if (NUMBERED_LIST_PATTERN.test(item)) {
                 return (
-                  <div key={index} className="flex items-start">
+                  <div key={`numbered-${index}`} className="flex items-start">
                     <span className="text-neutral-600 font-sans font-semibold mr-4 mt-1 min-w-[24px] text-base leading-[150%] tracking-[0.01em]">
                       {item.match(/^\d+/)?.[0]}.
                     </span>
@@ -54,7 +53,7 @@ export const ContentSection: React.FC<ContentSectionProps> = ({
                 const boldMatch = item.match(BOLD_TEXT_PATTERN);
                 if (boldMatch) {
                   return (
-                    <div key={index} className="flex items-start mb-4">
+                    <div key={`bold-${index}`} className="flex items-start mb-4">
                       <strong className="font-sans font-semibold text-neutral-900 mr-3 text-base leading-[150%] tracking-[0.01em]">
                         {boldMatch[1]}:
                       </strong>
@@ -68,7 +67,7 @@ export const ContentSection: React.FC<ContentSectionProps> = ({
               
               // Regular list item
               return (
-                <p key={index} className="para-medium text-neutral-700 leading-[150%] tracking-[0.01em] font-sans font-[450] pl-6 border-l-2 border-neutral-200">
+                <p key={`list-${index}`} className="para-medium text-neutral-700 leading-[150%] tracking-[0.01em] font-sans font-[450] pl-6 border-l-2 border-neutral-200">
                   {item}
                 </p>
               );
@@ -87,7 +86,7 @@ export const ContentSection: React.FC<ContentSectionProps> = ({
               <thead>
                 <tr className="bg-neutral-50">
                   {headers.map((header, index) => (
-                    <th key={index} className="border border-neutral-200 px-6 py-4 text-left font-sans font-semibold text-neutral-900 text-base leading-[150%] tracking-[0.01em]">
+                    <th key={`header-${index}`} className="border border-neutral-200 px-6 py-4 text-left font-sans font-semibold text-neutral-900 text-base leading-[150%] tracking-[0.01em]">
                       {header}
                     </th>
                   ))}
@@ -99,7 +98,7 @@ export const ContentSection: React.FC<ContentSectionProps> = ({
                   return (
                     <tr key={rowIndex} className={rowIndex % 2 === 0 ? 'bg-white' : 'bg-neutral-50'}>
                       {cells.map((cell, cellIndex) => (
-                        <td key={cellIndex} className="border border-neutral-200 px-6 py-4 text-neutral-700 font-sans font-[450] text-base leading-[150%] tracking-[0.01em]">
+                        <td key={`cell-${rowIndex}-${cellIndex}`} className="border border-neutral-200 px-6 py-4 text-neutral-700 font-sans font-[450] text-base leading-[150%] tracking-[0.01em]">
                           {cell}
                         </td>
                       ))}
@@ -116,10 +115,10 @@ export const ContentSection: React.FC<ContentSectionProps> = ({
         return (
           <div className="space-y-6 mb-8">
             {contactItems.map((item, index) => {
-              // Check if item contains email link
-              if (HAS_EMAIL_LINK_PATTERN.test(item)) {
+              // Check if item contains email link (simple string check instead of regex)
+              if (item.includes('mailto:') || item.includes('[legal@xpel.com](mailto:legal@xpel.com)')) {
                 return (
-                  <p key={index} className="para-medium text-neutral-700 leading-[150%] tracking-[0.01em] font-sans font-[450]">
+                  <p key={`contact-${index}`} className="para-medium text-neutral-700 leading-[150%] tracking-[0.01em] font-sans font-[450]">
                     <strong className="font-sans font-semibold text-neutral-900">Owner Contact E-mail:</strong>{' '}
                     <a 
                       href="mailto:legal@xpel.com" 
@@ -136,7 +135,7 @@ export const ContentSection: React.FC<ContentSectionProps> = ({
                 const boldMatch = item.match(BOLD_TEXT_PATTERN);
                 if (boldMatch) {
                   return (
-                    <p key={index} className="para-medium text-neutral-700 leading-[150%] tracking-[0.01em] font-sans font-[450]">
+                    <p key={`contact-bold-${index}`} className="para-medium text-neutral-700 leading-[150%] tracking-[0.01em] font-sans font-[450]">
                       <strong className="font-sans font-semibold text-neutral-900">
                         {boldMatch[1]}
                       </strong>
@@ -148,7 +147,7 @@ export const ContentSection: React.FC<ContentSectionProps> = ({
               
               // Regular contact item
               return (
-                <p key={index} className="para-medium text-neutral-700 leading-[150%] tracking-[0.01em] font-sans font-[450]">
+                <p key={`contact-regular-${index}`} className="para-medium text-neutral-700 leading-[150%] tracking-[0.01em] font-sans font-[450]">
                   {item}
                 </p>
               );
@@ -168,7 +167,7 @@ export const ContentSection: React.FC<ContentSectionProps> = ({
                   const term = parts[1];
                   const definition = parts[2];
                   return (
-                    <div key={index} className="mb-4">
+                    <div key={`definition-${index}`} className="mb-4">
                       <dt className="font-sans font-semibold text-neutral-900 text-base leading-[150%] tracking-[0.01em] mb-2">
                         {term}
                       </dt>
@@ -182,7 +181,7 @@ export const ContentSection: React.FC<ContentSectionProps> = ({
               
               // Regular definition item
               return (
-                <p key={index} className="para-medium text-neutral-700 leading-[150%] tracking-[0.01em] font-sans font-[450]">
+                <p key={`definition-regular-${index}`} className="para-medium text-neutral-700 leading-[150%] tracking-[0.01em] font-sans font-[450]">
                   {item}
                 </p>
               );

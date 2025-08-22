@@ -2,18 +2,18 @@ import React from 'react';
 import Image from 'next/image';
 
 interface ProtectionService {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  imageAlt: string;
-  href: string;
+  readonly id: string;
+  readonly title: string;
+  readonly description: string;
+  readonly image: string;
+  readonly imageAlt: string;
+  readonly href: string;
 }
 
 interface ProtectionOfferingsProps {
-  title: string;
-  services: ProtectionService[];
-  className?: string;
+  readonly title: string;
+  readonly services: readonly ProtectionService[];
+  readonly className?: string;
 }
 
 export const ProtectionOfferings: React.FC<ProtectionOfferingsProps> = ({
@@ -22,7 +22,7 @@ export const ProtectionOfferings: React.FC<ProtectionOfferingsProps> = ({
   className = ''
 }) => {
   return (
-    <section className={`bg-neutral-900 text-white py-20 px-4 sm:px-6 lg:px-8 ${className}`} role="region" aria-label="Protection offerings">
+    <section className={`bg-neutral-900 text-white py-20 px-4 sm:px-6 lg:px-8 ${className}`} aria-label="Protection offerings">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-medium text-white mb-6 tracking-[-0.01em] leading-[110%]">

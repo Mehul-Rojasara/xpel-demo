@@ -1,22 +1,22 @@
 import React from 'react';
 
 interface AlertProps {
-  variant?: 'info' | 'success' | 'warning' | 'error';
-  title?: string;
-  message?: string;
-  actionText?: string;
-  onAction?: () => void;
-  onClose?: () => void;
-  className?: string;
+  readonly variant?: 'info' | 'success' | 'warning' | 'error';
+  readonly title?: string;
+  readonly message?: string;
+  readonly actionText?: string;
+  readonly onAction?: () => void;
+  readonly onClose?: () => void;
+  readonly className?: string;
 }
 
 interface BannerAlertProps extends AlertProps {
-  headline: string;
-  caption: string;
+  readonly headline: string;
+  readonly caption: string;
 }
 
 interface AnnouncementAlertProps extends AlertProps {
-  text: string;
+  readonly text: string;
 }
 
 // Banner Alert Component

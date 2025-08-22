@@ -1,41 +1,41 @@
 import { GraphQLClient, gql } from 'graphql-request';
 
 export interface PageContent {
-  title: string;
-  content: string;
-  metaTitle?: string;
-  metaDescription?: string;
-  slug: string;
-  locale: string;
+  readonly title: string;
+  readonly content: string;
+  readonly metaTitle?: string;
+  readonly metaDescription?: string;
+  readonly slug: string;
+  readonly locale: string;
 }
 
 export interface HomepageData {
-  title: string;
-  description: string;
-  modular_blocks: Array<{
-    __typename: string;
-    mill?: {
-      hero: {
-        cta_link: {
-          href: string;
-          title: string;
+  readonly title: string;
+  readonly description: string;
+  readonly modular_blocks: ReadonlyArray<{
+    readonly __typename: string;
+    readonly mill?: {
+      readonly hero: {
+        readonly cta_link: {
+          readonly href: string;
+          readonly title: string;
         };
-        cta_text: string;
-        subtitle: string;
-        title: string;
+        readonly cta_text: string;
+        readonly subtitle: string;
+        readonly title: string;
       };
     };
   }>;
-  system: {
-    locale: string;
-    publish_details: {
-      user: string;
-      variants: Array<{
-        locale: string;
-        user: string;
+  readonly system: {
+    readonly locale: string;
+    readonly publish_details: {
+      readonly user: string;
+      readonly variants: Array<{
+        readonly locale: string;
+        readonly user: string;
       }>;
     };
-    tags: string[];
+    readonly tags: string[];
   };
 }
 

@@ -3,17 +3,17 @@ import Container from '@/components/ui/Container';
 import Link from 'next/link';
 
 interface GradientBannerProps {
-  title: string;
-  subtitle: string;
-  ctaText?: string;
-  ctaHref?: string;
-  className?: string;
-  gradientColors?: {
-    from: string;
-    to: string;
-    fromPercentage?: string;
+  readonly title: string;
+  readonly subtitle: string;
+  readonly ctaText?: string;
+  readonly ctaHref?: string;
+  readonly className?: string;
+  readonly gradientColors?: {
+    readonly from: string;
+    readonly to: string;
+    readonly fromPercentage?: string;
   };
-  backgroundImage?: string;
+  readonly backgroundImage?: string;
 }
 
 export const GradientBanner: React.FC<GradientBannerProps> = ({
@@ -33,7 +33,6 @@ export const GradientBanner: React.FC<GradientBannerProps> = ({
     <section 
       className={`relative w-full overflow-hidden bg-cover bg-center py-8 sm:py-12 md:py-16 lg:py-[7.5rem] min-h-[23.875rem] lg:min-h-[32.5rem] flex items-center justify-start ${className}`}
       style={{ backgroundImage: `url(${backgroundImage})` }}
-      role="banner" 
       aria-label="Gradient banner"
     >
       {/* Dynamic Overlay */}

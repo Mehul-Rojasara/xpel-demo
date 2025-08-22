@@ -1,13 +1,13 @@
 export interface CountryConfig {
-  code: string;
-  name: string;
-  defaultLanguage: string;
-  supportedLanguages: string[];
-  currency: string;
-  timezone: string;
-  phoneCode: string;
-  bigcommerceStoreId?: string;
-  contentstackLocale?: string;
+  readonly code: string;
+  readonly name: string;
+  readonly defaultLanguage: string;
+  readonly supportedLanguages: readonly string[];
+  readonly currency: string;
+  readonly timezone: string;
+  readonly phoneCode: string;
+  readonly bigcommerceStoreId?: string;
+  readonly contentstackLocale?: string;
 }
 
 export const countryConfigs: Record<string, CountryConfig> = {

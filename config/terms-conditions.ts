@@ -1,7 +1,7 @@
 export interface TermsSection {
   readonly id: string;
   readonly title: string;
-  readonly content: string | string[];
+  readonly content: string | readonly string[];
   readonly type: 'text' | 'list' | 'table' | 'contact' | 'definition';
 }
 

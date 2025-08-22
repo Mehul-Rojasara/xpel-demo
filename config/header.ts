@@ -18,8 +18,8 @@ export const PRODUCT_CATEGORIES = {
 
 // Header Component Interfaces
 export interface HeaderProps {
-  country: string;
-  language: string;
+  readonly country: string;
+  readonly language: string;
 }
 
 // Type definitions for better type safety

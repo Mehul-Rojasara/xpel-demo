@@ -3,19 +3,19 @@ import { ServiceCard } from './ServiceCard';
 import Container from '@/components/ui/Container';
 
 interface ServiceCardData {
-  title: string;
-  description: string;
-  image: string;
-  hoverImage?: string; // Optional second image for hover effect
-  altText?: string;
-  href?: string;
+  readonly title: string;
+  readonly description: string;
+  readonly image: string;
+  readonly hoverImage?: string; // Optional second image for hover effect
+  readonly altText?: string;
+  readonly href?: string;
 }
 
 interface ServiceCardGridProps {
-  cards: ServiceCardData[];
-  className?: string;
-  sectionClassName?: string;
-  containerClassName?: string;
+  readonly cards: readonly ServiceCardData[];
+  readonly className?: string;
+  readonly sectionClassName?: string;
+  readonly containerClassName?: string;
 }
 
 export const ServiceCardGrid: React.FC<ServiceCardGridProps> = ({
@@ -30,7 +30,7 @@ export const ServiceCardGrid: React.FC<ServiceCardGridProps> = ({
         <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 ${className}`}>
           {cards.map((card, index) => (
             <ServiceCard
-              key={index}
+              key={`${card.title}-${index}`}
               title={card.title}
               description={card.description}
               image={card.image}

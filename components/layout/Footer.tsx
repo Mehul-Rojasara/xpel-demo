@@ -46,7 +46,7 @@ const ResourcesSection: React.FC<{ country: string; language: string }> = ({ cou
       >
         <ul className="space-y-4 py-4 md:py-0">
           {FOOTER_LINKS_DATA.resources.links.map((link, index) => (
-            <li key={index}>
+            <li key={`${link.label}-${index}`}>
               <Link
                 href={`/${country}/${language}${link.href}`}
                 className="text-neutral-300 para-small hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
@@ -83,7 +83,7 @@ const CompanySection: React.FC<{ country: string; language: string }> = ({ count
       >
         <ul className="space-y-4 py-4 md:py-0">
           {FOOTER_LINKS_DATA.company.links.map((link, index) => (
-            <li key={index}>
+            <li key={`${link.label}-${index}`}>
               <Link
                 href={`/${country}/${language}${link.href}`}
                 className="text-neutral-300 para-small hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
@@ -120,7 +120,7 @@ const ContactSection: React.FC<{ country: string; language: string }> = ({ count
       >
         <ul className="space-y-4 py-4 md:py-0">
           {FOOTER_LINKS_DATA.contact.links.map((link, index) => (
-            <li key={index}>
+            <li key={`${link.label}-${index}`}>
               {"isPhone" in link && link.isPhone ? (
                 <a
                   href={link.href}
@@ -205,7 +205,7 @@ const SocialMediaIcons: React.FC = () => {
     <div className="flex space-x-4">
       {FOOTER_LINKS_DATA.social.links.map((link, index) => (
         <a
-          key={index}
+          key={`${link.icon}-${index}`}
           href={link.href}
           target="_blank"
           rel="noopener noreferrer"
@@ -225,7 +225,7 @@ const LegalLinks: React.FC<{ country: string; language: string }> = ({ country, 
     <span className="text-neutral-300 para-xsmall">© XPEL 2025</span>
     {FOOTER_LINKS_DATA.legal.links.map((link, index) => (
       <Link
-        key={index}
+        key={`${link.label}-${index}`}
         href={`/${country}/${language}${link.href}`}
         className="text-neutral-300 para-xsmall hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
         title={link.description}

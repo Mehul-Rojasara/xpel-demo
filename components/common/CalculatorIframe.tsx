@@ -1,14 +1,15 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/Button';
 
 interface CalculatorIframeProps {
-  className?: string;
+  readonly className?: string;
 }
 
 export const CalculatorIframe: React.FC<CalculatorIframeProps> = ({ className = '' }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const handleLoad = () => {
     setIsLoading(false);
@@ -18,6 +19,19 @@ export const CalculatorIframe: React.FC<CalculatorIframeProps> = ({ className = 
     setIsLoading(false);
     setHasError(true);
   };
+
+  useEffect(() => {
+    const iframe = iframeRef.current;
+    if (iframe) {
+      iframe.addEventListener('load', handleLoad);
+      iframe.addEventListener('error', handleError);
+
+      return () => {
+        iframe.removeEventListener('load', handleLoad);
+        iframe.removeEventListener('error', handleError);
+      };
+    }
+  }, []);
 
   if (hasError) {
     return (
@@ -50,13 +64,12 @@ export const CalculatorIframe: React.FC<CalculatorIframeProps> = ({ className = 
       )}
       
       <iframe
+        ref={iframeRef}
         src="https://www.convertcalculator.com/embed/99r2nSZP6iCPGMLCY/?url=https%3A%2F%2Flp.xpel.com%2Fpaint-protection-f"
         className="w-full h-full border-0 rounded-lg"
         allowFullScreen
         loading="lazy"
         title="XPEL Paint Protection Calculator - Calculate film coverage and costs for your vehicle"
-        onLoad={handleLoad}
-        onError={handleError}
         sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
         referrerPolicy="no-referrer-when-downgrade"
         aria-label="XPEL Paint Protection Calculator - Interactive tool to calculate paint protection film coverage and pricing"

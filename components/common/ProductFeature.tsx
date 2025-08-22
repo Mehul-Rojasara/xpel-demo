@@ -2,10 +2,10 @@ import React from 'react';
 import { ProductFeatureIcons } from '../ui/Icons';
 
 interface ProductFeatureProps {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  className?: string;
+  readonly icon: React.ReactNode;
+  readonly title: string;
+  readonly description: string;
+  readonly className?: string;
 }
 
 export const ProductFeature: React.FC<ProductFeatureProps> = ({

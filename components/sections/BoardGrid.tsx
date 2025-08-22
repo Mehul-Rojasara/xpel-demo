@@ -6,15 +6,15 @@ import { Button } from "../ui/Button";
 import { DirectorModal } from "./DirectorModal";
 
 interface Director {
-  name: string;
-  role: string;
-  image: string;
-  bio?: string;
+  readonly name: string;
+  readonly role: string;
+  readonly image: string;
+  readonly bio?: string;
 }
 
 interface BoardProps {
-  title?: string;
-  directors: Director[];
+  readonly title?: string;
+  readonly directors: readonly Director[];
 }
 
 export const BoardGrid: React.FC<BoardProps> = ({ title, directors }) => {
@@ -32,7 +32,7 @@ export const BoardGrid: React.FC<BoardProps> = ({ title, directors }) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {directors.map((director, index) => (
             <Button
-              key={index}
+              key={`${director.name}-${index}`}
               onClick={() => setSelected(director)}
               variant="tertiary"
               size="lg"

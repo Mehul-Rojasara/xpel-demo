@@ -90,7 +90,7 @@ export const ServiceSlider: React.FC<ServiceSliderProps> = ({
 
 
   return (
-    <section className={`py-16 sm:py-20 lg:py-[7.5rem] explore-slider overflow-hidden ${backgroundClasses[background]} ${className}`} role="region" aria-label="Service offerings">
+          <section className={`py-16 sm:py-20 lg:py-[7.5rem] explore-slider overflow-hidden ${backgroundClasses[background]} ${className}`} aria-label="Service offerings">
       <Container>
         {/* Header - Exact Figma specifications */}
         <div className={`mb-8 sm:mb-12 lg:mb-16 ${showButton ? 'flex items-center justify-between' : ''}`}>
@@ -156,8 +156,7 @@ export const ServiceSlider: React.FC<ServiceSliderProps> = ({
             <div 
               className="flex transition-transform duration-500 ease-in-out article-list gap-4 md:gap-6"
               style={{
-                transform: `translateX(-${currentIndex * (100 / cardsPerView)}%)`,
-                // gap: `${gap}px`
+                transform: `translateX(-${currentIndex * (100 / cardsPerView)}%)`
               }}
             >
               {services.map((service) => (

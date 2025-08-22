@@ -1,8 +1,8 @@
 // Header background control utilities
 
 export interface HeaderStyleConfig {
-  transparent: boolean;
-  solid: boolean;
+  readonly transparent: boolean;
+  readonly solid: boolean;
 }
 
 // Define which routes should have transparent headers

@@ -1,8 +1,8 @@
 export interface LegalPolicy {
-  id: string;
-  title: string;
-  description: string;
-  href: string;
+  readonly id: string;
+  readonly title: string;
+  readonly description: string;
+  readonly href: string;
 }
 
 export const LEGAL_POLICIES: LegalPolicy[] = [

@@ -1,19 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-// import { Geist, Geist_Mono } from "next/font/google";
 import "../assets/scss/globals.scss";
 import { ToastProvider } from "@/components/ui/Toast";
 import { ErrorBoundary } from "@/components/common/ErrorBoundary";
-
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
 
 const futura = localFont({
   src: "../assets/fonts/FuturaPT-Demi.woff2",
@@ -41,12 +30,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="stylesheet" href="https://use.typekit.net/sev3lti.css" />
+      </head>
       <body className={`${futura.variable} ${jost.variable} antialiased`}
       >
         <ToastProvider>
-          <ErrorBoundary>
-            {children}
-          </ErrorBoundary>
+          <ErrorBoundary>{children}</ErrorBoundary>
         </ToastProvider>
       </body>
     </html>

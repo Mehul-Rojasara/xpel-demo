@@ -1,13 +1,13 @@
 export interface LanguageConfig {
-  code: string;
-  name: string;
-  nativeName: string;
-  direction: 'ltr' | 'rtl';
-  dateFormat: string;
-  numberFormat: {
-    decimal: string;
-    thousands: string;
-    currency: string;
+  readonly code: string;
+  readonly name: string;
+  readonly nativeName: string;
+  readonly direction: 'ltr' | 'rtl';
+  readonly dateFormat: string;
+  readonly numberFormat: {
+    readonly decimal: string;
+    readonly thousands: string;
+    readonly currency: string;
   };
 }
 

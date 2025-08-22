@@ -2350,10 +2350,10 @@ const StyleGuideXpel: React.FC = () => {
 
 // Color Swatch Component
 interface ColorSwatchProps {
-  name: string;
-  color: string;
-  hex: string;
-  description: string;
+  readonly name: string;
+  readonly color: string;
+  readonly hex: string;
+  readonly description: string;
 }
 
 const ColorSwatch: React.FC<ColorSwatchProps> = ({ name, color, hex, description }) => {

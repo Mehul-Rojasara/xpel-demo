@@ -4,14 +4,14 @@
 import React, { useState } from "react";
 
 interface LegalDoc {
-  title: string;
-  description: string;
-  pdfUrl: string;
+  readonly title: string;
+  readonly description: string;
+  readonly pdfUrl: string;
 }
 
 interface DocsGridProps {
-  documents: LegalDoc[];
-  isCareerPage?: boolean; // new flag
+  readonly documents: readonly LegalDoc[];
+  readonly isCareerPage?: boolean; // new flag
 }
 
 export const DocsGrid: React.FC<DocsGridProps> = ({ documents, isCareerPage = false }) => {
@@ -44,7 +44,7 @@ export const DocsGrid: React.FC<DocsGridProps> = ({ documents, isCareerPage = fa
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredDocs.map((doc, index) => (
             <a
-              key={index}
+              key={`${doc.title}-${index}`}
               href={
                 isCareerPage
                   ? "https://xpel.wd5.myworkdayjobs.com/XPEL_Careers"

@@ -1,24 +1,24 @@
 export interface FilmCareContent {
-  intro: {
-    title: string;
-    subtitle: string;
-    description: string;
+  readonly intro: {
+    readonly title: string;
+    readonly subtitle: string;
+    readonly description: string;
   };
-  energySection: {
-    title: string;
-    content: string;
-    followUp: string;
-    benefits: string[];
+  readonly energySection: {
+    readonly title: string;
+    readonly content: string;
+    readonly followUp: string;
+    readonly benefits: readonly string[];
   };
 }
 
 export interface ProductShowcase {
-  title: string;
-  description?: string;
-  price?: string;
-  image: string;
-  ctaText: string;
-  ctaHref: string;
+  readonly title: string;
+  readonly description?: string;
+  readonly price?: string;
+  readonly image: string;
+  readonly ctaText: string;
+  readonly ctaHref: string;
 }
 
 export const FILM_CARE_CONTENT: FilmCareContent = {

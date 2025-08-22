@@ -5,9 +5,9 @@ import { ServiceBlocks } from "@/components/common/ServiceBlocks";
 import { AboutSection } from "@/components/common/AboutSection";
 
 interface PageProps {
-  params: Promise<{
-    country: string;
-    language: string;
+ readonly params: Promise<{
+    readonly country: string;
+    readonly language: string;
   }>;
 }
 

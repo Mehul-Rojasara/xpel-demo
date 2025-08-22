@@ -1,9 +1,9 @@
 import ProductSafetySheet from "@/components/pages/ProductSafetySheet";
 
 interface ProductSafetySheetPageProps {
-  params: Promise<{
-    country: string;
-    language: string;
+  readonly params: Promise<{
+    readonly country: string;
+    readonly language: string;
   }>;
 }
 

@@ -101,7 +101,7 @@ export const LegalPoliciesSection: React.FC<LegalPoliciesSectionProps> = ({
   language = "en",
 }) => {
   return (
-    <section className={`section-spacing-bottom ${className}`} role="region" aria-label="Legal policies and agreements">
+    <section className={`section-spacing-bottom ${className}`} aria-label="Legal policies and agreements">
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {policies.map((policy) => (

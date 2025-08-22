@@ -1,9 +1,9 @@
 import { FilmCare } from "@/components/pages/FilmCare";
 
 interface FilmCarePageProps {
-  params: Promise<{
-    country: string;
-    language: string;
+  readonly params: Promise<{
+    readonly country: string;
+    readonly language: string;
   }>;
 }
 

@@ -13,8 +13,8 @@ import { ServiceBlocks } from '@/components/common/ServiceBlocks';
 import FeaturedArticles from '@/components/common/FeaturedArticles';
 
 interface HomePageProps {
-  country: string;
-  language: string;
+  readonly country: string;
+  readonly language: string;
 }
 
 export const HomePage: React.FC<HomePageProps> = ({ country, language }) => {

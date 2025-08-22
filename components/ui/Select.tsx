@@ -1,19 +1,19 @@
 import React from "react";
 
 interface SelectOption {
-  value: string;
-  label: string;
+  readonly value: string;
+  readonly label: string;
 }
 
 interface SelectProps {
-  value: string;
-  onChange: (value: string) => void;
-  options: SelectOption[];
-  placeholder?: string;
-  disabled?: boolean;
-  ariaLabel?: string;
-  className?: string;
-  id?: string;
+  readonly value: string;
+  readonly onChange: (value: string) => void;
+  readonly options: readonly SelectOption[];
+  readonly placeholder?: string;
+  readonly disabled?: boolean;
+  readonly ariaLabel?: string;
+  readonly className?: string;
+  readonly id?: string;
 }
 
 const ChevronDown = ({ className = "h-4 w-4" }) => (

@@ -18,23 +18,23 @@ import 'swiper/css/pagination';
 import '@/assets/scss/article-slider.css';
 
 export interface Article {
-  id: string;
-  title: string;
-  description?: string;
-  category: string;
-  imageSrc: string;
-  imageAlt: string;
-  href: string;
-  hasVideo?: boolean;
-  date?: string;
+  readonly id: string;
+  readonly title: string;
+  readonly description?: string;
+  readonly category: string;
+  readonly imageSrc: string;
+  readonly imageAlt: string;
+  readonly href: string;
+  readonly hasVideo?: boolean;
+  readonly date?: string;
 }
 
 interface ArticleSliderProps {
-  title: string;
-  viewAllHref?: string;
-  articles: Article[];
-  className?: string;
-  background?: 'white' | 'light' | 'dark';
+  readonly title: string;
+  readonly viewAllHref?: string;
+  readonly articles: readonly Article[];
+  readonly className?: string;
+  readonly background?: 'white' | 'light' | 'dark';
 }
 
 export const ArticleSlider: React.FC<ArticleSliderProps> = ({
@@ -61,7 +61,6 @@ export const ArticleSlider: React.FC<ArticleSliderProps> = ({
   return (
     <section 
       className={`py-16 sm:py-20 ${currentBg} ${className}`}
-      role="region"
       aria-label="Latest Articles"
     >
       <Container>

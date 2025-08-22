@@ -1,9 +1,9 @@
 import { TechnicalDataSheet } from "@/components/pages/TechnicalDataSheet";
 
 interface TechnicalDataSheetPageProps {
-  params: Promise<{
-    country: string;
-    language: string;
+  readonly params: Promise<{
+    readonly country: string;
+    readonly language: string;
   }>;
 }
 

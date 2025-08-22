@@ -4,22 +4,22 @@ import { Button } from '@/components/ui/Button';
 import { formatCurrency } from '@/lib/utils';
 
 interface Product {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  currency: string;
-  image: string;
-  category: string;
-  sku: string;
+  readonly id: string;
+  readonly name: string;
+  readonly description: string;
+  readonly price: number;
+  readonly currency: string;
+  readonly image: string;
+  readonly category: string;
+  readonly sku: string;
 }
 
 interface ProductCardProps {
-  product: Product;
-  country: string;
-  language: string;
-  onAddToCart?: (product: Product) => void;
-  onViewDetails?: (product: Product) => void;
+  readonly product: Product;
+  readonly country: string;
+  readonly language: string;
+  readonly onAddToCart?: (product: Product) => void;
+  readonly onViewDetails?: (product: Product) => void;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({

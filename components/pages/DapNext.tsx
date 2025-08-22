@@ -13,13 +13,14 @@ interface DapNextProps {
 export const DapNext: React.FC<DapNextProps> = () => {
     
   return (
-    <div className="ppf-page">
+    <>
       {/* Promotional Banner */}
       <Banner
 
         backgroundImage="/images/dapNext/dapNextTitle.png"
         altText="Person applying protective film to car headlight"
         variant="promotional"
+        overlay="light"
         content={{
           headline: {
             subtitle: "",
@@ -44,15 +45,16 @@ export const DapNext: React.FC<DapNextProps> = () => {
         imageSrc="/images/dapNext/dapNextfeature.jpg"
         imageAlt="Person applying protective film to orange sports car"
         defaultSelectedIndex={0}
+        className="section-spacing-y"
         benefits={[
             {
                 icon: (
-                  <span className="icon-Xpel-Installer" aria-hidden="true">
+                  <span className="icon-Events" aria-hidden="true">
                   </span>
                 ),
                 title: "All New Job Scheduling System",
                 description: "Our new in-app translator feature allows you to switch between languages seamlessly. You can now browse and enjoy our services in your preferred language, making your experience with us even more convenient and enjoyable.",
-                linkText: "Learn More -> ",
+                linkText: "Learn More",
                 linkHref: "/installer-locator",
                 imageSrc: "/images/dapNext/dapNextfeature.jpg",
                 imageAlt: "Installer locator feature"
@@ -63,7 +65,8 @@ export const DapNext: React.FC<DapNextProps> = () => {
                   </span>
                 ),
                 title: "Global Measurement Support",
-                description: "",
+                description: "Our new in-app translator feature allows you to switch between languages seamlessly. You can now browse and enjoy our services in your preferred language, making your experience with us even more convenient and enjoyable.",
+                linkText: "Learn More",
                 imageSrc: "/images/installerBenefitsSection/become-an-installer.jpg",
                 imageAlt: "Global customer service"
               },
@@ -73,7 +76,8 @@ export const DapNext: React.FC<DapNextProps> = () => {
                   </span>
                 ),
                 title: "Selection & Multi-Selection",
-                description: "",
+                description: "Our new in-app translator feature allows you to switch between languages seamlessly. You can now browse and enjoy our services in your preferred language, making your experience with us even more convenient and enjoyable.",
+                linkText: "Learn More",
                 imageSrc: "/images/installerBenefitsSection/explore-product-lineup.jpg",
                 imageAlt: "Sales professional help"
               },
@@ -83,7 +87,8 @@ export const DapNext: React.FC<DapNextProps> = () => {
                   </span>
                 ),
                 title: "DAP Web with Mobile Support",
-                description: "",
+                description: "Our new in-app translator feature allows you to switch between languages seamlessly. You can now browse and enjoy our services in your preferred language, making your experience with us even more convenient and enjoyable.",
+                linkText: "Learn More",
                 imageSrc: "/images/header/paint-protection-film.webp",
                 imageAlt: "Branding and marketing resources"
               },
@@ -101,6 +106,7 @@ export const DapNext: React.FC<DapNextProps> = () => {
         imageSrc="/images/dapNext/dapnextdesc.png"
         imageAlt="Person applying protective film to orange sports car"
         defaultSelectedIndex={0}
+        className="section-spacing-y"
         benefits={[
             {
                 icon: (
@@ -109,7 +115,7 @@ export const DapNext: React.FC<DapNextProps> = () => {
                 ),
                 title: "All New Job Scheduling System",
                 description: "Our new in-app translator feature allows you to switch between languages seamlessly. You can now browse and enjoy our services in your preferred language, making your experience with us even more convenient and enjoyable.",
-                linkText: "Learn More -> ",
+                linkText: "Learn More",
                 linkHref: "/installer-locator",
                 imageSrc: "/images/dapNext/dapnextdesc.png",
                 imageAlt: "Installer locator feature"
@@ -120,7 +126,8 @@ export const DapNext: React.FC<DapNextProps> = () => {
                   </span>
                 ),
                 title: "Global Measurement Support",
-                description: "",
+                description: "Our new in-app translator feature allows you to switch between languages seamlessly. You can now browse and enjoy our services in your preferred language, making your experience with us even more convenient and enjoyable.",
+                linkText: "Learn More",
                 imageSrc: "/images/installerBenefitsSection/become-an-installer.jpg",
                 imageAlt: "Global customer service"
               },
@@ -130,7 +137,8 @@ export const DapNext: React.FC<DapNextProps> = () => {
                   </span>
                 ),
                 title: "Selection & Multi-Selection",
-                description: "",
+                description: "Our new in-app translator feature allows you to switch between languages seamlessly. You can now browse and enjoy our services in your preferred language, making your experience with us even more convenient and enjoyable.",
+                linkText: "Learn More",
                 imageSrc: "/images/installerBenefitsSection/explore-product-lineup.jpg",
                 imageAlt: "Sales professional help"
               },
@@ -140,16 +148,17 @@ export const DapNext: React.FC<DapNextProps> = () => {
                   </span>
                 ),
                 title: "DAP Web with Mobile Support",
-                description: "",
+                description: "Our new in-app translator feature allows you to switch between languages seamlessly. You can now browse and enjoy our services in your preferred language, making your experience with us even more convenient and enjoyable.",
+                linkText: "Learn More",
                 imageSrc: "/images/header/paint-protection-film.webp",
                 imageAlt: "Branding and marketing resources"
               },
         ]}
       />
 
-      <NextStepsForm contactInfo={NEXT_STEP_FORM_DATA.dapNext} theme="light"/>
+      <NextStepsForm contactInfo={NEXT_STEP_FORM_DATA.dapNext} theme="light" className="section-spacing-y" />
 
-    </div>
+    </>
   );
 };
 

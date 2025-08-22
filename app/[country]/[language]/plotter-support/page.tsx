@@ -46,14 +46,13 @@ export default function PlotterSupportPage() {
 
         <section 
           className="py-16 sm:py-20 md:py-24 bg-white"
-          role="region" 
           aria-label="Plotter driver downloads"
         >
           <Container>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
               {PLOTTER_SUPPORT_DATA.map((brand: PlotterBrand, index: number) => (
                 <PlotterCard
-                  key={index}
+                  key={`${brand.title}-${index}`}
                   brand={brand}
                   downloading={downloading}
                   onDownload={handleDownload}

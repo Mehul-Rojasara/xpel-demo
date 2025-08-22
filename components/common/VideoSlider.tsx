@@ -9,12 +9,12 @@ import { PlayButton } from "../ui/PlayButton";
 import { Button } from "../ui/Button";
 
 interface Installer {
-  id: string;
-  name: string;
-  handle: string;
-  location: string;
-  video: string;
-  poster: string;
+  readonly id: string;
+  readonly name: string;
+  readonly handle: string;
+  readonly location: string;
+  readonly video: string;
+  readonly poster: string;
 }
 
 const installers: Installer[] = [

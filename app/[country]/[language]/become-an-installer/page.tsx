@@ -1,9 +1,9 @@
 import BecomeAnInstaller from "@/components/pages/Become-an-installer";
 
 interface BecomeAnInstallerPageProps {
-  params: Promise<{
-    country: string;
-    language: string;
+  readonly params: Promise<{
+    readonly country: string;
+    readonly language: string;
   }>;
 }
 

@@ -271,6 +271,10 @@ export const CONTENT_SECTIONS = {
   DAP_NEXT: {
     title: "World Class Cutting Software at Your Fingertips",
     subtitle: "From paint protection to interior protection, tint, car care & self-installation kits, we've got everything you need to keep your car or truck looking its best for as long as you own it."
+  },
+  TRAINING_CERTI: {
+    title: "Welcome to Installers’ University",
+    subtitle: "Expert installation calls for expert training. Boost your skills and create new opportunities with hands-on training, led by XPEL’s experienced instructors. Gain the expertise and certification needed for flawless film and coating installs at our world-class facilities, or on your own turf."
   }
 } as const;
 
@@ -530,71 +534,71 @@ export type IconType = 'chevron-down' | 'location' | 'search' | 'book' | 'video'
 
 // Header Navigation Types
 export interface HeaderNavigationLink {
-  label: string;
-  href: string | null;
-  hasDropdown: boolean;
-  dropdownType: string | null;
-  iconType: IconType;
-  isButton?: boolean;
-  isSearch?: boolean;
+  readonly label: string;
+  readonly href: string | null;
+  readonly hasDropdown: boolean;
+  readonly dropdownType: string | null;
+  readonly iconType: IconType;
+  readonly isButton?: boolean;
+  readonly isSearch?: boolean;
 }
 
 export interface HeaderDropdownLink {
-  label: string;
-  href: string;
-  description?: string;
-  iconType?: IconType;
+  readonly label: string;
+  readonly href: string;
+  readonly description?: string;
+  readonly iconType?: IconType;
 }
 
 export interface HeaderProductCategory {
-  key: string;
-  label: string;
-  image: {
-    src: string;
-    alt: string;
-    width: number;
-    height: number;
+  readonly key: string;
+  readonly label: string;
+  readonly image: {
+    readonly src: string;
+    readonly alt: string;
+    readonly width: number;
+    readonly height: number;
   };
-  products: Array<{ label: string; href: string }>;
-  viewAllHref: string;
+  readonly products: ReadonlyArray<{ readonly label: string; readonly href: string }>;
+  readonly viewAllHref: string;
 }
 
 export interface HeaderDetailColumn {
-  title: string;
-  products?: Array<{ label: string; href: string }>;
-  links?: Array<{ label: string; href: string }>;
-  viewAllHref?: string;
+  readonly title: string;
+  readonly products?: ReadonlyArray<{ readonly label: string; readonly href: string }>;
+  readonly links?: ReadonlyArray<{ readonly label: string; readonly href: string }>;
+  readonly viewAllHref?: string;
 }
 
 export interface HeaderDropdownContent {
-  title: string;
-  description?: string;
-  image?: {
-    src: string;
-    alt: string;
-    width: number;
-    height: number;
+  readonly title: string;
+  readonly description?: string;
+  readonly image?: {
+    readonly src: string;
+    readonly alt: string;
+    readonly width: number;
+    readonly height: number;
   };
-  links?: HeaderDropdownLink[];
-  categories?: HeaderProductCategory[];
-  detailColumns?: {
-    protectionFilm: HeaderDetailColumn;
-    windowFilm: HeaderDetailColumn;
-    ceramicCoating: HeaderDetailColumn;
-    resources: HeaderDetailColumn;
+  readonly links?: readonly HeaderDropdownLink[];
+  readonly categories?: readonly HeaderProductCategory[];
+  readonly detailColumns?: {
+    readonly protectionFilm: HeaderDetailColumn;
+    readonly windowFilm: HeaderDetailColumn;
+    readonly ceramicCoating: HeaderDetailColumn;
+    readonly resources: HeaderDetailColumn;
   };
-  resources?: Array<{ label: string; href: string }>;
-  featuredContent?: {
-    image: {
-      src: string;
-      alt: string;
-      width: number;
-      height: number;
+  readonly resources?: ReadonlyArray<{ readonly label: string; readonly href: string }>;
+  readonly featuredContent?: {
+    readonly image: {
+      readonly src: string;
+      readonly alt: string;
+      readonly width: number;
+      readonly height: number;
     };
-    title: string;
-    description: string;
+    readonly title: string;
+    readonly description: string;
   };
-  connectLinks?: Array<{ label: string; href: string }>;
+  readonly connectLinks?: ReadonlyArray<{ readonly label: string; readonly href: string }>;
 }
 
 // Footer Types
@@ -613,22 +617,22 @@ export type CountryCode = typeof COUNTRY_MAP[keyof typeof COUNTRY_MAP];
 // ============================================================================
 
 export interface HeaderProps {
-  country: string;
-  language: string;
-  pathname?: string;
-  forceTransparent?: boolean;
-  forceSolid?: boolean;
+  readonly country: string;
+  readonly language: string;
+  readonly pathname?: string;
+  readonly forceTransparent?: boolean;
+  readonly forceSolid?: boolean;
 }
 
 export interface FooterProps {
-  country: string;
-  language: string;
+  readonly country: string;
+  readonly language: string;
 }
 
 export interface LanguageSelectorProps {
-  country: string;
-  language: string;
-  className?: string;
+  readonly country: string;
+  readonly language: string;
+  readonly className?: string;
 }
 
 // ============================================================================
@@ -636,32 +640,32 @@ export interface LanguageSelectorProps {
 // ============================================================================
 
 export interface FooterLink {
-  label: string;
-  href: string;
-  description: string;
-  icon?: string;
-  isPhone?: boolean;
+  readonly label: string;
+  readonly href: string;
+  readonly description: string;
+  readonly icon?: string;
+  readonly isPhone?: boolean;
 }
 
 export interface FooterSectionData {
-  title: string;
-  links: FooterLink[];
+  readonly title: string;
+  readonly links: readonly FooterLink[];
 }
 
 export interface NewsletterSection {
-  title: string;
-  description: string;
-  placeholder: string;
-  submitLabel: string;
+  readonly title: string;
+  readonly description: string;
+  readonly placeholder: string;
+  readonly submitLabel: string;
 }
 
 export interface FooterLinksData {
-  resources: FooterSectionData;
-  company: FooterSectionData;
-  contact: FooterSectionData;
-  social: FooterSectionData;
-  legal: FooterSectionData;
-  newsletter: NewsletterSection;
+  readonly resources: FooterSectionData;
+  readonly company: FooterSectionData;
+  readonly contact: FooterSectionData;
+  readonly social: FooterSectionData;
+  readonly legal: FooterSectionData;
+  readonly newsletter: NewsletterSection;
 } 
 
 export const serviceBlocks = [

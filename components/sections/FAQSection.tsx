@@ -4,19 +4,19 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 
 interface FAQItem {
-  id: string;
-  question: string;
-  answer: string;
+  readonly id: string;
+  readonly question: string;
+  readonly answer: string;
 }
 
 interface FAQSectionProps {
-  title?: string;
-  subtitle?: string;
-  ctaText?: string;
-  ctaHref?: string;
-  faqs?: FAQItem[];
-  className?: string;
-  'aria-label'?: string;
+  readonly title?: string;
+  readonly subtitle?: string;
+  readonly ctaText?: string;
+  readonly ctaHref?: string;
+  readonly faqs?: readonly FAQItem[];
+  readonly className?: string;
+  readonly 'aria-label'?: string;
 }
 
 export const FAQSection: React.FC<FAQSectionProps> = ({
@@ -101,7 +101,6 @@ export const FAQSection: React.FC<FAQSectionProps> = ({
                   <article
                     key={faq.id}
                     className="border border-gray-200 rounded-lg overflow-hidden"
-                    role="region"
                     aria-labelledby={`faq-question-${faq.id}`}
                   >
                     {/* Question Header */}

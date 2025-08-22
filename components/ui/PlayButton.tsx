@@ -1,11 +1,11 @@
 import React from 'react';
 
 interface PlayButtonProps {
-  onClick: () => void;
-  ariaLabel?: string;
-  className?: string;
-  size?: 'sm' | 'md' | 'lg';
-  variant?: 'default' | 'overlay';
+  readonly onClick: () => void;
+  readonly ariaLabel?: string;
+  readonly className?: string;
+  readonly size?: 'sm' | 'md' | 'lg';
+  readonly variant?: 'default' | 'overlay';
 }
 
 export const PlayButton: React.FC<PlayButtonProps> = ({

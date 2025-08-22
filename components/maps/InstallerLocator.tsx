@@ -2,24 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/Button';
 
 interface Installer {
-  id: string;
-  name: string;
-  address: string;
-  phone: string;
-  email: string;
-  distance: number;
-  rating: number;
-  services: string[];
-  coordinates: {
-    lat: number;
-    lng: number;
+  readonly id: string;
+  readonly name: string;
+  readonly address: string;
+  readonly phone: string;
+  readonly email: string;
+  readonly distance: number;
+  readonly rating: number;
+  readonly services: readonly string[];
+  readonly coordinates: {
+    readonly lat: number;
+    readonly lng: number;
   };
 }
 
 interface InstallerLocatorProps {
-  country: string;
-  language: string;
-  onInstallerSelect?: (installer: Installer) => void;
+  readonly country: string;
+  readonly language: string;
+  readonly onInstallerSelect?: (installer: Installer) => void;
 }
 
 export const InstallerLocator: React.FC<InstallerLocatorProps> = ({
@@ -178,7 +178,7 @@ export const InstallerLocator: React.FC<InstallerLocatorProps> = ({
                       <div className="flex flex-wrap gap-1 mt-1">
                         {installer.services.map((service, index) => (
                           <span
-                            key={index}
+                            key={`${service}-${index}`}
                             className="inline-block bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded"
                           >
                             {service}

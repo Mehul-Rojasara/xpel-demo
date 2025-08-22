@@ -2,10 +2,10 @@ import React from "react";
 import Image from "next/image";
 
 interface ContentImageGridProps {
-  subtitle: string;
-  title: string;
-  description: string;
-  images: string[];
+  readonly subtitle: string;
+  readonly title: string;
+  readonly description: string;
+  readonly images: readonly string[];
 }
 
 export const ContentImageGrid: React.FC<ContentImageGridProps> = ({

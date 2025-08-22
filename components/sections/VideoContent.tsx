@@ -2,10 +2,10 @@
 import React, { useRef, useState } from "react";
 
 interface VideoContentProps {
-  videoUrl: string; // mp4 or webm link
-  subtitle: string;
-  title: string;
-  description: string;
+  readonly videoUrl: string; // mp4 or webm link
+  readonly subtitle: string;
+  readonly title: string;
+  readonly description: string;
 }
 
 export const VideoContent: React.FC<VideoContentProps> = ({

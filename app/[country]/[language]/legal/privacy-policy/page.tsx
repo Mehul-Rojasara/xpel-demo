@@ -8,9 +8,9 @@ export const metadata = {
 };
 
 interface PrivacyPolicyPageProps {
-  params: Promise<{
-    country: string;
-    language: string;
+  readonly params: Promise<{
+    readonly country: string;
+    readonly language: string;
   }>;
 }
 
@@ -24,7 +24,6 @@ export default async function PrivacyPolicyPage({ params }: PrivacyPolicyPagePro
         text: 'Back to Legal',
         href: `/${country}/${language}/legal`
       }}
-      showConsent={true}
     />
   );
 } 

@@ -4,33 +4,33 @@ import { Button } from '../ui/Button';
 import { ProductFeature, FeatureIcons } from './ProductFeature';
 
 interface ProductImage {
-  id: string;
-  src: string;
-  alt: string;
-  size?: 'small' | 'large';
+  readonly id: string;
+  readonly src: string;
+  readonly alt: string;
+  readonly size?: 'small' | 'large';
 }
 
 interface ProductFeature {
-  id: string;
-  title: string;
-  description: string;
-  icon: keyof typeof FeatureIcons;
+  readonly id: string;
+  readonly title: string;
+  readonly description: string;
+  readonly icon: keyof typeof FeatureIcons;
 }
 
 interface ProductShowcaseProps {
-  title: string;
-  description: string;
-  features: ProductFeature[];
-  images: ProductImage[];
-  primaryCtaText: string;
-  primaryCtaHref?: string;
-  onPrimaryCtaClick?: () => void;
-  secondaryCtaText: string;
-  secondaryCtaHref?: string;
-  onSecondaryCtaClick?: () => void;
-  className?: string;
-  background?: 'dark' | 'light';
-  reverseLayout?: boolean;
+  readonly title: string;
+  readonly description: string;
+  readonly features: readonly ProductFeature[];
+  readonly images: readonly ProductImage[];
+  readonly primaryCtaText: string;
+  readonly primaryCtaHref?: string;
+  readonly onPrimaryCtaClick?: () => void;
+  readonly secondaryCtaText: string;
+  readonly secondaryCtaHref?: string;
+  readonly onSecondaryCtaClick?: () => void;
+  readonly className?: string;
+  readonly background?: 'dark' | 'light';
+  readonly reverseLayout?: boolean;
 }
 
 export const ProductShowcase: React.FC<ProductShowcaseProps> = ({
@@ -73,7 +73,7 @@ export const ProductShowcase: React.FC<ProductShowcaseProps> = ({
   const imageOrder = reverseLayout ? 'lg:order-1' : 'lg:order-2';
 
   return (
-    <section className={`py-16 px-4 sm:px-6 lg:px-8 ${backgroundClasses[background]} ${className}`} role="region" aria-label="Product showcase">
+    <section className={`py-16 px-4 sm:px-6 lg:px-8 ${backgroundClasses[background]} ${className}`} aria-label="Product showcase">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Content Column */}

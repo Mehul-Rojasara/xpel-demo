@@ -1,17 +1,17 @@
 export interface CMSConfig {
-  contentstack: {
-    apiKey: string;
-    deliveryToken: string;
-    environment: string;
-    managementToken?: string;
-    region: string;
+  readonly contentstack: {
+    readonly apiKey: string;
+    readonly deliveryToken: string;
+    readonly environment: string;
+    readonly managementToken?: string;
+    readonly region: string;
   };
-  contentTypes: {
-    page: string;
-    product: string;
-    category: string;
-    blog: string;
-    navigation: string;
+  readonly contentTypes: {
+    readonly page: string;
+    readonly product: string;
+    readonly category: string;
+    readonly blog: string;
+    readonly navigation: string;
   };
 }
 

@@ -6,7 +6,7 @@ import { ContentSection } from './ContentSection';
 interface CmsSection {
   readonly id: string;
   readonly title: string;
-  readonly content: string | string[];
+  readonly content: string | readonly string[];
   readonly type: 'text' | 'list' | 'table' | 'contact' | 'definition';
 }
 
@@ -24,8 +24,6 @@ interface CmsPageWrapperProps {
     readonly href: string;
   };
   readonly className?: string;
-  readonly showLastUpdated?: boolean;
-  readonly showConsent?: boolean;
 }
 
 export const CmsPageWrapper: React.FC<CmsPageWrapperProps> = ({

@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 interface CountryLayoutProps {
-  children: ReactNode;
-  params: Promise<{
-    country: string;
+  readonly children: ReactNode;
+  readonly params: Promise<{
+    readonly country: string;
   }>;
 }
 

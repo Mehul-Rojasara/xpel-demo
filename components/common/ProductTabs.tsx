@@ -3,17 +3,17 @@
 import React, { useState } from 'react';
 
 interface ProductTab {
-  id: string;
-  label: string;
-  href?: string;
+  readonly id: string;
+  readonly label: string;
+  readonly href?: string;
 }
 
 interface ProductTabsProps {
-  tabs: ProductTab[];
-  activeTab?: string;
-  onTabChange?: (tabId: string) => void;
-  className?: string;
-  background?: 'dark' | 'light';
+  readonly tabs: readonly ProductTab[];
+  readonly activeTab?: string;
+  readonly onTabChange?: (tabId: string) => void;
+  readonly className?: string;
+  readonly background?: 'dark' | 'light';
 }
 
 export const ProductTabs: React.FC<ProductTabsProps> = ({
@@ -36,7 +36,7 @@ export const ProductTabs: React.FC<ProductTabsProps> = ({
   };
 
   return (
-    <section className={`py-16 px-4 sm:px-6 lg:px-8 ${backgroundClasses[background]} ${className}`} role="region" aria-label="Product navigation">
+    <section className={`py-16 px-4 sm:px-6 lg:px-8 ${backgroundClasses[background]} ${className}`} aria-label="Product navigation">
       <div className="max-w-7xl mx-auto">
         {/* Title */}
         <div className="text-center mb-12">

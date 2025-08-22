@@ -4,29 +4,29 @@ import React, { useState, useRef, useEffect } from 'react';
 import Container from '@/components/ui/Container';
 
 interface VideoPlayerProps {
-  videoSrc: string;
-  posterImage?: string;
-  autoPlay?: boolean;
-  muted?: boolean;
-  loop?: boolean;
-  playsInline?: boolean;
-  preload?: 'none' | 'metadata' | 'auto';
-  className?: string;
+  readonly videoSrc: string;
+  readonly posterImage?: string;
+  readonly autoPlay?: boolean;
+  readonly muted?: boolean;
+  readonly loop?: boolean;
+  readonly playsInline?: boolean;
+  readonly preload?: 'none' | 'metadata' | 'auto';
+  readonly className?: string;
   // Control options
-  showPlayPause?: boolean;
-  showProgress?: boolean;
-  showDots?: boolean;
-  totalSlides?: number;
-  currentSlideIndex?: number;
-  onSlideChange?: (index: number) => void;
-  onVideoEnd?: () => void;
-  onVideoProgress?: (progress: number) => void;
+  readonly showPlayPause?: boolean;
+  readonly showProgress?: boolean;
+  readonly showDots?: boolean;
+  readonly totalSlides?: number;
+  readonly currentSlideIndex?: number;
+  readonly onSlideChange?: (index: number) => void;
+  readonly onVideoEnd?: () => void;
+  readonly onVideoProgress?: (progress: number) => void;
   // Styling
-  controlsPosition?: 'bottom-right' | 'bottom-center' | 'bottom-left';
-  progressBarWidth?: string;
-  dotSize?: 'sm' | 'md' | 'lg';
+  readonly controlsPosition?: 'bottom-right' | 'bottom-center' | 'bottom-left';
+  readonly progressBarWidth?: string;
+  readonly dotSize?: 'sm' | 'md' | 'lg';
   // Testing options
-  testDuration?: number; // Duration in seconds for testing
+  readonly testDuration?: number; // Duration in seconds for testing
 }
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({
@@ -285,7 +285,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
                     const dotState = getDotState(index);
                     return (
                       <button
-                        key={index}
+                        key={`dot-${index}`}
                         onClick={() => onSlideChange?.(index)}
                         className={`${getDotSizeClasses()} rounded-full transition-all duration-300 ${
                           dotState === 'current'
@@ -312,14 +312,14 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
                   
                   return (
                     <button
-                      key={index}
+                      key={`dot-line-${index}`}
                       onClick={() => onSlideChange?.(index)}
                       className={`${getDotSizeClasses()} rounded-full transition-all duration-300 bg-white/60 hover:bg-white/80 ${
                         isCurrent
                           ? 'w-20 md:w-60' 
                           : 'w-1.5'
                       }`}
-                      // style={{ width: dotWidth }}
+
                       aria-label={`Go to slide ${index + 1}`}
                     >
                       <span 

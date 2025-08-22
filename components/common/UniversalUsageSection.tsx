@@ -1,26 +1,26 @@
-'use client';
-import React, { useState } from 'react';
-import Image from 'next/image';
-import Container from '@/components/ui/Container';
+"use client";
+import React, { useState } from "react";
+import Image from "next/image";
+import Container from "@/components/ui/Container";
 
 export interface ApplicationArea {
-  id: string;
-  title: string;
-  description?: string;
-  imageSrc: string;
-  imageAlt: string;
+  readonly id: string;
+  readonly title: string;
+  readonly description?: string;
+  readonly imageSrc: string;
+  readonly imageAlt: string;
 }
 
 interface UniversalUsageSectionProps {
-  subHeading: string;
-  title: string;
-  description: string;
-  mainImage: {
-    src: string;
-    alt: string;
+  readonly subHeading: string;
+  readonly title: string;
+  readonly description: string;
+  readonly mainImage: {
+    readonly src: string;
+    readonly alt: string;
   };
-  applicationAreas: ApplicationArea[];
-  className?: string;
+  readonly applicationAreas: readonly ApplicationArea[];
+  readonly className?: string;
 }
 
 export const UniversalUsageSection: React.FC<UniversalUsageSectionProps> = ({
@@ -29,7 +29,7 @@ export const UniversalUsageSection: React.FC<UniversalUsageSectionProps> = ({
   description,
   mainImage,
   applicationAreas,
-  className = ''
+  className = "",
 }) => {
   const [activeTab, setActiveTab] = useState(0);
 
@@ -40,17 +40,17 @@ export const UniversalUsageSection: React.FC<UniversalUsageSectionProps> = ({
   const currentImage = applicationAreas[activeTab] || mainImage;
 
   return (
-    <section 
-      className={`py-16 sm:py-20 bg-white text-neutral-900 ${className}`}
+    <section
+      className={`lg:section-spacing-bottom text-neutral-900 ${className}`}
       role="region"
       aria-label="Universal usage applications"
     >
       <Container>
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+        <div className="flex  flex-col lg:flex-row justify-between gap-8 lg:gap-16 items-center">
           {/* Left Side - Main Image (Changes based on active tab) */}
           <div className="relative w-full">
-            <div className="w-full max-w-[864px] mx-auto">
-              <div className="relative aspect-square w-full rounded-md overflow-hidden">
+            <div className="w-full max-w-[864px]">
+              <div className="relative aspect-square w-full rounded-[0.875rem] overflow-hidden">
                 <Image
                   src={currentImage.imageSrc}
                   alt={currentImage.imageAlt}
@@ -64,49 +64,43 @@ export const UniversalUsageSection: React.FC<UniversalUsageSectionProps> = ({
 
           {/* Right Side - Content with Vertical Tabbed Slider */}
           {/* Exact positioning as per Figma: 142.5px top padding, 496px width, 32px gap */}
-          <div className="space-y-8 pt-[142.5px] lg:max-w-[496px]">
+          <div className="lg:max-w-[31rem] w-full">
             {/* Sub-heading */}
-            <p className="subtitle-small text-neutral-600">
-              {subHeading}
-            </p>
-            
+            <p className="subtitle-large font-medium text-neutral-900 mb-4">{subHeading}</p>
+
             {/* Main title */}
-            <h2 className="font-h2 text-neutral-900">
-              {title}
-            </h2>
-            
+            <h2 className="font-h2 text-neutral-900 mb-6">{title}</h2>
+
             {/* Description */}
-            <p className="para-medium text-neutral-700 max-w-2xl">
-              {description}
-            </p>
-            
+            <p className="para-medium text-neutral-700 mb-12">{description}</p>
+
             {/* Vertical Tabbed Slider - 32px gap as per Figma */}
-            <div className="space-y-8 pt-4">
+            <div className="space-y-10">
               {applicationAreas.map((area, index) => (
-                <div key={area.id} className="relative">
+                <div key={area.id} className="relative pl-3">
                   {/* Vertical Line Indicator */}
-                  <div className={`absolute left-0 top-0 bottom-0 w-0.5 transition-all duration-300 ${
-                    index === activeTab ? 'bg-neutral-900' : 'bg-neutral-300'
-                  }`}></div>
-                  
+                  <div
+                    className={`absolute left-0 top-0 bottom-0 w-[0.188rem] transition-all duration-300 ${
+                      index === activeTab ? "bg-[#474646]" : "bg-neutral-300"
+                    }`}
+                  ></div>
+
                   {/* Tab Content - Clickable */}
                   <button
                     onClick={() => handleTabClick(index)}
-                    className={`w-full text-left pl-6 transition-all duration-300 rounded-lg p-3 -ml-3 ${
-                      index === activeTab ? 'text-neutral-900' : 'text-neutral-600'
+                    className={`w-full text-left pl-6 transition-all duration-300 rounded-lg -ml-3 ${
+                      index === activeTab ? "text-neutral-900" : "text-neutral-600"
                     }`}
                   >
-                    <h5 className={`font-h5 ${
-                      index === activeTab ? 'text-neutral-900 mb-2' : 'text-neutral-600 py-2'
-                    }`}>
+                    <h4
+                      className={`font-h4 ${index === activeTab ? "text-neutral-900 mb-4" : "text-neutral-600 py-1"}`}
+                    >
                       {area.title}
-                    </h5>
-                    
+                    </h4>
+
                     {/* Active Tab Description */}
                     {index === activeTab && area.description && (
-                      <p className="para-small text-neutral-700 max-w-lg">
-                        {area.description}
-                      </p>
+                      <p className="para-small text-neutral-700 max-w-lg">{area.description}</p>
                     )}
                   </button>
                 </div>
@@ -117,4 +111,4 @@ export const UniversalUsageSection: React.FC<UniversalUsageSectionProps> = ({
       </Container>
     </section>
   );
-}; 
+};

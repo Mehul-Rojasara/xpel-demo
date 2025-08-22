@@ -1,17 +1,17 @@
 export interface PlotterDriver {
-  name: string;
-  version: string;
-  size: string;
-  os: string;
-  downloadUrl: string;
-  releaseDate: string;
-  fileType: string;
+  readonly name: string;
+  readonly version: string;
+  readonly size: string;
+  readonly os: string;
+  readonly downloadUrl: string;
+  readonly releaseDate: string;
+  readonly fileType: string;
 }
 
 export interface PlotterBrand {
-  title: string;
-  description: string;
-  drivers: PlotterDriver[];
+  readonly title: string;
+  readonly description: string;
+  readonly drivers: readonly PlotterDriver[];
 }
 
 export const PLOTTER_SUPPORT_DATA: PlotterBrand[] = [

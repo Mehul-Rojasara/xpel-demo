@@ -4,17 +4,17 @@ import Link from "next/link";
 import Container from "@/components/ui/Container";
 
 interface AboutSectionProps {
-  title: string;
-  description: string;
-  ctaText?: string;
-  ctaHref?: string;
-  className?: string;
-  background?: 'white' | 'light' | 'dark';
-  customBackgroundColor?: string;
-  textAlignment?: 'left' | 'center';
-  image?: string;
-  imageAlt?: string;
-  reverseLayout?: boolean;
+  readonly title: string;
+  readonly description: string;
+  readonly ctaText?: string;
+  readonly ctaHref?: string;
+  readonly className?: string;
+  readonly background?: 'white' | 'light' | 'dark';
+  readonly customBackgroundColor?: string;
+  readonly textAlignment?: 'left' | 'center';
+  readonly image?: string;
+  readonly imageAlt?: string;
+  readonly reverseLayout?: boolean;
 }
 
 export const AboutSection: React.FC<AboutSectionProps> = ({
@@ -51,8 +51,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
 
   return (
     <section
-      className={`${className}`}
-      role="region"
+      className={sectionClasses}
       style={backgroundStyle}
       aria-label="About section"
     >

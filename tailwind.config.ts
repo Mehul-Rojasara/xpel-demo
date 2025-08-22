@@ -83,7 +83,7 @@ const config: Config = {
       //  Typography System
       fontFamily: {
         sans: ["var(--font-jost)", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
-        display: ["var(--font-futura)", "Futura", "Trebuchet MS", "Arial", "sans-serif"],
+        display: ["futura-pt", "Futura", "Trebuchet MS", "Arial", "sans-serif"],
         mono: ["JetBrains Mono", "Fira Code", "Consolas", "monospace"],
       },
       fontSize: {

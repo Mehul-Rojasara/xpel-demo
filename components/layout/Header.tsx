@@ -373,7 +373,7 @@ const DesktopHeader: React.FC<HeaderProps> = ({ country, language }) => {
                             <div className="space-y-3">
                               {HEADER_DROPDOWN_CONTENT.products.detailColumns?.protectionFilm.products?.map((product, index) => (
                                 <Link 
-                                  key={index}
+                                  key={`${product.label}-${index}`}
                                   href={`/${country}/${language}${product.href}`} 
                                   className="block text-gray-600 hover:text-blue-600 hover:bg-gray-50 p-2 rounded"
                                 >
@@ -389,7 +389,7 @@ const DesktopHeader: React.FC<HeaderProps> = ({ country, language }) => {
                             <div className="space-y-3">
                               {HEADER_DROPDOWN_CONTENT.products.detailColumns?.windowFilm.products?.map((product, index) => (
                                 <Link 
-                                  key={index}
+                                  key={`${product.label}-${index}`}
                                   href={`/${country}/${language}${product.href}`} 
                                   className="block text-gray-600 hover:text-blue-600 hover:bg-gray-50 p-2 rounded"
                                 >
@@ -405,7 +405,7 @@ const DesktopHeader: React.FC<HeaderProps> = ({ country, language }) => {
                             <div className="space-y-3">
                               {HEADER_DROPDOWN_CONTENT.products.detailColumns?.ceramicCoating.products?.map((product, index) => (
                                 <Link 
-                                  key={index}
+                                  key={`${product.label}-${index}`}
                                   href={`/${country}/${language}${product.href}`} 
                                   className="block text-gray-600 hover:text-blue-600 hover:bg-gray-50 p-2 rounded"
                                 >
@@ -421,7 +421,7 @@ const DesktopHeader: React.FC<HeaderProps> = ({ country, language }) => {
                             <div className="space-y-3">
                               {HEADER_DROPDOWN_CONTENT.products.detailColumns?.resources.links?.map((link, index) => (
                                 <Link 
-                                  key={index}
+                                  key={`${link.label}-${index}`}
                                   href={`/${country}/${language}${link.href}`} 
                                   className="block text-gray-600 hover:text-blue-600"
                                 >
@@ -445,7 +445,7 @@ const DesktopHeader: React.FC<HeaderProps> = ({ country, language }) => {
                       <div className="grid grid-cols-2 gap-4">
                         {HEADER_DROPDOWN_CONTENT.resources.links?.map((link, index) => (
                           <Link 
-                            key={index}
+                            key={`${link.label}-${index}`}
                             href={`/${country}/${language}${link.href}`} 
                             className="flex items-center text-gray-600 hover:text-blue-600"
                           >
@@ -746,7 +746,7 @@ const MobileSidebar: React.FC<HeaderProps> = ({ country, language }) => {
                               </Link>
                             </li>
                             {category.products.map((product, index) => (
-                              <li key={index}>
+                              <li key={`${product.label}-${index}`}>
                                 <Link 
                                   href={`/${country}/${language}${product.href}`} 
                                   className="block px-8 py-2 text-sm text-gray-600 hover:text-blue-600" 
@@ -804,7 +804,7 @@ const MobileSidebar: React.FC<HeaderProps> = ({ country, language }) => {
                     <div className="mb-6">
                       <ul>
                         {HEADER_DROPDOWN_CONTENT.resources.links?.map((link, index) => (
-                          <li key={index}>
+                          <li key={`${link.label}-${index}`}>
                             <Link 
                               href={`/${country}/${language}${link.href}`} 
                               className="flex items-center px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50" 
@@ -823,7 +823,7 @@ const MobileSidebar: React.FC<HeaderProps> = ({ country, language }) => {
                       <h3 className="px-4 py-2 text-sm font-medium text-gray-500 uppercase tracking-wider">Connect</h3>
                       <ul>
                         {HEADER_DROPDOWN_CONTENT.resources.connectLinks?.map((link, index) => (
-                          <li key={index}>
+                          <li key={`${link.label}-${index}`}>
                             <Link 
                               href={`/${country}/${language}${link.href}`} 
                               className="block px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50" 

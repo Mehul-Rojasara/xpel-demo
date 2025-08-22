@@ -41,15 +41,6 @@
     color: #1b1a1a;
     background-color: #ffffff;
     position: relative;
-    // padding-top: 4rem;
-
-    // @include mixin.media(768px) {
-    //   padding-top: 5rem;
-    // }
-
-    // @include mixin.media(1100px) {
-    //   padding-top: 5.5rem;
-    // }
   }
 
   article,
@@ -224,12 +215,12 @@
   .section-spacing-top {
     @include mixin.section-spacing(top, lg);
   }
-  
+
   .section-spacing-y {
     @include mixin.section-spacing(top, lg);
     @include mixin.section-spacing(bottom, lg);
   }
-  
+
   .section-spacing-bottom {
     @include mixin.section-spacing(bottom, lg);
   }
@@ -304,10 +295,22 @@
   @include mixin.btn-secondary-outline;
 }
 
+.btn-secondary-outline-dark {
+  @include mixin.btn-secondary-outline-dark;
+}
+
 .btn-black {
+  @include mixin.btn-black;
+}
+
+.btn-white {
   @include mixin.btn-black;
 }
 
 .btn-full {
   @apply w-full;
+}
+
+.btn-min-width {
+  @apply min-w-40 lg:min-w-[12.5rem];
 }

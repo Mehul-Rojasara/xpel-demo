@@ -3,10 +3,10 @@ import { Footer } from '@/components/layout/Footer';
 import { NewHeader } from '@/components/layout/NewHeader';
 
 interface LanguageLayoutProps {
-  children: ReactNode;
-  params: Promise<{
-    country: string;
-    language: string;
+  readonly children: ReactNode;
+  readonly params: Promise<{
+    readonly country: string;
+    readonly language: string;
   }>;
 }
 

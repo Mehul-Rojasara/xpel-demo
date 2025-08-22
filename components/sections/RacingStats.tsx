@@ -2,16 +2,16 @@ import React from 'react';
 import Container from '@/components/ui/Container';
 
 interface RacingStatsProps {
-  title?: string;
-  driverName?: string;
-  year?: string;
-  stats?: Array<{
-    icon: React.ReactNode;
-    value: string;
-    description: string;
+  readonly title?: string;
+  readonly driverName?: string;
+  readonly year?: string;
+  readonly stats?: ReadonlyArray<{
+    readonly icon: React.ReactNode;
+    readonly value: string;
+    readonly description: string;
   }>;
-  className?: string;
-  'aria-label'?: string;
+  readonly className?: string;
+  readonly 'aria-label'?: string;
 }
 
 export const RacingStats: React.FC<RacingStatsProps> = ({
@@ -77,7 +77,7 @@ export const RacingStats: React.FC<RacingStatsProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-[1.875rem] w-full">
           {stats.map((stat, index) => (
             <div 
-              key={index}
+              key={`${stat.value}-${index}`}
               className="bg-white rounded-xl shadow-lg border border-gray-100 p-4 sm:p-6 lg:p-8 transition-all duration-300 hover:shadow-xl hover:scale-105 w-full lg:h-[159px]"
             >
               <div className="flex items-center space-x-4 sm:space-x-6 lg:space-x-8 h-full">

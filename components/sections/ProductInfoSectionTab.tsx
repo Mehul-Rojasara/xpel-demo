@@ -5,28 +5,28 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 interface ProductFeature {
-  id: string;
-  icon: React.ReactNode;
-  title: string;
-  description: string;
+  readonly id: string;
+  readonly icon: React.ReactNode;
+  readonly title: string;
+  readonly description: string;
 }
 
 interface ProductTab {
-  id: string;
-  name: string;
-  productName: string;
-  productDescription: string;
-  imageSrc: string;
-  imageAlt: string;
-  features: ProductFeature[];
+  readonly id: string;
+  readonly name: string;
+  readonly productName: string;
+  readonly productDescription: string;
+  readonly imageSrc: string;
+  readonly imageAlt: string;
+  readonly features: readonly ProductFeature[];
 }
 
 interface ProductInfoSectionProps {
-  title?: string;
-  description?: string;
-  tabs?: ProductTab[];
-  className?: string;
-  'aria-label'?: string;
+  readonly title?: string;
+  readonly description?: string;
+  readonly tabs?: readonly ProductTab[];
+  readonly className?: string;
+  readonly 'aria-label'?: string;
 }
 
 export const ProductInfoSectionTab: React.FC<ProductInfoSectionProps> = ({

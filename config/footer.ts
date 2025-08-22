@@ -43,8 +43,8 @@ export const CONTACT_INFO = {
 
 // Footer Component Interfaces
 export interface FooterProps {
-  country: string;
-  language: string;
+  readonly country: string;
+  readonly language: string;
 }
 
 // Type definitions for better type safety

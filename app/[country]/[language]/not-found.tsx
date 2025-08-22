@@ -3,9 +3,9 @@ import HeroBannerSection from '@/components/common/HeroBannerSection';
 import { ServiceBlocks } from '@/components/common/ServiceBlocks';
 
 interface NotFoundPageProps {
-  params: Promise<{
-    country: string;
-    language: string;
+  readonly params: Promise<{
+    readonly country: string;
+    readonly language: string;
   }>;
 }
 

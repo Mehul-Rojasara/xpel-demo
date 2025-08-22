@@ -204,7 +204,6 @@ export const NewHeader = () => {
                     <Image
                       src={product1}
                       alt="product"
-                      // title="product"
                       width={262}
                       height={262}
                       layout="intrinsic"
@@ -223,7 +222,6 @@ export const NewHeader = () => {
                     <Image
                       src={product2}
                       alt="product"
-                      // title="product"
                       width={262}
                       height={262}
                       layout="intrinsic"
@@ -242,7 +240,6 @@ export const NewHeader = () => {
                     <Image
                       src={product3}
                       alt="product"
-                      // title="product"
                       width={262}
                       height={262}
                       layout="intrinsic"
@@ -261,7 +258,6 @@ export const NewHeader = () => {
                     <Image
                       src={product4}
                       alt="product"
-                      // title="product"
                       width={262}
                       height={262}
                       layout="intrinsic"

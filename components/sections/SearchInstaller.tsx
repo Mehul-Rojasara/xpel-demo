@@ -11,17 +11,17 @@ type Country = string;
 type GeoMap = Record<Country, Record<StateName, City[]>>;
 
 interface Installer {
-  id: string;
-  name: string;
-  address1: string;
-  address2?: string;
-  phone?: string;
-  website?: string;
-  miles?: string;
-  country: Country;
-  state: StateName;
-  city: City;
-  products?: string[];
+  readonly id: string;
+  readonly name: string;
+  readonly address1: string;
+  readonly address2?: string;
+  readonly phone?: string;
+  readonly website?: string;
+  readonly miles?: string;
+  readonly country: Country;
+  readonly state: StateName;
+  readonly city: City;
+  readonly products?: readonly string[];
   productsExpanded?: boolean;
 }
 

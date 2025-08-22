@@ -2,25 +2,25 @@ import React from 'react';
 import Image from 'next/image';
 
 interface ApplicationCategory {
-  id: string;
-  title: string;
-  description?: string;
+  readonly id: string;
+  readonly title: string;
+  readonly description?: string;
 }
 
 interface ProductInfoSectionProps {
-  title: string;
-  subtitle?: string;
-  description: string;
-  image: {
-    src: string;
-    alt: string;
+  readonly title: string;
+  readonly subtitle?: string;
+  readonly description: string;
+  readonly image: {
+    readonly src: string;
+    readonly alt: string;
   };
-  applications: ApplicationCategory[];
-  className?: string;
-  background?: 'dark' | 'light';
-  imagePosition?: 'left' | 'right';
-  imageAspectRatio?: 'square' | 'video' | 'auto';
-  spacing?: 'sm' | 'md' | 'lg';
+  readonly applications: readonly ApplicationCategory[];
+  readonly className?: string;
+  readonly background?: 'dark' | 'light';
+  readonly imagePosition?: 'left' | 'right';
+  readonly imageAspectRatio?: 'square' | 'video' | 'auto';
+  readonly spacing?: 'sm' | 'md' | 'lg';
 }
 
 export const ProductInfoSection: React.FC<ProductInfoSectionProps> = ({
@@ -56,7 +56,7 @@ export const ProductInfoSection: React.FC<ProductInfoSectionProps> = ({
   const contentOrder = imagePosition === 'right' ? 'lg:order-1' : 'lg:order-2';
 
   return (
-    <section className={`px-4 sm:px-6 lg:px-8 ${backgroundClasses[background]} ${spacingClasses[spacing]} ${className}`} role="region" aria-label="Product information">
+    <section className={`px-4 sm:px-6 lg:px-8 ${backgroundClasses[background]} ${spacingClasses[spacing]} ${className}`} aria-label="Product information">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Image Column */}

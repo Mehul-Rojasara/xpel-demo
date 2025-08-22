@@ -3,15 +3,15 @@ import React from "react";
 import Image from "next/image";
 
 interface Director {
-  name: string;
-  role: string;
-  image: string;
-  bio?: string;
+  readonly name: string;
+  readonly role: string;
+  readonly image: string;
+  readonly bio?: string;
 }
 
 interface DirectorModalProps {
-  director: Director | null;
-  onClose: () => void;
+  readonly director: Director | null;
+  readonly onClose: () => void;
 }
 
 export const DirectorModal: React.FC<DirectorModalProps> = ({ director, onClose }) => {

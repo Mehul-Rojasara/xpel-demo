@@ -5,19 +5,19 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/Button';
 
 interface HeroBannerProps {
-  imageSrc: string;
-  imageAlt: string;
-  smallHeading?: string;
-  headline: string;
-  description?: string;
-  ctaText?: string;
-  ctaHref?: string;
-  onCtaClick?: () => void;
-  showVideoIcon?: boolean;
-  className?: string;
-  textColor?: 'white' | 'dark';
-  textAlignment?: 'left' | 'center' | 'right';
-  overlayOpacity?: number;
+  readonly imageSrc: string;
+  readonly imageAlt: string;
+  readonly smallHeading?: string;
+  readonly headline: string;
+  readonly description?: string;
+  readonly ctaText?: string;
+  readonly ctaHref?: string;
+  readonly onCtaClick?: () => void;
+  readonly showVideoIcon?: boolean;
+  readonly className?: string;
+  readonly textColor?: 'white' | 'dark';
+  readonly textAlignment?: 'left' | 'center' | 'right';
+  readonly overlayOpacity?: number;
 }
 
 export const HeroBanner: React.FC<HeroBannerProps> = ({

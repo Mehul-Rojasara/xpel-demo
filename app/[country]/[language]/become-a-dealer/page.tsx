@@ -1,9 +1,9 @@
 import BecomeDealer from "@/components/pages/Become-a-dealer";
 
 interface BecomeDealerPageProps {
-  params: Promise<{
-    country: string;
-    language: string;
+  readonly params: Promise<{
+    readonly country: string;
+    readonly language: string;
   }>;
 }
 

@@ -95,6 +95,11 @@ export default function StyleGuide() {
     <>
       <Container>
         <div className="py-10">
+          <p className="font-h4 border-b border-gray-200 pb-4 mb-5">Font Families</p>
+          <div className="flex flex-col gap-2 mb-12">
+            <p className="text-4xl font-display">Primary Font - futura-pt</p>
+            <p className="text-4xl font-sans">Secondary Font - jost</p>
+          </div>
           <p className="font-h4 border-b border-gray-200 pb-4 mb-5">Typography</p>
           <div className="flex flex-col gap-2 mb-12">
             <h1 className="font-h1">Heading 1</h1>
@@ -128,11 +133,10 @@ export default function StyleGuide() {
               Button Secondary
             </Button>
           </div>
-          
+
           <p className="font-h4 border-b border-gray-200 pb-4 mb-5">Buttons Variants Classes</p>
 
           <div className="flex flex-col gap-4 mb-12 items-start">
-
             <Link href={"#"} className="btn btn-primary">
               Primary Link
             </Link>
@@ -177,11 +181,10 @@ export default function StyleGuide() {
             </button>
 
             <div className="flex flex-col items-start gap-4 bg-black p-5">
-
               <button type="button" className="btn btn-primary btn-primary-bg-white">
                 Primary Btn
               </button>
-              
+
               <button type="button" className="btn btn-secondary">
                 Secondary Btn
               </button>
@@ -193,6 +196,10 @@ export default function StyleGuide() {
               <button type="button" className="btn btn-secondary btn-with-icon">
                 Secondary Btn
                 <span className="icon-Arrow-Right btn-icon"></span>
+              </button>
+
+              <button type="button" className="btn btn-secondary-outline-dark">
+                Secondary Outline Btn Dark
               </button>
             </div>
 
@@ -212,8 +219,7 @@ export default function StyleGuide() {
             <button type="button" className="btn btn-secondary-outline">
               Secondary Outline Btn
             </button>
-            
-        </div>
+          </div>
 
           <p className="font-h4 border-b border-gray-200 pb-4 mb-5">Icons</p>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-12">

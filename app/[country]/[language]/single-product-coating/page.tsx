@@ -1,9 +1,9 @@
 import SingleProductCoating from "@/components/pages/SingleProductPageCoating";
 
 interface SingleProductCoatingPageProps {
-  params: Promise<{
-    country: string;
-    language: string;
+  readonly params: Promise<{
+    readonly country: string;
+    readonly language: string;
   }>;
 }
 

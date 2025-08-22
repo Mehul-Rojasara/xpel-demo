@@ -1,39 +1,39 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 
 interface BannerButton {
-  label: string;
-  href: string;
-  variant?: "primary" | "secondary" | "tertiary";
-  icon?: React.ReactNode;
-  arrow?: boolean;
-  className?: string;
+  readonly label: string;
+  readonly href: string;
+  readonly variant?: "primary" | "secondary" | "tertiary";
+  readonly icon?: React.ReactNode;
+  readonly arrow?: boolean;
+  readonly className?: string;
 }
 
 interface BannerContent {
-  backButton?: {
-    label: string;
-    href: string;
+  readonly backButton?: {
+    readonly label: string;
+    readonly href: string;
   };
-  headline?: {
-    subtitle?: string;
-    title: string;
+  readonly headline?: {
+    readonly subtitle?: string;
+    readonly title: string;
   };
-  description?: string;
-  optionalDescription?: string;
-  buttons?: BannerButton[];
+  readonly description?: string;
+  readonly optionalDescription?: string;
+  readonly buttons?: readonly BannerButton[];
 }
 
 interface BannerProps {
-  title?: string;
-  backgroundImage: string;
-  altText?: string;
-  className?: string;
-  content?: BannerContent;
-  variant?: "simple" | "promotional";
+  readonly title?: string;
+  readonly backgroundImage: string;
+  readonly altText?: string;
+  readonly className?: string;
+  readonly content?: BannerContent;
+  readonly variant?: "simple" | "promotional";
+  readonly overlay?: "light" | "dark";
 }
 
 export const Banner: React.FC<BannerProps> = ({
@@ -43,6 +43,7 @@ export const Banner: React.FC<BannerProps> = ({
   className = "",
   content,
   variant = "promotional",
+  overlay = "light",
 }) => {
   return (
     <section
@@ -53,68 +54,64 @@ export const Banner: React.FC<BannerProps> = ({
       <Image src={backgroundImage} alt={altText} fill className="object-cover" priority sizes="100vw" quality={85} />
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-20" />
+      {overlay === "dark" && <div className="absolute inset-0 bg-black/50" />}
+      {overlay === "light" && <div className="absolute inset-0 bg-black/20" />}
 
       {/* Content Container */}
       <div className="absolute inset-0 flex items-end justify-start">
-        <Container className="w-full pb-6 sm:pb-8 md:pb-12 lg:pb-16">
+        <Container className="w-full pb-16">
           {variant === "promotional" && content ? (
-            <div className="max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl">
+            <div className="max-w-[46.5rem]">
               {/* Back Button */}
               {content.backButton && (
                 <Link
                   href={content.backButton.href}
-                  className="inline-flex items-center justify-center h-10 px-6 py-2 bg-[#212D42] text-white rounded-full mb-6 hover:bg-[#1a2535] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 transition-all duration-200 border border-white backdrop-blur-[1.125rem] w-[7.688rem] para-small-bold"
+                  className="inline-flex items-center justify-center h-10 px-6 py-2 border border-solid border-[rgba(255,255,255,.25)] bg-[#212d4259] backdrop-blur-[.5625rem] text-white rounded-full mb-6 lg:mb-4 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 transition-all duration-400  min-w-[7.625rem] para-xsmall"
                   aria-label={`Go back to ${content.backButton.label}`}
                 >
-                  <i className="icon-Arrow-Left w-4 h-4 mr-2.5 text-white flex items-center" aria-hidden="true"></i>
+                  <i className="icon-Arrow-Left text-sm mr-2.5 text-white flex items-center" aria-hidden="true"></i>
                   <span className="flex items-center">{content.backButton.label}</span>
                 </Link>
               )}
 
               {/* Headline */}
               {content.headline && (
-                <div className="mb-6">
+                <>
                   {content.headline.subtitle && (
-                    <p className="subtitle-large text-neutral-300 mb-3">{content.headline.subtitle}</p>
+                    <p className="text-[1rem] leading-tight font-[500] font-display tracking-wider uppercase text-white mb-3">
+                      {content.headline.subtitle}
+                    </p>
                   )}
-                  <h1 className="font-h1 text-white mb-6">{content.headline.title}</h1>
-                </div>
+                  <h1 className="font-h1 text-white mb-4 lg:mb-6">{content.headline.title}</h1>
+                </>
               )}
 
               {/* Description */}
               {content.description && (
-                <p className="para-medium text-neutral-300 mb-6 max-w-2xl">{content.description}</p>
+                <p className="para-medium text-white mb-5 lg:mb-6 max-w-2xl">{content.description}</p>
               )}
 
               {/* Optional Description */}
               {content.optionalDescription && (
-                <p className="para-small text-neutral-300 mb-8 max-w-2xl">{content.optionalDescription}</p>
+                <p className="para-small text-white mb-6 lg:mb-8 max-w-2xl">{content.optionalDescription}</p>
               )}
 
               {/* Buttons */}
               {content.buttons && content.buttons.length > 0 && (
                 <div
-                  className={`flex gap-4 sm:gap-5 md:gap-6 ${
+                  className={`flex items-start gap-4 sm:gap-5 md:gap-6 ${
                     content.buttons && content.buttons.length === 2 ? "flex-col" : "flex-row"
                   }`}
                 >
                   {content.buttons.map((button, index) => (
-                    <Button
+                    <button
+                      type="button"
+                      className={`btn ${index === 0 ? "btn-secondary" : "btn-primary"} btn-with-icon`}
                       key={index}
-                      variant={button.variant === "secondary" ? "secondary" : "primary"}
-                      type="button" 
-                      aria-label="primary-btn" 
-                      buttonStyle="filled" 
-                      className={`${index === 0 ? "w-[12.5rem]" : index === 1 ? "w-[20.063rem]" : ""} ${button.variant === "secondary" ? "bg-white text-black" : ""}`}
-                      icon={button.arrow && (
-                        <span className="icon-Arrow-Right">
-                        </span>
-                      )}
-                      iconPosition="right"
                     >
                       {button.label}
-                    </Button>
+                      <span className="icon-Arrow-Right btn-icon"></span>
+                    </button>
                   ))}
                 </div>
               )}

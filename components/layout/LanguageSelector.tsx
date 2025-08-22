@@ -4,18 +4,12 @@ import React, { useState, useCallback, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 
-interface LanguageSelectorProps {
-  country: string;
-  language: string;
-  className?: string;
-}
-
 import { LANGUAGE_OPTIONS, COUNTRY_MAP, LanguageOption } from '@/config/constants';
 
 interface LanguageSelectorProps {
-  country: string;
-  language: string;
-  className?: string;
+  readonly country: string;
+  readonly language: string;
+  readonly className?: string;
 }
 
 export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ 

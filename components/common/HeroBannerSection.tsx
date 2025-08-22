@@ -181,7 +181,7 @@ const HeroBannerSection: React.FC<HeroBannerSectionProps> = ({
             {finalButtons.length > 0 && (
               <div className={`flex flex-row flex-wrap gap-4 sm:gap-6 ${textAlignment === 'center' ? 'justify-center' : textAlignment === 'right' ? 'justify-end' : 'justify-start'}`}>
                 {finalButtons.map((button, index) => (
-                  <Link key={index} href={button.href} passHref>
+                  <Link key={`${button.text}-${index}`} href={button.href} passHref>
                     <Button
                       variant={button.variant || 'primary'}
                       buttonStyle={button.buttonStyle || 'filled'}

@@ -8,9 +8,9 @@ export const metadata = {
 };
 
 interface TermsConditionsPageProps {
-  params: Promise<{
-    country: string;
-    language: string;
+  readonly params: Promise<{
+    readonly country: string;
+    readonly language: string;
   }>;
 }
 

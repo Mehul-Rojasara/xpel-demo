@@ -3,8 +3,8 @@ import { Metadata } from 'next';
 import { ModularBlock } from './[language]/[[...slug]]/page';
 
 interface CountryPageProps {
-  params: Promise<{
-    country: string;
+  readonly params: Promise<{
+    readonly country: string;
   }>;
 }
 
@@ -73,7 +73,7 @@ export default async function CountryPage({ params }: CountryPageProps) {
             {homepageData.data?.all_homepage?.items?.[0]?.modular_blocks?.map((block: ModularBlock, index: number) => {
               const typedBlock = block as { __typename: string; mill?: { hero: { title: string; subtitle: string; cta_text: string; cta_link?: { title: string; href: string } } } };
               return (
-                <div key={index} className="modular-block">
+                <div key={`${typedBlock.__typename}-${index}`} className="modular-block">
                   <h3>Block Type: {typedBlock.__typename}</h3>
                   {typedBlock.mill?.hero && (
                     <div className="hero-section">
@@ -128,7 +128,7 @@ export default async function CountryPage({ params }: CountryPageProps) {
             {homepageData.data?.all_homepage?.items?.[0]?.modular_blocks?.map((block: ModularBlock, index: number) => {
               const typedBlock = block as { __typename: string; mill?: { hero: { title: string; subtitle: string; cta_text: string; cta_link?: { title: string; href: string } } } };
               return (
-                <div key={index} className="modular-block">
+                <div key={`${typedBlock.__typename}-${index}`} className="modular-block">
                   <h3>Block Type: {typedBlock.__typename}</h3>
                   {typedBlock.mill?.hero && (
                     <div className="hero-section">

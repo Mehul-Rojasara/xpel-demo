@@ -2,10 +2,10 @@ import React from 'react';
 import Container from '@/components/ui/Container';
 
 interface ContentSectionProps {
-  title?: string;
-  subtitle?: string;
-  className?: string;
-  'aria-label'?: string;
+  readonly title?: string;
+  readonly subtitle?: string;
+  readonly className?: string;
+  readonly 'aria-label'?: string;
 }
 
 export const ContentSection: React.FC<ContentSectionProps> = ({

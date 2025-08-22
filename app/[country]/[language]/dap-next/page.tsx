@@ -1,9 +1,9 @@
 import DapNext from "@/components/pages/DapNext";
 
 interface DapNextPageProps {
-  params: Promise<{
-    country: string;
-    language: string;
+  readonly params: Promise<{
+    readonly country: string;
+    readonly language: string;
   }>;
 }
 

@@ -1,54 +1,54 @@
 import React from "react";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label?: string;
-  required?: boolean;
-  optional?: boolean;
-  error?: string;
-  helperText?: string;
-  variant?: "default" | "error" | "success";
-  labelFor?: string; // Manual specification of 'for' attribute
+  readonly label?: string;
+  readonly required?: boolean;
+  readonly optional?: boolean;
+  readonly error?: string;
+  readonly helperText?: string;
+  readonly variant?: "default" | "error" | "success";
+  readonly labelFor?: string; // Manual specification of 'for' attribute
 }
 
 interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  label?: string;
-  required?: boolean;
-  optional?: boolean;
-  error?: string;
-  helperText?: string;
-  variant?: "default" | "error" | "success";
-  rows?: number;
-  labelFor?: string; // Manual specification of 'for' attribute
+  readonly label?: string;
+  readonly required?: boolean;
+  readonly optional?: boolean;
+  readonly error?: string;
+  readonly helperText?: string;
+  readonly variant?: "default" | "error" | "success";
+  readonly rows?: number;
+  readonly labelFor?: string; // Manual specification of 'for' attribute
 }
 
 interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label?: string;
-  required?: boolean;
-  error?: string;
-  helperText?: string;
-  labelFor?: string; // Manual specification of 'for' attribute
+  readonly label?: string;
+  readonly required?: boolean;
+  readonly error?: string;
+  readonly helperText?: string;
+  readonly labelFor?: string; // Manual specification of 'for' attribute
 }
 
 interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
-  label?: string;
-  required?: boolean;
-  optional?: boolean;
-  error?: string;
-  helperText?: string;
-  variant?: "default" | "error" | "success";
-  options: Array<{ value: string; label: string }>;
-  labelFor?: string; // Manual specification of 'for' attribute
+  readonly label?: string;
+  readonly required?: boolean;
+  readonly optional?: boolean;
+  readonly error?: string;
+  readonly helperText?: string;
+  readonly variant?: "default" | "error" | "success";
+  readonly options: ReadonlyArray<{ readonly value: string; readonly label: string }>;
+  readonly labelFor?: string; // Manual specification of 'for' attribute
 }
 
 interface FormProps {
-  children: React.ReactNode;
-  onSubmit?: (e: React.FormEvent) => void;
-  className?: string;
+  readonly children: React.ReactNode;
+  readonly onSubmit?: (e: React.FormEvent) => void;
+  readonly className?: string;
 }
 
 interface RequiredFieldNoteProps {
-  message?: string;
-  className?: string;
+  readonly message?: string;
+  readonly className?: string;
 }
 
 // Base Input Component

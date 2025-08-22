@@ -7,7 +7,7 @@
 }
 
 @mixin font-h3 {
-  @apply text-[24px] md:text-[30px]  lg:text-[32px] leading-normal font-[500] font-display tracking-tight;
+  @apply text-[24px] md:text-[28px]  lg:text-[32px] leading-normal font-[500] font-display tracking-tight;
 }
 
 @mixin font-h4 {
@@ -245,6 +245,9 @@
 @mixin btn-secondary-outline {
   @apply bg-white text-black border-[0.063rem] border-solid border-black hover:bg-black hover:text-white;
 }
+@mixin btn-secondary-outline-dark {
+  @apply bg-transparent text-white border-[0.063rem] border-solid border-white hover:bg-white hover:text-black;
+}
 
 @mixin btn-black {
   @apply bg-black text-white border-[0.063rem] border-solid border-black hover:bg-black/75 hover:text-white hover:border-black/75;
@@ -264,7 +267,9 @@
 @mixin section-spacing($location, $size) {
   @if $location == top {
     @if $size == sm {
-      padding-top: 1.5rem;
+      & {
+        padding-top: 1.5rem;
+      }
 
       @include media(768px) {
         padding-top: 2.5rem;
@@ -277,7 +282,9 @@
         padding-top: 3.75rem;
       }
     } @else if $size == lg {
-      padding-top: 3rem;
+      & {
+        padding-top: 3rem;
+      }
 
       @include media(768px) {
         padding-top: 5rem;
@@ -292,7 +299,9 @@
     }
   } @else if $location == bottom {
     @if $size == sm {
-      padding-bottom: 1.5rem;
+      & {
+        padding-bottom: 1.5rem;
+      }
 
       @include media(768px) {
         padding-bottom: 2.5rem;
@@ -305,7 +314,9 @@
         padding-bottom: 3.75rem;
       }
     } @else if $size == lg {
-      padding-bottom: 3rem;
+      & {
+        padding-bottom: 3rem;
+      }
 
       @include media(768px) {
         padding-bottom: 5rem;

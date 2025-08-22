@@ -15,25 +15,20 @@ interface ServiceBlock {
 interface ServiceBlocksProps {
   readonly services: ReadonlyArray<ServiceBlock>;
   readonly className?: string;
-  readonly background?: 'dark' | 'light';
+  readonly background?: "dark" | "light";
   readonly columns?: 1 | 2 | 3;
-  readonly spacing?: 'sm' | 'md' | 'lg';
+  readonly spacing?: "sm" | "md" | "lg";
 }
 
-export const ServiceBlocks: React.FC<ServiceBlocksProps> = ({
-  services,
-  className = '',
-  background = 'dark',
-}) => {
-  const backgroundClasses: Readonly<Record<'dark' | 'light', string>> = {
-    dark: 'text-white bg-neutral-800',
-    light: 'bg-white text-neutral-900'
+export const ServiceBlocks: React.FC<ServiceBlocksProps> = ({ services, className = "", background = "dark" }) => {
+  const backgroundClasses: Readonly<Record<"dark" | "light", string>> = {
+    dark: "text-white bg-neutral-800",
+    light: "bg-white text-neutral-900",
   };
 
   return (
     <section
       className={`${backgroundClasses[background]} bg-neutral-700 service-blocks py-16 sm:py-20 lg:py-[7.5rem] ${className}`}
-      role="region"
       aria-label="Service options"
     >
       <Container>
@@ -59,7 +54,7 @@ export const ServiceBlocks: React.FC<ServiceBlocksProps> = ({
                 </h3>
 
                 {/* Description - exact Figma typography: Jost Variable 16px, 150% line height, 1% letter spacing */}
-                <p className="mb-2 lg:mb-3 para-xsmall leading-relaxed tracking-wide text-white opacity-90 font-sans text-center md:text-left">
+                <p className="mb-2 lg:mb-3 para-medium text-white opacity-90 font-sans text-center md:text-left">
                   {service.description}
                 </p>
 
@@ -95,9 +90,9 @@ export const ServiceBlocks: React.FC<ServiceBlocksProps> = ({
 
 // Predefined service data with styleguide icon classes
 export const ServiceIcons: Readonly<Record<string, string>> = {
-  installer: 'icon-Xpel-Installer', // Xpel Installer icon
-  carCoverage: 'icon-Coverage-Options', // Coverage Options icon
-  dealer: 'icon-Become-a-Dealer' // Become a Dealer icon
+  installer: "icon-Xpel-Installer", // Xpel Installer icon
+  carCoverage: "icon-Coverage-Options", // Coverage Options icon
+  dealer: "icon-Become-a-Dealer", // Become a Dealer icon
 };
 
 export default ServiceBlocks;

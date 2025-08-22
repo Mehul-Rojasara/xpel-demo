@@ -4,8 +4,8 @@ import React, { useState, useEffect, ReactNode } from 'react';
 import { useToast } from '@/components/ui/Toast';
 
 interface Props {
-  children: ReactNode;
-  fallback?: ReactNode;
+  readonly children: ReactNode;
+  readonly fallback?: ReactNode;
 }
 
 // Modern Error Boundary using function component with error handling

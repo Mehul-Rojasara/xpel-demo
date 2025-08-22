@@ -2,23 +2,23 @@ import React from 'react';
 import Image from 'next/image';
 
 interface ContentItem {
-  id: string;
-  image: {
-    src: string;
-    alt: string;
+  readonly id: string;
+  readonly image: {
+    readonly src: string;
+    readonly alt: string;
   };
-  title: string;
-  description: string;
+  readonly title: string;
+  readonly description: string;
 }
 
 interface ContentGridProps {
-  title?: string;
-  items: ContentItem[];
-  className?: string;
-  background?: 'dark' | 'light';
-  columns?: 1 | 2 | 3;
-  spacing?: 'sm' | 'md' | 'lg';
-  imageAspectRatio?: 'square' | 'video' | 'auto';
+  readonly title?: string;
+  readonly items: readonly ContentItem[];
+  readonly className?: string;
+  readonly background?: 'dark' | 'light';
+  readonly columns?: 1 | 2 | 3;
+  readonly spacing?: 'sm' | 'md' | 'lg';
+  readonly imageAspectRatio?: 'square' | 'video' | 'auto';
 }
 
 export const ContentGrid: React.FC<ContentGridProps> = ({
@@ -54,7 +54,7 @@ export const ContentGrid: React.FC<ContentGridProps> = ({
   };
 
   return (
-    <section className={`px-4 sm:px-6 lg:px-8 ${backgroundClasses[background]} ${spacingClasses[spacing]} ${className}`} role="region" aria-label="Content grid">
+    <section className={`px-4 sm:px-6 lg:px-8 ${backgroundClasses[background]} ${spacingClasses[spacing]} ${className}`} aria-label="Content grid">
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
         {title && (

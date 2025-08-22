@@ -1,9 +1,9 @@
 import PartnerShipIndividual from "@/components/pages/PartnerShipIndividual";
 
 interface PartnerShipIndividualPageProps {
-  params: Promise<{
-    country: string;
-    language: string;
+ readonly params: Promise<{
+    readonly country: string;
+    readonly language: string;
   }>;
 }
 

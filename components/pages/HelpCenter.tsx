@@ -1,46 +1,91 @@
 import React from "react";
-import { BannerHeader } from "../common/BannerHeader";
-import { DocsGrid } from "../common/DocGrid";
+import { Banner } from "../sections";
+import { HelpCenterContentBox } from "../sections/HelpCenterContentBox";
 
 interface HelpCenterProps {
   country: string;
   language: string;
 }
-
+const sectionsData = [
+  {
+    id: "product-info",
+    heading: "Product Information",
+    items: [
+      {
+        id: "sds",
+        title: "Product Safety Data Sheets",
+        description:
+          "Find essential information on our products’ handling, storage, hazard and emergency procedures to ensure maximum safety.",
+        link: "/product-safety",
+      },
+      {
+        id: "specs",
+        title: "Product Specifications",
+        description:
+          "Find important product details such as key features, dimensions and performance specs for optimal usage.",
+        link: "/product-specifications",
+      },
+      {
+        id: "bulletins",
+        title: "Product Bulletins",
+        description: "Stay informed with the latest updates on product features, changes, and safety protocols.",
+        link: "/product-bulletins",
+      },
+    ],
+  },
+  {
+    id: "care-maintenance",
+    heading: "Care & Maintenance",
+    items: [
+      {
+        id: "care",
+        title: "Product Care Instructions",
+        description: "Discover how to best care for your XPEL products with our manufacturer recommendations.",
+        link: "/care-instructions",
+      },
+    ],
+  },
+  {
+    id: "installation-support",
+    heading: "Installation & Support",
+    items: [
+      {
+        id: "install",
+        title: "Installation Instructions",
+        description: "Find detailed instructions to install your XPEL product, including DIY applications.",
+        link: "/installation",
+      },
+      {
+        id: "warranty",
+        title: "Warranty Information",
+        description: "Our commitment to quality is backed by comprehensive product warranties.",
+        link: "/warranty",
+      },
+      {
+        id: "faq",
+        title: "Frequently Asked Questions",
+        description: "Get answers to questions about purchase decisions, product care, and more.",
+        link: "/faq",
+      },
+    ],
+  },
+];
 export const HelpCenter: React.FC<HelpCenterProps> = () => {
   return (
     <div className="ppf-page">
-      {/* Promotional Banner */}
-      <BannerHeader title="Help Center" description="Collection of Xpel’s terms, policies and agreements" />
-      <DocsGrid
-        documents={[
-          {
-            title: "Data Privacy Notice",
-            description: "Learn how we handle and protect your personal data.",
-            pdfUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+      <Banner
+        backgroundImage="/images/management/managementProfile.jpg"
+        altText="Person applying protective film to car headlight"
+        variant="promotional"
+        content={{
+          headline: {
+            subtitle: "",
+            title: "Help Center",
           },
-          {
-            title: "Employee Privacy Notice",
-            description: "Details about how employee data is collected and used.",
-            pdfUrl: "https://www.africau.edu/images/default/sample.pdf",
-          },
-          {
-            title: "Cookie Policy",
-            description: "Information about our use of cookies.",
-            pdfUrl: "https://www.orimi.com/pdf-test.pdf",
-          },
-          {
-            title: "Terms & Conditions",
-            description: "Our legal terms and conditions for using the service.",
-            pdfUrl: "https://gahp.net/wp-content/uploads/2017/09/sample.pdf",
-          },
-          {
-            title: "Software Use Agreement",
-            description: "Rules and rights for using our software products.",
-            pdfUrl: "https://www.clickdimensions.com/links/TestPDFfile.pdf",
-          },
-        ]}
+        }}
       />
+
+      <HelpCenterContentBox sections={sectionsData} />
     </div>
   );
 };

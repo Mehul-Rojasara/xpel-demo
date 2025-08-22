@@ -4,25 +4,25 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Container from '@/components/ui/Container';
 export interface ArticleCard {
-  id: string;
-  image: string;
-  imageAlt: string;
-  date: string;
-  title: string;
-  description: string;
-  ctaText?: string;
-  ctaHref?: string;
+  readonly id: string;
+  readonly image: string;
+  readonly imageAlt: string;
+  readonly date: string;
+  readonly title: string;
+  readonly description: string;
+  readonly ctaText?: string;
+  readonly ctaHref?: string;
 }
 
 interface FeaturedArticlesProps {
-  title?: string;
-  articles: ArticleCard[];
-  className?: string;
-  background?: 'white' | 'light' | 'dark';
-  layout?: 'grid' | 'slider';
-  showNavigation?: boolean;
-  showDate?: boolean;
-  showCta?: boolean;
+  readonly title?: string;
+  readonly articles: readonly ArticleCard[];
+  readonly className?: string;
+  readonly background?: 'white' | 'light' | 'dark';
+  readonly layout?: 'grid' | 'slider';
+  readonly showNavigation?: boolean;
+  readonly showDate?: boolean;
+  readonly showCta?: boolean;
 }
 
 export const FeaturedArticles: React.FC<FeaturedArticlesProps> = ({
@@ -50,7 +50,6 @@ export const FeaturedArticles: React.FC<FeaturedArticlesProps> = ({
   return (
     <section 
       className={`py-16 sm:py-20 lg:py-[7.5rem] overflow-hidden ${backgroundClasses[background]} ${className} w-full max-w-full Xxxl:max-w-[105rem] mx-auto`}
-      role="region" 
       aria-label="Featured articles"
     >      
         {/* Header */}

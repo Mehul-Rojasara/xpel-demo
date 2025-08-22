@@ -1,10 +1,10 @@
 import React from 'react';
 
 interface PlaceholderImageProps {
-  width: number;
-  height: number;
-  text?: string;
-  className?: string;
+  readonly width: number;
+  readonly height: number;
+  readonly text?: string;
+  readonly className?: string;
 }
 
 export const PlaceholderImage: React.FC<PlaceholderImageProps> = ({

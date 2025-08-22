@@ -9,8 +9,8 @@ import { NextStepsForm } from '../sections/NextStepForm';
 import { NEXT_STEP_FORM_DATA } from '@/config';
 
 interface BBecomeDealerPageProps {
-  country: string;
-  language: string;
+  readonly country: string;
+  readonly language: string;
 }
 
 export const BecomeDealer: React.FC<BBecomeDealerPageProps> = () => {

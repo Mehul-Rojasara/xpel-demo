@@ -218,7 +218,6 @@ export const ProductCategoryPage: React.FC<ProductCategoryPageProps> = ({
         altText={heroImageAlt}
         variant="promotional"
         content={bannerContent}
-        className="h-[720px]"
       />
 
       {/* Product Lineup Section with Tabbed Functionality */}

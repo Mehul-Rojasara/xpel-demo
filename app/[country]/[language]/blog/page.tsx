@@ -1,9 +1,9 @@
 import Blog from "@/components/pages/Blog";
 
 interface BlogPageProps {
-  params: Promise<{
-    country: string;
-    language: string;
+  readonly params: Promise<{
+    readonly country: string;
+    readonly language: string;
   }>;
 }
 

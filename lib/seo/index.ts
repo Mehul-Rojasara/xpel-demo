@@ -3,12 +3,12 @@ import { getCountryConfig } from '@/config/regions';
 import { getLanguageConfig } from '@/config/languages';
 
 export interface SEOConfig {
-  title: string;
-  description: string;
-  keywords?: string[];
-  ogImage?: string;
-  canonical?: string;
-  hreflang?: Record<string, string>;
+  readonly title: string;
+  readonly description: string;
+  readonly keywords?: readonly string[];
+  readonly ogImage?: string;
+  readonly canonical?: string;
+  readonly hreflang?: Record<string, string>;
 }
 
 export async function generateMetadata(

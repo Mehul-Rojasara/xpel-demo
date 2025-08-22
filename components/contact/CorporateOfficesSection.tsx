@@ -2,11 +2,11 @@ import React from 'react';
 import Container from '@/components/ui/Container';
 
 interface OfficeCard {
-  company: string;
-  address: string;
-  phone: string[];
-  email: string;
-  hours: string;
+  readonly company: string;
+  readonly address: string;
+  readonly phone: readonly string[];
+  readonly email: string;
+  readonly hours: string;
 }
 
 const officeData: OfficeCard[] = [
@@ -38,7 +38,7 @@ export const CorporateOfficesSection: React.FC = () => {
 
         <div className="grid md:grid-cols-2 gap-8">
           {officeData.map((office, index) => (
-            <OfficeCard key={index} office={office} />
+            <OfficeCard key={`${office.company}-${index}`} office={office} />
           ))}
         </div>
       </Container>
@@ -73,7 +73,7 @@ const OfficeCard: React.FC<{ office: OfficeCard }> = ({ office }) => {
         {/* Phone Numbers */}
         <div>
           {office.phone.map((phone, index) => (
-            <p key={index} className="font-sans text-neutral-900 leading-[150%] tracking-[0.01em] font-[450] text-[1.125rem] mb-2">
+            <p key={`${phone}-${index}`} className="font-sans text-neutral-900 leading-[150%] tracking-[0.01em] font-[450] text-[1.125rem] mb-2">
               {phone}
             </p>
           ))}

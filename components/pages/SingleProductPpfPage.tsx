@@ -2,17 +2,34 @@
 import React from 'react';
 import { Banner } from '@/components/sections/Banner';
 import { BenefitsSection } from '../sections/BenefitsSection';
-import { FAQSection } from '../sections/FAQSection';
 import { ProductInfoSection } from '../sections/ProductInfoSection';
 import { ContentSection } from '../sections';
 import { CONTENT_SECTIONS } from '@/config';
+import { FAQSection } from '../common/FAQSection';
 
 interface SingleProductPpfPageProps {
   country: string;
   language: string;
+  faqTitle: string;
+  faqDescription: string;
+  faqs: Array<{
+    id: string;
+    question: string;
+    answer: string;
+  }>;
+  seeAllFaqsHref: string;
+  faqAnchorId: string;
 }
 
-export const SingleProductPpf: React.FC<SingleProductPpfPageProps> = () => {
+export const SingleProductPpf: React.FC<SingleProductPpfPageProps> = (
+  {
+    faqTitle,
+  faqDescription,
+  faqs,
+  seeAllFaqsHref,
+  faqAnchorId,
+  }
+) => {
     
   return (
     <div className="ppf-page">
@@ -56,7 +73,14 @@ export const SingleProductPpf: React.FC<SingleProductPpfPageProps> = () => {
         title={CONTENT_SECTIONS.SECTION.title}
         subtitle={CONTENT_SECTIONS.SECTION.subtitle}
       />
-      <FAQSection/>
+      <FAQSection
+              title={faqTitle}
+              description={faqDescription}
+              faqs={faqs}
+              seeAllButtonText="See All FAQs"
+              seeAllButtonHref={seeAllFaqsHref}
+              anchorId={faqAnchorId}
+            />
     </div>
   );
 };

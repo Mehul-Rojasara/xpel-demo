@@ -2,16 +2,16 @@ import React from 'react';
 import Link from 'next/link';
 
 export interface ContactCard {
-  id: string;
-  icon: React.ReactNode;
-  heading: string;
-  subtext: string;
-  href?: string;
+  readonly id: string;
+  readonly icon: React.ReactNode;
+  readonly heading: string;
+  readonly subtext: string;
+  readonly href?: string;
 }
 
 interface ContactCardsProps {
-  cards: ContactCard[];
-  className?: string;
+  readonly cards: readonly ContactCard[];
+  readonly className?: string;
 }
 
 export const ContactCards: React.FC<ContactCardsProps> = ({
@@ -19,16 +19,14 @@ export const ContactCards: React.FC<ContactCardsProps> = ({
   className = ''
 }) => {
   return (
-    <div 
+    <section 
       className={`flex justify-center lg:justify-start flex-col lg:flex-row gap-4 w-full ${className}`}
-      role="region" 
       aria-label="Contact methods"
     >
       {cards.map((card) => (
         <div
           key={card.id}
           className="group cursor-pointer w-full"
-          tabIndex={0}
           aria-label={`${card.heading} - ${card.subtext}`}
         >
           {/* Card with exact Figma dimensions: 320px x 190px */}
@@ -77,7 +75,7 @@ export const ContactCards: React.FC<ContactCardsProps> = ({
           </div>
         </div>
       ))}
-    </div>
+    </section>
   );
 };
 

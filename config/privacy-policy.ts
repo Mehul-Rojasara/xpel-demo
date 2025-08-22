@@ -1,14 +1,14 @@
 export interface PrivacyPolicySection {
-  id: string;
-  title: string;
-  content: string | string[];
-  type: 'text' | 'list' | 'table' | 'contact';
+  readonly id: string;
+  readonly title: string;
+  readonly content: string | readonly string[];
+  readonly type: 'text' | 'list' | 'table' | 'contact';
 }
 
 export interface PrivacyPolicyData {
-  title: string;
-  lastUpdated: string;
-  sections: PrivacyPolicySection[];
+  readonly title: string;
+  readonly lastUpdated: string;
+  readonly sections: readonly PrivacyPolicySection[];
 }
 
 export const PRIVACY_POLICY_DATA: PrivacyPolicyData = {

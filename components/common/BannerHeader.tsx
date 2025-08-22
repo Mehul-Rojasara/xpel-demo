@@ -2,8 +2,8 @@ import React from "react";
 import Container from "../ui/Container";
 
 interface BannerHeaderProps {
-  title: string;
-  description?: string;
+  readonly title: string;
+  readonly description?: string;
 }
 
 export const BannerHeader: React.FC<BannerHeaderProps> = ({ title, description }) => {

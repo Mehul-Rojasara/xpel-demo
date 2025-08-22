@@ -6,13 +6,13 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 
 interface ContactAvenue {
-  id: string;
-  icon: string;
-  title: string;
-  subtitle: string;
-  description: string;
-  linkText: string;
-  linkHref: string;
+  readonly id: string;
+  readonly icon: string;
+  readonly title: string;
+  readonly subtitle: string;
+  readonly description: string;
+  readonly linkText: string;
+  readonly linkHref: string;
 }
 
 const contactAvenues: ContactAvenue[] = [

@@ -3,8 +3,8 @@ import Container from '@/components/ui/Container';
 import { ContactCards, defaultContactCards, ContactCard } from './ContactCards';
 
 interface ContactSectionProps {
-  cards?: ContactCard[];
-  className?: string;
+  readonly cards?: readonly ContactCard[];
+  readonly className?: string;
 }
 
 export const ContactSection: React.FC<ContactSectionProps> = ({
@@ -14,7 +14,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
   return (
     <section 
       className={`py-16 sm:py-20 lg:py-[7.5rem] bg-neutral-100 min-h-[11.875rem] overflow-hidden ${className}`}
-      role="region" 
       aria-label="Contact information"
     >
       <Container>

@@ -3,31 +3,31 @@ import { Metadata } from 'next';
 import { HomePage } from '@/components/pages/HomePage';
 
 export interface ModularBlock {
-  __typename: string;
-  mill?: {
-    hero: {
-      title: string;
-      subtitle: string;
-      cta_text: string;
-      cta_link?: {
-        title: string;
-        href: string;
+  readonly __typename: string;
+  readonly mill?: {
+    readonly hero: {
+      readonly title: string;
+      readonly subtitle: string;
+      readonly cta_text: string;
+      readonly cta_link?: {
+        readonly title: string;
+        readonly href: string;
       };
     };
   };
 }
 
 interface PageProps {
-  params: Promise<{
-    country: string;
-    language: string;
-    slug?: string[];
+  readonly params: Promise<{
+    readonly country: string;
+    readonly language: string;
+    readonly slug?: readonly string[];
   }>;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
-  const slug = resolvedParams.slug?.join('/') || 'home';
+  const slug = resolvedParams.slug?.join('/') ?? 'home';
   
   try {
     // If this is the homepage, fetch homepage data from Contentstack
@@ -88,7 +88,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function DynamicPage({ params }: PageProps) {
   const resolvedParams = await params;
-  const slug = resolvedParams.slug?.join('/') || 'home';
+  const slug = resolvedParams.slug?.join('/') ?? 'home';
   
   // If this is the homepage, render the HomePage component
   if (slug === 'home' || slug === '') {
