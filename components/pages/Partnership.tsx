@@ -1,11 +1,10 @@
-
-import React from 'react';
-import { Banner } from '@/components/sections/Banner';
-import { ContentSection } from '@/components/sections';
-import { CONTENT_SECTIONS, serviceBlocks } from '@/config';
-import { ServiceBlocks } from '@/components/common';
-import { PartnerLogos } from '@/components/sections/PartnerLogos';
-import { BoardGrid } from '@/components/sections/BoardGrid';
+import React from "react";
+import { Banner } from "@/components/sections/Banner";
+import { ContentSection } from "@/components/sections";
+import { CONTENT_SECTIONS, serviceBlocks } from "@/config";
+import { ServiceBlocks } from "@/components/common";
+import { PartnerLogos } from "@/components/sections/PartnerLogos";
+import { TeamGrid } from "@/components/sections/TeamGrid";
 
 interface PartnerShipPageProps {
   country: string;
@@ -13,7 +12,6 @@ interface PartnerShipPageProps {
 }
 
 export const PartnerShip: React.FC<PartnerShipPageProps> = () => {
-    
   return (
     <div className="ppf-page">
       {/* Promotional Banner */}
@@ -23,16 +21,18 @@ export const PartnerShip: React.FC<PartnerShipPageProps> = () => {
         variant="promotional"
         content={{
           headline: {
-            title: "Partnerships"
-          }
+            title: "Partnerships",
+          },
+          backButton: {
+            label: "Automotive",
+            href: "/automotive",
+          },
         }}
       />
-      <ContentSection 
-        title={CONTENT_SECTIONS.SECTION.title}
-        subtitle={CONTENT_SECTIONS.SECTION.subtitle}
-      />
+      <ContentSection title={CONTENT_SECTIONS.SECTION.title} subtitle={CONTENT_SECTIONS.SECTION.subtitle} />
       <PartnerLogos />
-      <BoardGrid
+
+      <TeamGrid
         title=""
         directors={[
           {
@@ -63,4 +63,4 @@ export const PartnerShip: React.FC<PartnerShipPageProps> = () => {
   );
 };
 
-export default PartnerShip; 
+export default PartnerShip;
