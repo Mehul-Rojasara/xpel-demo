@@ -76,15 +76,13 @@ const PolicyCard: React.FC<{
                 onClick={handleCardClick}
                 className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm transition-colors duration-200"
               >
-                View PDF
-                <i className="icon-Arrow-Right ml-2 text-sm" aria-hidden="true"></i>
+                View PDF<i className="icon-Arrow-Right ml-2 text-sm" aria-hidden="true"></i>
               </button>
               <button
                 onClick={handleDownloadPdf}
                 className="inline-flex items-center text-green-600 hover:text-green-800 font-medium text-sm transition-colors duration-200"
               >
-                Download
-                <i className="icon-Download ml-2 text-sm" aria-hidden="true"></i>
+                Download<i className="icon-Download ml-2 text-sm" aria-hidden="true"></i>
               </button>
             </div>
           </div>

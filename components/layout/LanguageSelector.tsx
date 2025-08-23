@@ -26,7 +26,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   // Find current language option
   const currentOption = LANGUAGE_OPTIONS.find(
     option => option.code === language && option.country.toLowerCase().includes(country.toLowerCase())
-  ) || LANGUAGE_OPTIONS[0];
+  ) ?? LANGUAGE_OPTIONS[0];
 
   const handleToggle = useCallback(() => {
     setIsOpen(!isOpen);

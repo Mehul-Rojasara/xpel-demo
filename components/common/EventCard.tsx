@@ -74,8 +74,6 @@ export const EventCard: React.FC<EventCardProps> = ({
       aria-labelledby={`event-title-${event.id}`}
       onClick={onEventClick ? handleCardClick : undefined}
       onKeyDown={onEventClick ? handleKeyDown : undefined}
-      tabIndex={onEventClick ? 0 : undefined}
-      role={onEventClick ? 'button' : 'article'}
     >
       {/* Top Image/Logo Section */}
       <header className="relative bg-[var(--color-neutral-100)] p-6 min-h-[180px] flex items-center justify-center">

@@ -42,7 +42,7 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
 
   const generateId = useCallback(() => {
     // Use a more stable ID generation method
-    return `toast-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+    return `toast-${crypto.randomUUID()}`;
   }, []);
 
   const hideToast = useCallback((id: string) => {
@@ -87,8 +87,8 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
               <AnnouncementAlert
                 variant={toast.variant}
                 text={toast.text}
-                actionText={toast.actionText}
-                onAction={toast.onAction}
+                {...(toast.actionText && { actionText: toast.actionText })}
+                {...(toast.onAction && { onAction: toast.onAction })}
                 onClose={() => hideToast(toast.id)}
               />
             </div>
@@ -96,7 +96,7 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
         </div>
       )}
 
-      <style jsx>{`
+      <style>{`
         @keyframes slideInRight {
           from {
             transform: translateX(100%);

@@ -36,21 +36,25 @@ export const PartnerShip: React.FC<PartnerShipPageProps> = () => {
         title=""
         directors={[
           {
+            id: "1",
             name: "TEAM PENSKE | SCOTT MCLAUGHLIN",
             role: "",
             image: "/images/partnership/grid1.jpg",
           },
           {
+            id: "2",
             name: "RAHAL DUCATI MOTO",
             role: "",
             image: "/images/partnership/grid2.jpg",
           },
           {
+            id: "3",
             name: "STREET OUTLAWS",
             role: "",
             image: "/images/partnership/grid3.png",
           },
           {
+            id: "4",
             name: "PCA CLUB RACING",
             role: "",
             image: "/images/partnership/grid4.png",

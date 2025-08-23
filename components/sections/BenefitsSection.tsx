@@ -55,8 +55,6 @@ export const BenefitsSection: React.FC<BenefitsSectionProps> = ({
             <article
               key={benefit.id}
               className="text-center flex flex-row md:flex-col  rounded-lg hover:bg-gray-50 transition-all duration-200 gap-3 md:gap-0 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2"
-              tabIndex={0}
-              role="article"
               aria-labelledby={`benefit-title-${benefit.id}`}
             >
               {/* Icon Container */}

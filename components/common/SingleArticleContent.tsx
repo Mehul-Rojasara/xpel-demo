@@ -68,8 +68,8 @@ export const SingleArticleContent: React.FC<SingleArticleContentProps> = ({
         <section className="bg-white py-8 md:py-16" aria-labelledby="introduction-heading">
           <div className="max-w-[47.5rem] mx-auto px-6 Xxl:px-0">
             <div className="space-y-4">
-              {introduction.paragraphs.map((paragraph, index) => (
-                <p key={index} className="para-medium text-neutral-900">
+              {introduction.paragraphs.map((paragraph) => (
+                <p key={crypto.randomUUID()} className="para-medium text-neutral-900">
                   {paragraph.text}
                 </p>
               ))}
@@ -87,15 +87,15 @@ export const SingleArticleContent: React.FC<SingleArticleContentProps> = ({
             </h3>
 
             <div className="space-y-4 mb-4">
-              {mainArticle.paragraphs.map((paragraph, index) => (
-                <p key={index} className="para-medium text-neutral-900">
+              {mainArticle.paragraphs.map((paragraph) => (
+                <p key={crypto.randomUUID()} className="para-medium text-neutral-900">
                   {paragraph.text}
                 </p>
               ))}
             </div>
 
             {mainArticle?.bulletPoints && (
-              <ul className="space-y-4" role="list">
+              <ul className="space-y-4">
                 {mainArticle?.bulletPoints?.map((point) => (
                   <li key={point?.id} className="flex items-start">
                     <span
@@ -177,8 +177,8 @@ export const SingleArticleContent: React.FC<SingleArticleContentProps> = ({
             </h3>
 
             <div className="space-y-4 mb-4">
-              {securityFilm.paragraphs.map((paragraph, index) => (
-                <p key={index} className="para-medium text-neutral-900">
+              {securityFilm.paragraphs.map((paragraph) => (
+                <p key={crypto.randomUUID()} className="para-medium text-neutral-900">
                   {paragraph.text}
                 </p>
               ))}
@@ -195,8 +195,8 @@ export const SingleArticleContent: React.FC<SingleArticleContentProps> = ({
             </h3>
 
             <div className="space-y-4 mb-4">
-              {securityFilm.paragraphs.map((paragraph, index) => (
-                <p key={index} className="para-medium text-neutral-900">
+              {securityFilm.paragraphs.map((paragraph) => (
+                <p key={crypto.randomUUID()} className="para-medium text-neutral-900">
                   {paragraph.text}
                 </p>
               ))}

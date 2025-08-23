@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
     });
 
     const { searchParams } = new URL(request.url);
-    const locale = searchParams.get('locale') || 'en-us';
+    const locale = searchParams.get('locale') ?? 'en-us';
 
     const query = gql`
       query MyQuery {

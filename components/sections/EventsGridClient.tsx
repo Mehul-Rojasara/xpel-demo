@@ -118,7 +118,7 @@ export const EventsGridClient: React.FC<EventsGridClientProps> = ({
             aria-label="Events list"
           >
             {displayedEvents.map((event) => (
-              <div key={event.id} role="gridcell">
+              <div key={event.id}>
                 <EventCard event={event} />
               </div>
             ))}

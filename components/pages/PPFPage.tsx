@@ -9,10 +9,7 @@ interface PPFPageProps {
   language: string;
 }
 
-export const PPFPage: React.FC<PPFPageProps> = ({
-  // country,
-  // language
-}) => {
+export const PPFPage: React.FC<PPFPageProps> = () => {
   const [activeTab, setActiveTab] = useState('ultimate-plus');
 
   const tabs = [

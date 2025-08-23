@@ -5,6 +5,7 @@ import { Button, ArrowRightIcon, CloseIcon, TextLink, Tab } from './ui/Button';
 import { Input, TextArea, Checkbox, Select, Form, RequiredFieldNote, FormSection, InputGroup } from './ui/Input';
 import { Accordion } from './ui/Accordion';
 import { Alert, BannerAlert, AnnouncementAlert } from './ui/Alert';
+import Link from 'next/link';
 
 
 
@@ -1781,21 +1782,21 @@ const StyleGuideXpel: React.FC = () => {
               <div className="p-6 bg-white rounded-lg border border-gray-200">
                 <h4 className="text-sm font-medium text-gray-600 mb-4">Primary Navigation</h4>
                 <nav className="flex space-x-8">
-                  <a href="#" className="text-gray-900 font-medium hover:text-amber-500 transition-colors">Home</a>
-                  <a href="#" className="text-gray-900 font-medium hover:text-amber-500 transition-colors">Products</a>
-                  <a href="#" className="text-gray-900 font-medium hover:text-amber-500 transition-colors">Services</a>
-                  <a href="#" className="text-gray-900 font-medium hover:text-amber-500 transition-colors">About</a>
-                  <a href="#" className="text-gray-900 font-medium hover:text-amber-500 transition-colors">Contact</a>
+                  <Link href="/Home" className="text-gray-900 font-medium hover:text-amber-500 transition-colors">Home</Link>
+                  <Link href="/Products" className="text-gray-900 font-medium hover:text-amber-500 transition-colors">Products</Link>
+                  <Link href="/Services" className="text-gray-900 font-medium hover:text-amber-500 transition-colors">Services</Link>
+                  <Link href="/About" className="text-gray-900 font-medium hover:text-amber-500 transition-colors">About</Link>
+                  <Link href="/Contact" className="text-gray-900 font-medium hover:text-amber-500 transition-colors">Contact</Link>
                 </nav>
               </div>
               <div className="p-6 bg-white rounded-lg border border-gray-200">
                 <h4 className="text-sm font-medium text-gray-600 mb-4">Breadcrumbs</h4>
                 <nav className="flex items-center space-x-2 text-sm">
-                  <a href="#" className="text-gray-500 hover:text-amber-500 transition-colors">Home</a>
+                  <Link href="/Home" className="text-gray-500 hover:text-amber-500 transition-colors">Home</Link>
                   <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                  <a href="#" className="text-gray-500 hover:text-amber-500 transition-colors">Products</a>
+                  <Link href="/Products" className="text-gray-500 hover:text-amber-500 transition-colors">Products</Link>
                   <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>

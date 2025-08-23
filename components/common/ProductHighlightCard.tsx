@@ -20,7 +20,7 @@ export const ProductHighlightCard: React.FC<ProductHighlightCardProps> = ({
   description,
   price,
   buttonText,
-  buttonHref,
+  // buttonHref,
   className = "",
 }) => {
   return (

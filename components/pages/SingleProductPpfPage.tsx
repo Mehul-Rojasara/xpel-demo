@@ -8,8 +8,6 @@ import { CONTENT_SECTIONS } from '@/config';
 import { FAQSection } from '../common/FAQSection';
 
 interface SingleProductPpfPageProps {
-  country: string;
-  language: string;
   faqTitle: string;
   faqDescription: string;
   faqs: Array<{
@@ -24,13 +22,13 @@ interface SingleProductPpfPageProps {
 export const SingleProductPpf: React.FC<SingleProductPpfPageProps> = (
   {
     faqTitle,
-  faqDescription,
-  faqs,
-  seeAllFaqsHref,
-  faqAnchorId,
+    faqDescription,
+    faqs,
+    seeAllFaqsHref,
+    faqAnchorId,
   }
 ) => {
-    
+
   return (
     <div className="ppf-page">
       {/* Promotional Banner */}
@@ -70,19 +68,19 @@ export const SingleProductPpf: React.FC<SingleProductPpfPageProps> = (
       {/* Product Info Section - New Component */}
       <ProductInfoSection />
 
-      <BenefitsSection/>
-      <ContentSection 
+      <BenefitsSection />
+      <ContentSection
         title={CONTENT_SECTIONS.SECTION.title}
         subtitle={CONTENT_SECTIONS.SECTION.subtitle}
       />
       <FAQSection
-              title={faqTitle}
-              description={faqDescription}
-              faqs={faqs}
-              seeAllButtonText="See All FAQs"
-              seeAllButtonHref={seeAllFaqsHref}
-              anchorId={faqAnchorId}
-            />
+        title={faqTitle}
+        description={faqDescription}
+        faqs={faqs}
+        seeAllButtonText="See All FAQs"
+        seeAllButtonHref={seeAllFaqsHref}
+        anchorId={faqAnchorId}
+      />
     </div>
   );
 };

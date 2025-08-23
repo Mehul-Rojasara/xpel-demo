@@ -2,6 +2,7 @@
 import React, { useMemo, useState, useEffect, useId } from "react";
 import { Button } from "../ui/Button";
 import { Select } from "../ui/Select";
+import Link from "next/link";
 
 /** ---------------- Types ---------------- */
 type City = string;
@@ -254,9 +255,10 @@ export const SearchInstaller: React.FC = () => {
       <div className="locator__row grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Country */}
         <div className="locator__field">
-          <label className={labelBase}>Country</label>
+          <label htmlFor="country" className={labelBase}>Country</label>
           <Select
             ariaLabel="Country"
+            id="country"
             value={country}
             onChange={(value) => {
               setCountry(value);
@@ -269,9 +271,10 @@ export const SearchInstaller: React.FC = () => {
 
         {/* State */}
         <div className="locator__field">
-          <label className={labelBase}>State</label>
+          <label htmlFor="state" className={labelBase}>State</label>
           <Select
             ariaLabel="State"
+            id="state"
             value={stateName}
             onChange={(value) => {
               setStateName(value);
@@ -285,8 +288,9 @@ export const SearchInstaller: React.FC = () => {
 
         {/* City */}
         <div className="locator__field">
-          <label className={labelBase}>City</label>
+          <label htmlFor="city" className={labelBase}>City</label>
           <Select
+            id="city"
             ariaLabel="City"
             value={city}
             onChange={(value) => setCity(value)}
@@ -448,14 +452,14 @@ export const SearchInstaller: React.FC = () => {
               </div>
 
               <div className="locator__actions mt-3 flex gap-3 border-t border-gray-100 pt-3">
-                <a href="#" className={`${btnBase} flex-1 justify-between`}>
+                <Link href="/getQuote" className={`${btnBase} flex-1 justify-between`}>
                   <span className="text-sm">Get a Quote</span>
                   <ArrowRight />
-                </a>
-                <a href="#" className={`${btnBase} flex-1 justify-between`}>
+                </Link>
+                <Link href="/Get-direction" className={`${btnBase} flex-1 justify-between`}>
                   <span className="text-sm">Get Directions</span>
                   <ArrowRight />
-                </a>
+                </Link>
               </div>
             </article>
           ))}
@@ -469,10 +473,11 @@ export const SearchInstaller: React.FC = () => {
 
       {/* ---------------- Mobile slide-over for Filters (same button opens this) ---------------- */}
       {showMobileFilters && (
-        <div role="dialog" aria-modal="true" className="fixed inset-0 z-50">
+        <div aria-modal="true" className="fixed inset-0 z-50">
           <div
             className="absolute inset-0 bg-black/40"
             onClick={() => setShowMobileFilters(false)}
+            onKeyDown={(e)=> e.key === "Escape" && setShowMobileFilters(false)}
           />
           <aside className="absolute right-0 top-0 h-full w-[88%] max-w-sm bg-white p-4 shadow-xl">
             <div className="mb-3 flex items-center justify-between">

@@ -10,14 +10,10 @@ interface ContactFormData {
 }
 
 interface ContactFormProps {
-  readonly country: string;
-  readonly language: string;
   readonly onSubmit?: (data: ContactFormData) => void;
 }
 
 export const ContactForm: React.FC<ContactFormProps> = ({
-  // country,
-  // language,
   onSubmit,
 }) => {
   const [formData, setFormData] = useState<ContactFormData>({

@@ -37,11 +37,9 @@ export const DirectorModal: React.FC<DirectorModalProps> = ({ director, onClose 
               </h2>
               <p className="text-neutral-500 mb-6 para-small">{director.role}</p>
               {director.bio && (
-                <>
                 <p className="para-small text-neutral-900 leading-loose whitespace-pre-line">
                   {director.bio}
                 </p>
-                </>
               )}
             </div>
 

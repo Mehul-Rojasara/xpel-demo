@@ -34,6 +34,7 @@ export const VideoContent: React.FC<VideoContentProps> = ({
             src={videoUrl}
             className="w-full h-full object-cover rounded-xl"
             controls={isPlaying} // show controls only after play
+            aria-hidden="true"
           />
 
           {!isPlaying && (

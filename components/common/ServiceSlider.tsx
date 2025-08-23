@@ -170,12 +170,12 @@ export const ServiceSlider: React.FC<ServiceSliderProps> = ({
                   title={service?.title || ''}
                   image={service?.image || ''}
                   imageAlt={service?.imageAlt || ''}
-                  category={service?.category}
-                  description={service?.description}
-                  href={service?.href}
-                  isVideo={service?.isVideo}
+                  {...(service?.category && { category: service.category })}
+                  {...(service?.description && { description: service.description })}
+                  {...(service?.href && { href: service.href })}
+                  {...(service?.isVideo !== undefined && { isVideo: service.isVideo })}
                   showDescriptions={showDescriptions}
-                  onClick={service?.onClick}
+                  {...(service?.onClick && { onClick: service.onClick })}
                 />
               ))}
             </div>
@@ -184,17 +184,15 @@ export const ServiceSlider: React.FC<ServiceSliderProps> = ({
           {/* Progress Bar */}
           {showProgress && services.length > cardsPerView && (
             <div className="mt-8 sm:mt-12 flex justify-center">
-              <progress
-                className="w-24 sm:w-32 h-1 bg-white/20 rounded-full overflow-hidden"
-                value={progressPercentage}
-                max={100}
+              <div
+                className={`${progressBarBGClasses[background]} w-24 sm:w-32 h-1 bg-white/20 rounded-full overflow-hidden`}
                 aria-label="Progress bar"
               >
                 <div 
                   className={`h-full transition-all duration-500 ease-in-out ${progressBarTrackClasses[background]}`}
                   style={{ width: `${progressPercentage}%` }}
                 />
-              </progress>
+              </div>
             </div>
           )}
         </div>

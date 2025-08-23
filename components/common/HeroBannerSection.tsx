@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useId } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import VideoPlayer from './VideoPlayer';
 import Container from '@/components/ui/Container';
@@ -108,18 +108,6 @@ const HeroBannerSection: React.FC<HeroBannerSectionProps> = ({
   // Use eyebrowText if provided, otherwise fall back to smallHeading
   const eyebrow = eyebrowText || smallHeading;
 
-  // Determine button container alignment
-  const getButtonAlignment = (alignment: string) => {
-    switch (alignment) {
-      case 'center':
-        return 'justify-center';
-      case 'right':
-        return 'justify-end';
-      default:
-        return 'justify-start';
-    }
-  };
-
   return (
     <header 
       className={`relative w-full h-screen min-h-[37.5rem] overflow-hidden bg-neutral-600 ${className}`}
@@ -139,12 +127,12 @@ const HeroBannerSection: React.FC<HeroBannerSectionProps> = ({
           showDots={showDots}
           totalSlides={totalSlides}
           currentSlideIndex={currentSlideIndex}
-          onSlideChange={onSlideChange}
-          onVideoEnd={onVideoEnd}
-          onVideoProgress={onVideoProgress}
+          {...(onSlideChange && { onSlideChange })}
+          {...(onVideoEnd && { onVideoEnd })}
+          {...(onVideoProgress && { onVideoProgress })}
           controlsPosition={controlsPosition}
           dotSize={dotSize}
-          testDuration={testDuration}
+          {...(testDuration && { testDuration })}
           className="w-full h-full"
         />
       </div>
@@ -197,8 +185,8 @@ const HeroBannerSection: React.FC<HeroBannerSectionProps> = ({
             {/* Buttons */}
             {finalButtons.length > 0 && (
               <div className={`flex flex-row flex-wrap gap-4 sm:gap-6 mt-[30px] ${textAlignment === 'center' ? 'justify-center' : textAlignment === 'right' ? 'justify-end' : 'justify-start'}`}>
-                {finalButtons.map((button, index) => (
-                  <Link key={`${button.text}-${index}`} href={button.href} passHref className='btn btn-primary btn-min-width btn-primary-bg-white'>
+                {finalButtons.map((button) => (
+                  <Link key={`${button.text}-${crypto.randomUUID()}`} href={button.href} passHref className='btn btn-primary btn-min-width btn-primary-bg-white'>
                     {button.text}
                   </Link>
                 ))}

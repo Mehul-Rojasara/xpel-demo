@@ -14,7 +14,7 @@ import { usePathname } from "next/navigation";
 
 const solidHeaderRouteSubstrings = ["/legal", "/single-article"];
 
-export const NewHeader = () => {
+const Header = () => {
   const [isProductsOpen, setIsProductsOpen] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
@@ -154,8 +154,7 @@ export const NewHeader = () => {
                     href="/"
                     className={`flex items-center gap-1.5 ${shouldApplySolidHeader ? "bg-neutral-900 text-white" : "bg-white text-neutral-900"} py-2.5 px-4 min-w-[112px] rounded-[100px] text-[16px] leading-[18px] font-[500] font-display tracking-[0] hover:bg-opacity-90  transition-all duration-300`}
                   >
-                    <i className="icon-Map"></i>
-                    Installer Locator
+                    <i className="icon-Map"></i> Installer Locator
                   </Link>
 
                   <button
@@ -344,3 +343,4 @@ export const NewHeader = () => {
     </>
   );
 };
+export default Header;

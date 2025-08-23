@@ -104,7 +104,6 @@ export const FiltersSidebar: React.FC<FiltersSidebarProps> = ({
       {/* Sidebar */}
       <aside 
         className="fixed right-0 top-0 h-full w-80 bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out"
-        role="dialog"
         aria-modal="true"
         aria-labelledby="filters-title"
         id="filters-sidebar"
@@ -132,7 +131,7 @@ export const FiltersSidebar: React.FC<FiltersSidebarProps> = ({
             {/* By Coverage */}
             <fieldset className="mb-8">
               <legend className="font-h5 text-[var(--color-neutral-900)] mb-4">By Coverage</legend>
-              <div className="space-y-3" role="group" aria-labelledby="coverage-filters">
+              <div className="space-y-3" aria-labelledby="coverage-filters">
                 {coverageFilters.map((filter) => (
                   <label key={filter.id} className="flex items-center cursor-pointer">
                     <input
@@ -158,7 +157,7 @@ export const FiltersSidebar: React.FC<FiltersSidebarProps> = ({
             {/* By Event Type */}
             <fieldset className="mb-8">
               <legend className="font-h5 text-[var(--color-neutral-900)] mb-4">By Event Type</legend>
-              <div className="space-y-3" role="group" aria-labelledby="event-type-filters">
+              <div className="space-y-3" aria-labelledby="event-type-filters">
                 {eventTypeFilters.map((filter) => (
                   <label key={filter.id} className="flex items-center cursor-pointer">
                     <input

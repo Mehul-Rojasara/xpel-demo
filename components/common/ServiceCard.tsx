@@ -34,7 +34,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
       href={href}
       className={`flex-shrink-0 cursor-pointer group w-full min-w-[18.5rem] md:min-w-[18.75rem] max-w-[18.5rem] sm:max-w-[22.375rem] lg:max-w-[28.625rem] rounded-lg overflow-hidden ${className}`}
       aria-label={title}
-      onClick={onClick}
+      {...(onClick && { onClick })}
     >
       <div className="transition-transform duration-300 shadow-lg w-full">
         <div className="relative aspect-square overflow-hidden rounded-lg w-full">

@@ -4,6 +4,7 @@ import Container from "@/components/ui/Container";
 export const FeatureStats: React.FC = () => {
   const stats = [
     {
+      uuid: 1,
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -21,6 +22,7 @@ export const FeatureStats: React.FC = () => {
       colSpan: "col-span-3",
     },
     {
+      uuid: 2,
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -39,6 +41,7 @@ export const FeatureStats: React.FC = () => {
       colSpan: "col-span-1",
     },
     {
+      uuid: 3,
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -56,6 +59,7 @@ export const FeatureStats: React.FC = () => {
       colSpan: "col-span-2",
     },
     {
+      uuid: 4,
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -79,8 +83,8 @@ export const FeatureStats: React.FC = () => {
   return (
     <Container>
       <div className="grid grid-cols-4 gap-6">
-        {stats.map((stat, idx) => (
-          <div key={idx} className={`${stat.colSpan} bg-black text-white p-6 rounded-lg flex flex-col gap-3`}>
+        {stats.map((stat) => (
+          <div key={stat.uuid} className={`${stat.colSpan} bg-black text-white p-6 rounded-lg flex flex-col gap-3`}>
             {stat.icon}
             <h3 className="text-2xl font-bold">{stat.title}</h3>
             <p className="text-sm">{stat.description}</p>

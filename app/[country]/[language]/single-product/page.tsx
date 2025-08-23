@@ -8,9 +8,9 @@ interface SingleProductPageProps {
   }>;
 }
 
-export default async function SingleProductPage({ params }: SingleProductPageProps) {
+export default async function SingleProductPage() {
   return (
-    <SingleProductPpf country={(await params).country} language={(await params).language}   faqTitle={productCategoryData.faqTitle}
+    <SingleProductPpf faqTitle={productCategoryData.faqTitle}
             faqDescription={productCategoryData.faqDescription}
             faqs={productCategoryData.faqs}
             seeAllFaqsHref="/faqs"

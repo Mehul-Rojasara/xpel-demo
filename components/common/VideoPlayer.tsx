@@ -241,6 +241,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         preload={preload}
         poster={posterImage}
         aria-label="Video content"
+        aria-hidden="true"
       >
         <source src={videoSrc} type="video/mp4" />
         {captions ? (
@@ -286,7 +287,6 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
                       handleVideoProgressClick(syntheticEvent);
                     }
                   }}
-                  role="button"
                   tabIndex={0}
                   aria-label={`Seek to position in video. Current progress: ${Math.round(videoProgress)}%`}
                   aria-pressed="false"

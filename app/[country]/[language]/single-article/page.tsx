@@ -1,7 +1,6 @@
 import React, { Suspense } from "react";
 import {
   BlogHeader,
-  HeroBannerSection,
   ProductHighlightCard,
   ProductSlider,
   ServiceSlider,
@@ -38,9 +37,9 @@ export default function SingleArticlePage() {
   const transformedMainArticle = {
     title: singleArticleData.mainArticle.title,
     paragraphs: transformParagraphs(singleArticleData.mainArticle.paragraphs, "main"),
-    bulletPoints: singleArticleData.mainArticle.bulletPoints
-      ? transformParagraphs(singleArticleData.mainArticle.bulletPoints, "bullet")
-      : undefined,
+    ...(singleArticleData.mainArticle.bulletPoints && {
+      bulletPoints: transformParagraphs(singleArticleData.mainArticle.bulletPoints, "bullet")
+    }),
   };
 
   const transformedSecurityFilm = {
@@ -49,7 +48,7 @@ export default function SingleArticlePage() {
   };
 
   return (
-    <div className="bg-white mt-16 md:mt-[5rem] Lgx:mt-[5.5rem]" role="main" aria-label="Single Article Page">
+    <div className="bg-white mt-16 md:mt-[5rem] Lgx:mt-[5.5rem]" aria-label="Single Article Page">
       <Suspense fallback={<LoadingFallback />}>
         {/* Article Header */}
         <BlogHeader

@@ -74,10 +74,9 @@
   /* Hover Colors */
   --color-hover-light: #f7f5f5;
   --color-hover-gray: #f0f0f0;
-}
 
-/* Typography */
-:root {
+  /* Typography */
+
   /* Font Sizes */
   --font-size-xs: 10px;
   --font-size-sm: 12px;

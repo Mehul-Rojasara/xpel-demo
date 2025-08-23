@@ -5,6 +5,7 @@ import Container from "@/components/ui/Container";
 import { TeamGridCard } from "@/components/common/TeamGridCard";
 
 interface Director {
+  id:string;
   name: string;
   role: string;
   image: string;
@@ -23,8 +24,8 @@ export const TeamGrid: React.FC<BoardProps> = ({ directors }) => {
     <section className="section-spacing-y">
       <Container>
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {directors.map((director, index) => (
-            <TeamGridCard key={index} director={director} onClick={() => setSelected(director)} />
+          {directors.map((director) => (
+            <TeamGridCard key={director.id} director={director} onClick={() => setSelected(director)} />
           ))}
         </ul>
       </Container>

@@ -35,9 +35,9 @@ export const ServiceCardGrid: React.FC<ServiceCardGridProps> = ({
               title={card.title}
               description={card.description}
               image={card.image}
-              hoverImage={card.hoverImage}
-              altText={card.altText}
-              href={card.href}
+              {...(card.hoverImage && { hoverImage: card.hoverImage })}
+              {...(card.altText && { altText: card.altText })}
+              {...(card.href && { href: card.href })}
             />
           ))}
         </div>

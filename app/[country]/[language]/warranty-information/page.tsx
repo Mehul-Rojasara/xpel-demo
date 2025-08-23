@@ -50,7 +50,7 @@ export default async function WarrantyInformationPage({ params }: WarrantyInform
   }));
 
   return (
-    <main className="min-h-screen bg-white" role="main">
+    <main className="min-h-screen bg-white">
       {/* Top Banner */}
       <Banner
         title={WARRANTY_INFORMATION_DATA.title}

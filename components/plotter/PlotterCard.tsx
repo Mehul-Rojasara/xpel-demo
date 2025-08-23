@@ -28,7 +28,6 @@ export const PlotterCard: React.FC<PlotterCardProps> = ({
   return (
     <article
       className="bg-white border-2 border-neutral-300 rounded-[14px] p-4 sm:p-6 hover:border-neutral-400 transition-all duration-300 group h-full"
-      role="article"
       aria-label={`${brand.title} - ${brand.description}`}
     >
       {/* Card Header */}

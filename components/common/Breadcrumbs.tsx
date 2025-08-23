@@ -10,14 +10,12 @@ interface BreadcrumbItem {
 interface BreadcrumbsProps {
   readonly items: ReadonlyArray<BreadcrumbItem>;
   readonly className?: string;
-  readonly separator?: string;
   readonly ariaLabel?: string;
 }
 
 export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   items,
   className = "",
-  separator = "→",
   ariaLabel = "Breadcrumb navigation",
 }) => {
   if (items.length === 0) return null;
@@ -26,7 +24,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
     <div className={className} aria-label={ariaLabel}>
       <ul className="flex items-center justify-center text-sm text-neutral-600">
         {items.map((item, index) => (
-          <li key={`breadcrumb-${index}-${item.text}`} className="flex items-center">
+          <li key={`breadcrumb-${item.text}`} className="flex items-center">
             {index > 0 && <i className="icon-Arrow-Right mx-[0.625rem] text-neutral-900"></i>}
             <Link
               href={item.href}

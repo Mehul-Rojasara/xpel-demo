@@ -16,6 +16,7 @@
    ============================================================================ */
 
 @layer base {
+
   /* Ensure consistent box-sizing */
   *,
   *::before,
@@ -106,6 +107,7 @@
    ============================================================================ */
 
 @layer utilities {
+
   /* Focus visible for keyboard navigation */
   .focus-visible {
     outline: 2px solid #ffb81c;
@@ -114,6 +116,7 @@
 
   /* Reduced motion support */
   @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
@@ -196,6 +199,7 @@
   .para-small {
     @include mixin.font-para-small;
   }
+
   .para-small-bold {
     @include mixin.font-para-small-bold;
   }
@@ -272,6 +276,7 @@
 
 .btn-sm {
   @include mixin.btn-sm;
+
   &.btn-with-icon {
     @apply gap-1;
   }
@@ -287,6 +292,7 @@
 
 .btn-primary {
   @include mixin.btn-primary;
+
   &.btn-primary-bg-white {
     @include mixin.btn-primary-bg-white;
   }
@@ -334,9 +340,7 @@
 
 .btn-rounded-full {
   @apply rounded-full px-2 lg:px-3 py-2.5 lg:py-3 w-10 h-10 lg:w-12 lg:h-12 min-w-10 lg:min-w-12 min-h-10 lg:min-h-12;
-}
 
-.btn-rounded-full {
   & .btn-icon {
     @apply mt-[1px];
   }

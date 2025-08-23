@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 
 interface Director {
+  id: string;
   name: string;
   role: string;
   image: string;
@@ -16,7 +17,7 @@ interface TeamGridCardProps {
 
 export const TeamGridCard: React.FC<TeamGridCardProps> = ({ director, onClick }) => {
   return (
-    <li className="relative bg-white rounded-[0.875rem] overflow-hidden">
+    <li key={director?.id} className="relative bg-white rounded-[0.875rem] overflow-hidden">
       <button
         onClick={() => onClick(director)}
         className="relative group h-[25.625rem] md:h-[35.75rem] rounded-[0.875rem] after:content-[''] after:absolute after:inset-0 after:bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0)_51%,rgba(0,0,0,0.25)_75%,rgba(0,0,0,0.6)_100%)] after:w-full after:h-full after:block overflow-hidden"

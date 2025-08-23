@@ -213,7 +213,7 @@ export const ProductCategoryPage: React.FC<ProductCategoryPageProps> = ({
   };
 
   return (
-    <main className={`min-h-screen ${className}`} role="main" aria-label="Product Category Information">
+    <main className={`min-h-screen ${className}`} aria-label="Product Category Information">
       {/* Hero Section using Banner component */}
       <Banner
         backgroundImage={heroImage}
@@ -228,14 +228,14 @@ export const ProductCategoryPage: React.FC<ProductCategoryPageProps> = ({
         description={productLineupDescription}
         features={productFeatures}
         primaryCtaText={productLineupPrimaryCta}
-        primaryCtaHref={productLineupPrimaryCtaHref}
+        {...(productLineupPrimaryCtaHref && { primaryCtaHref: productLineupPrimaryCtaHref })}
         secondaryCtaText={productLineupSecondaryCta}
-        secondaryCtaHref={productLineupSecondaryCtaHref}
+        {...(productLineupSecondaryCtaHref && { secondaryCtaHref: productLineupSecondaryCtaHref })}
         imageSrc={productLineupImage}
         imageAlt={productLineupImageAlt}
         showTabs={true}
         tabs={tabbedSliderTabs}
-        defaultActiveTab={defaultActiveTab}
+        {...(defaultActiveTab !== undefined && { defaultActiveTab })}
       />
 
       {/* Calculator Section */}
@@ -282,7 +282,7 @@ export const ProductCategoryPage: React.FC<ProductCategoryPageProps> = ({
         title={careProductsTitle}
         subtitle={careProductsSubtitle}
         ctaText={careProductsCtaText}
-        ctaHref={careProductsCtaHref}
+        {...(careProductsCtaHref && { ctaHref: careProductsCtaHref })}
       />
 
       {/* FAQ Section */}

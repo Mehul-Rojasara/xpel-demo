@@ -48,7 +48,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       onClick={handleClick}
       onKeyDown={(e) => e.key === "Enter" && handleClick()}
       tabIndex={0}
-      role="button"
       aria-label={`${title} - ${price}`}
       aria-describedby={`product-${id}-description`}
     >

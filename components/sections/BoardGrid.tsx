@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { DirectorModal } from "./DirectorModal";
 import Container from '@/components/ui/Container';
-import { Button } from "../common";
 
 interface Director {
   readonly id: string;

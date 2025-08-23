@@ -262,18 +262,18 @@ export const ProductSlider: React.FC<ProductSliderProps> = ({
               aria-live="polite"
               aria-atomic="false"
             >
-              {products.map((product, index) => (
+              {products.map((product) => (
                 <ProductCard
-                  key={`${product.id}-${index}`}
+                  key={`${product.id}-${crypto.randomUUID()}`}
                   id={product.id}
                   title={product.title}
                   price={product.price}
                   image={product.image}
                   imageAlt={product.imageAlt}
-                  isNew={product.isNew}
-                  options={product.options}
+                  {...(product.isNew !== undefined && { isNew: product.isNew })}
+                  {...(product.options && { options: product.options })}
                   href={product.href}
-                  onClick={product.onClick}
+                  {...(product.onClick && { onClick: product.onClick })}
                 />
               ))}
             </section>

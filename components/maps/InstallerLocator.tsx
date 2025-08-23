@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 
 interface Installer {
@@ -20,8 +20,6 @@ interface Installer {
 }
 
 interface InstallerLocatorProps {
-  readonly country: string;
-  readonly language: string;
   readonly onInstallerSelect?: (installer: Installer) => void;
 }
 
@@ -34,23 +32,7 @@ export const InstallerLocator: React.FC<InstallerLocatorProps> = ({
   const [installers, setInstallers] = useState<Installer[]>([]);
   const [loading, setLoading] = useState(false);
   const [searchAddress, setSearchAddress] = useState('');
-
-  useEffect(() => {
-    // Get user's current location
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setUserLocation({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          });
-        },
-        (error) => {
-          console.error('Error getting location:', error);
-        }
-      );
-    }
-  }, []);
+;
 
   const searchInstallers = async () => {
     setLoading(true);

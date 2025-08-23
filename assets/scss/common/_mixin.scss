@@ -272,8 +272,6 @@
 @mixin btn-blur {
   @apply inline-flex items-center justify-center h-10 px-6 py-2 border border-solid border-[rgba(255,255,255,.25)] bg-[#212d4259] backdrop-blur-[.5625rem] text-white rounded-full hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 transition-all duration-300  min-w-[7.625rem] para-xsmall;
 }
-// Usage: @include section-spacing(top, sm);
-//        @include section-spacing(bottom, lg);
 
 @mixin section-spacing($location, $size) {
   @if $location == top {

@@ -45,9 +45,7 @@ export const HelpCenterContentBox: React.FC<InfoSectionsProps> = ({ sections }) 
                     className="text-sm font-medium text-black flex items-center gap-1 group"
                   >
                     Learn More
-                    <span className="transition-transform group-hover:translate-x-1">
-                      →
-                    </span>
+                    <span className="transition-transform group-hover:translate-x-1">→</span>
                   </Link>
                 </div>
               ))}

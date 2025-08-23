@@ -177,16 +177,16 @@ export async function getAboutUsContent(country: string, language: string, slug:
       }
     };
 
-    if (data && data.about_us_demo) {
+    if (data?.about_us_demo) {
       const page = data.about_us_demo;
       return {
         title: page.title,
         content: {
          json_rte:  page.json_rte?.json,
-         json_rte_2: page.json_rich_text_editor_2?.json || '',},
+         json_rte_2: page.json_rich_text_editor_2?.json ?? '',},
         metaTitle: page.meta_title,
         metaDescription: page.meta_description,
-        slug: page.url || slug,
+        slug: page.url ?? slug,
         locale: language,
       };
     }

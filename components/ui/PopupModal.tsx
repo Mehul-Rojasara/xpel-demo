@@ -133,7 +133,7 @@ export const PopupModal: React.FC<PopupModalProps> = ({
       ref={overlayRef}
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/25 backdrop-blur-sm overflow-y-auto"
       onClick={handleOverlayClick}
-      role="dialog"
+      onKeyDown={(e)=> e.key === "Escape" && onClose()}
       aria-modal="true"
       aria-hidden={!isOpen}
       aria-label="Modal dialog"
@@ -141,7 +141,6 @@ export const PopupModal: React.FC<PopupModalProps> = ({
       <div
         ref={modalRef}
         className={`relative ${sizeClasses[size]} bg-neutral-900 rounded-lg shadow-lg transform transition-all duration-300 ease-out overflow-hidden ${className}`}
-        role="document"
         tabIndex={-1}
         style={{ 
           borderRadius: '8px',

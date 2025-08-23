@@ -49,7 +49,7 @@ export default async function InstallationInfrastructurePage({ params }: Install
   });
 
   return (
-    <main className="min-h-screen bg-white" role="main">
+    <main className="min-h-screen bg-white">
       {/* Installation Documents Section */}
       <section 
         className="py-16 sm:py-20 md:py-24 bg-white"

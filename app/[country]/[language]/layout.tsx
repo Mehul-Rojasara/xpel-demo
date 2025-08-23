@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { Footer } from '@/components/layout/Footer';
-import { NewHeader } from '@/components/layout/NewHeader';
+import Header from '@/components/layout/NewHeader';
 
 interface LanguageLayoutProps {
   readonly children: ReactNode;
@@ -15,7 +15,7 @@ export default async function LanguageLayout({ children, params }: LanguageLayou
 
   return (
     <div className="language-layout" data-lang={resolvedParams.language}>
-      <NewHeader />
+      <Header />
       <main>
         {children}
       </main>

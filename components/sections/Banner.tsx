@@ -3,7 +3,6 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
-import { usePathname } from "next/navigation";
 interface BannerButton {
   readonly id: string;
   readonly label: string;
@@ -47,7 +46,6 @@ export const Banner: React.FC<BannerProps> = ({
   variant = "promotional",
   overlay = "light",
 }) => {
-  const pathname = usePathname();
 
   return (
     <section

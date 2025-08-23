@@ -35,13 +35,13 @@ export const CmsPageWrapper: React.FC<CmsPageWrapperProps> = ({
     <div className={`min-h-screen bg-white ${className}`}>
       {/* Page Header */}
       <PageHeader
-        title={data.title}
-        subtitle={data.subtitle}
-        backLink={backLink}
+        title={data?.title}
+        {...(data?.subtitle && { subtitle: data.subtitle })}
+        {...(backLink && { backLink })}
       />
 
       {/* Content Sections */}
-      <main className="py-16 sm:py-20 md:py-24" role="main">
+      <main className="py-16 sm:py-20 md:py-24">
         <Container>
           {/* Dynamic Content Sections */}
           <div className="max-w-4xl mx-auto">

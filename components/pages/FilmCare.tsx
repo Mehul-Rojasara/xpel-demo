@@ -27,7 +27,6 @@ export const FilmCare: React.FC<FilmCareProps> = ({ country, language }) => {
   return (
     <main 
       className="min-h-screen bg-white" 
-      role="main" 
       aria-labelledby="film-care-page-title"
       aria-describedby="film-care-page-description"
     >
@@ -79,7 +78,6 @@ export const FilmCare: React.FC<FilmCareProps> = ({ country, language }) => {
             {/* Product Image */}
             <div 
               className="relative h-80 lg:h-96 rounded-lg overflow-hidden"
-              role="img"
               aria-label="Blue sports car with XPEL protection film"
             >
               <Image
@@ -158,7 +156,6 @@ export const FilmCare: React.FC<FilmCareProps> = ({ country, language }) => {
                     <span 
                       className="w-2 h-2 bg-[var(--color-neutral-400)] rounded-full mt-2 mr-3 flex-shrink-0"
                       aria-hidden="true"
-                      role="presentation"
                     ></span>
                     <span className="para-medium text-[var(--color-neutral-600)]">{benefit.text}</span>
                   </li>
@@ -180,7 +177,6 @@ export const FilmCare: React.FC<FilmCareProps> = ({ country, language }) => {
             {/* Product Image */}
             <div 
               className="relative h-80 lg:h-96 rounded-lg overflow-hidden"
-              role="img"
               aria-label="Squeegee tool with orange blade for ceramic coating application"
             >
               <Image

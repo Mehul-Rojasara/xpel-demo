@@ -32,7 +32,7 @@ export const NextStepsForm: React.FC<NextStepsFormProps> = ({
 
   // Dynamic theme classes
   const bgColor = theme === "dark" ? "bg-black text-white" : "bg-gray-50 text-black";
-  const formBgColor = theme === "dark" ? "bg-white text-black" : "bg-white text-black";
+  const formBgColor = theme === "dark" ? "bg-black text-white" : "bg-white text-black";
 
   return (
     <section className={`${bgColor} ${className}`}>

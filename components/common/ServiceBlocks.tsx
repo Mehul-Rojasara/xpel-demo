@@ -20,7 +20,7 @@ interface ServiceBlocksProps {
   readonly spacing?: string;
 }
 
-export const ServiceBlocks: React.FC<ServiceBlocksProps> = ({ services, className = "", background = "dark" }) => {
+export const ServiceBlocks: React.FC<ServiceBlocksProps> = ({ services, className = "", background = "dark", columns = 3, spacing = 0 }) => {
   const backgroundClasses: Readonly<Record<"dark" | "light", string>> = {
     dark: "text-white bg-neutral-800",
     light: "bg-white text-neutral-900",
@@ -28,11 +28,11 @@ export const ServiceBlocks: React.FC<ServiceBlocksProps> = ({ services, classNam
 
   return (
     <section
-      className={`${backgroundClasses[background]} bg-neutral-700 service-blocks ${className}`}
+      className={`${backgroundClasses[background]} py-16 bg-neutral-700 service-blocks ${className}`}
       aria-label="Service options"
     >
       <Container>
-        <div className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 sm:gap-8 md:gap-14 Xxl:gap-20`}>
+        <div className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-${columns} gap-8 sm:gap-8 md:gap-14 Xxl:gap-20 spacing-${spacing}`}>
           {services.map((service) => (
             <button
               key={service.id}

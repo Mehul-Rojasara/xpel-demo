@@ -185,11 +185,12 @@ export const InstallerBenefits: React.FC<InstallerBenefitsProps> = ({
                 const isSelected = selectedIndex === index;
                 return (
                   <div
-                    key={`${benefit.title}-${index}`}
+                    key={`${benefit.id}`}
                     className={`flex items-center relative space-x-6 cursor-pointer transition-all duration-[0.4s] ${
                       isSelected ? "opacity-100" : "opacity-60 hover:opacity-100"
                     }`}
                     onClick={() => handleBenefitClick(index)}
+                    onKeyDown={(e) => {if (e.key === "Enter") {handleBenefitClick(index)}}}
                   >
                     {/* Border */}
                     <div
@@ -201,7 +202,7 @@ export const InstallerBenefits: React.FC<InstallerBenefitsProps> = ({
                     {/* Text */}
                     <div className="flex-1">
                       <h4
-                        className={` font-h4 items-center flex gap-5 ${isSelected ? benefitTextColor : benefitTextColor}`}
+                        className={` font-h4 items-center flex gap-5 ${isSelected ? benefitTextColor : ""}`}
                       >
                         {/* Icon */}
                         <span className="text-[1.875rem]">{benefit.icon}</span>

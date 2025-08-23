@@ -163,6 +163,7 @@ export const InstallerSpotlights = ({ title = "XPEL Installer Spotlights" }: { t
                 playsInline
                 className="w-full h-full object-cover"
                 controls={playingIndex === i}
+                aria-hidden="true"
                 onClick={(e) => {
                   // Prevent click event from bubbling up to the play button overlay
                   if (playingIndex === i) e.stopPropagation();
