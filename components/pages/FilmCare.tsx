@@ -153,14 +153,14 @@ export const FilmCare: React.FC<FilmCareProps> = ({ country, language }) => {
                 className="space-y-3 mt-8"
                 aria-label="Energy savings benefits list"
               >
-                {FILM_CARE_CONTENT.energySection.benefits.map((benefit: string, index: number) => (
-                  <li key={`${benefit}-${index}`} className="flex items-start">
+                {FILM_CARE_CONTENT.energySection.benefits.map((benefit) => (
+                  <li key={benefit.id} className="flex items-start">
                     <span 
                       className="w-2 h-2 bg-[var(--color-neutral-400)] rounded-full mt-2 mr-3 flex-shrink-0"
                       aria-hidden="true"
                       role="presentation"
                     ></span>
-                    <span className="para-medium text-[var(--color-neutral-600)]">{benefit}</span>
+                    <span className="para-medium text-[var(--color-neutral-600)]">{benefit.text}</span>
                   </li>
                 ))}
               </ul>

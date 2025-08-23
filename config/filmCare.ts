@@ -8,7 +8,10 @@ export interface FilmCareContent {
     readonly title: string;
     readonly content: string;
     readonly followUp: string;
-    readonly benefits: readonly string[];
+    readonly benefits: ReadonlyArray<{
+      readonly id: string;
+      readonly text: string;
+    }>;
   };
 }
 
@@ -32,10 +35,10 @@ export const FILM_CARE_CONTENT: FilmCareContent = {
     content: "One of the most significant advantages of architecture window film is savings on energy costs. It reduces the amount of infrared heat coming into the building. Infrared heat is the burning sensation you feel when stepping into a hot car or leaving an air-conditioned building in the middle of August. XPEL window films work to reject solar heat and block harmful UV rays from passing through the glass. This makes it easier to maintain a more consistent, cooler temperature in a building.",
     followUp: "As a result, the air conditioning unit isn't constantly working to mitigate the heat coming into the room.",
     benefits: [
-      "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod",
-      "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod",
-      "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod",
-      "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod"
+      { id: 'benefit-1', text: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod" },
+      { id: 'benefit-2', text: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod" },
+      { id: 'benefit-3', text: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod" },
+      { id: 'benefit-4', text: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod" }
     ]
   }
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface ApplicationCategory {
   readonly id: string;
@@ -7,19 +8,31 @@ interface ApplicationCategory {
   readonly description?: string;
 }
 
+interface MediaContent {
+  readonly src: string;
+  readonly alt: string;
+  readonly type?: 'image' | 'video';
+  readonly poster?: string; // For video poster image
+}
+
+interface ButtonConfig {
+  readonly text: string;
+  readonly href: string;
+  readonly variant?: 'primary' | 'secondary';
+}
+
 interface ProductInfoSectionProps {
   readonly title: string;
   readonly subtitle?: string;
   readonly description: string;
-  readonly image: {
-    readonly src: string;
-    readonly alt: string;
-  };
-  readonly applications: readonly ApplicationCategory[];
+  readonly media?: MediaContent;
+  readonly image?: MediaContent;
+  readonly applications?: readonly ApplicationCategory[];
+  readonly button?: ButtonConfig;
   readonly className?: string;
   readonly background?: 'dark' | 'light';
   readonly imagePosition?: 'left' | 'right';
-  readonly imageAspectRatio?: 'square' | 'video' | 'auto';
+  readonly mediaPosition?: 'left' | 'right';
   readonly spacing?: 'sm' | 'md' | 'lg';
 }
 
@@ -27,96 +40,101 @@ export const ProductInfoSection: React.FC<ProductInfoSectionProps> = ({
   title,
   subtitle,
   description,
+  media,
   image,
   applications,
+  button,
   className = '',
   background = 'dark',
   imagePosition = 'left',
-  imageAspectRatio = 'video',
+  mediaPosition = 'left',
   spacing = 'lg'
 }) => {
-  const backgroundClasses = {
-    dark: 'bg-neutral-900 text-white',
-    light: 'bg-white text-neutral-900'
-  };
-
+  // Determine which content to show
+  const actualMedia = media || image;
+  const contentPosition = mediaPosition || imagePosition;
+  const isContentLeft = contentPosition === 'left';
+  
+  // Spacing classes
   const spacingClasses = {
     sm: 'py-8',
-    md: 'py-12',
-    lg: 'py-16'
+    md: 'py-16', 
+    lg: 'py-20'
   };
 
-  const aspectRatioClasses = {
-    square: 'aspect-square',
-    video: 'aspect-video',
-    auto: 'aspect-auto'
-  };
-
-  const imageOrder = imagePosition === 'right' ? 'lg:order-2' : 'lg:order-1';
-  const contentOrder = imagePosition === 'right' ? 'lg:order-1' : 'lg:order-2';
+  // Background classes
+  const bgClasses = background === 'dark' 
+    ? 'bg-neutral-900 text-white' 
+    : 'bg-white text-neutral-900';
 
   return (
-    <section className={`px-4 sm:px-6 lg:px-8 ${backgroundClasses[background]} ${spacingClasses[spacing]} ${className}`} aria-label="Product information">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Image Column */}
-          <div className={imageOrder}>
-            <div className={`${aspectRatioClasses[imageAspectRatio]} overflow-hidden rounded-lg`}>
-              <Image
-                src={image.src}
-                alt={image.alt}
-                width={600}
-                height={400}
-                className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-              />
-            </div>
-          </div>
-
+    <section className={`${spacingClasses[spacing]} ${bgClasses} ${className}`}>
+      <div className="container mx-auto px-4">
+        <div className={`flex flex-col lg:flex-row gap-8 lg:gap-16 items-center ${isContentLeft ? 'lg:flex-row-reverse' : ''}`}>
+          
           {/* Content Column */}
-          <div className={contentOrder}>
-            {/* Title and Subtitle */}
-            <div className="mb-8">
-              {subtitle && (
-                <h3 className="text-sm font-semibold uppercase tracking-wide mb-2 opacity-80">
-                  {subtitle}
-                </h3>
-              )}
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-                {title}
-              </h2>
-            </div>
-
-            {/* Description */}
-            <p className="text-lg sm:text-xl mb-8 leading-relaxed opacity-90">
-              {description}
-            </p>
-
-            {/* Application Categories */}
-            <div className="space-y-6">
-              {applications.map((application, index) => (
-                <div key={application.id} className="group">
-                  <div className="flex items-start space-x-4">
-                    {/* Application Title */}
-                    <h4 className="text-xl font-semibold leading-tight">
-                      {application.title}
-                    </h4>
-                    
-                    {/* Separator (except for last item) */}
-                    {index < applications.length - 1 && (
-                      <span className="text-lg opacity-60 mt-1">|</span>
+          <div className="flex-1 space-y-6">
+            {subtitle && (
+              <p className="subtitle-large text-primary-300">{subtitle}</p>
+            )}
+            
+            <h2 className="font-h2">{title}</h2>
+            
+            <p className="para-large text-neutral-300">{description}</p>
+            
+            {/* Applications List */}
+            {applications && applications.length > 0 && (
+              <div className="space-y-8 pt-8">
+                {applications.map((app) => (
+                  <div key={app.id} className="space-y-2">
+                    <h3 className="font-h4">{app.title}</h3>
+                    {app.description && (
+                      <p className="para-medium text-neutral-400">{app.description}</p>
                     )}
                   </div>
-                  
-                  {/* Application Description (if provided) */}
-                  {application.description && (
-                    <p className="text-base mt-2 opacity-80 leading-relaxed">
-                      {application.description}
-                    </p>
-                  )}
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
+            
+            {/* Button */}
+            {button && (
+              <div className="pt-4">
+                <Link
+                  href={button.href}
+                  className={`btn ${button.variant === 'secondary' ? 'btn-secondary' : 'btn-primary'}`}
+                >
+                  {button.text}
+                </Link>
+              </div>
+            )}
           </div>
+
+          {/* Media Column */}
+          {actualMedia && (
+            <div className="flex-1">
+              <div className="relative w-full aspect-video rounded-lg overflow-hidden">
+                {actualMedia.type === 'video' ? (
+                  <video
+                    src={actualMedia.src}
+                    poster={actualMedia.poster}
+                    className="w-full h-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  />
+                ) : (
+                  <Image
+                    src={actualMedia.src}
+                    alt={actualMedia.alt}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                )}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>

@@ -53,6 +53,11 @@ export const ContentGrid: React.FC<ContentGridProps> = ({
     auto: 'aspect-auto'
   };
 
+  const handleContentClick = (itemId: string) => {
+    console.log(`Content clicked: ${itemId}`);
+    // Add your click handler logic here
+  };
+
   return (
     <section className={`px-4 sm:px-6 lg:px-8 ${backgroundClasses[background]} ${spacingClasses[spacing]} ${className}`} aria-label="Content grid">
       <div className="max-w-7xl mx-auto">
@@ -68,12 +73,10 @@ export const ContentGrid: React.FC<ContentGridProps> = ({
         {/* Content Grid */}
         <div className={`grid ${gridClasses[columns]} gap-8 lg:gap-12`}>
           {items.map((item) => (
-            <article
+            <button
               key={item.id}
-              className="group cursor-pointer transition-transform duration-300 hover:scale-105"
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => e.key === 'Enter' && console.log(`Content clicked: ${item.id}`)}
+              className="group cursor-pointer transition-transform duration-300 hover:scale-105 text-left bg-transparent border-0 p-0 w-full"
+              onClick={() => handleContentClick(item.id)}
               aria-label={`View ${item.title} content`}
             >
               {/* Image Container */}
@@ -98,7 +101,7 @@ export const ContentGrid: React.FC<ContentGridProps> = ({
                   {item.description}
                 </p>
               </div>
-            </article>
+            </button>
           ))}
         </div>
       </div>

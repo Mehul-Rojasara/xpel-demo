@@ -14,9 +14,9 @@ export const Career: React.FC<CareerProps> = () => {
       <BannerHeader title="Career" description="Xpel Career" />
       <DocsGrid
         documents={[
-          { title: "Software Engineer", description: "Develop cutting-edge software", pdfUrl: "#" },
-          { title: "UX Designer", description: "Design user-centered experiences", pdfUrl: "#" },
-          { title: "QA Analyst", description: "Ensure product quality", pdfUrl: "#" },
+          { id: "software-engineer", title: "Software Engineer", description: "Develop cutting-edge software", pdfUrl: "#" },
+          { id: "ux-designer", title: "UX Designer", description: "Design user-centered experiences", pdfUrl: "#" },
+          { id: "qa-analyst", title: "QA Analyst", description: "Ensure product quality", pdfUrl: "#" },
         ]}
         isCareerPage={true}
       />

@@ -78,9 +78,10 @@ export default async function ThankYouPage({ params }: ThankYouPageProps) {
         eyebrowText={videoData.eyebrowText}
         headline={videoData.headline}
         subtitle={videoData.subtitle}
-        description={videoData.description}
+        // description={videoData.description}
         buttons={[
           {
+            id: 'back-to-home',
             text: videoData.ctaText,
             href: videoData.ctaHref,
             variant: 'primary',
@@ -92,7 +93,7 @@ export default async function ThankYouPage({ params }: ThankYouPageProps) {
         showDots={false}
         controlsPosition="bottom-right"
         textAlignment="left"
-        className="min-h-[600px] md:min-h-[700px] lg:min-h-[800px]"
+        className="min-h-[37.5rem] md:min-h-[43.75rem] lg:min-h-[50rem] xl:min-h-[55rem] section-spacing-y"
       />
 
       {/* Protection Offerings Section - Same as Homepage */}
@@ -102,6 +103,7 @@ export default async function ThankYouPage({ params }: ThankYouPageProps) {
         services={protectionOfferings}
         background="light"
         cardsPerView={3}
+        className="section-spacing-y"
       />
 
       {/* Service Blocks Section - Helpful Links */}

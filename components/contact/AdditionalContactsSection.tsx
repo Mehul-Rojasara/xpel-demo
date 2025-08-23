@@ -193,12 +193,17 @@ export const AdditionalContactsSection: React.FC = () => {
           {/* Progress Bar */}
           {contactAvenues.length > cardsPerView && (
             <div className="mt-8 flex justify-center">
-              <div className="w-32 h-1 bg-neutral-200 rounded-full overflow-hidden" role="progressbar" aria-valuenow={progressPercentage} aria-valuemin={0} aria-valuemax={100}>
+              <progress
+                className="w-32 h-1 bg-neutral-200 rounded-full overflow-hidden"
+                value={progressPercentage}
+                max={100}
+                aria-label={`Slider progress: ${Math.round(progressPercentage)}%`}
+              >
                 <div 
                   className="h-full bg-neutral-900 transition-all duration-500 ease-in-out"
                   style={{ width: `${progressPercentage}%` }}
                 />
-              </div>
+              </progress>
             </div>
           )}
         </div>

@@ -103,9 +103,9 @@ export const HEADER_DROPDOWN_CONTENT = {
           height: 262
         },
         products: [
-          { label: 'ULTIMATE PLUS™', href: '/products/ultimate-plus' },
-          { label: 'ULTIMATE FUSION™', href: '/products/ultimate-fusion' },
-          { label: 'STEALTH™', href: '/products/stealth' }
+          { id: 'ultimate-plus', label: 'ULTIMATE PLUS™', href: '/products/ultimate-plus' },
+          { id: 'ultimate-fusion', label: 'ULTIMATE FUSION™', href: '/products/ultimate-fusion' },
+          { id: 'stealth', label: 'STEALTH™', href: '/products/stealth' }
         ],
         viewAllHref: '/products/protection-film'
       },
@@ -119,10 +119,10 @@ export const HEADER_DROPDOWN_CONTENT = {
           height: 262
         },
         products: [
-          { label: 'FUSION™ LITE', href: '/products/fusion-lite' },
-          { label: 'FUSION™ PAINT & PPF', href: '/products/fusion-paint-ppf' },
-          { label: 'FUSION™ PREMIUM', href: '/products/fusion-premium' },
-          { label: 'FUSION™ SURFACE SPECIFIC', href: '/products/fusion-surface-specific' }
+          { id: 'fusion-lite', label: 'FUSION™ LITE', href: '/products/fusion-lite' },
+          { id: 'fusion-paint-ppf', label: 'FUSION™ PAINT & PPF', href: '/products/fusion-paint-ppf' },
+          { id: 'fusion-premium', label: 'FUSION™ PREMIUM', href: '/products/fusion-premium' },
+          { id: 'fusion-surface-specific', label: 'FUSION™ SURFACE SPECIFIC', href: '/products/fusion-surface-specific' }
         ],
         viewAllHref: '/products/ceramic-coating'
       },
@@ -136,9 +136,9 @@ export const HEADER_DROPDOWN_CONTENT = {
           height: 262
         },
         products: [
-          { label: 'PRIME™ CS BLACK', href: '/products/prime-cs-black' },
-          { label: 'PRIME™ XR BLACK', href: '/products/prime-xr-black' },
-          { label: 'PRIME™ XR PLUS', href: '/products/prime-xr-plus' }
+          { id: 'prime-cs-black', label: 'PRIME™ CS BLACK', href: '/products/prime-cs-black' },
+          { id: 'prime-xr-black', label: 'PRIME™ XR BLACK', href: '/products/prime-xr-black' },
+          { id: 'prime-xr-plus', label: 'PRIME™ XR PLUS', href: '/products/prime-xr-plus' }
         ],
         viewAllHref: '/products/window-film'
       },
@@ -152,9 +152,9 @@ export const HEADER_DROPDOWN_CONTENT = {
           height: 262
         },
         products: [
-          { label: 'INTERIOR PROTECTION FILM', href: '/products/interior-protection-film' },
-          { label: 'CONSOLE PROTECTION', href: '/products/console-protection' },
-          { label: 'DASH PROTECTION', href: '/products/dash-protection' }
+          { id: 'interior-protection-film', label: 'INTERIOR PROTECTION FILM', href: '/products/interior-protection-film' },
+          { id: 'console-protection', label: 'CONSOLE PROTECTION', href: '/products/console-protection' },
+          { id: 'dash-protection', label: 'DASH PROTECTION', href: '/products/dash-protection' }
         ],
         viewAllHref: '/products/interior-protection'
       }
@@ -164,46 +164,46 @@ export const HEADER_DROPDOWN_CONTENT = {
       protectionFilm: {
         title: 'Protection Film',
         products: [
-          { label: 'ULTIMATE PLUS™', href: '/products/ultimate-plus' },
-          { label: 'ULTIMATE FUSION™', href: '/products/ultimate-fusion' },
-          { label: 'STEALTH™', href: '/products/stealth' }
+          { id: 'ultimate-plus-detail', label: 'ULTIMATE PLUS™', href: '/products/ultimate-plus' },
+          { id: 'ultimate-fusion-detail', label: 'ULTIMATE FUSION™', href: '/products/ultimate-fusion' },
+          { id: 'stealth-detail', label: 'STEALTH™', href: '/products/stealth' }
         ],
         viewAllHref: '/products/protection-film'
       },
       windowFilm: {
         title: 'Window Film',
         products: [
-          { label: 'PRIME™ CS BLACK', href: '/products/prime-cs-black' },
-          { label: 'PRIME™ XR BLACK', href: '/products/prime-xr-black' },
-          { label: 'PRIME™ XR PLUS', href: '/products/prime-xr-plus' }
+          { id: 'prime-cs-black-detail', label: 'PRIME™ CS BLACK', href: '/products/prime-cs-black' },
+          { id: 'prime-xr-black-detail', label: 'PRIME™ XR BLACK', href: '/products/prime-xr-black' },
+          { id: 'prime-xr-plus-detail', label: 'PRIME™ XR PLUS', href: '/products/prime-xr-plus' }
         ],
         viewAllHref: '/products/window-film'
       },
       ceramicCoating: {
         title: 'Ceramic Coating',
         products: [
-          { label: 'FUSION™ LITE', href: '/products/fusion-lite' },
-          { label: 'FUSION™ PAINT & PPF', href: '/products/fusion-paint-ppf' },
-          { label: 'FUSION™ PREMIUM', href: '/products/fusion-premium' },
-          { label: 'FUSION™ SURFACE SPECIFIC', href: '/products/fusion-surface-specific' }
+          { id: 'fusion-lite-detail', label: 'FUSION™ LITE', href: '/products/fusion-lite' },
+          { id: 'fusion-paint-ppf-detail', label: 'FUSION™ PAINT & PPF', href: '/products/fusion-paint-ppf' },
+          { id: 'fusion-premium-detail', label: 'FUSION™ PREMIUM', href: '/products/fusion-premium' },
+          { id: 'fusion-surface-specific-detail', label: 'FUSION™ SURFACE SPECIFIC', href: '/products/fusion-surface-specific' }
         ],
         viewAllHref: '/products/ceramic-coating'
       },
       resources: {
         title: 'Resources',
         links: [
-          { label: 'Contact Us', href: '/contact-us' },
-          { label: 'Become a Dealer', href: '/become-a-dealer' },
-          { label: 'Product Care', href: '/product-care' },
-          { label: 'Frequently Asked Questions', href: '/faqs' }
+          { id: 'contact-us-detail', label: 'Contact Us', href: '/contact-us' },
+          { id: 'become-a-dealer-detail', label: 'Become a Dealer', href: '/become-a-dealer' },
+          { id: 'product-care-detail', label: 'Product Care', href: '/product-care' },
+          { id: 'faqs-detail', label: 'Frequently Asked Questions', href: '/faqs' }
         ]
       }
     },
     resources: [
-      { label: 'Contact Us', href: '/contact-us' },
-      { label: 'Become a Dealer', href: '/become-a-dealer' },
-      { label: 'Product Care', href: '/product-care' },
-      { label: 'Frequently Asked Questions', href: '/faqs' }
+      { id: 'contact-us-resources', label: 'Contact Us', href: '/contact-us' },
+      { id: 'become-a-dealer-resources', label: 'Become a Dealer', href: '/become-a-dealer' },
+      { id: 'product-care-resources', label: 'Product Care', href: '/product-care' },
+      { id: 'faqs-resources', label: 'Frequently Asked Questions', href: '/faqs' }
     ]
   },
   resources: {
@@ -211,31 +211,37 @@ export const HEADER_DROPDOWN_CONTENT = {
     description: 'Access tools, support, and information to help you succeed',
     links: [
       {
+        id: 'blog-resources',
         label: 'Blog',
         href: '/resources/blog',
         iconType: 'book'
       },
       {
+        id: 'videos-resources',
         label: 'Videos',
         href: '/resources/videos',
         iconType: 'video'
       },
       {
+        id: 'events-resources',
         label: 'Events',
         href: '/resources/events',
         iconType: 'calendar'
       },
       {
+        id: 'newsroom-resources',
         label: 'Newsroom',
         href: '/resources/newsroom',
         iconType: 'newspaper'
       },
       {
+        id: 'careers-resources',
         label: 'Careers',
         href: '/resources/careers',
         iconType: 'star'
       },
       {
+        id: 'help-center-resources',
         label: 'Help Center',
         href: '/resources/help-center',
         iconType: 'question'
@@ -252,10 +258,10 @@ export const HEADER_DROPDOWN_CONTENT = {
       description: 'Read about our latest achievement in automotive protection'
     },
     connectLinks: [
-      { label: 'Contact Us', href: '/contact-us' },
-      { label: 'Become a Dealer', href: '/become-a-dealer' },
-      { label: 'Product Care', href: '/product-care' },
-      { label: 'Frequently Asked Questions', href: '/faqs' }
+      { id: 'contact-us-connect', label: 'Contact Us', href: '/contact-us' },
+      { id: 'become-a-dealer-connect', label: 'Become a Dealer', href: '/become-a-dealer' },
+      { id: 'product-care-connect', label: 'Product Care', href: '/product-care' },
+      { id: 'faqs-connect', label: 'Frequently Asked Questions', href: '/faqs' }
     ]
   }
 } as const;
@@ -333,31 +339,37 @@ export const FOOTER_LINKS_DATA = {
     title: 'Resources',
     links: [
       {
+        id: 'help-center',
         label: 'Help Center',
         href: '/help-center',
         description: 'Get support and find answers to common questions'
       },
       {
+        id: 'blog',
         label: 'Blog',
         href: '/blog',
         description: 'Latest news, tips, and insights from XPEL'
       },
       {
+        id: 'videos',
         label: 'Videos',
         href: '/videos',
         description: 'Product demonstrations and installation guides'
       },
       {
+        id: 'newsroom',
         label: 'Newsroom',
         href: '/newsroom',
         description: 'Press releases and company announcements'
       },
       {
+        id: 'careers',
         label: 'Careers',
         href: '/careers',
         description: 'Join our team and grow with XPEL'
       },
       {
+        id: 'events',
         label: 'Events',
         href: '/events',
         description: 'Upcoming trade shows and industry events'
@@ -368,36 +380,43 @@ export const FOOTER_LINKS_DATA = {
     title: 'Company',
     links: [
       {
+        id: 'about-us',
         label: 'About Us',
         href: '/about-us',
         description: 'Learn about XPEL\'s mission and values'
       },
       {
+        id: 'management',
         label: 'Management',
         href: '/management',
         description: 'Meet our leadership team'
       },
       {
+        id: 'careers-company',
         label: 'Careers',
         href: '/careers',
         description: 'Explore career opportunities at XPEL'
       },
       {
+        id: 'newsroom-company',
         label: 'Newsroom',
         href: '/newsroom',
         description: 'Latest company news and press releases'
       },
       {
+        id: 'investor-relations',
         label: 'Investor Relations',
         href: '/investor-relations',
         description: 'Financial information and investor resources'
       },
       {
+        id: 'partnerships',
         label: 'Partnerships',
         href: '/partnerships',
         description: 'Strategic partnerships and collaborations'
       },
       {
+        id: 'payment-information',
         label: 'Payment Information',
         href: '/payment-information',
         description: 'Payment methods and billing information'
@@ -408,11 +427,13 @@ export const FOOTER_LINKS_DATA = {
     title: 'Contact',
     links: [
       {
+        id: 'contact-us',
         label: 'Contact Us',
         href: '/contact',
         description: 'Get in touch with our team'
       },
       {
+        id: 'phone',
         label: '(210) 678-3700',
         href: 'tel:(210) 678-3700',
         description: 'Call us directly',
@@ -424,30 +445,35 @@ export const FOOTER_LINKS_DATA = {
     title: 'Follow Us',
     links: [
       {
+        id: 'facebook',
         label: 'Facebook',
         href: 'https://facebook.com/xpel',
         icon: 'facebook',
         description: 'Follow XPEL on Facebook'
       },
       {
+        id: 'youtube',
         label: 'YouTube',
         href: 'https://youtube.com/xpel',
         icon: 'youtube',
         description: 'Watch XPEL videos on YouTube'
       },
       {
+        id: 'instagram',
         label: 'Instagram',
         href: 'https://instagram.com/xpel',
         icon: 'instagram',
         description: 'Follow XPEL on Instagram'
       },
       {
+        id: 'twitter',
         label: 'Twitter',
         href: 'https://twitter.com/xpel',
         icon: 'twitter',
         description: 'Follow XPEL on X (Twitter)'
       },
       {
+        id: 'linkedin',
         label: 'LinkedIn',
         href: 'https://linkedin.com/company/xpel',
         icon: 'linkedin',
@@ -459,21 +485,25 @@ export const FOOTER_LINKS_DATA = {
     title: 'Legal',
     links: [
       {
+        id: 'terms-of-use',
         label: 'Terms of Use',
         href: '/terms-of-use',
         description: 'Terms and conditions of use'
       },
       {
+        id: 'privacy-policy',
         label: 'Privacy Policy',
         href: '/privacy-policy',
         description: 'How we protect your privacy'
       },
       {
+        id: 'legal-info',
         label: 'Legal',
         href: '/legal',
         description: 'Legal information and disclaimers'
       },
       {
+        id: 'accessibility',
         label: 'Accessibility',
         href: '/accessibility',
         description: 'Accessibility statement and compliance'
@@ -703,28 +733,40 @@ export const NEXT_STEP_FORM_DATA = {
   default: {
     title: "Take the Next Steps",
     description: "We look forward to helping you get to the next level and becoming the very best you can be with XPEL.",
-    phoneNumbers: ["+1 (210) 678-3701", "(800) 447-9928"],
+    phoneNumbers: [
+      { id: "support-phone-1", number: "+1 (210) 678-3701" },
+      { id: "support-phone-2", number: "(800) 447-9928" }
+    ],
     email: "support@XPEL.com",
     hours: "8:30am - 5:30pm CST"
   },
   dealer: {
     title: "Become a Dealer",
     description: "Join our network of authorized XPEL dealers and bring premium protection solutions to your customers.",
-    phoneNumbers: ["+1 (210) 678-3701", "(800) 447-9928"],
+    phoneNumbers: [
+      { id: "dealer-phone-1", number: "+1 (210) 678-3701" },
+      { id: "dealer-phone-2", number: "(800) 447-9928" }
+    ],
     email: "dealer@XPEL.com",
     hours: "8:30am - 5:30pm CST"
   },
   installer: {
     title: "Become an Installer",
     description: "Get certified as an XPEL installer and access our premium products and training programs.",
-    phoneNumbers: ["+1 (210) 678-3701", "(800) 447-9928"],
+    phoneNumbers: [
+      { id: "installer-phone-1", number: "+1 (210) 678-3701" },
+      { id: "installer-phone-2", number: "(800) 447-9928" }
+    ],
     email: "installer@XPEL.com",
     hours: "8:30am - 5:30pm CST"
   },
   dapNext: {
     title: "Get in Touch ",
     description: "Reach out with any questions about about XPEL products, services, or procedures. Send us a message and someone from Xpel will get back to you as soon as possible.",
-    phoneNumbers: ["+1 (210) 678-3701", "(800) 447-9928"],
+    phoneNumbers: [
+      { id: "dap-phone-1", number: "+1 (210) 678-3701" },
+      { id: "dap-phone-2", number: "(800) 447-9928" }
+    ],
     email: "support@XPEL.com",
     hours: "8:30am - 5:30pm CST"
   }

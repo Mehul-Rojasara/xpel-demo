@@ -229,7 +229,6 @@ export const PPFPage: React.FC<PPFPageProps> = ({
         {...fusionPlusData}
         background="dark"
         imagePosition="left"
-        imageAspectRatio="video"
         spacing="lg"
       />
 

@@ -46,7 +46,7 @@ export const ProductTabs: React.FC<ProductTabsProps> = ({
         </div>
 
         {/* Tabs Navigation */}
-        <nav className="flex justify-center" role="tablist" aria-label="Product categories">
+        <nav className="flex justify-center" aria-label="Product categories">
           <div className="flex space-x-1 bg-white/10 rounded-lg p-1 backdrop-blur-sm">
             {tabs.map((tab) => (
               <button

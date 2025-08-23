@@ -3,6 +3,7 @@ import { ServiceCard } from './ServiceCard';
 import Container from '@/components/ui/Container';
 
 interface ServiceCardData {
+  readonly id: string;
   readonly title: string;
   readonly description: string;
   readonly image: string;
@@ -28,9 +29,9 @@ export const ServiceCardGrid: React.FC<ServiceCardGridProps> = ({
     <section className={`${sectionClassName}`}>
       <Container className={containerClassName}>
         <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 ${className}`}>
-          {cards.map((card, index) => (
+          {cards.map((card) => (
             <ServiceCard
-              key={`${card.title}-${index}`}
+              key={card.id}
               title={card.title}
               description={card.description}
               image={card.image}

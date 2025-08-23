@@ -12,6 +12,14 @@ interface VideoPlayerProps {
   readonly playsInline?: boolean;
   readonly preload?: 'none' | 'metadata' | 'auto';
   readonly className?: string;
+  // Caption options
+  captions?: {
+    src: string;
+    label: string;
+    srclang: string;
+    kind?: 'subtitles' | 'captions' | 'descriptions' | 'chapters' | 'metadata';
+    default?: boolean;
+  };
   // Control options
   readonly showPlayPause?: boolean;
   readonly showProgress?: boolean;
@@ -38,6 +46,8 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   playsInline = true,
   preload = 'metadata',
   className = '',
+  // Caption options
+  captions,
   // Control options
   showPlayPause = true,
   showProgress = false,
@@ -71,17 +81,15 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     if (!video) return;
 
     const updateProgress = () => {
-      if (video.duration) {
-        const progress = (video.currentTime / video.duration) * 100;
-        setVideoProgress(progress);
-        onVideoProgress?.(progress);
-        
-        // Auto-advance when video finishes (for slider mode)
-        if (progress >= 100 && !loop && onVideoEnd) {
-          setTimeout(() => {
-            onVideoEnd();
-          }, 500);
-        }
+      if (!video.duration) return;
+      
+      const progress = (video.currentTime / video.duration) * 100;
+      setVideoProgress(progress);
+      onVideoProgress?.(progress);
+      
+      // Auto-advance when video finishes (for slider mode)
+      if (progress >= 100 && !loop && onVideoEnd) {
+        setTimeout(() => onVideoEnd(), 500);
       }
     };
 
@@ -102,14 +110,11 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
     const handleVideoEnd = () => {
       if (onVideoEnd) {
-        setTimeout(() => {
-          onVideoEnd();
-        }, 500);
+        setTimeout(() => onVideoEnd(), 500);
       }
     };
 
-    const handlePlaybackError = (error: Event) => {
-      console.warn('Video playback error:', error);
+    const handlePlaybackError = () => {
       setIsPlaying(false);
     };
 
@@ -117,34 +122,38 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
       setIsPlaying(true);
     };
 
-    video.addEventListener('timeupdate', updateProgress);
-    video.addEventListener('loadedmetadata', handleLoadedMetadata);
-    video.addEventListener('ended', handleVideoEnd);
-    video.addEventListener('error', handlePlaybackError);
-    video.addEventListener('play', handlePlaybackSuccess);
-
-    // Auto-play video with retry logic
-    const attemptAutoPlay = async () => {
-      if (autoPlay && isMounted) {
-        try {
-          await video.play();
-          handlePlaybackSuccess();
-        } catch (error) {
-          console.warn('Auto-play failed, will retry on user interaction:', error);
-          setIsPlaying(false);
-        }
-      }
+    const setupEventListeners = () => {
+      video.addEventListener('timeupdate', updateProgress);
+      video.addEventListener('loadedmetadata', handleLoadedMetadata);
+      video.addEventListener('ended', handleVideoEnd);
+      video.addEventListener('error', handlePlaybackError);
+      video.addEventListener('play', handlePlaybackSuccess);
     };
 
-    attemptAutoPlay();
-
-    return () => {
+    const cleanupEventListeners = () => {
       video.removeEventListener('timeupdate', updateProgress);
       video.removeEventListener('loadedmetadata', handleLoadedMetadata);
       video.removeEventListener('ended', handleVideoEnd);
       video.removeEventListener('error', handlePlaybackError);
       video.removeEventListener('play', handlePlaybackSuccess);
     };
+
+    const attemptAutoPlay = async () => {
+      if (!autoPlay || !isMounted) return;
+      
+      try {
+        await video.play();
+        handlePlaybackSuccess();
+      } catch (error) {
+        console.warn('Auto-play failed, will retry on user interaction:', error);
+        setIsPlaying(false);
+      }
+    };
+
+    setupEventListeners();
+    attemptAutoPlay();
+
+    return cleanupEventListeners;
   }, [autoPlay, loop, onVideoEnd, onVideoProgress, isMounted, testDuration]);
 
   // Handle video play/pause with error handling
@@ -214,9 +223,9 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
       case 'bottom-center':
         return 'absolute bottom-8 left-1/2 transform -translate-x-1/2';
       case 'bottom-left':
-        return 'absolute bottom-5 left-0 left-side';
+        return 'absolute bottom-6 lg:bottom-10 left-0 left-side';
       default:
-        return 'absolute bottom-4 right-0 right-side';
+        return 'absolute bottom-6 right-0 right-side';
     }
   };
 
@@ -231,8 +240,26 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         loop={loop}
         preload={preload}
         poster={posterImage}
+        aria-label="Video content"
       >
         <source src={videoSrc} type="video/mp4" />
+        {captions ? (
+          <track
+            src={captions.src}
+            label={captions.label}
+            srcLang={captions.srclang}
+            kind={captions.kind || 'captions'}
+            default={captions.default}
+          />
+        ) : (
+          <track
+            kind="captions"
+            src=""
+            label="No captions available"
+            srcLang="en"
+            default={false}
+          />
+        )}
         Your browser does not support the video tag.
       </video>
 
@@ -247,14 +274,27 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
                 <div 
                   className={`${progressBarWidth} h-2 bg-white/60 rounded-full overflow-hidden cursor-pointer`}
                   onClick={handleVideoProgressClick}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      // Create a synthetic event for the click handler
+                      const syntheticEvent = {
+                        ...e,
+                        type: 'click',
+                        target: e.currentTarget
+                      } as unknown as React.MouseEvent<HTMLDivElement>;
+                      handleVideoProgressClick(syntheticEvent);
+                    }
+                  }}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Seek to position in video. Current progress: ${Math.round(videoProgress)}%`}
+                  aria-pressed="false"
                 >
-                  <div 
-                    className="h-full bg-[#FFB81C] w-20 md:w-60 rounded-full transition-all duration-100 ease-out "
-                    style={{ width: `${videoProgress}%` }}
-                    role="progressbar"
-                    aria-valuenow={videoProgress}
-                    aria-valuemin={0}
-                    aria-valuemax={100}
+                  <progress
+                    className="h-full bg-[#FFB81C] w-20 md:w-60 rounded-full transition-all duration-100 ease-out"
+                    value={videoProgress}
+                    max={100}
                     aria-label={`Video progress: ${Math.round(videoProgress)}%`}
                   />
                 </div>

@@ -106,12 +106,14 @@ export const HomePage: React.FC<HomePageProps> = ({ country, language }) => {
         subtitle={videoData[currentVideoIndex].description}
         buttons={[
           {
+            id: "learn-more-architectural",
             text: 'Learn More',
             href: '/products/architectural',
             variant: 'primary',
             size: 'lg'
           },
           {
+            id: "get-quote",
             text: 'Get Quote',
             href: '/contact',
             variant: 'primary',
@@ -127,6 +129,7 @@ export const HomePage: React.FC<HomePageProps> = ({ country, language }) => {
         dotSize="md"
         testDuration={5}
         titleAs="h1"
+        className="min-h-[37.5rem] md:min-h-[43.75rem] lg:min-h-[50rem] xl:min-h-[55rem] section-spacing-y"
       />
 
          {/* About Section */}
@@ -148,6 +151,7 @@ export const HomePage: React.FC<HomePageProps> = ({ country, language }) => {
         services={protectionServices}
         background="dark"
         cardsPerView={3}
+        className="section-spacing-y"
       />
 
       {/* Featured Articles */}
@@ -177,6 +181,7 @@ export const HomePage: React.FC<HomePageProps> = ({ country, language }) => {
         subtitle="Advanced architectural protection solutions for commercial and residential applications."
         buttons={[
           {
+            id: "protect-investment",
             text: videoData[currentVideoIndex].ctaText,
             href: videoData[currentVideoIndex].ctaHref,
             variant: 'primary',
@@ -185,7 +190,7 @@ export const HomePage: React.FC<HomePageProps> = ({ country, language }) => {
         ]}
         showDots={false}
         controlsPosition="bottom-right"
-        className="min-h-[640px] md:min-h-[800px] lg:min-h-[1050px]"
+        className="min-h-[40rem] md:min-h-[50rem] lg:min-h-[65.625rem]"
         titleAs="h2"
       />
 

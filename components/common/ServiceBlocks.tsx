@@ -16,8 +16,8 @@ interface ServiceBlocksProps {
   readonly services: ReadonlyArray<ServiceBlock>;
   readonly className?: string;
   readonly background?: "dark" | "light";
-  readonly columns?: 1 | 2 | 3;
-  readonly spacing?: "sm" | "md" | "lg";
+  readonly columns?: number;
+  readonly spacing?: string;
 }
 
 export const ServiceBlocks: React.FC<ServiceBlocksProps> = ({ services, className = "", background = "dark" }) => {
@@ -28,17 +28,15 @@ export const ServiceBlocks: React.FC<ServiceBlocksProps> = ({ services, classNam
 
   return (
     <section
-      className={`${backgroundClasses[background]} bg-neutral-700 service-blocks py-16 sm:py-20 lg:py-[7.5rem] ${className}`}
+      className={`${backgroundClasses[background]} bg-neutral-700 service-blocks ${className}`}
       aria-label="Service options"
     >
       <Container>
         <div className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 sm:gap-8 md:gap-14 Xxl:gap-20`}>
           {services.map((service) => (
-            <div
+            <button
               key={service.id}
-              className="flex text-left group cursor-pointer flex-col md:flex-row gap-[0.625rem]"
-              role="button"
-              tabIndex={0}
+              className="flex text-left group cursor-pointer flex-col md:flex-row gap-[0.625rem] w-full p-0 border-0 bg-transparent"
               aria-label={`${service.title} - ${service.ctaText}`}
             >
               {/* Icon - exact Figma specifications (84x84) */}
@@ -80,7 +78,7 @@ export const ServiceBlocks: React.FC<ServiceBlocksProps> = ({ services, classNam
                   </a>
                 )}
               </div>
-            </div>
+            </button>
           ))}
         </div>
       </Container>

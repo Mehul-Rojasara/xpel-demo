@@ -2190,22 +2190,27 @@ const StyleGuideXpel: React.FC = () => {
                 <Accordion
                   items={[
                     {
+                      id: "style-guide-question-1",
                       title: "THIS IS A QUESTION LOREM ISPUM DOLOR SIT AMET?",
                       content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
                     },
                     {
+                      id: "style-guide-question-2",
                       title: "THIS IS A QUESTION LOREM ISPUM DOLOR SIT AMET?",
                       content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
                     },
                     {
+                      id: "style-guide-question-3",
                       title: "THIS IS A QUESTION LOREM ISPUM DOLOR SIT AMET?",
                       content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
                     },
                     {
+                      id: "style-guide-question-4",
                       title: "THIS IS A QUESTION LOREM ISPUM DOLOR SIT AMET?",
                       content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
                     },
                     {
+                      id: "style-guide-question-5",
                       title: "THIS IS A QUESTION LOREM ISPUM DOLOR SIT AMET?",
                       content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
                     }

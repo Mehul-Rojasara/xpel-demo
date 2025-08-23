@@ -32,10 +32,11 @@ export const ProtectionOfferings: React.FC<ProtectionOfferingsProps> = ({
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
           {services.map((service) => (
-            <article
+            <button
               key={service.id}
               className="text-center group cursor-pointer"
               onClick={() => window.location.href = service.href}
+              aria-label={`Learn more about ${service.title}`}
             >
               {/* Service Image */}
               <div className="mb-8 flex justify-center">
@@ -59,7 +60,7 @@ export const ProtectionOfferings: React.FC<ProtectionOfferingsProps> = ({
               <p className="text-lg mb-6 opacity-90 leading-relaxed font-sans tracking-[0.01em] leading-[150%] font-[450]">
                 {service.description}
               </p>
-            </article>
+            </button>
           ))}
         </div>
       </div>

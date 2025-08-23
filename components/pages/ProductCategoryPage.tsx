@@ -198,11 +198,13 @@ export const ProductCategoryPage: React.FC<ProductCategoryPageProps> = ({
     optionalDescription: 'Additional information about our comprehensive protection solutions.',
     buttons: [
       {
+        id: "hero-primary-cta",
         label: heroPrimaryCta,
         href: heroPrimaryCtaHref || '#',
         variant: 'tertiary' as const
       },
       {
+        id: "hero-secondary-cta",
         label: heroSecondaryCta,
         href: heroSecondaryCtaHref || '#',
         variant: 'primary' as const

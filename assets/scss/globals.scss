@@ -224,6 +224,11 @@
   .section-spacing-bottom {
     @include mixin.section-spacing(bottom, lg);
   }
+
+  .section-small-spacing-y {
+    @include mixin.section-spacing(top, sm);
+    @include mixin.section-spacing(bottom, sm);
+  }
 }
 
 .explore-slider {
@@ -303,14 +308,36 @@
   @include mixin.btn-black;
 }
 
+.btn-black-outline {
+  @include mixin.btn-black-outline;
+}
+
 .btn-white {
   @include mixin.btn-black;
+}
+
+.btn-white-outline {
+  @include mixin.btn-white-outline;
 }
 
 .btn-full {
   @apply w-full;
 }
 
+.btn-blur {
+  @include mixin.btn-blur;
+}
+
 .btn-min-width {
   @apply min-w-40 lg:min-w-[12.5rem];
+}
+
+.btn-rounded-full {
+  @apply rounded-full px-2 lg:px-3 py-2.5 lg:py-3 w-10 h-10 lg:w-12 lg:h-12 min-w-10 lg:min-w-12 min-h-10 lg:min-h-12;
+}
+
+.btn-rounded-full {
+  & .btn-icon {
+    @apply mt-[1px];
+  }
 }

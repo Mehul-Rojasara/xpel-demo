@@ -70,19 +70,19 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
           {/* Right Column - Description and CTA */}
           <div className={`${imageOrder} text-left`}>
             <div className={`text-left lg:max-w-[35rem]`}>
-              <p className={`para-large mb-6 sm:mb-8 leading-[150%] font-sans tracking-[0.01em] font-[450] ${customBackgroundColor ? 'text-white' : 'text-neutral-900'}`}>
+              <p className={`para-large leading-[150%] font-sans tracking-[0.01em] font-[450] ${customBackgroundColor ? 'text-white' : 'text-neutral-900'}`}>
                 {description}
               </p>
               
               {(ctaText && ctaHref) && (
-                <div className={textAlignment === 'center' ? 'text-center' : ''}>
+                <div className={(textAlignment === 'center' ? 'text-center' : '') + `mt-6 sm:mt-8`}>
                   <Link
                     href={ctaHref}
                     aria-label={`${ctaText} - ${title}`}
-                    className={`inline-flex items-center justify-center px-4 sm:px-6 py-3 sm:py-4 font-display font-medium text-base sm:text-lg border-2 transition-all duration-300 rounded-[6.25rem] min-w-[10rem] sm:min-w-[12.5rem] h-[3rem] sm:h-[3.5rem] shadow-sm hover:shadow-md ${
+                    className={`btn btn-min-width ${
                       customBackgroundColor 
-                        ? ' text-white border-white hover:bg-neutral-900 hover:text-white hover:border-neutral-900'
-                        : ' text-neutral-900 border-neutral-900 hover:bg-neutral-900 hover:text-white'
+                        ? 'btn-white btn-white-outline'
+                        : 'btn-secondary btn-secondary-outline'
                     }`}
                   >
                     {ctaText}

@@ -29,6 +29,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({
   className = ''
 }) => {
   const accordionItems = faqs.map(faq => ({
+    id: faq.id,
     title: faq.question,
     content: faq.answer
   }));

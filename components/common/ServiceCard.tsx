@@ -45,7 +45,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
             height={400}
             className="w-full h-full object-cover transition-transform duration-300 scale-100 group-hover:scale-110"
           />
-          
+          <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-black/[0.275] via-black/[0.125] to-transparent"></div>
           {/* Category Tag - Top Left */}
           {category && (
             <div className="absolute top-3 left-3">
@@ -65,7 +65,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
           )}
           
           {/* Card Text Label - Overlay on image like original ServiceSlider */}
-          <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 md:p-5">
+          <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 md:p-5 z-10">
             <div className="flex flex-col items-center gap-2">
               <div className="flex items-center justify-center gap-2">
                 <h3 className="font-medium text-white transition-colors duration-300 leading-tight font-h3">

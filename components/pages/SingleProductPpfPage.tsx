@@ -50,12 +50,14 @@ export const SingleProductPpf: React.FC<SingleProductPpfPageProps> = (
           description: "From paint protection to interior protection, tint, car care & self-installation kits, we've got everything you need to keep your car or truck looking its best for as long as you own it.",
           buttons: [
             {
+              id: "explore-ultimate-plus",
               label: "Explore",
               href: "/products/ultimate-plus",
               variant: "secondary",
               arrow: true,
             },
             {
+              id: "explore-coverage-options",
               label: "Explore Coverage Options",
               href: "/coverage-options",
               variant: "primary",

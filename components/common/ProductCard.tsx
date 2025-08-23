@@ -1,5 +1,5 @@
-import React from 'react';
-import Image from 'next/image';
+import React from "react";
+import Image from "next/image";
 
 interface ProductCardOption {
   readonly value: string;
@@ -30,9 +30,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   isNew = false,
   options = [],
   href,
-  className = '',
+  className = "",
   onClick,
-  showOptions = true
+  showOptions = true,
 }) => {
   const handleClick = () => {
     if (onClick) {
@@ -44,70 +44,54 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
   return (
     <article
-      className={`flex-shrink-0 cursor-pointer group w-[280px] sm:w-[320px] md:w-[336px] rounded-lg overflow-hidden ${className}`}
+      className={`flex-shrink-0 cursor-pointer group w-[280px] sm:w-[320px] md:w-[336px] rounded-[14px] overflow-hidden ${className}`}
       onClick={handleClick}
-      onKeyDown={(e) => e.key === 'Enter' && handleClick()}
+      onKeyDown={(e) => e.key === "Enter" && handleClick()}
       tabIndex={0}
       role="button"
       aria-label={`${title} - ${price}`}
       aria-describedby={`product-${id}-description`}
     >
-      <div className="transition-transform duration-300 shadow-lg w-full bg-white rounded-lg border border-neutral-200 h-[380px] sm:h-[400px] md:h-[435.4px]">
+      <div className="transition-transform duration-300 shadow-lg w-full px-6 pt-[3.625rem] pb-6  bg-white rounded-[14px] overflow-hidden h-full">
         {/* NEW Badge - Top Left Corner Above Product Details */}
         {isNew && (
-          <div className="absolute top-3 left-3 z-10">
-            <span className="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded">
-              NEW
-            </span>
-          </div>
+          <span className="text-white bg-accent-teal-300 inline-block text-xs rounded-sm p-1.5 absolute top-6 left-6">
+            NEW
+          </span>
         )}
-        
+
         {/* Product Information - Above Image (Title & Price Only) */}
-        <div className="p-4 sm:p-6 pb-4 pt-6 sm:pt-8">
-          <h3 className="font-semibold text-neutral-900 mb-2 text-sm sm:text-base">
-            {title}
-          </h3>
-          <p className="text-base sm:text-lg font-bold text-neutral-900 mb-3">
-            {price}
-          </p>
+        <div className="">
+          <h5 className="font-h5 text-neutral-900 mb-2">{title}</h5>
+          <p className="para-small-bold text-neutral-900">{price}</p>
           <div id={`product-${id}-description`} className="sr-only">
             {title} priced at {price}
-            {options.length > 0 && ` with options: ${options.map(opt => opt.label).join(', ')}`}
+            {options.length > 0 && ` with options: ${options.map((opt) => opt.label).join(", ")}`}
           </div>
         </div>
-        
+
         {/* Image Container */}
-        <div className="relative px-4 sm:px-6">
-          <div className="w-full h-40 sm:h-44 md:h-48 overflow-hidden rounded-lg bg-neutral-100">
-            <Image
-              src={image}
-              alt={imageAlt}
-              width={336}
-              height={192}
-              className="w-full h-full object-cover transition-transform duration-300 scale-100 group-hover:scale-110"
-            />
+        <div className="relative py-3 md:py-6">
+          <div className="w-full h-[210px] md:h-[230px] flex items-center justify-center">
+            <Image src={image} alt={imageAlt} width={336} height={230} className="w-full h-full object-cover" />
           </div>
         </div>
-        
+
         {/* Product Options - Below Image */}
         {showOptions && options.length > 0 && (
-          <div className="px-4 sm:px-6 pt-3 sm:pt-4">
-            <div className="space-y-1 sm:space-y-2">
-              {options.map((option) => (
-                <label key={`${id}-${option.value}`} className="flex items-center cursor-pointer">
-                  <input 
-                    type="radio" 
-                    name={`${id}-options`} 
-                    value={option.value} 
-                    defaultChecked={option.defaultChecked}
-                    className="mr-2 w-3 h-3 sm:w-4 sm:h-4 text-neutral-900 border-neutral-300 focus:ring-neutral-500"
-                  />
-                  <span className="text-xs sm:text-sm text-neutral-700">
-                    {option.label}
-                  </span>
-                </label>
-              ))}
-            </div>
+          <div className="">
+            {options.map((option) => (
+              <label key={`${id}-${option.value}`} className="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name={`${id}-options`}
+                  value={option.value}
+                  defaultChecked={option.defaultChecked}
+                  className="mr-2 w-3 h-3 sm:w-4 sm:h-4 text-neutral-900 border-neutral-300 focus:ring-neutral-500"
+                />
+                <span className="text-xs sm:text-sm text-neutral-700">{option.label}</span>
+              </label>
+            ))}
           </div>
         )}
       </div>
@@ -115,4 +99,4 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   );
 };
 
-export default ProductCard; 
+export default ProductCard;

@@ -1,11 +1,10 @@
 
 import React from 'react';
 import { Banner } from '@/components/sections/Banner';
-import { ContentSection, FeatureStats, InstallerBenefits } from '../sections';
+import { ContentSection, FeatureStats, InstallerBenefits, LatestArticles } from '@/components/sections';
 
-import { InstallerSpotlights } from '../common/VideoSlider';
-import { ProductInfoSectionTab } from '../sections/ProductInfoSectionTab';
-import { NextStepsForm } from '../sections/NextStepForm';
+import { ProductInfoSectionTab } from '@/components/sections/ProductInfoSectionTab';
+import { NextStepsForm } from '@/components/sections/NextStepForm';
 import { NEXT_STEP_FORM_DATA } from '@/config';
 
 interface BecomeAnInstallerPageProps {
@@ -40,6 +39,7 @@ export const BecomeAnInstaller: React.FC<BecomeAnInstallerPageProps> = () => {
             //   variant: "primary"
             // },
             {
+              id: "learn-more-installer",
               label: "Learn More",
               href: "/coverage-options",
               variant: "secondary",
@@ -69,7 +69,8 @@ export const BecomeAnInstaller: React.FC<BecomeAnInstallerPageProps> = () => {
       {/* Product Info Section - New Component */}
       <ProductInfoSectionTab />
       <FeatureStats/>
-      <InstallerSpotlights/>
+      <LatestArticles />
+      
       <NextStepsForm contactInfo={NEXT_STEP_FORM_DATA.default}/>
 
     </div>

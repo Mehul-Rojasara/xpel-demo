@@ -10,7 +10,11 @@ interface AccordionItemProps {
 }
 
 interface AccordionProps {
-  readonly items: ReadonlyArray<{ readonly title: string; readonly content: string }>;
+  readonly items: ReadonlyArray<{ 
+    readonly id: string;
+    readonly title: string; 
+    readonly content: string 
+  }>;
   readonly allowMultiple?: boolean;
   readonly defaultOpen?: ReadonlyArray<number>;
   readonly className?: string;
@@ -89,13 +93,13 @@ export const Accordion: React.FC<AccordionProps> = ({
 
   return (
     <div className={`w-full bg-white ${className}`}>
-      {items.map((item, index) => (
+      {items.map((item) => (
         <AccordionItem
-          key={`${item.title}-${index}`}
+          key={item.id}
           title={item.title}
           content={item.content}
-          isOpen={openItems.includes(index)}
-          onToggle={() => toggleItem(index)}
+          isOpen={openItems.includes(items.indexOf(item))}
+          onToggle={() => toggleItem(items.indexOf(item))}
         />
       ))}
     </div>

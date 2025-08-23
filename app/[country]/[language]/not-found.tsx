@@ -13,7 +13,7 @@ export default async function NotFoundPage({ params }: Readonly<NotFoundPageProp
   const resolvedParams = await params;
   
   // Check if params are available
-  if (!resolvedParams || !resolvedParams.country || !resolvedParams.language) {
+  if (!resolvedParams?.country || !resolvedParams?.language) {
     return null;
   }
   
@@ -70,9 +70,10 @@ export default async function NotFoundPage({ params }: Readonly<NotFoundPageProp
           eyebrowText={pageData.eyebrowText}
           headline={pageData.headline}
           subtitle={pageData.subtitle}
-          description={pageData.description}
+          // description={pageData.description}
           buttons={[
             {
+              id: 'back-to-home',
               text: pageData.ctaText,
               href: pageData.ctaHref,
               variant: 'primary',
@@ -84,7 +85,7 @@ export default async function NotFoundPage({ params }: Readonly<NotFoundPageProp
           showDots={false}
           controlsPosition="bottom-right"
           textAlignment="left"
-          className="min-h-[600px] md:min-h-[700px] lg:min-h-[800px]"
+          className="min-h-[37.5rem] md:min-h-[43.75rem] lg:min-h-[50rem] xl:min-h-[55rem] section-spacing-y"
           titleAs="h1"
         />
 

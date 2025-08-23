@@ -13,7 +13,6 @@ export const NewsletterForm: React.FC = () => {
 
       setIsSubmitting(true);
       try {
-        // TODO: Implement newsletter signup logic
         setEmail("");
       } catch (error) {
         if (error) {

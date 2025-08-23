@@ -27,12 +27,15 @@ export const ErrorBoundary: React.FC<Props> = ({ children, fallback }) => {
     };
 
     // Handle unhandled promise rejections
-    const handleUnhandledRejection = () => {
+    const handleUnhandledRejection = (event: PromiseRejectionEvent) => {
       setHasError(true);
+      
+      // Log the rejection reason for debugging
+      console.error('Unhandled promise rejection:', event.reason);
       
       showToast({
         variant: 'error',
-        text: 'Something went wrong. Please try refreshing the page.',
+        text: 'A network request failed. Please check your connection and try again.',
         duration: 5000
       });
     };

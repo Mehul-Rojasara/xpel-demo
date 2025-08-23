@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { Button } from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
@@ -76,7 +75,6 @@ export const ProductLineupSection: React.FC<ProductLineupSectionProps> = ({
   return (
     <section
       className={`py-[3.75rem] md:py-[4.375rem] lg:py-[5.625rem] bg-neutral-900 text-white ${className}`}
-      role="region"
       aria-label="Product lineup"
     >
       <Container>
@@ -142,12 +140,17 @@ export const ProductLineupSection: React.FC<ProductLineupSectionProps> = ({
                   {primaryCtaText}
                 </button>
               )}
+              {/* Secondary button always opens modal for dealer application */}
               {secondaryCtaHref ? (
                 <Link href={secondaryCtaHref} className="btn btn-secondary-outline-dark">
                   {secondaryCtaText}
                 </Link>
               ) : (
-                <button aria-label="Primary Call to Action" className="btn btn-secondary-outline-dark">
+                <button 
+                  onClick={openModal}
+                  aria-label="Secondary Call to Action" 
+                  className="btn btn-secondary-outline-dark"
+                >
                   {secondaryCtaText}
                 </button>
               )}
@@ -157,8 +160,8 @@ export const ProductLineupSection: React.FC<ProductLineupSectionProps> = ({
             <div className="mt-12">
               <div className="space-y-8">
                 {/* Use active tab features if tabs are available, otherwise use default features */}
-                {(activeTabContent?.features || features).map((feature) => (
-                  <div key={feature.id}>
+                {(activeTabContent?.features || features || []).map((feature) => (
+                  <div key={`${feature.id}-${activeTab || 'default'}`}>
                     <div className="flex items-start space-x-4">
                       {/* Icon from style guide */}
                       <div className="flex-shrink-0 w-12 h-12 text-white flex items-center justify-center">

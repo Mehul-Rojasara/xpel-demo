@@ -12,7 +12,7 @@ import product4 from "@/assets/images/common/product4.png";
 import { FormSection, Input, InputGroup } from "../ui/Input";
 import { usePathname } from "next/navigation";
 
-const solidHeaderRouteSubstrings = ["/legal"];
+const solidHeaderRouteSubstrings = ["/legal", "/single-article"];
 
 export const NewHeader = () => {
   const [isProductsOpen, setIsProductsOpen] = React.useState(false);

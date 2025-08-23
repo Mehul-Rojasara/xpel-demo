@@ -112,19 +112,11 @@ export const ArticleSlider: React.FC<ArticleSliderProps> = ({
           >
             {articles.map((article) => (
               <SwiperSlide key={article.id}>
-                <article 
-                  className={`group cursor-pointer transition-all duration-300 ${
+                <button 
+                  className={`group cursor-pointer transition-all duration-300 text-left w-full ${
                     expandedArticle === article.id ? 'transform -translate-x-4' : ''
                   }`}
                   onClick={() => handleArticleClick(article.id)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      handleArticleClick(article.id);
-                    }
-                  }}
                   aria-label={`Read article: ${article.title}`}
                 >
                   {/* Article Card */}
@@ -175,7 +167,7 @@ export const ArticleSlider: React.FC<ArticleSliderProps> = ({
                       )}
                     </div>
                   </div>
-                </article>
+                </button>
               </SwiperSlide>
             ))}
           </Swiper>

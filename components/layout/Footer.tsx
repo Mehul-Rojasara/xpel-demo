@@ -45,8 +45,8 @@ const ResourcesSection: React.FC<{ country: string; language: string }> = ({ cou
         className={`overflow-hidden transition-[max-height] duration-300 ease-in-out md:overflow-visible max-h-0 md:max-h-none ${isOpen ? "max-h-[800px]" : "max-h-0"}`}
       >
         <ul className="space-y-4 py-4 md:py-0">
-          {FOOTER_LINKS_DATA.resources.links.map((link, index) => (
-            <li key={`${link.label}-${index}`}>
+          {FOOTER_LINKS_DATA.resources.links.map((link) => (
+            <li key={link.id}>
               <Link
                 href={`/${country}/${language}${link.href}`}
                 className="text-neutral-300 para-small hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
@@ -82,8 +82,8 @@ const CompanySection: React.FC<{ country: string; language: string }> = ({ count
         className={`overflow-hidden transition-[max-height] duration-300 ease-in-out md:overflow-visible max-h-0 md:max-h-none ${isOpen ? "max-h-[800px]" : "max-h-0"}`}
       >
         <ul className="space-y-4 py-4 md:py-0">
-          {FOOTER_LINKS_DATA.company.links.map((link, index) => (
-            <li key={`${link.label}-${index}`}>
+          {FOOTER_LINKS_DATA.company.links.map((link) => (
+            <li key={link.id}>
               <Link
                 href={`/${country}/${language}${link.href}`}
                 className="text-neutral-300 para-small hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
@@ -119,8 +119,8 @@ const ContactSection: React.FC<{ country: string; language: string }> = ({ count
         className={`overflow-hidden transition-[max-height] duration-300 ease-in-out md:overflow-visible max-h-0 md:max-h-none ${isOpen ? "max-h-[800px]" : "max-h-0"}`}
       >
         <ul className="space-y-4 py-4 md:py-0">
-          {FOOTER_LINKS_DATA.contact.links.map((link, index) => (
-            <li key={`${link.label}-${index}`}>
+          {FOOTER_LINKS_DATA.contact.links.map((link) => (
+            <li key={link.id}>
               {"isPhone" in link && link.isPhone ? (
                 <a
                   href={link.href}
@@ -203,9 +203,9 @@ const SocialMediaIcons: React.FC = () => {
 
   return (
     <div className="flex space-x-4">
-      {FOOTER_LINKS_DATA.social.links.map((link, index) => (
+      {FOOTER_LINKS_DATA.social.links.map((link) => (
         <a
-          key={`${link.icon}-${index}`}
+          key={link.id}
           href={link.href}
           target="_blank"
           rel="noopener noreferrer"
@@ -223,9 +223,9 @@ const SocialMediaIcons: React.FC = () => {
 const LegalLinks: React.FC<{ country: string; language: string }> = ({ country, language }) => (
   <div className="flex flex-wrap items-center space-x-4 justify-center md:justify-start gap-y-4 text-sm">
     <span className="text-neutral-300 para-xsmall">© XPEL 2025</span>
-    {FOOTER_LINKS_DATA.legal.links.map((link, index) => (
+    {FOOTER_LINKS_DATA.legal.links.map((link) => (
       <Link
-        key={`${link.label}-${index}`}
+        key={link.id}
         href={`/${country}/${language}${link.href}`}
         className="text-neutral-300 para-xsmall hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
         title={link.description}

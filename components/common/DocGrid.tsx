@@ -4,6 +4,7 @@
 import React, { useState } from "react";
 
 interface LegalDoc {
+  readonly id: string;
   readonly title: string;
   readonly description: string;
   readonly pdfUrl: string;
@@ -42,9 +43,9 @@ export const DocsGrid: React.FC<DocsGridProps> = ({ documents, isCareerPage = fa
 
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredDocs.map((doc, index) => (
+          {filteredDocs.map((doc) => (
             <a
-              key={`${doc.title}-${index}`}
+              key={doc.id}
               href={
                 isCareerPage
                   ? "https://xpel.wd5.myworkdayjobs.com/XPEL_Careers"

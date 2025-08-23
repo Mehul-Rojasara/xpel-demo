@@ -17,6 +17,7 @@ export default async function ProductsPage({ params }: PageProps) {
   // Product category data based on the design
   const productCards = [
     {
+      id: "paint-protection-film",
       title: "Paint Protection Film",
       description:
         "A virtually invisible urethane film that protects your vehicle&apos;s paint from unsightly damage and maximizes re-sale value.",
@@ -26,6 +27,7 @@ export default async function ProductsPage({ params }: PageProps) {
       href: "/products/paint-protection-film",
     },
     {
+      id: "ceramic-coating",
       title: "Ceramic Coating",
       description:
         "Unrivaled gloss, superior hydrophobic protection, and improved scratch resistance with a single application.",
@@ -34,6 +36,7 @@ export default async function ProductsPage({ params }: PageProps) {
       href: "/products/ceramic-coating",
     },
     {
+      id: "window-film",
       title: "Window Film",
       description:
         "Enhance privacy, reduce infra-red heat, cut glare, and keep your skin & eyes safe from harmful UV rays.",
@@ -43,6 +46,7 @@ export default async function ProductsPage({ params }: PageProps) {
       href: "/products/window-film",
     },
     {
+      id: "headlight-protection-film",
       title: "Headlight Protection Film",
       description:
         "Give your vehicle the clarity and protection it deserves. Offering clear and tinted headlight protection film options.",

@@ -125,11 +125,11 @@ const DesktopHeader: React.FC<HeaderProps> = ({ country, language }) => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node;
       
-      if (navRef.current && navRef.current.contains(target)) {
+      if (navRef.current?.contains(target)) {
         return;
       }
       
-      if (dropdownRef.current && dropdownRef.current.contains(target)) {
+      if (dropdownRef.current?.contains(target)) {
         return;
       }
       
@@ -155,7 +155,7 @@ const DesktopHeader: React.FC<HeaderProps> = ({ country, language }) => {
       
       // Check if click is outside the search popup
       const searchPopup = document.querySelector('[data-search-popup]');
-      if (searchPopup && searchPopup.contains(target)) {
+      if (searchPopup?.contains(target)) {
         return;
       }
       
@@ -212,10 +212,8 @@ const DesktopHeader: React.FC<HeaderProps> = ({ country, language }) => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href={`/${country}/${language}`} className={`flex items-center text-2xl font-bold transition-colors ${
-              activeDropdown ? 'text-white hover:text-gray-200' : 'text-white hover:text-gray-200'
-            }`}>
-              <span className={`mr-1 ${activeDropdown ? 'text-white' : 'text-white'}`}>•••</span>
+            <Link href={`/${country}/${language}`} className="flex items-center text-2xl font-bold transition-colors text-white hover:text-gray-200">
+              <span className="mr-1 text-white">•••</span>
               XPEL
             </Link>
           </div>
@@ -232,15 +230,9 @@ const DesktopHeader: React.FC<HeaderProps> = ({ country, language }) => {
                     <li key={key} className="relative">
                 <button
                   type="button"
-                  className={`flex items-center space-x-1 px-3 py-2 text-sm font-medium transition-colors ${
-                          activeDropdown === link.dropdownType as DropdownType
-                      ? 'text-white' 
-                      : activeDropdown 
-                        ? 'text-white hover:text-gray-200' 
-                        : 'text-white hover:text-gray-200'
-                  }`}
-                        onClick={(event) => handleNavItemClick(link.dropdownType as DropdownType, event)}
-                        aria-expanded={activeDropdown === link.dropdownType as DropdownType}
+                  className="flex items-center space-x-1 px-3 py-2 text-sm font-medium transition-colors text-white hover:text-gray-200"
+                  onClick={(event) => handleNavItemClick(link.dropdownType as DropdownType, event)}
+                  aria-expanded={activeDropdown === link.dropdownType as DropdownType}
                   aria-haspopup="true"
                 >
                         <span>{link.label}</span>
@@ -253,9 +245,7 @@ const DesktopHeader: React.FC<HeaderProps> = ({ country, language }) => {
                     <li key={key}>
                       <Link 
                         href={`/${country}/${language}${link.href}`} 
-                        className={`px-3 py-2 text-sm font-medium transition-colors ${
-                          activeDropdown ? 'text-white hover:text-gray-200' : 'text-white hover:text-gray-200'
-                        }`}
+                        className="px-3 py-2 text-sm font-medium transition-colors text-white hover:text-gray-200"
                       >
                         {link.label}
                 </Link>
@@ -279,9 +269,7 @@ const DesktopHeader: React.FC<HeaderProps> = ({ country, language }) => {
               <li>
                 <button 
                   type="button" 
-                  className={`p-2 transition-colors ${
-                    activeDropdown ? 'text-white hover:text-gray-200' : 'text-white hover:text-gray-200'
-                  }`} 
+                  className="p-2 transition-colors text-white hover:text-gray-200" 
                   aria-label="Search"
                   onClick={handleSearchClick}
                 >
@@ -371,9 +359,9 @@ const DesktopHeader: React.FC<HeaderProps> = ({ country, language }) => {
                           <div>
                             <h4 className="font-semibold text-gray-900 mb-4">{HEADER_DROPDOWN_CONTENT.products.detailColumns?.protectionFilm.title}</h4>
                             <div className="space-y-3">
-                              {HEADER_DROPDOWN_CONTENT.products.detailColumns?.protectionFilm.products?.map((product, index) => (
+                              {HEADER_DROPDOWN_CONTENT.products.detailColumns?.protectionFilm.products?.map((product) => (
                                 <Link 
-                                  key={`${product.label}-${index}`}
+                                  key={product.id}
                                   href={`/${country}/${language}${product.href}`} 
                                   className="block text-gray-600 hover:text-blue-600 hover:bg-gray-50 p-2 rounded"
                                 >
@@ -387,9 +375,9 @@ const DesktopHeader: React.FC<HeaderProps> = ({ country, language }) => {
                           <div>
                             <h4 className="font-semibold text-gray-900 mb-4">{HEADER_DROPDOWN_CONTENT.products.detailColumns?.windowFilm.title}</h4>
                             <div className="space-y-3">
-                              {HEADER_DROPDOWN_CONTENT.products.detailColumns?.windowFilm.products?.map((product, index) => (
+                              {HEADER_DROPDOWN_CONTENT.products.detailColumns?.windowFilm.products?.map((product) => (
                                 <Link 
-                                  key={`${product.label}-${index}`}
+                                  key={product.id}
                                   href={`/${country}/${language}${product.href}`} 
                                   className="block text-gray-600 hover:text-blue-600 hover:bg-gray-50 p-2 rounded"
                                 >
@@ -403,9 +391,9 @@ const DesktopHeader: React.FC<HeaderProps> = ({ country, language }) => {
                           <div>
                             <h4 className="font-semibold text-gray-900 mb-4">{HEADER_DROPDOWN_CONTENT.products.detailColumns?.ceramicCoating.title}</h4>
                             <div className="space-y-3">
-                              {HEADER_DROPDOWN_CONTENT.products.detailColumns?.ceramicCoating.products?.map((product, index) => (
+                              {HEADER_DROPDOWN_CONTENT.products.detailColumns?.ceramicCoating.products?.map((product) => (
                                 <Link 
-                                  key={`${product.label}-${index}`}
+                                  key={product.id}
                                   href={`/${country}/${language}${product.href}`} 
                                   className="block text-gray-600 hover:text-blue-600 hover:bg-gray-50 p-2 rounded"
                                 >
@@ -419,9 +407,9 @@ const DesktopHeader: React.FC<HeaderProps> = ({ country, language }) => {
                           <div className="border-l border-gray-200 pl-8">
                             <h4 className="font-semibold text-gray-900 mb-4">{HEADER_DROPDOWN_CONTENT.products.detailColumns?.resources.title}</h4>
                             <div className="space-y-3">
-                              {HEADER_DROPDOWN_CONTENT.products.detailColumns?.resources.links?.map((link, index) => (
+                              {HEADER_DROPDOWN_CONTENT.products.detailColumns?.resources.links?.map((link) => (
                                 <Link 
-                                  key={`${link.label}-${index}`}
+                                  key={link.id}
                                   href={`/${country}/${language}${link.href}`} 
                                   className="block text-gray-600 hover:text-blue-600"
                                 >
@@ -443,9 +431,9 @@ const DesktopHeader: React.FC<HeaderProps> = ({ country, language }) => {
                       <h3 className="text-lg font-semibold text-gray-900 mb-4">{HEADER_DROPDOWN_CONTENT.resources.title}</h3>
                       <p className="text-gray-600 mb-6">{HEADER_DROPDOWN_CONTENT.resources.description}</p>
                       <div className="grid grid-cols-2 gap-4">
-                        {HEADER_DROPDOWN_CONTENT.resources.links?.map((link, index) => (
+                        {HEADER_DROPDOWN_CONTENT.resources.links?.map((link) => (
                           <Link 
-                            key={`${link.label}-${index}`}
+                            key={link.id}
                             href={`/${country}/${language}${link.href}`} 
                             className="flex items-center text-gray-600 hover:text-blue-600"
                           >
@@ -477,9 +465,9 @@ const DesktopHeader: React.FC<HeaderProps> = ({ country, language }) => {
                       <div>
                         <h3 className="text-lg font-semibold text-gray-900 mb-4">Connect</h3>
                         <div className="space-y-3">
-                          {HEADER_DROPDOWN_CONTENT.resources.connectLinks?.map((link, index) => (
+                          {HEADER_DROPDOWN_CONTENT.resources.connectLinks?.map((link) => (
                             <Link 
-                              key={index}
+                              key={link.id}
                               href={`/${country}/${language}${link.href}`} 
                               className="block text-gray-600 hover:text-blue-600"
                             >
@@ -745,16 +733,16 @@ const MobileSidebar: React.FC<HeaderProps> = ({ country, language }) => {
                                 Overview
                               </Link>
                             </li>
-                            {category.products.map((product, index) => (
-                              <li key={`${product.label}-${index}`}>
+                            {category.products.map((product) => (
+                              <li key={product.id}>
                                 <Link 
                                   href={`/${country}/${language}${product.href}`} 
                                   className="block px-8 py-2 text-sm text-gray-600 hover:text-blue-600" 
                                   onClick={handleMenuClose}
                                 >
                                   {product.label}
-                              </Link>
-                            </li>
+                                </Link>
+                              </li>
                             ))}
                           </ul>
                         )}
@@ -803,8 +791,8 @@ const MobileSidebar: React.FC<HeaderProps> = ({ country, language }) => {
                     {/* Resources Links */}
                     <div className="mb-6">
                       <ul>
-                        {HEADER_DROPDOWN_CONTENT.resources.links?.map((link, index) => (
-                          <li key={`${link.label}-${index}`}>
+                        {HEADER_DROPDOWN_CONTENT.resources.links?.map((link) => (
+                          <li key={link.id}>
                             <Link 
                               href={`/${country}/${language}${link.href}`} 
                               className="flex items-center px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50" 
@@ -812,8 +800,8 @@ const MobileSidebar: React.FC<HeaderProps> = ({ country, language }) => {
                             >
                               {link.iconType && renderIcon(link.iconType, "w-5 h-5 mr-3")}
                               {link.label}
-                          </Link>
-                        </li>
+                            </Link>
+                          </li>
                         ))}
                       </ul>
                     </div>
@@ -822,38 +810,18 @@ const MobileSidebar: React.FC<HeaderProps> = ({ country, language }) => {
                     <div className="mb-6">
                       <h3 className="px-4 py-2 text-sm font-medium text-gray-500 uppercase tracking-wider">Connect</h3>
                       <ul>
-                        {HEADER_DROPDOWN_CONTENT.resources.connectLinks?.map((link, index) => (
-                          <li key={`${link.label}-${index}`}>
+                        {HEADER_DROPDOWN_CONTENT.resources.connectLinks?.map((link) => (
+                          <li key={link.id}>
                             <Link 
-                              href={`/${country}/${language}${link.href}`} 
-                              className="block px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50" 
+                              href={`/${country}/${language}${link.href}`}
+                              className="flex items-center px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50" 
                               onClick={handleMenuClose}
                             >
                               {link.label}
-                          </Link>
-                        </li>
+                            </Link>
+                          </li>
                         ))}
                       </ul>
-                    </div>
-
-                    {/* Featured Content Card */}
-                    <div className="px-4">
-                      <div className="bg-gray-50 rounded-lg overflow-hidden">
-                        <div className="w-full h-24 bg-gray-200">
-                          <Image 
-                            src={HEADER_DROPDOWN_CONTENT.resources.featuredContent?.image.src || ''}
-                            alt={HEADER_DROPDOWN_CONTENT.resources.featuredContent?.image.alt || ''}
-                            width={HEADER_DROPDOWN_CONTENT.resources.featuredContent?.image.width || 320}
-                            height={HEADER_DROPDOWN_CONTENT.resources.featuredContent?.image.height || 96}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                        <div className="p-3">
-                          <p className="text-sm text-gray-700">
-                            {HEADER_DROPDOWN_CONTENT.resources.featuredContent?.title}
-                          </p>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -865,36 +833,3 @@ const MobileSidebar: React.FC<HeaderProps> = ({ country, language }) => {
     </>
   );
 };
-
-// Main Header Component with Responsive Logic
-export const Header: React.FC<HeaderProps> = ({ country, language }) => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  const checkScreenSize = useCallback(() => {
-    setIsMobile(window.innerWidth < BREAKPOINTS.MOBILE);
-  }, []);
-
-  useEffect(() => {
-    checkScreenSize();
-    
-    const handleResize = () => {
-      checkScreenSize();
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [checkScreenSize]);
-
-  const HeaderComponent = useMemo(() => {
-    return isMobile ? (
-      <MobileSidebar country={country} language={language} />
-    ) : (
-      <DesktopHeader country={country} language={language} />
-    );
-  }, [isMobile, country, language]);
-
-  return HeaderComponent;
-}; 

@@ -48,6 +48,7 @@ export const DapNext: React.FC<DapNextProps> = () => {
         className="section-spacing-y"
         benefits={[
             {
+                id: "job-scheduling",
                 icon: (
                   <span className="icon-Events" aria-hidden="true">
                   </span>
@@ -60,6 +61,7 @@ export const DapNext: React.FC<DapNextProps> = () => {
                 imageAlt: "Installer locator feature"
               },
               {
+                id: "global-measurement",
                 icon: (
                   <span className="icon-User" aria-hidden="true">
                   </span>
@@ -71,6 +73,7 @@ export const DapNext: React.FC<DapNextProps> = () => {
                 imageAlt: "Global customer service"
               },
               {
+                id: "selection-multi-selection",
                 icon: (
                   <span className="icon-Become-a-Dealer" aria-hidden="true">
                   </span>
@@ -82,6 +85,7 @@ export const DapNext: React.FC<DapNextProps> = () => {
                 imageAlt: "Sales professional help"
               },
               {
+                id: "dap-web-mobile",
                 icon: (
                   <span className="icon-Newsroom" aria-hidden="true">
                   </span>
@@ -109,6 +113,7 @@ export const DapNext: React.FC<DapNextProps> = () => {
         className="section-spacing-y"
         benefits={[
             {
+                id: "job-scheduling-2",
                 icon: (
                   <span className="icon-Xpel-Installer" aria-hidden="true">
                   </span>
@@ -121,6 +126,7 @@ export const DapNext: React.FC<DapNextProps> = () => {
                 imageAlt: "Installer locator feature"
               },
               {
+                id: "global-measurement-2",
                 icon: (
                   <span className="icon-User" aria-hidden="true">
                   </span>
@@ -132,6 +138,7 @@ export const DapNext: React.FC<DapNextProps> = () => {
                 imageAlt: "Global customer service"
               },
               {
+                id: "selection-multi-selection-2",
                 icon: (
                   <span className="icon-Become-a-Dealer" aria-hidden="true">
                   </span>
@@ -143,6 +150,7 @@ export const DapNext: React.FC<DapNextProps> = () => {
                 imageAlt: "Sales professional help"
               },
               {
+                id: "dap-web-mobile-2",
                 icon: (
                   <span className="icon-Newsroom" aria-hidden="true">
                   </span>

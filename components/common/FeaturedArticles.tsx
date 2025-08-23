@@ -82,7 +82,6 @@ export const FeaturedArticles: React.FC<FeaturedArticlesProps> = ({
                     isExpanded ? 'w-full lg:w-[41rem] h-auto lg:h-[39.5rem] min-h-[17.5rem] md:min-h-[18.75rem] lg:min-h-[39.5rem]' : 'w-full lg:w-[20rem] h-auto lg:h-[39.5rem] min-h-[17.5rem] md:min-h-[18.75rem] lg:min-h-[39.5rem]'
                   }`}
                   onMouseEnter={() => handleCardHover(index)}
-                  role="article"
                 >
                   {/* Image Container - Fixed Height */}
                   <div className="relative overflow-hidden h-[11.25rem] min-h-[11.25rem] md:h-[12.5rem] md:min-h-[12.5rem] lg:h-[25rem] lg:min-h-[25rem] flex-shrink-0 rounded-[1.25rem] w-full transition-transform duration-300 ease-in-out">

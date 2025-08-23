@@ -2,25 +2,37 @@ import React from 'react';
 import Container from '@/components/ui/Container';
 
 interface OfficeCard {
+  readonly id: string;
   readonly company: string;
   readonly address: string;
-  readonly phone: readonly string[];
+  readonly phone: ReadonlyArray<{
+    readonly id: string;
+    readonly number: string;
+  }>;
   readonly email: string;
   readonly hours: string;
 }
 
 const officeData: OfficeCard[] = [
   {
+    id: 'xpel-usa',
     company: 'XPEL, Inc.',
     address: '618 W Sunset Rd, San Antonio, TX 78216, United States',
-    phone: ['+1 (210) 678-3701', '(800) 447-9928'],
+    phone: [
+      { id: 'usa-phone-1', number: '+1 (210) 678-3701' },
+      { id: 'usa-phone-2', number: '(800) 447-9928' }
+    ],
     email: 'support@XPEL.com',
     hours: '8:30am - 5:30pm CST'
   },
   {
+    id: 'xpel-india',
     company: 'XPEL India Private Limited',
     address: '38/3, Agara, Sarjapur Road(next to Jakkasandra) Koramangala Post, Bengaluru 500034, India',
-    phone: ['+91 79941 35598', '+91 79727 02628'],
+    phone: [
+      { id: 'india-phone-1', number: '+91 79941 35598' },
+      { id: 'india-phone-2', number: '+91 79727 02628' }
+    ],
     email: 'support@XPELindia.in',
     hours: '8:30 - 5:30 EST'
   }
@@ -37,8 +49,8 @@ export const CorporateOfficesSection: React.FC = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {officeData.map((office, index) => (
-            <OfficeCard key={`${office.company}-${index}`} office={office} />
+          {officeData.map((office) => (
+            <OfficeCard key={office.id} office={office} />
           ))}
         </div>
       </Container>
@@ -72,9 +84,9 @@ const OfficeCard: React.FC<{ office: OfficeCard }> = ({ office }) => {
       <div className="space-y-4">
         {/* Phone Numbers */}
         <div>
-          {office.phone.map((phone, index) => (
-            <p key={`${phone}-${index}`} className="font-sans text-neutral-900 leading-[150%] tracking-[0.01em] font-[450] text-[1.125rem] mb-2">
-              {phone}
+          {office.phone.map((phone) => (
+            <p key={phone.id} className="font-sans text-neutral-900 leading-[150%] tracking-[0.01em] font-[450] text-[1.125rem] mb-2">
+              {phone.number}
             </p>
           ))}
         </div>

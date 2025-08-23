@@ -77,7 +77,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
   const handleChange = (field: keyof ContactFormData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: undefined }));
+      setErrors(prev => ({ ...prev, [field]: '' }));
     }
   };
 

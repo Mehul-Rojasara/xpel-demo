@@ -6,6 +6,7 @@ import { PlotterDriver } from '@/config/plotterSupport';
 
 interface PlotterCardProps {
   readonly brand: {
+    readonly id: string;
     readonly title: string;
     readonly description: string;
     readonly drivers: readonly PlotterDriver[];
@@ -42,8 +43,8 @@ export const PlotterCard: React.FC<PlotterCardProps> = ({
 
       {/* Drivers List */}
       <div className="space-y-4">
-        {brand.drivers.map((driver, driverIndex) => (
-          <div key={driverIndex} className="bg-neutral-100 rounded-lg p-4 border border-neutral-200">
+        {brand.drivers.map((driver) => (
+          <div key={driver.id} className="bg-neutral-100 rounded-lg p-4 border border-neutral-200">
             <div className="mb-3">
               <h4 className="font-semibold text-lg text-neutral-900 mb-2">
                 {driver.name}

@@ -1,12 +1,12 @@
 'use client';
 
-import React from 'react';
+import React, { useId } from 'react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/Button';
 import VideoPlayer from './VideoPlayer';
 import Container from '@/components/ui/Container';
 
 interface ButtonConfig {
+  readonly id: string;
   readonly text: string;
   readonly href: string;
   readonly variant?: 'primary' | 'secondary' | 'tertiary';
@@ -78,6 +78,7 @@ const HeroBannerSection: React.FC<HeroBannerSectionProps> = ({
   dotSize = 'md',
   testDuration
 }) => {
+  
   const textColorClasses = {
     white: 'text-white',
     dark: 'text-neutral-900'
@@ -89,23 +90,39 @@ const HeroBannerSection: React.FC<HeroBannerSectionProps> = ({
     right: 'text-right'
   };
 
-  // Legacy support - if buttons not provided, use legacy props
-  const finalButtons = buttons.length > 0 ? buttons : (ctaText && ctaHref ? [{
-    text: ctaText,
-    href: ctaHref,
-    variant: 'primary' as const,
-    buttonStyle: 'filled' as const,
-    size: 'lg' as const,
-    background: 'dark' as const
-  }] : []);
+  // Determine final buttons array
+  let finalButtons = buttons;
+  
+  if (finalButtons.length === 0 && ctaText && ctaHref) {
+    finalButtons = [{
+      id: finalButtons[0].id,
+      text: ctaText,
+      href: ctaHref,
+      variant: 'primary' as const,
+      buttonStyle: 'filled' as const,
+      size: 'lg' as const,
+      background: 'dark' as const
+    }];
+  }
 
   // Use eyebrowText if provided, otherwise fall back to smallHeading
   const eyebrow = eyebrowText || smallHeading;
 
+  // Determine button container alignment
+  const getButtonAlignment = (alignment: string) => {
+    switch (alignment) {
+      case 'center':
+        return 'justify-center';
+      case 'right':
+        return 'justify-end';
+      default:
+        return 'justify-start';
+    }
+  };
+
   return (
-    <section 
+    <header 
       className={`relative w-full h-screen min-h-[37.5rem] overflow-hidden bg-neutral-600 ${className}`}
-      role="banner"
       aria-label="Video hero banner"
     >
       {/* Background Video */}
@@ -138,34 +155,34 @@ const HeroBannerSection: React.FC<HeroBannerSectionProps> = ({
       />
 
       {/* Content Container */}
-      <div className="relative z-10 flex items-start md:items-center justify-center h-full pt-24 md:pt-9 pb-6 md:pb-20">
+      <div className="relative z-10 flex items-start md:items-center justify-center h-full pt-[2.65rem] lg:pt-0 pb-6 md:pb-20 xl:pb-0">
         <Container className="w-full">
           <div className={`max-w-2xl ${textAlignmentClasses[textAlignment]}`}>
             {/* Eyebrow Text */}
             {eyebrow && (
-              <h3 
-                className={`font-h4 font-medium tracking-widest uppercase mb-4 font-display ${textColorClasses[textColor]}`}
+              <p 
+                className={`para-medium font-medium tracking-widest uppercase mb-[2px] font-display ${textColorClasses[textColor]}`}
               >
                 {eyebrow}
-              </h3>
+              </p>
             )}
 
             {/* Main Headline - Using style guide typography classes */}
             {React.createElement(
               titleAs,
               {
-                className: `font-h1 font-bold leading-normal tracking-tight mb-6 font-display ${textColorClasses[textColor]}`
+                className: `font-h1 font-bold leading-normal tracking-tight mb-[18px] font-display ${textColorClasses[textColor]}`
               },
               headline
             )}
 
             {/* Subtitle */}
             {subtitle && (
-              <h4 
-                className={`font-h4 mb-4 leading-[120%] tracking-tight font-display ${textColorClasses[textColor]} opacity-90`}
+              <h2 
+                className={`para-large mb-4 leading-loose tracking-tight font-sans ${textColorClasses[textColor]} opacity-90`}
               >
                 {subtitle}
-              </h4>
+              </h2>
             )}
 
             {/* Description */}
@@ -179,18 +196,10 @@ const HeroBannerSection: React.FC<HeroBannerSectionProps> = ({
 
             {/* Buttons */}
             {finalButtons.length > 0 && (
-              <div className={`flex flex-row flex-wrap gap-4 sm:gap-6 ${textAlignment === 'center' ? 'justify-center' : textAlignment === 'right' ? 'justify-end' : 'justify-start'}`}>
+              <div className={`flex flex-row flex-wrap gap-4 sm:gap-6 mt-[30px] ${textAlignment === 'center' ? 'justify-center' : textAlignment === 'right' ? 'justify-end' : 'justify-start'}`}>
                 {finalButtons.map((button, index) => (
-                  <Link key={`${button.text}-${index}`} href={button.href} passHref>
-                    <Button
-                      variant={button.variant || 'primary'}
-                      buttonStyle={button.buttonStyle || 'filled'}
-                      size="lg"
-                      background="light"
-                      className="w-auto sm:w-auto px-8 py-4 bg-[#FFB81C] text-neutral-900 hover:bg-[#E6A619] transition-all duration-300 transform hover:scale-105 font-semibold font-display text-lg tracking-wide rounded-full shadow-lg hover:shadow-xl"
-                    >
-                      {button.text}
-                    </Button>
+                  <Link key={`${button.text}-${index}`} href={button.href} passHref className='btn btn-primary btn-min-width btn-primary-bg-white'>
+                    {button.text}
                   </Link>
                 ))}
               </div>
@@ -198,7 +207,7 @@ const HeroBannerSection: React.FC<HeroBannerSectionProps> = ({
           </div>
         </Container>
       </div>
-    </section>
+    </header>
   );
 };
 

@@ -48,6 +48,55 @@ export default async function AboutUs({ params }: PageProps) {
         imageSrc="/images/about-us/become-installer.png"
         imageAlt="Person applying protective film to orange sports car"
         defaultSelectedIndex={0}
+        className="section-spacing-y"
+        benefits={[
+          {
+            id: "job-scheduling-about",
+            icon: (
+              <span className="icon-Xpel-Installer" aria-hidden="true">
+              </span>
+            ),
+            title: "All New Job Scheduling System",
+            description: "Our new in-app translator feature allows you to switch between languages seamlessly. You can now browse and enjoy our services in your preferred language, making your experience with us even more convenient and enjoyable.",
+            linkText: "Learn More",
+            linkHref: "/installer-locator",
+            imageSrc: "/images/dapNext/dapNextfeature.jpg",
+            imageAlt: "Installer locator feature"
+          },
+          {
+            id: "global-measurement-about",
+            icon: (
+              <span className="icon-User" aria-hidden="true">
+              </span>
+            ),
+            title: "Global Measurement Support",
+            description: "",
+            imageSrc: "/images/installerBenefitsSection/become-an-installer.jpg",
+            imageAlt: "Global customer service"
+          },
+          {
+            id: "selection-multi-selection-about",
+            icon: (
+              <span className="icon-Become-a-Dealer" aria-hidden="true">
+              </span>
+            ),
+            title: "Selection & Multi-Selection",
+            description: "",
+            imageSrc: "/images/installerBenefitsSection/explore-product-lineup.jpg",
+            imageAlt: "Sales professional help"
+          },
+          {
+            id: "dap-web-mobile-about",
+            icon: (
+              <span className="icon-Newsroom" aria-hidden="true">
+              </span>
+            ),
+            title: "DAP Web with Mobile Support",
+            description: "",
+            imageSrc: "/images/header/paint-protection-film.webp",
+            imageAlt: "Branding and marketing resources"
+          },
+        ]}
       />
       <RacingStats />
 

@@ -109,7 +109,7 @@ export const PaintProtectionSection: React.FC<PaintProtectionSectionProps> = ({
                       <button
                         type="button"
                         onClick={handlePlayPause}
-                        className="absolute bottom-6 right-6 border border-solid border-[rgba(255,255,255,.25)] bg-[#212d4259] backdrop-blur-[.5625rem] text-white rounded-full hover:opacity-90 focus:outline-none transition-all duration-400 w-10 h-10 flex items-center justify-center z-20"
+                        className="absolute bottom-6 right-6 border border-solid border-[rgba(255,255,255,.25)] bg-[#212d4259] backdrop-blur-[.5625rem] text-white rounded-full hover:opacity-90 focus:outline-none transition-all duration-300 w-10 h-10 flex items-center justify-center z-20"
                       >
                         <i className={`${isPlaying ? "ml-px icon-Pause" : "ml-[0.188rem] icon-Play"} text-xs`}></i>
                       </button>

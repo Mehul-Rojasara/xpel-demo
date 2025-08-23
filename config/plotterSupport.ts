@@ -1,4 +1,5 @@
 export interface PlotterDriver {
+  readonly id: string;
   readonly name: string;
   readonly version: string;
   readonly size: string;
@@ -9,6 +10,7 @@ export interface PlotterDriver {
 }
 
 export interface PlotterBrand {
+  readonly id: string;
   readonly title: string;
   readonly description: string;
   readonly drivers: readonly PlotterDriver[];
@@ -16,10 +18,12 @@ export interface PlotterBrand {
 
 export const PLOTTER_SUPPORT_DATA: PlotterBrand[] = [
   {
+    id: "summa-plotter",
     title: "Summa Plotter Drivers",
     description: "Download the latest drivers for Summa S2, S3, and other Summa plotter models. Compatible with Windows and macOS operating systems.",
     drivers: [
       {
+        id: "summa-s2-s3-windows",
         name: "Summa S2/S3 Driver",
         version: "2.1.4",
         size: "45.2 MB",
@@ -29,6 +33,7 @@ export const PLOTTER_SUPPORT_DATA: PlotterBrand[] = [
         fileType: "exe"
       },
       {
+        id: "summa-s2-s3-macos",
         name: "Summa S2/S3 Driver",
         version: "2.1.4",
         size: "52.1 MB",
@@ -40,10 +45,12 @@ export const PLOTTER_SUPPORT_DATA: PlotterBrand[] = [
     ]
   },
   {
+    id: "graphtec-plotter",
     title: "Graphtec Plotter Drivers",
     description: "Get the latest drivers for Graphtec FC series and other Graphtec plotter models. Optimized for XPEL software compatibility.",
     drivers: [
       {
+        id: "graphtec-fc-windows",
         name: "Graphtec FC Series Driver",
         version: "1.8.2",
         size: "38.7 MB",
@@ -53,6 +60,7 @@ export const PLOTTER_SUPPORT_DATA: PlotterBrand[] = [
         fileType: "exe"
       },
       {
+        id: "graphtec-fc-macos",
         name: "Graphtec FC Series Driver",
         version: "1.8.2",
         size: "41.3 MB",
@@ -64,10 +72,12 @@ export const PLOTTER_SUPPORT_DATA: PlotterBrand[] = [
     ]
   },
   {
+    id: "roland-plotter",
     title: "Roland Plotter Drivers",
     description: "Download Roland GX series drivers and other Roland plotter drivers. Tested and certified for XPEL paint protection film cutting.",
     drivers: [
       {
+        id: "roland-gx-windows",
         name: "Roland GX Series Driver",
         version: "3.2.1",
         size: "42.8 MB",
@@ -77,6 +87,7 @@ export const PLOTTER_SUPPORT_DATA: PlotterBrand[] = [
         fileType: "exe"
       },
       {
+        id: "roland-gx-macos",
         name: "Roland GX Series Driver",
         version: "3.2.1",
         size: "48.5 MB",

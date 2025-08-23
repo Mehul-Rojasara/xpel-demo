@@ -1,9 +1,11 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
-
+import { usePathname } from "next/navigation";
 interface BannerButton {
+  readonly id: string;
   readonly label: string;
   readonly href: string;
   readonly variant?: "primary" | "secondary" | "tertiary";
@@ -45,6 +47,8 @@ export const Banner: React.FC<BannerProps> = ({
   variant = "promotional",
   overlay = "light",
 }) => {
+  const pathname = usePathname();
+
   return (
     <section
       className={`relative w-full h-[40rem] md:h-[42.5rem] lg:h-[45rem] ${className}`}
@@ -66,7 +70,7 @@ export const Banner: React.FC<BannerProps> = ({
               {content.backButton && (
                 <Link
                   href={content.backButton.href}
-                  className="inline-flex items-center justify-center h-10 px-6 py-2 border border-solid border-[rgba(255,255,255,.25)] bg-[#212d4259] backdrop-blur-[.5625rem] text-white rounded-full mb-6 lg:mb-4 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 transition-all duration-400  min-w-[7.625rem] para-xsmall"
+                  className="btn-blur  mb-6 lg:mb-4"
                   aria-label={`Go back to ${content.backButton.label}`}
                 >
                   <i className="icon-Arrow-Left text-sm mr-2.5 text-white flex items-center" aria-hidden="true"></i>
@@ -103,11 +107,11 @@ export const Banner: React.FC<BannerProps> = ({
                     content.buttons && content.buttons.length === 2 ? "flex-col" : "flex-row"
                   }`}
                 >
-                  {content.buttons.map((button, index) => (
+                  {content.buttons.map((button) => (
                     <button
                       type="button"
-                      className={`btn ${index === 0 ? "btn-secondary" : "btn-primary"} btn-with-icon`}
-                      key={index}
+                      className={`btn ${button.variant === "secondary" ? "btn-secondary" : "btn-primary"} btn-with-icon`}
+                      key={button.id}
                     >
                       {button.label}
                       <span className="icon-Arrow-Right btn-icon"></span>

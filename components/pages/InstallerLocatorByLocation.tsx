@@ -57,6 +57,7 @@ export const InstallerLocatorByLocation: React.FC<BecomeAnInstallerPageProps> = 
           description: "",
           buttons: [
             {
+              id: "search-by-map",
               label: "Search By Map",
               href: "/coverage-options",
               variant: "primary",

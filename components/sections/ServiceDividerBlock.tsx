@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Container from '@/components/ui/Container';
 
 interface ServiceBlock {
+  readonly id: string;
   readonly title: string;
   readonly description: string;
   readonly ctaText: string;
@@ -23,8 +24,8 @@ export const ServiceDividerBlock: React.FC<ServiceDividerBlockProps> = ({
     <section className={`bg-gray-900 py-16 md:py-20 ${className}`}>
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-          {blocks.map((block, index) => (
-            <div key={`${block.title}-${index}`} className="text-center">
+          {blocks.map((block) => (
+            <div key={block.id} className="text-center">
               {/* Icon */}
               <div className="flex justify-center mb-6">
                 <div className="w-12 h-12 text-white">

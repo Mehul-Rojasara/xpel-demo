@@ -40,6 +40,7 @@ export const BecomeDealer: React.FC<BBecomeDealerPageProps> = () => {
             //   variant: "primary"
             // },
             {
+              id: "learn-more",
               label: "Learn More",
               href: "/coverage-options",
               arrow: false,

@@ -42,7 +42,6 @@ export const UniversalUsageSection: React.FC<UniversalUsageSectionProps> = ({
   return (
     <section
       className={`lg:section-spacing-bottom text-neutral-900 ${className}`}
-      role="region"
       aria-label="Universal usage applications"
     >
       <Container>

@@ -50,9 +50,9 @@ export default function PlotterSupportPage() {
         >
           <Container>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-              {PLOTTER_SUPPORT_DATA.map((brand: PlotterBrand, index: number) => (
+              {PLOTTER_SUPPORT_DATA.map((brand: PlotterBrand) => (
                 <PlotterCard
-                  key={`${brand.title}-${index}`}
+                  key={brand.id}
                   brand={brand}
                   downloading={downloading}
                   onDownload={handleDownload}

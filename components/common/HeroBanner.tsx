@@ -55,9 +55,8 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
   };
 
   return (
-    <section 
+    <header 
       className={`relative w-full h-screen min-h-[37.5rem] overflow-hidden ${className}`}
-      role="banner"
       aria-label="Hero banner"
     >
       {/* Background Image */}
@@ -147,7 +146,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
           </div>
         </div>
       )}
-    </section>
+    </header>
   );
 };
 

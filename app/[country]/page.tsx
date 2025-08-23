@@ -70,10 +70,10 @@ export default async function CountryPage({ params }: CountryPageProps) {
             <p>Description: {homepageData.data?.all_homepage?.items?.[0]?.description || 'No description'}</p>
             
             {/* Display modular blocks */}
-            {homepageData.data?.all_homepage?.items?.[0]?.modular_blocks?.map((block: ModularBlock, index: number) => {
-              const typedBlock = block as { __typename: string; mill?: { hero: { title: string; subtitle: string; cta_text: string; cta_link?: { title: string; href: string } } } };
+            {homepageData.data?.all_homepage?.items?.[0]?.modular_blocks?.map((block: ModularBlock) => {
+              const typedBlock = block as { id: string; __typename: string; mill?: { hero: { title: string; subtitle: string; cta_text: string; cta_link?: { title: string; href: string } } } };
               return (
-                <div key={`${typedBlock.__typename}-${index}`} className="modular-block">
+                <div key={block.id} className="modular-block">
                   <h3>Block Type: {typedBlock.__typename}</h3>
                   {typedBlock.mill?.hero && (
                     <div className="hero-section">
@@ -125,10 +125,10 @@ export default async function CountryPage({ params }: CountryPageProps) {
             <p>Description: {homepageData.data?.all_homepage?.items?.[0]?.description || 'No description'}</p>
             
             {/* Display modular blocks */}
-            {homepageData.data?.all_homepage?.items?.[0]?.modular_blocks?.map((block: ModularBlock, index: number) => {
-              const typedBlock = block as { __typename: string; mill?: { hero: { title: string; subtitle: string; cta_text: string; cta_link?: { title: string; href: string } } } };
+            {homepageData.data?.all_homepage?.items?.[0]?.modular_blocks?.map((block: ModularBlock) => {
+              const typedBlock = block as { id: string; __typename: string; mill?: { hero: { title: string; subtitle: string; cta_text: string; cta_link?: { title: string; href: string } } } };
               return (
-                <div key={`${typedBlock.__typename}-${index}`} className="modular-block">
+                <div key={block.id} className="modular-block">
                   <h3>Block Type: {typedBlock.__typename}</h3>
                   {typedBlock.mill?.hero && (
                     <div className="hero-section">

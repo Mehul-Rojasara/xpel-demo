@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import { HomePage } from '@/components/pages/HomePage';
 
 export interface ModularBlock {
+  readonly id: string;
   readonly __typename: string;
   readonly mill?: {
     readonly hero: {
@@ -144,7 +145,7 @@ export async function generateStaticParams() {
       commonPages.map(page => ({
         country,
         language,
-        slug: page ? [page] : undefined,
+        slug: page ? [page] : [],
       }))
     )
   );

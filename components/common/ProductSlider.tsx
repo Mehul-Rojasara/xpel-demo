@@ -23,13 +23,11 @@ interface ProductCard {
 
 interface ProductSliderProps {
   readonly title: string;
-  readonly subtitle?: string;
   readonly products: readonly ProductCard[];
   readonly className?: string;
   readonly showNavigation?: boolean;
   readonly showProgress?: boolean;
   readonly cardsPerView?: number;
-  readonly gap?: number;
   readonly background?: 'dark' | 'light';
   readonly showButton?: boolean;
   readonly buttonText?: string;
@@ -185,10 +183,8 @@ export const ProductSlider: React.FC<ProductSliderProps> = ({
     };
   }, [currentIndex, maxIndex, nextSlide, prevSlide]);
 
-
-
   return (
-    <section className={`py-16 sm:py-20 lg:py-[7.5rem] product-slider overflow-hidden ${backgroundClasses[background]} ${className}`} role="region" aria-label="Product offerings">
+    <section className={`py-16 sm:py-20 lg:py-[7.5rem] product-slider overflow-hidden ${backgroundClasses[background]} ${className}`} aria-label="Product offerings">
       <Container>
         {/* Header */}
         <div className={`mb-8 sm:mb-12 lg:mb-16 ${showButton ? 'flex items-center justify-between' : ''}`}>
@@ -250,7 +246,7 @@ export const ProductSlider: React.FC<ProductSliderProps> = ({
 
           {/* Slider Track - Full width with proper overflow */}
           <div className="w-full">
-            <div 
+            <section 
               className="flex transition-transform duration-500 ease-in-out product-list gap-4 sm:gap-6 cursor-grab active:cursor-grabbing touch-pan-y"
               style={{
                 transform: `translateX(-${currentIndex * (100 / responsiveCardsPerView)}%)`
@@ -262,14 +258,13 @@ export const ProductSlider: React.FC<ProductSliderProps> = ({
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
-              role="region"
               aria-label="Product slider"
               aria-live="polite"
               aria-atomic="false"
             >
-              {products.map((product) => (
+              {products.map((product, index) => (
                 <ProductCard
-                  key={product.id}
+                  key={`${product.id}-${index}`}
                   id={product.id}
                   title={product.title}
                   price={product.price}
@@ -281,18 +276,23 @@ export const ProductSlider: React.FC<ProductSliderProps> = ({
                   onClick={product.onClick}
                 />
               ))}
-            </div>
+            </section>
           </div>
 
           {/* Progress Bar */}
           {showProgress && products.length > responsiveCardsPerView && (
             <div className="mt-8 sm:mt-12 flex justify-center">
-              <div className="w-24 sm:w-32 h-1 bg-neutral-200 rounded-full overflow-hidden" role="progressbar" aria-valuenow={progressPercentage} aria-valuemin={0} aria-valuemax={100} aria-label="Progress bar">
+              <progress 
+                className="w-24 sm:w-32 h-1 bg-neutral-200 rounded-full overflow-hidden" 
+                value={progressPercentage} 
+                max={100} 
+                aria-label="Progress bar"
+              >
                 <div 
                   className="h-full bg-neutral-900 transition-all duration-500 ease-in-out"
                   style={{ width: `${progressPercentage}%` }}
                 />
-              </div>
+              </progress>
             </div>
           )}
         </div>

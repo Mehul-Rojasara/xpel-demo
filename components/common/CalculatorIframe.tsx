@@ -53,7 +53,7 @@ export const CalculatorIframe: React.FC<CalculatorIframeProps> = ({ className = 
   }
 
   return (
-    <div className={`w-full h-[500px] sm:h-[600px] md:h-[700px] lg:h-[800px] ${className} relative`}>
+    <div className={`w-full h-[37.5rem] md:h-[43.75rem] lg:h-[53.125rem] xl:h-[56.25rem] ${className} relative`}>
       {isLoading && (
         <div className="absolute inset-0 flex items-center justify-center bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg">
           <div className="text-center">

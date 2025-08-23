@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { Button } from '@/components/ui/Button';
 import Container from '@/components/ui/Container';
 import { ServiceCard } from './ServiceCard';
 import Link from 'next/link';
@@ -26,7 +25,6 @@ interface ServiceSliderProps {
   readonly showNavigation?: boolean;
   readonly showProgress?: boolean;
   readonly cardsPerView?: number;
-  readonly gap?: number;
   readonly background?: 'dark' | 'light';
   readonly showButton?: boolean;
   readonly buttonText?: string;
@@ -62,6 +60,16 @@ export const ServiceSlider: React.FC<ServiceSliderProps> = ({
     light: 'text-neutral-900'
   };
 
+  const progressBarBGClasses = {
+    dark: 'bg-white/20',
+    light: 'bg-black/20'
+  };
+
+  const progressBarTrackClasses = {
+    dark: 'bg-white',
+    light: 'bg-black'
+  };
+
   const slideToIndex = useCallback((index: number) => {
     setCurrentIndex(Math.max(0, Math.min(index, maxIndex)));
   }, [maxIndex]);
@@ -90,24 +98,22 @@ export const ServiceSlider: React.FC<ServiceSliderProps> = ({
 
 
   return (
-          <section className={`py-16 sm:py-20 lg:py-[7.5rem] explore-slider overflow-hidden ${backgroundClasses[background]} ${className}`} aria-label="Service offerings">
+    <section className={`explore-slider overflow-hidden ${backgroundClasses[background]} ${className}`} aria-label="Service offerings">
       <Container>
         {/* Header - Exact Figma specifications */}
         <div className={`mb-8 sm:mb-12 lg:mb-16 ${showButton ? 'flex items-center justify-between' : ''}`}>
-          <div>
-            <h2 className={`font-h1 font-display font-medium leading-[110%] tracking-[-0.01em] text-left max-w-[59.313rem] ${textColorClasses[background]}`}>
-              {title}
-            </h2>
-            {subtitle && (
-              <p className={`para-large max-w-2xl font-sans tracking-[0.01em] leading-[150%] font-[450] text-left mt-6 ${textColorClasses[background] === 'text-white' ? 'text-white/80' : 'text-neutral-900/80'}`}>
-                {subtitle}
-              </p>
-            )}
-          </div>
+          <h2 className={`font-h1 font-display font-medium leading-[110%] tracking-[-0.01em] text-left max-w-[59.313rem] ${textColorClasses[background]}`}>
+            {title}
+          </h2>
+          {subtitle && (
+            <p className={`para-large max-w-2xl font-sans tracking-[0.01em] leading-[150%] font-[450] text-left mt-6 ${textColorClasses[background] === 'text-white' ? 'text-white/80' : 'text-neutral-900/80'}`}>
+              {subtitle}
+            </p>
+          )}
           {showButton && (
             <Link
               href={buttonHref}
-              className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white bg-transparent hover:bg-white hover:text-neutral-900 transition-colors duration-300 rounded-lg font-medium text-base"
+              className={`btn ${background === 'dark' ? 'btn-secondary' : 'btn-primary'}`}
             >
               {buttonText}
             </Link>
@@ -119,35 +125,33 @@ export const ServiceSlider: React.FC<ServiceSliderProps> = ({
           {/* Navigation Buttons */}
           {showNavigation && services.length > cardsPerView && (
             <>
-              <Button
+              <button
                 onClick={prevSlide}
                 disabled={currentIndex === 0}
-                variant="primary"
-                buttonStyle="filled"
-                size="lg"
-                background="light"
-                className={`hidden md:block absolute left-0 sm:left-4 md:left-8 lg:left-0 xl:left-0 Xxxl:left-[-5rem] top-1/2 -translate-y-1/4 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full shadow-lg transition-all duration-300 hover:!bg-[#FFB81C] hover:!text-neutral-900 !p-0 ${
+                type="button"
+                className={`hidden md:flex absolute left-0 sm:left-4 md:left-8 lg:left-0 xl:left-0 Xxxl:left-[-5rem] top-1/2 -translate-y-1/2 z-10 btn btn-primary btn-rounded-full ${
+                  background === 'dark' ? 'btn-primary-bg-white' : ''
+                } shadow-md ${
                   currentIndex === 0 ? 'invisible' : ''
                 }`}
                 aria-label={`${title} - Previous slide`}
               >
-                <i className="icon-Arrow-Left text-neutral-900 text-lg" aria-hidden="true"></i>
-              </Button>
+                <i className="icon-Arrow-Left btn-icon" aria-hidden="true"></i>
+              </button>
               
-              <Button
+              <button
                 onClick={nextSlide}
                 disabled={currentIndex >= maxIndex}
-                variant="primary"
-                buttonStyle="filled"
-                size="lg"
-                background="light"
-                className={`hidden md:block absolute right-0 sm:right-4 md:right-8 lg:right-0 xl:right-0 Xxxl:right-[-5rem] top-1/2 -translate-y-1/4 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full shadow-lg transition-all duration-300 hover:!bg-[#FFB81C] hover:!text-neutral-900 !p-0 ${
+                type="button"
+                className={`hidden md:flex absolute right-0 sm:right-4 md:right-8 lg:right-0 xl:right-0 Xxxl:right-[-5rem] top-1/2 -translate-y-1/2 z-10 btn btn-primary btn-rounded-full ${
+                  background === 'dark' ? 'btn-primary-bg-white' : ''
+                } shadow-md ${
                   currentIndex >= maxIndex ? 'invisible' : ''
                 }`}
                 aria-label={`${title} - Next slide`}
               >
-                <i className="icon-Arrow-Right text-neutral-900 text-lg" aria-hidden="true"></i>
-              </Button>
+                <i className="icon-Arrow-Right btn-icon" aria-hidden="true"></i>
+              </button>
             </>
           )}
 
@@ -180,12 +184,17 @@ export const ServiceSlider: React.FC<ServiceSliderProps> = ({
           {/* Progress Bar */}
           {showProgress && services.length > cardsPerView && (
             <div className="mt-8 sm:mt-12 flex justify-center">
-              <div className="w-24 sm:w-32 h-1 bg-white/20 rounded-full overflow-hidden" role="progressbar" aria-valuenow={progressPercentage} aria-valuemin={0} aria-valuemax={100} aria-label="Progress bar">
+              <progress
+                className="w-24 sm:w-32 h-1 bg-white/20 rounded-full overflow-hidden"
+                value={progressPercentage}
+                max={100}
+                aria-label="Progress bar"
+              >
                 <div 
-                  className="h-full bg-white transition-all duration-500 ease-in-out"
+                  className={`h-full transition-all duration-500 ease-in-out ${progressBarTrackClasses[background]}`}
                   style={{ width: `${progressPercentage}%` }}
                 />
-              </div>
+              </progress>
             </div>
           )}
         </div>

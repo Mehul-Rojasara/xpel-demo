@@ -5,7 +5,10 @@ import Container from '@/components/ui/Container';
 interface ContactInfo {
   title: string;
   description: string;
-  phoneNumbers: string[];
+  phoneNumbers: ReadonlyArray<{
+    readonly id: string;
+    readonly number: string;
+  }>;
   email: string;
   hours: string;
 }
@@ -42,9 +45,9 @@ export const NextStepsForm: React.FC<NextStepsFormProps> = ({
               {contactInfo.description}
             </p>
             <div className="para-medium space-y-1 max-w-[582px]">
-              {contactInfo.phoneNumbers.map((phone, index) => (
-                <p key={`${phone}-${index}`}>
-                  <a href={`tel:${phone}`} className="hover:underline">{phone}</a>
+              {contactInfo.phoneNumbers.map((phone) => (
+                <p key={phone.id}>
+                  <a href={`tel:${phone.number}`} className="hover:underline">{phone.number}</a>
                 </p>
               ))}
               <p>

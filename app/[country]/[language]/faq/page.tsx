@@ -9,54 +9,66 @@ import Container from '@/components/ui/Container';
 const FAQ_DATA = {
   paintProtectionFilm: [
     {
+      id: "ppf-1",
       title: "Simply dummy text of the printing and typesetting industry.",
       content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
     },
     {
+      id: "ppf-2",
       title: "Simply dummy text of the printing and typesetting industry.",
       content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting."
     },
     {
+      id: "ppf-3",
       title: "Text of the printing and typesetting industry.",
       content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
     },
     {
+      id: "ppf-4",
       title: "Dummy text of the printing and typesetting industry.",
       content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
     }
   ],
   ceramicCoating: [
     {
+      id: "cc-1",
       title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting."
     },
     {
+      id: "cc-2",
       title: "Simply dummy text of the printing and typesetting industry.",
       content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
     },
     {
+      id: "cc-3",
       title: "Simply dummy text of the printing and typesetting industry.",
       content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
     },
     {
+      id: "cc-4",
       title: "Simply dummy text of the printing and typesetting industry.",
       content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
     }
   ],
   windowTint: [
     {
+      id: "wt-1",
       title: "Simply dummy text of the printing and typesetting industry.",
       content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
     },
     {
+      id: "wt-2",
       title: "Simply dummy text of the printing and typesetting industry.",
       content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting."
     },
     {
+      id: "wt-3",
       title: "Simply dummy text of the printing and typesetting industry.",
       content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
     },
     {
+      id: "wt-4",
       title: "Simply dummy text of the printing and typesetting industry.",
       content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
     }
@@ -66,7 +78,7 @@ const FAQ_DATA = {
 // FAQ Section Component
 const FAQSection: React.FC<{
   readonly title: string;
-  readonly items: ReadonlyArray<{ readonly title: string; readonly content: string }>;
+  readonly items: ReadonlyArray<{ readonly id: string; readonly title: string; readonly content: string }>;
   readonly seeAllButtonText: string;
   readonly seeAllButtonHref: string;
   readonly className?: string;

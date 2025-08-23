@@ -1,4 +1,3 @@
-// import StyleGuideXpel from '@/components/style-guide-xpel';
 import StyleGuideXpel from '@/components/style-guide-xpel';
 
 export default function StyleGuideXpelPage() {

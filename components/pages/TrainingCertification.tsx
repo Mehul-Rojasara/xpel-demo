@@ -44,6 +44,7 @@ export const TrainingCertificate: React.FC<TrainingCertificateProps> = () => {
         defaultSelectedIndex={0}
         benefits={[
           {
+            id: "job-scheduling-training",
             icon: <span className="icon-Xpel-Installer" aria-hidden="true"></span>,
             title: "All New Job Scheduling System",
             description:
@@ -54,6 +55,7 @@ export const TrainingCertificate: React.FC<TrainingCertificateProps> = () => {
             imageAlt: "Installer locator feature",
           },
           {
+            id: "global-measurement-training",
             icon: <span className="icon-User" aria-hidden="true"></span>,
             title: "Global Measurement Support",
             description: "",
@@ -61,6 +63,7 @@ export const TrainingCertificate: React.FC<TrainingCertificateProps> = () => {
             imageAlt: "Global customer service",
           },
           {
+            id: "selection-multi-selection-training",
             icon: <span className="icon-Become-a-Dealer" aria-hidden="true"></span>,
             title: "Selection & Multi-Selection",
             description: "",
@@ -68,6 +71,7 @@ export const TrainingCertificate: React.FC<TrainingCertificateProps> = () => {
             imageAlt: "Sales professional help",
           },
           {
+            id: "dap-web-mobile-training",
             icon: <span className="icon-Newsroom" aria-hidden="true"></span>,
             title: "DAP Web with Mobile Support",
             description: "",

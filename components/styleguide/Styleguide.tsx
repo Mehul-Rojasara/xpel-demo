@@ -149,6 +149,10 @@ export default function StyleGuide() {
               Primary Btn
             </button>
 
+            <button type="button" className="btn btn-primary btn-with-icon btn-rounded-full">
+              <span className="icon-Arrow-Right btn-icon"></span>
+            </button>
+
             <button type="button" className="btn btn-primary" disabled>
               Button Disabled
             </button>

@@ -6,6 +6,7 @@ interface RacingStatsProps {
   readonly driverName?: string;
   readonly year?: string;
   readonly stats?: ReadonlyArray<{
+    readonly id: string;
     readonly icon: React.ReactNode;
     readonly value: string;
     readonly description: string;
@@ -21,6 +22,7 @@ export const RacingStats: React.FC<RacingStatsProps> = ({
   'aria-label': ariaLabel,
   stats = [
     {
+      id: "races-lead",
       icon: (
         <svg className="w-8 h-8 lg:w-[3.125rem] lg:h-[3.125rem]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <circle cx="12" cy="12" r="3"/>
@@ -31,6 +33,7 @@ export const RacingStats: React.FC<RacingStatsProps> = ({
       description: `Races lead by ${driverName}`
     },
     {
+      id: "top-3-finishes",
       icon: (
         <svg className="w-8 h-8 lg:w-[3.125rem] lg:h-[3.125rem]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
@@ -40,6 +43,7 @@ export const RacingStats: React.FC<RacingStatsProps> = ({
       description: `${driverName} finished in the Top 3`
     },
     {
+      id: "pole-positions",
       icon: (
         <svg className="w-8 h-8 lg:w-[3.125rem] lg:h-[3.125rem]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M7 4V2C7 1.45 7.45 1 8 1H16C16.55 1 17 1.45 17 2V4H20C20.55 4 21 4.45 21 5S20.55 6 20 6H19V19C19 20.1 18.1 21 17 21H7C5.9 21 5 20.1 5 19V6H4C3.45 6 3 5.55 3 5S3.45 4 4 4H7ZM9 3V4H15V3H9ZM7 6V19H17V6H7Z"/>
@@ -50,6 +54,7 @@ export const RacingStats: React.FC<RacingStatsProps> = ({
       description: `${driverName} qualified on pole position`
     },
     {
+      id: "race-laps-lead",
       icon: (
         <svg className="w-8 h-8 lg:w-[3.125rem] lg:h-[3.125rem]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M6.5 2C5.67 2 5 2.67 5 3.5S5.67 5 6.5 5 8 4.33 8 3.5 7.33 2 6.5 2M17.5 2C16.67 2 16 2.67 16 3.5S16.67 5 17.5 5 19 4.33 19 3.5 18.33 2 17.5 2M6.5 6C5.67 6 5 6.67 5 7.5C5 8.33 5.67 9 6.5 9C7.33 9 8 8.33 8 7.5C8 6.67 7.33 6 6.5 6M17.5 6C16.67 6 16 6.67 16 7.5C16 8.33 16.67 9 17.5 9C18.33 9 19 8.33 19 7.5C19 6.67 18.33 6 17.5 6M2 10V12H4V10H2M8 10V12H16V10H8M20 10V12H22V10H20M2 14V16H4V14H2M8 14V16H16V14H8M20 14V16H22V14H20M6.5 18C5.67 18 5 18.67 5 19.5S5.67 21 6.5 21 8 20.33 8 19.5 7.33 18 6.5 18M17.5 18C16.67 18 16 18.67 16 19.5S16.67 21 17.5 21 19 20.33 19 19.5 18.33 18 17.5 18Z"/>
@@ -75,9 +80,9 @@ export const RacingStats: React.FC<RacingStatsProps> = ({
         
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-[1.875rem] w-full">
-          {stats.map((stat, index) => (
+          {stats.map((stat) => (
             <div 
-              key={`${stat.value}-${index}`}
+              key={stat.id}
               className="bg-white rounded-xl shadow-lg border border-gray-100 p-4 sm:p-6 lg:p-8 transition-all duration-300 hover:shadow-xl hover:scale-105 w-full lg:h-[159px]"
             >
               <div className="flex items-center space-x-4 sm:space-x-6 lg:space-x-8 h-full">

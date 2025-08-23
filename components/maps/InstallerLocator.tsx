@@ -9,7 +9,10 @@ interface Installer {
   readonly email: string;
   readonly distance: number;
   readonly rating: number;
-  readonly services: readonly string[];
+  readonly services: ReadonlyArray<{
+    readonly id: string;
+    readonly name: string;
+  }>;
   readonly coordinates: {
     readonly lat: number;
     readonly lng: number;
@@ -63,7 +66,10 @@ export const InstallerLocator: React.FC<InstallerLocatorProps> = ({
           email: 'downtown@xpel.com',
           distance: 2.5,
           rating: 4.8,
-          services: ['Paint Protection', 'Window Tint', 'Ceramic Coating'],
+          services: ['Paint Protection', 'Window Tint', 'Ceramic Coating'].map((service, index) => ({
+            id: `service-${index + 1}`,
+            name: service
+          })),
           coordinates: { lat: 40.7128, lng: -74.0060 },
         },
         {
@@ -74,7 +80,10 @@ export const InstallerLocator: React.FC<InstallerLocatorProps> = ({
           email: 'uptown@xpel.com',
           distance: 5.2,
           rating: 4.6,
-          services: ['Paint Protection', 'Window Tint'],
+          services: ['Paint Protection', 'Window Tint'].map((service, index) => ({
+            id: `service-${index + 1}`,
+            name: service
+          })),
           coordinates: { lat: 40.7589, lng: -73.9851 },
         },
       ];
@@ -176,12 +185,12 @@ export const InstallerLocator: React.FC<InstallerLocatorProps> = ({
                     <div className="mt-2">
                       <span className="text-sm font-medium text-gray-700">Services:</span>
                       <div className="flex flex-wrap gap-1 mt-1">
-                        {installer.services.map((service, index) => (
+                        {installer.services.map((service) => (
                           <span
-                            key={`${service}-${index}`}
+                            key={service.id}
                             className="inline-block bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded"
                           >
-                            {service}
+                            {service.name}
                           </span>
                         ))}
                       </div>

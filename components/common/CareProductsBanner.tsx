@@ -52,7 +52,7 @@ export const GradientBanner: React.FC<GradientBannerProps> = ({
             {ctaText && ctaHref && (
               <Link
                 href={ctaHref}
-                className="bg-white text-neutral-900 hover:bg-gray-100 inline-flex items-center justify-center px-4 sm:px-6 py-3 sm:py-4 font-display font-medium text-base sm:text-lg transition-all duration-300 rounded-[6.25rem] min-w-[10rem] sm:min-w-[12.5rem] h-[3rem] sm:h-[3.5rem]"
+                className="btn btn-min-width btn-white btn-white-outline"
               >
                 {ctaText}
               </Link>

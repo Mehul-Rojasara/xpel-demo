@@ -43,7 +43,8 @@ export default async function WarrantyInformationPage({ params }: WarrantyInform
   });
 
   // Transform accordion sections to match the existing Accordion component interface
-  const accordionItems = WARRANTY_INFORMATION_DATA.accordionSections.map(section => ({
+  const accordionItems = WARRANTY_INFORMATION_DATA.accordionSections.map((section, index) => ({
+    id: `warranty-section-${index + 1}`,
     title: section.title,
     content: section.content
   }));
@@ -57,12 +58,11 @@ export default async function WarrantyInformationPage({ params }: WarrantyInform
         altText={WARRANTY_INFORMATION_DATA.bannerAltText}
         content={{
           headline: {
-            title: 'WARRANTY INFORMATION',
-            subtitle: undefined
+            title: 'WARRANTY INFORMATION'
           },
-          description: undefined,
           buttons: [
             {
+              id: 'register-warranty',
               label: 'Register a Warranty',
               href: `/${country}/${language}/warranty-claim`,
               variant: 'primary'
