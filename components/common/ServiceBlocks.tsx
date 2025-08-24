@@ -32,7 +32,7 @@ export const ServiceBlocks: React.FC<ServiceBlocksProps> = ({ services, classNam
       aria-label="Service options"
     >
       <Container>
-        <div className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-${columns} gap-8 sm:gap-8 md:gap-14 Xxl:gap-20 spacing-${spacing}`}>
+        <div className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 column-${columns} gap-8 sm:gap-8 md:gap-14 Xxl:gap-20 spacing-${spacing}`}>
           {services.map((service) => (
             <button
               key={service.id}
