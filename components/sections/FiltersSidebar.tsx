@@ -104,6 +104,7 @@ export const FiltersSidebar: React.FC<FiltersSidebarProps> = ({
       {/* Sidebar */}
       <aside 
         className="fixed right-0 top-0 h-full w-80 bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out"
+        role="dialog"
         aria-modal="true"
         aria-labelledby="filters-title"
         id="filters-sidebar"

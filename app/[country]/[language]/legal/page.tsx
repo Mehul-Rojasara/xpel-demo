@@ -48,7 +48,7 @@ export default async function LegalPage({ params }: LegalPageProps) {
       <LegalPoliciesSection policies={LEGAL_POLICIES} country={country} language={language} />
 
       {/* Service Blocks Section */}
-      <ServiceBlocks services={serviceBlocks} background="dark" columns={3} spacing="lg" />
+      <ServiceBlocks services={serviceBlocks} background="dark" columns={3} spacing="lg" className='section-spacing-y' />
     </>
   );
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
+import React, { createContext, useContext, useState, useCallback, useEffect, useMemo } from 'react';
 import { AnnouncementAlert } from './Alert';
 
 interface Toast {
@@ -69,8 +69,14 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
     }
   }, [isClient, generateId, hideToast]);
 
+  // Memoize the context value to prevent unnecessary re-renders
+  const contextValue = useMemo(() => ({
+    showToast,
+    hideToast
+  }), [showToast, hideToast]);
+
   return (
-    <ToastContext.Provider value={{ showToast, hideToast }}>
+    <ToastContext.Provider value={contextValue}>
       {children}
       
       {/* Toast Container - only render on client */}

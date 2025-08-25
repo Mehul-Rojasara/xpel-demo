@@ -35,7 +35,7 @@ export const ContactCards: React.FC<ContactCardsProps> = ({
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-primary-200 to-transparent opacity-40 rounded-full pointer-events-none transition-opacity duration-300 group-hover:opacity-60 transform -translate-x-16 translate-y-16"></div>
             
             {/* Yellow hover effect overlay - starts from left corner */}
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-2xl pointer-events-none bg-gradient-to-r from-[#FFB81C] via-[#FFD477] to-[rgba(255,255,255,0.3)]"></div>
+            <div className="absolute inset-0 transition-all duration-500 delay-100 rounded-2xl pointer-events-none bg-gradient-to-tr from-0% via-0% to-0% from-[#FFB81C] group-hover:from-40% via-[#FFD477] group-hover:via-60% group-hover:to-[rgba(255,255,255,0.3)] group-hover:to-100% bg-[length:100%_100%] group-hover:bg-[length:200%_200%] bg-[position:0%_0%] group-hover:bg-[position:100%_100%] ease-in-out"></div>
             
             {/* Arrow icon on hover - top right corner */}
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
@@ -46,7 +46,7 @@ export const ContactCards: React.FC<ContactCardsProps> = ({
             
             {/* Icon - exact Figma dimensions: 40px x 40px */}
             <div className="relative z-10 mb-6 lg:mb-10">
-              <div className="text-neutral-900 transition-transform duration-300 text-3xl">
+              <div className="text-neutral-900 group-hover:text-white transition-all duration-200 text-3xl">
                 {card.icon}
               </div>
             </div>
@@ -54,12 +54,12 @@ export const ContactCards: React.FC<ContactCardsProps> = ({
             {/* Content */}
             <div className="relative z-10">
               {/* Heading - fixed typography classes */}
-              <h3 className="font-medium font-h4 leading-tight tracking-[-0.01em] text-neutral-900 mb-3">
+              <h3 className="font-medium font-h4 leading-tight tracking-[-0.01em] text-neutral-900 group-hover:text-white mb-3 transition-all duration-200">
                 {card.heading}
               </h3>
 
               {/* Subtext - fixed typography classes */}
-              <p className="text-lg leading-relaxed text-neutral-900 font-normal">
+              <p className="text-lg leading-relaxed text-neutral-900 group-hover:text-white font-normal transition-all duration-200">
                 {card.subtext}
               </p>
             </div>

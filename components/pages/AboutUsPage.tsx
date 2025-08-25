@@ -48,7 +48,7 @@ export default async function AboutUs({ params }: PageProps) {
         imageSrc="/images/about-us/become-installer.png"
         imageAlt="Person applying protective film to orange sports car"
         defaultSelectedIndex={0}
-        className="section-spacing-y"
+        className="section-spacing-bottom"
         benefits={[
           {
             id: "job-scheduling-about",

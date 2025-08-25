@@ -20,9 +20,17 @@ export const ProductHighlightCard: React.FC<ProductHighlightCardProps> = ({
   description,
   price,
   buttonText,
-  // buttonHref,
+  buttonHref,
   className = "",
 }) => {
+  const handleButtonClick = () => {
+    if (buttonHref.startsWith('http')) {
+      window.open(buttonHref, '_blank');
+    } else {
+      window.location.href = buttonHref;
+    }
+  };
+
   return (
     <div
       className={`bg-neutral-100 rounded-[0.875rem] p-4 md:p-6 overflow-hidden max-w-[47.5rem] mx-auto ${className}`}
@@ -49,6 +57,7 @@ export const ProductHighlightCard: React.FC<ProductHighlightCardProps> = ({
               aria-label="primary-btn"
               buttonStyle="filled"
               background="light"
+              onClick={handleButtonClick}
             >
               {buttonText}
             </Button>

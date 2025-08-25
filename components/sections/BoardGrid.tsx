@@ -44,7 +44,7 @@ export const BoardGrid: React.FC<BoardProps> = ({ title, directors, className })
                 alt={director?.name}
                 width={458}
                 height={572}
-                className="w-full h-[calc(100%-0px)] xl:max-h-[35.75rem] object-cover group-hover/team:scale-105 transition-all duration-300"
+                className="w-full h-[calc(100%-0px)] xl:max-h-[36.75rem] aspect-[4/5] object-cover group-hover/team:scale-110 transition-all duration-300"
               />
               <div className="absolute inset-0 p-4 xl:p-8 bg-gradient-to-t from-black/60 via-black/25 to-transparent group-hover/team:bg-gradient-to-b group-hover/team:from-accent-navy-400/0 group-hover/team:from-[10.3%] group-hover/team:via-accent-navy-400 group-hover/team:via-[100%] group-hover/team:to-transparent flex items-end transition-all duration-300">
                 <div className="text-left w-full">

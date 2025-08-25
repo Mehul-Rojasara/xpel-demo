@@ -9,8 +9,6 @@ interface BenefitCard {
 }
 
 interface BenefitsSectionProps {
-  readonly title?: string;
-  readonly subtitle?: string;
   readonly benefits?: readonly BenefitCard[];
   readonly className?: string;
   readonly "aria-label"?: string;

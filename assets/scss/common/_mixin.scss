@@ -242,6 +242,10 @@
   @apply bg-white text-black border-[0.063rem] border-solid border-white hover:bg-black hover:text-white;
 }
 
+@mixin btn-secondary-bg-transparent {
+  @apply bg-white text-black border-[0.063rem] border-solid border-white hover:bg-transparent hover:text-white;
+}
+
 @mixin btn-secondary-outline {
   @apply bg-white text-black border-[0.063rem] border-solid border-black hover:bg-black hover:text-white;
 }

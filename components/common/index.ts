@@ -6,7 +6,7 @@ export { default as ContactCards, defaultContactCards } from './ContactCards';
 export { default as FeaturedArticles } from './FeaturedArticles';
 export { default as HeroBanner } from './HeroBanner';
 export { default as ProductShowcase } from './ProductShowcase';
-export { default as ProductInfoSection } from './ProductInfoSection';
+export { default as ProductInfoCard } from './ProductInfoCard';
 export { default as ProductFeature } from './ProductFeature';
 export { default as ProductTabs } from './ProductTabs';
 export { default as ProtectionOfferings } from './ProtectionOfferings';

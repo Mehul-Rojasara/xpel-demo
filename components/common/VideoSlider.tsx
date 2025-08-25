@@ -121,7 +121,8 @@ export const InstallerSpotlights = ({ title = "XPEL Installer Spotlights" }: { t
   // Clean up event listeners
   useEffect(() => {
     return () => {
-      videoRefs.current.forEach((video) => {
+      const currentVideoRefs = videoRefs.current;
+      currentVideoRefs.forEach((video) => {
         if (video) {
           video.pause();
           video.currentTime = 0;
@@ -163,12 +164,20 @@ export const InstallerSpotlights = ({ title = "XPEL Installer Spotlights" }: { t
                 playsInline
                 className="w-full h-full object-cover"
                 controls={playingIndex === i}
-                aria-hidden="true"
                 onClick={(e) => {
                   // Prevent click event from bubbling up to the play button overlay
                   if (playingIndex === i) e.stopPropagation();
                 }}
-              />
+              >
+                <track
+                  kind="captions"
+                  src=""
+                  label="No captions available"
+                  srcLang="en"
+                  default={false}
+                />
+                Your browser does not support the video tag.
+              </video>
 
               {/* Play button overlay - only shown when video is not playing */}
               {playingIndex !== i && (

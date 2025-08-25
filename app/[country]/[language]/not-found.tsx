@@ -95,6 +95,7 @@ export default async function NotFoundPage({ params }: Readonly<NotFoundPageProp
         background="dark"
         columns={3}
         spacing="lg"
+        className='section-spacing-y'
       />
     </div>
   );

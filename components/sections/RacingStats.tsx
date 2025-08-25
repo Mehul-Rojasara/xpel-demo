@@ -1,18 +1,19 @@
 import React from 'react';
 import Container from '@/components/ui/Container';
 
+interface RacingStat {
+  readonly id: string;
+  readonly icon: React.ReactNode;
+  readonly value: string;
+  readonly description: string;
+}
+
 interface RacingStatsProps {
   readonly title?: string;
   readonly driverName?: string;
-  readonly year?: string;
-  readonly stats?: ReadonlyArray<{
-    readonly id: string;
-    readonly icon: React.ReactNode;
-    readonly value: string;
-    readonly description: string;
-  }>;
+  readonly stats?: readonly RacingStat[];
   readonly className?: string;
-  readonly 'aria-label'?: string;
+  readonly "aria-label"?: string;
 }
 
 export const RacingStats: React.FC<RacingStatsProps> = ({

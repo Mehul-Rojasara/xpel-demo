@@ -1,6 +1,6 @@
 import React from 'react';
 import { Banner } from '@/components/sections/Banner';
-import { ProductInfoSection } from '@/components/common/ProductInfoSection';
+import { ProductInfoCard } from '@/components/common/ProductInfoCard';
 import { EventsGridClient } from '@/components/sections/EventsGridClient';
 import { ServiceSlider } from '@/components/common/ServiceSlider';
 import { ServiceBlocks } from '@/components/common/ServiceBlocks';
@@ -56,8 +56,7 @@ export const Events: React.FC<EventsProps> = ({ country, language }) => {
   ];
 
   return (
-    <main className="min-h-screen bg-white">
-      {/* Hero Banner */}
+    <main className="bg-white">
       <Banner
         title="Events"
         backgroundImage="/images/header/about-us.webp"
@@ -65,7 +64,7 @@ export const Events: React.FC<EventsProps> = ({ country, language }) => {
       />
 
       {/* Events Hero Section */}
-      <ProductInfoSection
+      <ProductInfoCard
         title={EVENTS_DATA.hero.title}
         subtitle={EVENTS_DATA.hero.subtitle}
         description={EVENTS_DATA.hero.description}

@@ -55,10 +55,8 @@ const PolicyCard: React.FC<{
   };
 
   return (
-    <article
-      className="bg-white border border-neutral-300 rounded-[0.875rem] p-4 sm:p-6 hover:border-neutral-400 transition-all duration-300 group cursor-pointer h-full"
-      role="button"
-      tabIndex={0}
+    <button
+      className="bg-white border border-neutral-300 rounded-[0.875rem] p-4 sm:p-6 hover:border-neutral-400 transition-all duration-300 group cursor-pointer h-full text-left w-full"
       aria-label={`${policy.title} - ${policy.description}`}
       onKeyDown={handleKeyDown}
       onClick={handleCardClick}
@@ -88,7 +86,7 @@ const PolicyCard: React.FC<{
           </div>
         </div>
       )}
-    </article>
+    </button>
   );
 };
 

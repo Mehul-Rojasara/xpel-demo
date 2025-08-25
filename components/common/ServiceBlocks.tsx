@@ -28,7 +28,7 @@ export const ServiceBlocks: React.FC<ServiceBlocksProps> = ({ services, classNam
 
   return (
     <section
-      className={`${backgroundClasses[background]} py-16 bg-neutral-700 service-blocks ${className}`}
+      className={`${backgroundClasses[background]} bg-neutral-700 service-blocks ${className}`}
       aria-label="Service options"
     >
       <Container>

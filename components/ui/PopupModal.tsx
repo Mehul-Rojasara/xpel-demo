@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { Button, CloseIcon } from './Button';
 
@@ -14,6 +14,77 @@ interface PopupModalProps {
   readonly className?: string;
 }
 
+// Size classes - optimized for screen fit with Figma proportions
+const SIZE_CLASSES = {
+  sm: 'w-[90vw] max-w-[600px] h-auto max-h-[75vh]',
+  md: 'w-[90vw] max-w-[700px] h-auto max-h-[80vh]',
+  lg: 'w-[90vw] max-w-[771px] h-auto max-h-[80vh]',
+  xl: 'w-[90vw] max-w-[800px] h-auto max-h-[85vh]'
+} as const;
+
+// Get focusable elements from modal
+const getFocusableElements = (modalRef: React.RefObject<HTMLDivElement | null>) => {
+  if (!modalRef.current) return [];
+  return Array.from(modalRef.current.querySelectorAll(
+    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+  )) as HTMLElement[];
+};
+
+// Handle focus trap logic
+const handleFocusTrap = (event: KeyboardEvent, focusableElements: HTMLElement[]) => {
+  if (focusableElements.length === 0) return;
+
+  const firstElement = focusableElements[0];
+  const lastElement = focusableElements[focusableElements.length - 1];
+
+  if (event.shiftKey && document.activeElement === firstElement) {
+    event.preventDefault();
+    lastElement.focus();
+  } else if (!event.shiftKey && document.activeElement === lastElement) {
+    event.preventDefault();
+    firstElement.focus();
+  }
+};
+
+// Handle resize logic
+const handleResizeLogic = (modalRef: React.RefObject<HTMLDivElement | null>) => {
+  if (!modalRef.current) return;
+  
+  const rect = modalRef.current.getBoundingClientRect();
+  const viewportHeight = window.innerHeight;
+  
+  if (rect.height > viewportHeight * 0.9) {
+    modalRef.current.style.maxHeight = `${viewportHeight * 0.9}px`;
+  }
+};
+
+// Setup focus management
+const setupFocusManagement = (
+  isOpen: boolean, 
+  modalRef: React.RefObject<HTMLDivElement | null>, 
+  handleResize: () => void
+) => {
+  if (!isOpen || !modalRef.current) return;
+
+  const focusableElements = getFocusableElements(modalRef);
+  
+  if (focusableElements.length > 0) {
+    focusableElements[0].focus();
+  }
+
+  const previouslyFocusedElement = document.activeElement as HTMLElement;
+  
+  handleResize();
+  window.addEventListener('resize', handleResize);
+
+  return () => {
+    window.removeEventListener('resize', handleResize);
+    if (previouslyFocusedElement?.focus) {
+      previouslyFocusedElement.focus();
+    }
+  };
+};
+
 export const PopupModal: React.FC<PopupModalProps> = ({
   isOpen,
   onClose,
@@ -27,104 +98,48 @@ export const PopupModal: React.FC<PopupModalProps> = ({
   const modalRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
 
-  // Size classes - optimized for screen fit with Figma proportions
-  const sizeClasses = {
-    sm: 'w-[90vw] max-w-[600px] h-auto max-h-[75vh]',
-    md: 'w-[90vw] max-w-[700px] h-auto max-h-[80vh]',
-    lg: 'w-[90vw] max-w-[771px] h-auto max-h-[80vh]',
-    xl: 'w-[90vw] max-w-[800px] h-auto max-h-[85vh]'
-  };
-
-  // Handle escape key and focus trap
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && closeOnEscape) {
-        onClose();
-        return;
-      }
-
-      // Focus trap - handle Tab key
-      if (event.key === 'Tab' && modalRef.current) {
-        const focusableElements = modalRef.current.querySelectorAll(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-        );
-        
-        const firstElement = focusableElements[0] as HTMLElement;
-        const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
-
-        if (event.shiftKey) {
-          // Shift + Tab
-          if (document.activeElement === firstElement) {
-            event.preventDefault();
-            lastElement.focus();
-          }
-        } else {
-          // Tab
-          if (document.activeElement === lastElement) {
-            event.preventDefault();
-            firstElement.focus();
-          }
-        }
-      }
-    };
-
-    if (isOpen) {
-      document.addEventListener('keydown', handleKeyDown);
-      // Prevent body scroll when modal is open
-      document.body.style.overflow = 'hidden';
+  // Handle keyboard events
+  const handleKeyDown = useCallback((event: KeyboardEvent) => {
+    if (event.key === 'Escape' && closeOnEscape) {
+      onClose();
+      return;
     }
+    
+    if (event.key === 'Tab') {
+      const focusableElements = getFocusableElements(modalRef);
+      handleFocusTrap(event, focusableElements);
+    }
+  }, [closeOnEscape, onClose]);
+
+  // Handle resize
+  const handleResize = useCallback(() => {
+    handleResizeLogic(modalRef);
+  }, []);
+
+  // Handle overlay click
+  const handleOverlayClick = useCallback((event: React.MouseEvent) => {
+    if (closeOnOverlayClick && event.target === overlayRef.current) {
+      onClose();
+    }
+  }, [closeOnOverlayClick, onClose]);
+
+  // Keyboard event effect
+  useEffect(() => {
+    if (!isOpen) return;
+
+    document.addEventListener('keydown', handleKeyDown);
+    document.body.style.overflow = 'hidden';
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'unset';
     };
-  }, [isOpen, onClose, closeOnEscape]);
+  }, [isOpen, handleKeyDown]);
 
-  // Focus management and trap
+  // Focus management effect
   useEffect(() => {
-    if (isOpen && modalRef.current) {
-      const focusableElements = modalRef.current.querySelectorAll(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-      );
-      
-      if (focusableElements.length > 0) {
-        (focusableElements[0] as HTMLElement).focus();
-      }
-
-      // Store the element that had focus before modal opened
-      const previouslyFocusedElement = document.activeElement as HTMLElement;
-
-      // Ensure modal fits on screen
-      const handleResize = () => {
-        if (modalRef.current) {
-          const rect = modalRef.current.getBoundingClientRect();
-          const viewportHeight = window.innerHeight;
-          
-          if (rect.height > viewportHeight * 0.9) {
-            modalRef.current.style.maxHeight = `${viewportHeight * 0.9}px`;
-          }
-        }
-      };
-
-      handleResize();
-      window.addEventListener('resize', handleResize);
-
-      // Return focus when modal closes
-      return () => {
-        window.removeEventListener('resize', handleResize);
-        if (previouslyFocusedElement && typeof previouslyFocusedElement.focus === 'function') {
-          previouslyFocusedElement.focus();
-        }
-      };
-    }
-  }, [isOpen]);
-
-  // Handle overlay click
-  const handleOverlayClick = (event: React.MouseEvent) => {
-    if (closeOnOverlayClick && event.target === overlayRef.current) {
-      onClose();
-    }
-  };
+    return setupFocusManagement(isOpen, modalRef, handleResize);
+  }, [isOpen, handleResize]);
 
   if (!isOpen) return null;
 
@@ -133,21 +148,15 @@ export const PopupModal: React.FC<PopupModalProps> = ({
       ref={overlayRef}
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/25 backdrop-blur-sm overflow-y-auto"
       onClick={handleOverlayClick}
-      onKeyDown={(e)=> e.key === "Escape" && onClose()}
       aria-modal="true"
       aria-hidden={!isOpen}
       aria-label="Modal dialog"
     >
       <div
         ref={modalRef}
-        className={`relative ${sizeClasses[size]} bg-neutral-900 rounded-lg shadow-lg transform transition-all duration-300 ease-out overflow-hidden ${className}`}
+        className={`relative ${SIZE_CLASSES[size]} bg-neutral-900 rounded-lg shadow-lg transform transition-all duration-300 ease-out overflow-hidden ${className}`}
+        role="document"
         tabIndex={-1}
-        style={{ 
-          borderRadius: '8px',
-          maxHeight: '85vh',
-          display: 'flex',
-          flexDirection: 'column'
-        }}
       >
         {/* Modal Container with Figma-specified padding - responsive */}
         <div className="p-6 sm:p-8 md:p-[48px_54px] flex flex-col gap-4 sm:gap-6">

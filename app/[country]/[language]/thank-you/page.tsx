@@ -84,7 +84,7 @@ export default async function ThankYouPage({ params }: ThankYouPageProps) {
             id: 'back-to-home',
             text: videoData.ctaText,
             href: videoData.ctaHref,
-            variant: 'primary',
+            variant: 'secondary',
             buttonStyle: 'filled',
             size: 'lg',
             background: 'dark'
@@ -112,6 +112,7 @@ export default async function ThankYouPage({ params }: ThankYouPageProps) {
         background="dark"
         columns={3}
         spacing="lg"
+        className='section-spacing-y'
       />
     </div>
   );

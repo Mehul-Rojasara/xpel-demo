@@ -2,7 +2,6 @@
 import React from "react";
 import Link from "next/link";
 import { FOOTER_LINKS_DATA, FooterProps } from "@/config";
-import { LanguageSelector } from "./LanguageSelector";
 import { NewsletterForm } from "../forms/NewsletterForm";
 import Image from "next/image";
 import logoWhite from "@/assets/images/common/logo-white.png";
@@ -271,7 +270,6 @@ export const Footer: React.FC<FooterProps> = ({ country, language }) => {
           <div className="flex flex-col gap-5 Mdx:gap-1 Mdx:flex-row Mdx:justify-between justify-center items-center space-y-4 sm:space-y-0 pb-8 lg:pb-9 xl:pb-[42px]">
             {/* Left Side - Language Selector and Legal Links */}
             <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6">
-              <LanguageSelector country={country} language={language} />
               <LegalLinks country={country} language={language} />
             </div>
 

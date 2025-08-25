@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import Container from '@/components/ui/Container';
 
 interface VideoPlayerProps {
@@ -12,15 +12,6 @@ interface VideoPlayerProps {
   readonly playsInline?: boolean;
   readonly preload?: 'none' | 'metadata' | 'auto';
   readonly className?: string;
-  // Caption options
-  captions?: {
-    src: string;
-    label: string;
-    srclang: string;
-    kind?: 'subtitles' | 'captions' | 'descriptions' | 'chapters' | 'metadata';
-    default?: boolean;
-  };
-  // Control options
   readonly showPlayPause?: boolean;
   readonly showProgress?: boolean;
   readonly showDots?: boolean;
@@ -29,13 +20,19 @@ interface VideoPlayerProps {
   readonly onSlideChange?: (index: number) => void;
   readonly onVideoEnd?: () => void;
   readonly onVideoProgress?: (progress: number) => void;
-  // Styling
   readonly controlsPosition?: 'bottom-right' | 'bottom-center' | 'bottom-left';
   readonly progressBarWidth?: string;
   readonly dotSize?: 'sm' | 'md' | 'lg';
-  // Testing options
-  readonly testDuration?: number; // Duration in seconds for testing
+  readonly testDuration?: number;
 }
+
+const generateSlideDotKey = (slideNumber: number, totalSlides: number): string => {
+  return `slide-dot-${slideNumber}-of-${totalSlides}`;
+};
+
+const generateSlideDotLineKey = (slideNumber: number, totalSlides: number): string => {
+  return `slide-dot-line-${slideNumber}-of-${totalSlides}`;
+};
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({
   videoSrc,
@@ -46,9 +43,6 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   playsInline = true,
   preload = 'metadata',
   className = '',
-  // Caption options
-  captions,
-  // Control options
   showPlayPause = true,
   showProgress = false,
   showDots = false,
@@ -57,12 +51,10 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   onSlideChange,
   onVideoEnd,
   onVideoProgress,
-  // Styling
   controlsPosition = 'bottom-right',
   progressBarWidth = 'w-48',
   dotSize = 'md',
-  // Testing options
-  testDuration = 5 // 5 seconds for testing
+  testDuration = 5
 }) => {
   const [isPlaying, setIsPlaying] = useState(autoPlay);
   const [videoProgress, setVideoProgress] = useState(0);
@@ -70,91 +62,118 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   const [isMounted, setIsMounted] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Ensure hydration safety
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
+  const handleAutoAdvance = useCallback(() => {
+    if (!loop && onVideoEnd) {
+      setTimeout(() => {
+        onVideoEnd();
+      }, 500);
+    }
+  }, [loop, onVideoEnd]);
+
   // Handle video progress tracking
-  useEffect(() => {
+  const handleTimeUpdate = useCallback(() => {
+    const video = videoRef.current;
+    if (!video?.duration) return;
+
+    const progress = (video.currentTime / video.duration) * 100;
+    setVideoProgress(progress);
+    onVideoProgress?.(progress);
+    
+    // Auto-advance when video finishes (for slider mode)
+    if (progress >= 100) {
+      handleAutoAdvance();
+    }
+  }, [onVideoProgress, handleAutoAdvance]);
+
+  // Handle testing duration logic
+  const handleTestDuration = useCallback((video: HTMLVideoElement) => {
+    if (!testDuration || video.duration <= testDuration) return;
+    
+    video.currentTime = 0;
+    setTimeout(() => {
+      if (video && !video.paused) {
+        video.currentTime = video.duration;
+      }
+    }, testDuration * 1000);
+  }, [testDuration]);
+
+  const handleLoadedMetadata = useCallback(() => {
+    const video = videoRef.current;
+    if (!video?.duration) return;
+
+    setVideoDuration(video.duration);
+    handleTestDuration(video);
+  }, [handleTestDuration]);
+
+  // Handle video end
+  const handleVideoEnd = useCallback(() => {
+    handleAutoAdvance();
+  }, [handleAutoAdvance]);
+
+  // Handle video error
+  const handlePlaybackError = useCallback(() => {
+    console.warn('Video playback error occurred');
+    setIsPlaying(false);
+  }, []);
+
+  // Handle video play success
+  const handlePlaybackSuccess = useCallback(() => {
+    setIsPlaying(true);
+  }, []);
+
+  // Attempt auto-play with retry logic
+  const attemptAutoPlay = useCallback(async () => {
+    const video = videoRef.current;
+    if (!video || !autoPlay || !isMounted) return;
+
+    try {
+      await video.play();
+      handlePlaybackSuccess();
+    } catch (error) {
+      console.warn('Auto-play failed, will retry on user interaction:', error);
+      setIsPlaying(false);
+    }
+  }, [autoPlay, isMounted, handlePlaybackSuccess]);
+
+  // Setup video event listeners
+  const setupVideoEventListeners = useCallback(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    const updateProgress = () => {
-      if (!video.duration) return;
-      
-      const progress = (video.currentTime / video.duration) * 100;
-      setVideoProgress(progress);
-      onVideoProgress?.(progress);
-      
-      // Auto-advance when video finishes (for slider mode)
-      if (progress >= 100 && !loop && onVideoEnd) {
-        setTimeout(() => onVideoEnd(), 500);
-      }
-    };
+    const eventHandlers = [
+      { event: 'timeupdate', handler: handleTimeUpdate },
+      { event: 'loadedmetadata', handler: handleLoadedMetadata },
+      { event: 'ended', handler: handleVideoEnd },
+      { event: 'error', handler: handlePlaybackError },
+      { event: 'play', handler: handlePlaybackSuccess }
+    ];
 
-    const handleLoadedMetadata = () => {
-      setVideoDuration(video.duration);
-      
-      // For testing: limit video duration to testDuration seconds
-      if (testDuration && video.duration > testDuration) {
-        video.currentTime = 0;
-        // Set a timeout to end the video after testDuration seconds
-        setTimeout(() => {
-          if (video && !video.paused) {
-            video.currentTime = video.duration; // This will trigger the 'ended' event
-          }
-        }, testDuration * 1000);
-      }
-    };
+    eventHandlers.forEach(({ event, handler }) => {
+      video.addEventListener(event, handler);
+    });
 
-    const handleVideoEnd = () => {
-      if (onVideoEnd) {
-        setTimeout(() => onVideoEnd(), 500);
-      }
+    return () => {
+      eventHandlers.forEach(({ event, handler }) => {
+        video.removeEventListener(event, handler);
+      });
     };
+  }, [handleTimeUpdate, handleLoadedMetadata, handleVideoEnd, handlePlaybackError, handlePlaybackSuccess]);
 
-    const handlePlaybackError = () => {
-      setIsPlaying(false);
-    };
-
-    const handlePlaybackSuccess = () => {
-      setIsPlaying(true);
-    };
-
-    const setupEventListeners = () => {
-      video.addEventListener('timeupdate', updateProgress);
-      video.addEventListener('loadedmetadata', handleLoadedMetadata);
-      video.addEventListener('ended', handleVideoEnd);
-      video.addEventListener('error', handlePlaybackError);
-      video.addEventListener('play', handlePlaybackSuccess);
-    };
-
-    const cleanupEventListeners = () => {
-      video.removeEventListener('timeupdate', updateProgress);
-      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
-      video.removeEventListener('ended', handleVideoEnd);
-      video.removeEventListener('error', handlePlaybackError);
-      video.removeEventListener('play', handlePlaybackSuccess);
-    };
-
-    const attemptAutoPlay = async () => {
-      if (!autoPlay || !isMounted) return;
-      
-      try {
-        await video.play();
-        handlePlaybackSuccess();
-      } catch (error) {
-        console.warn('Auto-play failed, will retry on user interaction:', error);
-        setIsPlaying(false);
-      }
-    };
-
-    setupEventListeners();
+  // Initialize video player
+  const initializeVideoPlayer = useCallback(() => {
+    const cleanup = setupVideoEventListeners();
     attemptAutoPlay();
+    return cleanup;
+  }, [setupVideoEventListeners, attemptAutoPlay]);
 
-    return cleanupEventListeners;
-  }, [autoPlay, loop, onVideoEnd, onVideoProgress, isMounted, testDuration]);
+  // Main useEffect with reduced complexity
+  useEffect(() => {
+    return initializeVideoPlayer();
+  }, [initializeVideoPlayer]);
 
   // Handle video play/pause with error handling
   const handleVideoToggle = async () => {
@@ -207,13 +226,12 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   const getDotWidth = (index: number) => {
     if (index === currentSlideIndex) {
       // Only current dot expands based on video progress
-      const minWidth = 6; // w-2 (8px)
-      const maxWidth = 60; // w-8 (32px)
+      const minWidth = 6;
+      const maxWidth = 60;
       const progressWidth = minWidth + ((maxWidth - minWidth) * videoProgress / 100);
       return `${progressWidth}px`;
     } else {
-      // All other dots remain normal width
-      return '6px'; // w-2
+      return '6px';
     }
   };
 
@@ -229,6 +247,160 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     }
   };
 
+  // Render dots for slider mode
+  const renderSliderDots = () => {
+    if (!showDots || totalSlides <= 1) return null;
+    
+    return (
+      <div className="flex items-center space-x-2">
+        {Array.from({ length: totalSlides }, (_, index) => {
+          const slideNumber = index + 1;
+          const dotState = getDotState(index);
+          return (
+            <button
+              key={generateSlideDotKey(slideNumber, totalSlides)}
+              onClick={() => onSlideChange?.(index)}
+              className={`${getDotSizeClasses()} rounded-full transition-all duration-300 ${
+                dotState === 'current'
+                  ? 'bg-[#FFB81C] scale-125' 
+                  : 'bg-white/60 hover:bg-white/80'
+              }`}
+              aria-label={`Go to slide ${slideNumber}`}
+            />
+          );
+        })}
+      </div>
+    );
+  };
+
+  // Render progress bar with play/pause button
+  const renderProgressBar = () => {
+    if (!showProgress) return null;
+    
+    return (
+      <div className="flex flex-col items-center space-y-3">
+        <div className="flex items-center space-x-4">
+          <div 
+            className={`${progressBarWidth} h-2 bg-white/60 rounded-full overflow-hidden cursor-pointer`}
+            onClick={handleVideoProgressClick}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                // Create a synthetic mouse event for keyboard navigation
+                const syntheticEvent = {
+                  currentTarget: e.currentTarget,
+                  target: e.target,
+                  preventDefault: () => {},
+                  stopPropagation: () => {}
+                } as React.MouseEvent<HTMLDivElement>;
+                handleVideoProgressClick(syntheticEvent);
+              }
+            }}
+            tabIndex={0}
+            role="slider"
+            aria-label="Video progress bar"
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={Math.round(videoProgress)}
+          >
+            <div 
+              className="h-full bg-[#FFB81C] w-20 md:w-60 rounded-full transition-all duration-100 ease-out "
+              style={{ width: `${videoProgress}%` }}
+            />
+          </div>
+          
+          {/* Hidden progress element for screen readers */}
+          <progress
+            value={videoProgress}
+            max="100"
+            className="sr-only"
+            aria-label={`Video progress: ${Math.round(videoProgress)}%`}
+          />
+          
+          {showPlayPause && renderPlayPauseButton('md')}
+        </div>
+
+        {/* Dots (Slider Mode) */}
+        {renderSliderDots()}
+      </div>
+    );
+  };
+
+  // Render dots only mode
+  const renderDotsOnlyMode = () => {
+    if (!showDots || showProgress || totalSlides <= 1) return null;
+    
+    return (
+      <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-2">
+          {Array.from({ length: totalSlides }, (_, index) => {
+            const slideNumber = index + 1;
+            const isCurrent = index === currentSlideIndex;
+            const dotWidth = getDotWidth(index);
+            
+            return (
+              <button
+                key={generateSlideDotLineKey(slideNumber, totalSlides)}
+                onClick={() => onSlideChange?.(index)}
+                className={`${getDotSizeClasses()} rounded-full transition-all duration-300 bg-white/60 hover:bg-white/80 ${
+                  isCurrent
+                    ? 'w-20 md:w-60' 
+                    : 'w-1.5'
+                }`}
+                aria-label={`Go to slide ${slideNumber}`}
+              >
+                <span 
+                  className={`${getDotSizeClasses()} block rounded-full transition-all duration-300 ${
+                    isCurrent
+                      ? 'bg-[#FFB81C]' 
+                      : 'bg-white/60 hover:bg-white/80'
+                  }`}
+                  style={{ width: dotWidth }}></span>
+              </button>
+            );
+          })}
+        </div>
+        
+        {showPlayPause && renderPlayPauseButton('md')}
+      </div>
+    );
+  };
+
+  // Render play/pause only mode
+  const renderPlayPauseOnly = () => {
+    if (!showPlayPause || showProgress || showDots) return null;
+    
+    return renderPlayPauseButton('lg');
+  };
+
+  // Render play/pause button
+  const renderPlayPauseButton = (size: 'sm' | 'md' | 'lg' = 'md') => {
+    const buttonClasses = size === 'lg' 
+      ? 'w-7 lg:w-10 h-7 lg:h-10' 
+      : 'w-7 h-7';
+    const iconClasses = size === 'lg' 
+      ? 'w-4 lg:w-5 h-4 lg:h-5' 
+      : 'w-4 h-4';
+    
+    return (
+      <button
+        onClick={handleVideoToggle}
+        className={`${buttonClasses} flex items-center justify-center text-white hover:text-[#FFB81C] transition-colors duration-300 border border-white/60 rounded-full bg-black/20 backdrop-blur-sm video-player-button`}
+        aria-label={isPlaying ? 'Pause video' : 'Play video'}
+      >
+        {isPlaying ? (
+          <svg className={iconClasses} fill="currentColor" viewBox="0 0 24 24">
+            <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+          </svg>
+        ) : (
+          <svg className={iconClasses} fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        )}
+      </button>
+    );
+  };
+
   return (
     <div className={`relative ${className}`}>
       {/* Video Element */}
@@ -241,26 +413,8 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         preload={preload}
         poster={posterImage}
         aria-label="Video content"
-        aria-hidden="true"
       >
         <source src={videoSrc} type="video/mp4" />
-        {captions ? (
-          <track
-            src={captions.src}
-            label={captions.label}
-            srcLang={captions.srclang}
-            kind={captions.kind || 'captions'}
-            default={captions.default}
-          />
-        ) : (
-          <track
-            kind="captions"
-            src=""
-            label="No captions available"
-            srcLang="en"
-            default={false}
-          />
-        )}
         Your browser does not support the video tag.
       </video>
 
@@ -269,150 +423,13 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         <div className={`z-20 w-full ${getControlsPositionClasses()}`}>
           <Container className="w-full">
           {/* Progress Bar + Play/Pause (Slider Mode) */}
-          {showProgress && (
-            <div className="flex flex-col items-center space-y-3">
-              <div className="flex items-center space-x-4">
-                <div 
-                  className={`${progressBarWidth} h-2 bg-white/60 rounded-full overflow-hidden cursor-pointer`}
-                  onClick={handleVideoProgressClick}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      // Create a synthetic event for the click handler
-                      const syntheticEvent = {
-                        ...e,
-                        type: 'click',
-                        target: e.currentTarget
-                      } as unknown as React.MouseEvent<HTMLDivElement>;
-                      handleVideoProgressClick(syntheticEvent);
-                    }
-                  }}
-                  tabIndex={0}
-                  aria-label={`Seek to position in video. Current progress: ${Math.round(videoProgress)}%`}
-                  aria-pressed="false"
-                >
-                  <progress
-                    className="h-full bg-[#FFB81C] w-20 md:w-60 rounded-full transition-all duration-100 ease-out"
-                    value={videoProgress}
-                    max={100}
-                    aria-label={`Video progress: ${Math.round(videoProgress)}%`}
-                  />
-                </div>
-                
-                {showPlayPause && (
-                  <button
-                    onClick={handleVideoToggle}
-                    className="w-7 h-7 flex items-center justify-center text-white hover:text-[#FFB81C] transition-colors duration-300 border border-white/60 rounded-full bg-black/20 backdrop-blur-sm"
-                    aria-label={isPlaying ? 'Pause video' : 'Play video'}
-                  >
-                    {isPlaying ? (
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-                      </svg>
-                    ) : (
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z"/>
-                      </svg>
-                    )}
-                  </button>
-                )}
-              </div>
-
-              {/* Dots (Slider Mode) */}
-              {showDots && totalSlides > 1 && (
-                <div className="flex items-center space-x-2">
-                  {Array.from({ length: totalSlides }, (_, index) => {
-                    const dotState = getDotState(index);
-                    return (
-                      <button
-                        key={`dot-${index}`}
-                        onClick={() => onSlideChange?.(index)}
-                        className={`${getDotSizeClasses()} rounded-full transition-all duration-300 ${
-                          dotState === 'current'
-                            ? 'bg-[#FFB81C] scale-125' 
-                            : 'bg-white/60 hover:bg-white/80'
-                        }`}
-                        aria-label={`Go to slide ${index + 1}`}
-                      />
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-          )}
+          {renderProgressBar()}
 
           {/* Dots Only Mode - Single Line Layout */}
-          {showDots && !showProgress && totalSlides > 1 && (
-            <div className="flex items-center space-x-3">
-              {/* Dots - All in one line */}
-              <div className="flex items-center space-x-2">
-                {Array.from({ length: totalSlides }, (_, index) => {
-                  const isCurrent = index === currentSlideIndex;
-                  const dotWidth = getDotWidth(index);
-                  
-                  return (
-                    <button
-                      key={`dot-line-${index}`}
-                      onClick={() => onSlideChange?.(index)}
-                      className={`${getDotSizeClasses()} rounded-full transition-all duration-300 bg-white/60 hover:bg-white/80 ${
-                        isCurrent
-                          ? 'w-20 md:w-60' 
-                          : 'w-1.5'
-                      }`}
-
-                      aria-label={`Go to slide ${index + 1}`}
-                    >
-                      <span 
-                        className={`${getDotSizeClasses()} block rounded-full transition-all duration-300 ${
-                          isCurrent
-                            ? 'bg-[#FFB81C]' 
-                            : 'bg-white/60 hover:bg-white/80'
-                        }`}
-                        style={{ width: dotWidth }}></span>
-                    </button>
-                  );
-                })}
-              </div>
-              
-              {/* Play/Pause Button - Same line as dots */}
-              {showPlayPause && (
-                <button
-                  onClick={handleVideoToggle}
-                  className="w-7 h-7 flex items-center justify-center text-white hover:text-[#FFB81C] transition-colors duration-300 border border-white/60 rounded-full bg-black/20 backdrop-blur-sm"
-                  aria-label={isPlaying ? 'Pause video' : 'Play video'}
-                >
-                  {isPlaying ? (
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-                    </svg>
-                  ) : (
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z"/>
-                    </svg>
-                  )}
-                </button>
-              )}
-            </div>
-          )}
+          {renderDotsOnlyMode()}
 
           {/* Play/Pause Only (Single Video Mode) */}
-          {showPlayPause && !showProgress && !showDots && (
-            <button
-              onClick={handleVideoToggle}
-              className="video-player-button w-7 lg:w-10 h-7 lg:h-10 flex items-center justify-center text-white hover:text-[#FFB81C] transition-colors duration-300 border border-white/60 rounded-full bg-black/20 backdrop-blur-sm0"
-              aria-label={isPlaying ? 'Pause video' : 'Play video'}
-            >
-              {isPlaying ? (
-                <svg className="w-4 lg:w-5 h-4 lg:h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
-                </svg>
-              ) : (
-                <svg className="w-4 lg:w-5 h-4 lg:h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z"/>
-                </svg>
-              )}
-            </button>
-          )}
+          {renderPlayPauseOnly()}
           </Container>
         </div>
       )}

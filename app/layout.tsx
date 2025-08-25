@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "../assets/scss/globals.scss";
 import { ToastProvider } from "@/components/ui/Toast";
 import { ErrorBoundary } from "@/components/common/ErrorBoundary";
+import Script from "next/script";
 
 const futura = localFont({
   src: "../assets/fonts/FuturaPT-Demi.woff2",
@@ -38,6 +39,10 @@ export default function RootLayout({
         <ToastProvider>
           <ErrorBoundary>{children}</ErrorBoundary>
         </ToastProvider>
+        <Script
+          src={`https://maps.googleapis.com/maps/api/js?key=&callback=initMap`}
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

@@ -203,6 +203,7 @@ export const HomePage: React.FC<HomePageProps> = ({ country, language }) => {
         background="dark"
         columns={3}
         spacing="lg"
+        className="section-spacing-y"
       />
 
 

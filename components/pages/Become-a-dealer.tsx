@@ -71,7 +71,7 @@ export const BecomeDealer: React.FC<BBecomeDealerPageProps> = () => {
       <ProductInfoSectionTab />
       <FeatureStats/>
       <InstallerSpotlights/>
-      <NextStepsForm contactInfo={NEXT_STEP_FORM_DATA.default}/>
+      <NextStepsForm contactInfo={NEXT_STEP_FORM_DATA.default} className='section-spacing-y'/>
 
     </div>
   );

@@ -87,7 +87,7 @@ export const PartnerShipIndividual: React.FC<PartnerShipIndividualPageProps> = (
 
       <ShowImage src="/images/partnership/xpel-official.png" alt="XPEL Partner Banner" />
 
-      <ServiceBlocks services={serviceBlocks} background="dark" columns={3} spacing="lg" />
+      <ServiceBlocks services={serviceBlocks} background="dark" columns={3} spacing="lg" className='section-spacing-y'/>
     </div>
   );
 };

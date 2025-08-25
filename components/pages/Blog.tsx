@@ -112,7 +112,7 @@ export const Blog: React.FC<BlogProps> = () => {
 
       <ArticleSectionBox title="Events" items={eventsArticles} theme="dark" featuredSide="right" className="section-spacing-y"/>
 
-      <ServiceBlocks services={serviceBlocks} background="dark" columns={3} spacing="lg" />
+      <ServiceBlocks services={serviceBlocks} background="dark" columns={3} spacing="lg" className='section-spacing-y' />
     
     </>
   );

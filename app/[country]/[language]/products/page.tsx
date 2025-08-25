@@ -120,7 +120,7 @@ export default async function ProductsPage({ params }: PageProps) {
       <ServiceCardGrid cards={productCards} className="section-spacing-bottom" />
 
       {/* Service Blocks Section */}
-      <ServiceBlocks services={ serviceBlocks} background="dark" columns={3} spacing="lg" />
+      <ServiceBlocks services={ serviceBlocks} background="dark" columns={3} spacing="lg" className='section-spacing-y' />
     </div>
   );
 }

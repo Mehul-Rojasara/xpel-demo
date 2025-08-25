@@ -28,7 +28,7 @@ export const TrainingCertificate: React.FC<TrainingCertificateProps> = () => {
         title={CONTENT_SECTIONS.TRAINING_CERTI.title}
         subtitle={CONTENT_SECTIONS.TRAINING_CERTI.subtitle}
       />
-      <ServiceBlocks services={serviceBlocks} background="dark" columns={3} spacing="lg" />
+      <ServiceBlocks services={serviceBlocks} background="dark" columns={3} spacing="lg" className='section-spacing-y'/>
       <ProductInfoSectionTab />
       <InstallerBenefits
         theme="light"
@@ -81,7 +81,7 @@ export const TrainingCertificate: React.FC<TrainingCertificateProps> = () => {
         ]}
       />
       <NextStepsForm contactInfo={NEXT_STEP_FORM_DATA.dapNext} theme="light" />
-      <ServiceBlocks services={serviceBlocks} background="dark" columns={3} spacing="lg" />
+      <ServiceBlocks services={serviceBlocks} background="dark" columns={3} spacing="lg" className='section-spacing-y' />
     </div>
   );
 };

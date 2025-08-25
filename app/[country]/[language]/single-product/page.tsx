@@ -1,13 +1,6 @@
 import SingleProductPpf from "@/components/pages/SingleProductPpfPage";
 import { productCategoryData } from "@/config/productCategoryData";
 
-interface SingleProductPageProps {
-  readonly params: Promise<{
-    readonly country: string;
-    readonly language: string;
-  }>;
-}
-
 export default async function SingleProductPage() {
   return (
     <SingleProductPpf faqTitle={productCategoryData.faqTitle}

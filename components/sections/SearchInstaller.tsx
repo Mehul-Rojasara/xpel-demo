@@ -5,25 +5,22 @@ import { Select } from "../ui/Select";
 import Link from "next/link";
 
 /** ---------------- Types ---------------- */
-type City = string;
-type StateName = string;
-type Country = string;
-
-type GeoMap = Record<Country, Record<StateName, City[]>>;
+type GeoMap = Record<string, Record<string, string[]>>;
 
 interface Installer {
   readonly id: string;
   readonly name: string;
-  readonly address1: string;
+  readonly address1?: string;
   readonly address2?: string;
   readonly phone?: string;
   readonly website?: string;
   readonly miles?: string;
-  readonly country: Country;
-  readonly state: StateName;
-  readonly city: City;
+  readonly country: string;
+  readonly state: string;
+  readonly city: string;
   readonly products?: readonly string[];
   productsExpanded?: boolean;
+  servicesExpanded?: boolean;
 }
 
 /** --------------- Data --------------- */
@@ -192,9 +189,9 @@ const ArrowRight = () => (
 
 /** --------------- Component --------------- */
 export const SearchInstaller: React.FC = () => {
-  const [country, setCountry] = useState<Country>("");
-  const [stateName, setStateName] = useState<StateName>("");
-  const [city, setCity] = useState<City>("");
+  const [country, setCountry] = useState<string>("");
+  const [stateName, setStateName] = useState<string>("");
+  const [city, setCity] = useState<string>("");
 
   const [chips, setChips] = useState<string[]>([
     "Automotive",
@@ -410,10 +407,11 @@ export const SearchInstaller: React.FC = () => {
                   type="button"
                   aria-controls={`${productsId}-${it.id}`}
                   aria-expanded={!!it.productsExpanded}
-                  onClick={() =>
-                    (it.productsExpanded = !it.productsExpanded) &&
-                    (/* force re-render */ setCity((c) => c))
-                  }
+                  onClick={() => {
+                    // Toggle products expanded state
+                    it.productsExpanded = !it.productsExpanded;
+                    return it.productsExpanded;
+                  }}
                   variant="tertiary"
                   buttonStyle="outlined"
                   size="sm"
@@ -477,7 +475,10 @@ export const SearchInstaller: React.FC = () => {
           <div
             className="absolute inset-0 bg-black/40"
             onClick={() => setShowMobileFilters(false)}
-            onKeyDown={(e)=> e.key === "Escape" && setShowMobileFilters(false)}
+            onKeyDown={(e) => e.key === "Escape" && setShowMobileFilters(false)}
+            tabIndex={0}
+            role="button"
+            aria-label="Close mobile filters"
           />
           <aside className="absolute right-0 top-0 h-full w-[88%] max-w-sm bg-white p-4 shadow-xl">
             <div className="mb-3 flex items-center justify-between">

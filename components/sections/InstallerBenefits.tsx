@@ -14,8 +14,6 @@ interface InstallerBenefitsProps {
   readonly description?: string;
   readonly buttonText?: string;
   readonly buttonHref?: string;
-
-  // Image
   readonly imageSrc?: string;
   readonly imageAlt?: string;
   readonly defaultSelectedIndex?: number;
@@ -31,7 +29,7 @@ interface InstallerBenefitsProps {
     readonly imageSrc?: string;
     readonly imageAlt?: string;
   }[];
-  readonly imagePosition?: "left" | "right"; // 👈 NEW PROP
+  readonly imagePosition?: "left" | "right";
 }
 
 export const InstallerBenefits: React.FC<InstallerBenefitsProps> = ({
@@ -46,6 +44,7 @@ export const InstallerBenefits: React.FC<InstallerBenefitsProps> = ({
   subtitle = "Benefits of Becoming an Installer",
   description = "...",
   buttonText = "Become an Installer",
+  buttonHref = "/become-an-installer",
   imageSrc = "/images/dapNext/dapNextfeature.jpg",
   imageAlt = "Person applying protective film to orange sports car",
   defaultSelectedIndex = 0,
@@ -119,9 +118,16 @@ export const InstallerBenefits: React.FC<InstallerBenefitsProps> = ({
   const linkColor = theme === "dark" ? "text-white" : "text-black";
   const linkHoverColor = theme === "dark" ? "hover:text-white/80" : "hover:text-gray-800";
 
+  // Get border color based on selection and theme
+  const getBorderColor = (isSelected: boolean, theme: string) => {
+    if (isSelected) return selectedBorderColor;
+    if (theme === "dark") return "bg-white";
+    return "bg-gray-300";
+  };
+
   return (
     <section
-      className={`${bgColor} section-spacing-y  ${className}`}
+      className={`${bgColor} ${className}`}
       aria-label={ariaLabel || "Installer benefits section"}
     >
       <Container>
@@ -173,7 +179,20 @@ export const InstallerBenefits: React.FC<InstallerBenefitsProps> = ({
 
             {buttonText && (
               <div className="mt-8">
-                <button type="button" className="btn btn-primary btn-primary-bg-white" aria-label="become-installer">
+                <button 
+                  type="button" 
+                  className="btn btn-primary btn-primary-bg-white" 
+                  aria-label="become-installer"
+                  onClick={() => {
+                    if (buttonHref) {
+                      if (buttonHref.startsWith('http')) {
+                        window.open(buttonHref, '_blank');
+                      } else {
+                        window.location.href = buttonHref;
+                      }
+                    }
+                  }}
+                >
                   {buttonText}
                 </button>
               </div>
@@ -191,25 +210,26 @@ export const InstallerBenefits: React.FC<InstallerBenefitsProps> = ({
                     }`}
                     onClick={() => handleBenefitClick(index)}
                     onKeyDown={(e) => {if (e.key === "Enter") {handleBenefitClick(index)}}}
+                    tabIndex={0}
+                    role="button"
+                    aria-label={`Select ${benefit.title} benefit`}
                   >
                     {/* Border */}
                     <div
-                      className={`w-[0.188rem] h-full absolute top-0 bottom-0 ${
-                        isSelected ? selectedBorderColor : theme === "dark" ? "bg-white" : "bg-gray-300"
-                      }`}
+                      className={`w-[0.188rem] h-full absolute top-0 bottom-0 ${getBorderColor(isSelected, theme)}`}
                     ></div>
 
                     {/* Text */}
                     <div className="flex-1">
                       <h4
-                        className={` font-h4 items-center flex gap-5 ${isSelected ? benefitTextColor : ""}`}
+                        className={` font-h4 items-center flex gap-5 ${theme === "dark" ? "text-white" : ""} ${isSelected ? benefitTextColor : ""}`}
                       >
                         {/* Icon */}
                         <span className="text-[1.875rem]">{benefit.icon}</span>
                         {benefit.title}
                       </h4>
                       {isSelected && benefit.description && (
-                        <p className={`para-small mt-4 text-white`}>{benefit.description}</p>
+                        <p className={`para-small mt-4 ${theme === "dark" ? "text-white" : ""}`}>{benefit.description}</p>
                       )}
                       {isSelected && benefit.linkText && benefit.linkHref && (
                         <Link

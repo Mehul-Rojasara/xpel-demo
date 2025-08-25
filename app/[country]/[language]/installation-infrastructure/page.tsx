@@ -1,9 +1,9 @@
 import React from 'react';
 import { LegalPoliciesSection } from '@/components/legal/LegalPoliciesSection';
-import { ServiceBlocks } from '@/components/common/ServiceBlocks';
 import { INSTALLATION_INFRASTRUCTURE_DATA } from '@/config/installation-infrastructure';
-import { SERVICE_BLOCKS } from '@/config/homepage';
 import Container from '@/components/ui/Container';
+import { Banner } from '@/components/sections/Banner';
+import { Accordion } from '@/components/ui/Accordion';
 
 export const metadata = {
   title: 'XPEL - Installation Infrastructure',
@@ -17,6 +17,7 @@ interface InstallationInfrastructurePageProps {
   }>;
 }
 
+
 export default async function InstallationInfrastructurePage({ params }: InstallationInfrastructurePageProps) {
   const { country, language } = await params;
 
@@ -29,27 +30,53 @@ export default async function InstallationInfrastructurePage({ params }: Install
     pdfUrl: '/images/file-sample_150kB.pdf' // Use the actual PDF file
   }));
 
-  // Service blocks with proper URLs and icons (same logic as Legal page)
-  const serviceBlocks = SERVICE_BLOCKS.map((block) => {
-    // Use styleguide icon classes
-    const iconMap = {
-      'installer-locator': 'icon-Xpel-Installer',
-      'coverage-options': 'icon-Coverage-Options',
-      'become-dealer': 'icon-Become-a-Dealer'
-    };
+  const FAQSection: React.FC<{
+    readonly items: ReadonlyArray<{ readonly id: string; readonly title: string; readonly content: string }>;
+    readonly className?: string;
+  }> = ({ items, className }) => {
+    return (
+      <section 
+        className={`${className} bg-white`}
+        >
+        <Container>
+          <div className="w-full">
+            <Accordion 
+              items={items}
+              allowMultiple={false}
+              defaultOpen={[0]}
+              className="border-0 shadow-none space-y-2"
+            />
+          </div>
+        </Container>
+      </section>
+    );
+  };
 
-    const mappedIconClass = iconMap[block.id as keyof typeof iconMap] || 'icon-Xpel-Installer';
-
-    return {
-      ...block,
-      ctaHref: `/${country}/${language}/services/${block.id}`,
-      iconClass: mappedIconClass,
-      iconAlt: `${block.title} icon`
-    };
-  });
+  const faqItems = installationPolicies.map((block) => ({
+    id: block.id,
+    title: block.title,
+    content: block.description
+  }));
 
   return (
-    <main className="min-h-screen bg-white">
+    <>
+      <Banner
+        backgroundImage="/images/partnership/partnership-group-header.jpg"
+        altText="Person applying protective film to car headlight"
+        variant="promotional"
+        className='h-[40rem] md:h-[42.5rem] lg:h-[520px]'
+        content={{
+          headline: {
+            title: "Installation Infrastructure"
+          }
+        }}
+      />
+      {/* Installation Documents Section */}
+      <FAQSection
+        items={faqItems}
+        className="section-spacing-y"
+      />
+
       {/* Installation Documents Section */}
       <section 
         className="py-16 sm:py-20 md:py-24 bg-white"
@@ -77,13 +104,6 @@ export default async function InstallationInfrastructurePage({ params }: Install
         </Container>
       </section>
 
-      {/* Service Blocks Section */}
-      <ServiceBlocks 
-        services={serviceBlocks}
-        background="dark"
-        columns={3}
-        spacing="lg"
-      />
-    </main>
+    </>
   );
 } 

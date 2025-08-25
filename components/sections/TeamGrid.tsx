@@ -13,8 +13,8 @@ interface Director {
 }
 
 interface BoardProps {
-  title?: string;
-  directors: Director[];
+  readonly directors: Director[];
+  readonly className?: string;
 }
 
 export const TeamGrid: React.FC<BoardProps> = ({ directors }) => {

@@ -67,10 +67,9 @@ export const Search: React.FC<SearchProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div 
+    <dialog 
       className={`fixed inset-0 bg-black bg-opacity-50 z-[9999] ${className}`}
       aria-label={ariaLabel || "Search overlay"}
-      role="dialog"
       aria-modal="true"
     >
       <div className="bg-gray-100 w-full px-4 py-6 rounded-b-lg" data-search-popup>
@@ -112,6 +111,6 @@ export const Search: React.FC<SearchProps> = ({
           </div>
         </form>
       </div>
-    </div>
+    </dialog>
   );
 }; 

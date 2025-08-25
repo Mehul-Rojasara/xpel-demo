@@ -1,5 +1,5 @@
-import React from 'react';
-import Container from '@/components/ui/Container';
+import React from "react";
+import Container from "@/components/ui/Container";
 
 interface OfficeCard {
   readonly id: string;
@@ -40,15 +40,10 @@ const officeData: OfficeCard[] = [
 
 export const CorporateOfficesSection: React.FC = () => {
   return (
-    <section className="pt-[274px] pb-24 bg-neutral-100">
+    <section className="section-spacing-y bg-neutral-100">
       <Container>
-        <div className="mb-20">
-          <h2 className="font-display font-medium text-neutral-900 text-[3rem] leading-[110%] tracking-[-0.01em] mb-6">
-            Corporate & International Offices
-          </h2>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-8">
+        <h2 className="font-h2 text-neutral-900 mb-12">Corporate & International Offices</h2>
+        <div className="flex flex-col md:flex-row gap-8">
           {officeData.map((office) => (
             <OfficeCard key={office.id} office={office} />
           ))}
@@ -60,54 +55,38 @@ export const CorporateOfficesSection: React.FC = () => {
 
 const OfficeCard: React.FC<{ office: OfficeCard }> = ({ office }) => {
   return (
-    <div className="bg-white border border-neutral-200 rounded-[14px] p-6 shadow-[0_2px_12px_0_rgba(0,0,0,0.1)] hover:shadow-[0_4px_20px_0_rgba(0,0,0,0.15)] transition-all duration-300 group w-[458.67px] h-[380px] flex flex-col justify-between">
+    <div className="bg-white border border-neutral-200 rounded-[0.875rem] p-5 lg:px-6 lg:py-[2.625rem] shadow-[0_2px_12px_0_rgba(0,0,0,0.1)] hover:shadow-[0_4px_20px_0_rgba(0,0,0,0.15)] transition-all duration-300 group md:max-w-[28.667rem] w-full flex flex-col space-y-3 lg:space-y-4">
       {/* Location Pin Icon */}
-      <div className="mb-6">
-        <div className="w-6 h-6 flex items-center justify-center">
-          <i className="icon-Map text-neutral-900 text-2xl"></i>
-        </div>
-      </div>
+      <i className="icon-Map text-neutral-900 text-3xl flex items- justify-centercenter"></i>
 
       {/* Company Name */}
-      <h3 className="font-display font-medium text-neutral-900 mb-4 text-[1.5rem] leading-[110%] tracking-[-0.01em]">
-        {office.company}
-      </h3>
+      <h3 className="font-h4 text-neutral-900">{office.company}</h3>
 
       {/* Address */}
-      <div className="mb-6">
-        <p className="font-sans text-neutral-700 leading-[150%] tracking-[0.01em] font-[450] text-[1.125rem]">
-          {office.address}
-        </p>
-      </div>
+      <p className="text-neutral-900 para-small">{office.address}</p>
 
       {/* Contact Information */}
-      <div className="space-y-4">
-        {/* Phone Numbers */}
-        <div>
-          {office.phone.map((phone) => (
-            <p key={phone.id} className="font-sans text-neutral-900 leading-[150%] tracking-[0.01em] font-[450] text-[1.125rem] mb-2">
-              {phone.number}
-            </p>
-          ))}
-        </div>
-
-        {/* Email */}
-        <div>
-          <a 
-            href={`mailto:${office.email}`}
-            className="font-sans text-neutral-600 hover:text-neutral-900 transition-colors duration-200 leading-[150%] tracking-[0.01em] font-[450] text-[1.125rem] underline decoration-neutral-400 decoration-2 underline-offset-4 hover:decoration-neutral-600"
+      <div className="para-small flex flex-col items-start gap-0.5">
+        {office.phone.map((phone) => (
+          <a
+            href={`tel:${phone.number}`}
+          key={phone.id}
+            className="text-neutral-900 transition-colors duration-200 underline decoration-white decoration-1 underline-offset-4 hover:decoration-neutral-900"
           >
-            {office.email}
+            {phone.number}
           </a>
-        </div>
+        ))}
+        {/* Email */}
+        <a
+          href={`mailto:${office.email}`}
+          className="text-neutral-900  transition-colors duration-200 underline decoration-white decoration-1 underline-offset-4 hover:decoration-neutral-900"
+        >
+          {office.email}
+        </a>
 
         {/* Hours */}
-        <div>
-          <p className="font-sans text-neutral-700 leading-[150%] tracking-[0.01em] font-[450] text-[1.125rem]">
-            {office.hours}
-          </p>
-        </div>
+        <p className="text-neutral-900">{office.hours}</p>
       </div>
     </div>
   );
-}; 
+};

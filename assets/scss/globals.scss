@@ -245,6 +245,10 @@
   }
 }
 
+.swiper-button-disabled {
+  display: none;
+}
+
 .service-blocks article {
   display: flex;
   align-items: center;
@@ -252,7 +256,7 @@
 
 .right-side {
   .video-player-button {
-    @apply ml-auto;
+    @apply absolute bottom-0 right-6;
   }
 }
 
@@ -300,6 +304,10 @@
 
 .btn-secondary {
   @include mixin.btn-secondary;
+}
+
+.btn-secondary-bg-transparent {
+  @include mixin.btn-secondary-bg-transparent;
 }
 
 .btn-secondary-outline {

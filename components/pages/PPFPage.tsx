@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ProductTabs } from '@/components/common/ProductTabs';
 import { ProductShowcase } from '@/components/common/ProductShowcase';
 import { ContentGrid } from '@/components/common/ContentGrid';
-import { ProductInfoSection } from '@/components/common/ProductInfoSection';
+import { ProductInfoCard } from '@/components/common/ProductInfoCard';
 
 interface PPFPageProps {
   country: string;
@@ -222,7 +222,7 @@ export const PPFPage: React.FC<PPFPageProps> = () => {
       />
 
       {/* Product Info Section */}
-      <ProductInfoSection
+              <ProductInfoCard
         {...fusionPlusData}
         background="dark"
         imagePosition="left"

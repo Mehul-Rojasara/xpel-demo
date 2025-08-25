@@ -28,7 +28,7 @@ export const InstallerLocator: React.FC<InstallerLocatorProps> = ({
   // language,
   onInstallerSelect,
 }) => {
-  const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
+  const [userLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [installers, setInstallers] = useState<Installer[]>([]);
   const [loading, setLoading] = useState(false);
   const [searchAddress, setSearchAddress] = useState('');

@@ -33,7 +33,6 @@ export const PartnerShip: React.FC<PartnerShipPageProps> = () => {
       <PartnerLogos />
 
       <TeamGrid
-        title=""
         directors={[
           {
             id: "1",
@@ -62,7 +61,7 @@ export const PartnerShip: React.FC<PartnerShipPageProps> = () => {
         ]}
       />
 
-      <ServiceBlocks services={serviceBlocks} background="dark" columns={3} spacing="lg" />
+      <ServiceBlocks services={serviceBlocks} background="dark" columns={3} spacing="lg" className='section-spacing-y' />
     </div>
   );
 };

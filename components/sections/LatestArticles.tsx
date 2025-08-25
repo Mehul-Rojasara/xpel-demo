@@ -114,8 +114,16 @@ export const LatestArticles = ({ title = "Latest Articles", className }: { title
                   className="w-full h-full object-cover"
                   controls={activeVideo === it.id}
                   preload="none"
-                  aria-hidden="true"
-                />
+                >
+                  <track
+                    kind="captions"
+                    src=""
+                    label="No captions available"
+                    srcLang="en"
+                    default={false}
+                  />
+                  Your browser does not support the video tag.
+                </video>
 
                 {/* play button overlay */}
                 {activeVideo !== it.id && (

@@ -32,9 +32,8 @@ export const SocialGallery: React.FC<SocialGalleryProps> = ({
             href={followHref}
             className="mt-4 inline-flex items-center gap-2 rounded-full border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-100 md:mt-0"
           >
-            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-gray-300">
-              {/* Instagram glyph (inline SVG) */}
-              <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="currentColor" aria-hidden>
+            <span className="text-xs text-gray-500">
+              <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="currentColor" aria-hidden="true">
                 <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm5.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0z" />
               </svg>
             </span>

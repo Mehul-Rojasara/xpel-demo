@@ -261,6 +261,11 @@ export const ProductSlider: React.FC<ProductSliderProps> = ({
               aria-label="Product slider"
               aria-live="polite"
               aria-atomic="false"
+              tabIndex={0}
+              role="slider"
+              aria-valuemin={0}
+              aria-valuemax={maxIndex}
+              aria-valuenow={currentIndex}
             >
               {products.map((product) => (
                 <ProductCard

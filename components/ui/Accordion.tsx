@@ -61,6 +61,21 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
         <div className="px-3 lg:px-6 pb-3 lg:pb-6">
           <p className={`para-small text-neutral-600 leading-relaxed`}>
             {content}
+
+            <span className="inline-flex gap-3 ml-1">
+              <button
+                className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm transition-colors duration-200"
+              >
+                View PDF
+                <i className="icon-Arrow-Right ml-2 text-sm" aria-hidden="true"></i>
+              </button>
+              <button
+                className="inline-flex items-center text-green-600 hover:text-green-800 font-medium text-sm transition-colors duration-200"
+              >
+                Download
+                <i className="icon-Download ml-2 text-sm" aria-hidden="true"></i>
+              </button>
+            </span>
           </p>
         </div>
       </div>
